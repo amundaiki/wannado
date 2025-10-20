@@ -1,0 +1,455 @@
+import React, { useState } from 'react';
+import { Calendar, Globe, MapPin, Target, TrendingUp, Users } from 'lucide-react';
+
+const MarketingPlan = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const monthlyPlan = [
+    {
+      month: "Oktober 2025",
+      focus: "Planlegging og innhold",
+      tasks: [
+        "Gjør status på sommerens salg og anmeldelser",
+        "Lag innhold fra årets sesong (beste bilder/video)",
+        "Sett budsjett for neste års kampanjer",
+        "Opprett engelsk og tysk versjon av nettsiden"
+      ],
+      channels: "Instagram, nettside, TripAdvisor, Google"
+    },
+    {
+      month: "November 2025",
+      focus: "Gavekort & samarbeid",
+      tasks: [
+        "Lanser \"Gi en opplevelse til jul\" kampanje",
+        "Lag gavekort på Havsul-tur 2026 (digitalt + fysisk)",
+        "Oppsøk hoteller og restauranter for partnerskap",
+        "Start samarbeid med Visit Sørlandet om vinter-PR"
+      ],
+      channels: "Meta Ads, lokale medier, Visit Sørlandet"
+    },
+    {
+      month: "Desember 2025",
+      focus: "Jul & PR",
+      tasks: [
+        "Kjør julekampanje i sosiale medier og lokalavis",
+        "Presseoppslag: \"Gaven som varer\"",
+        "Forbered early-bird lansering for januar",
+        "Oppdater bilder/video til OTA-plattformer"
+      ],
+      channels: "PR, Facebook Ads, nyhetsbrev"
+    },
+    {
+      month: "Januar 2026",
+      focus: "Early bird & SEO",
+      tasks: [
+        "Start \"Book tidlig – spar 15%\" kampanje",
+        "Optimaliser søk på engelsk og tysk",
+        "Publiser 2 reiseblogg-artikler om Havsul"
+      ],
+      channels: "Google Ads, nettside, Instagram"
+    },
+    {
+      month: "Februar 2026",
+      focus: "Internasjonal distribusjon",
+      tasks: [
+        "Registrer Havsul på Viator, GetYourGuide, Airbnb Experiences",
+        "Kontakt reisebyråer i Tyskland/Nederland",
+        "Lag engelsk promo-video og pressekit"
+      ],
+      channels: "OTAer, PR, e-post"
+    },
+    {
+      month: "Mars 2026",
+      focus: "Hotell- og reiselivssamarbeid",
+      tasks: [
+        "Signér 2–3 hotellavtaler (Stay & Sail)",
+        "Møte med turistkontor for sesongmateriell",
+        "Lanser Meta-annonser mot \"turister i Norge sommer 2026\""
+      ],
+      channels: "Partneravtaler, Visit Norway, Meta Ads"
+    },
+    {
+      month: "April 2026",
+      focus: "Sesongoppvarming",
+      tasks: [
+        "Lanser \"sesongen starter snart\" kampanje",
+        "Inviter presse/influensere på prøveseilas",
+        "Lag teaser-videoer fra klargjøring av Havsul"
+      ],
+      channels: "PR, Instagram Reels, YouTube Shorts"
+    },
+    {
+      month: "Mai 2026",
+      focus: "Sesongåpning",
+      tasks: [
+        "Fysisk markedsføring i Arendal (flagg, plakater, QR-skilt)",
+        "Hotell- og restaurantbrosjyrer på plass",
+        "Start faste kveldsturer (drop-in 2x per uke)"
+      ],
+      channels: "Lokalt, turistkontor, Instagram"
+    },
+    {
+      month: "Juni 2026",
+      focus: "Høysesongstart",
+      tasks: [
+        "Geoannonser mot turister i Arendal (radius 10 km)",
+        "Del bilder og video fra hver seilas",
+        "Be alle gjester legge igjen Google/TripAdvisor-anmeldelse"
+      ],
+      channels: "Instagram, Google Maps, TripAdvisor"
+    },
+    {
+      month: "Juli 2026",
+      focus: "Maks synlighet",
+      tasks: [
+        "Influencerbesøk (engelsk innhold)",
+        "Faste \"Sunset & Stories\"-turer 3x per uke",
+        "Delta på Canal Street med \"mini-seilas\" event"
+      ],
+      channels: "SoMe, PR, eventmarkedsføring"
+    },
+    {
+      month: "August 2026",
+      focus: "Arendalsuka & bedrifter",
+      tasks: [
+        "VIP-seilinger for bedrifter under Arendalsuka",
+        "Presseoppslag og foto",
+        "Oppfølging mot bedriftsmarkedet for høstkurs"
+      ],
+      channels: "LinkedIn, e-post, PR"
+    },
+    {
+      month: "September 2026",
+      focus: "Ettermarked & kurs",
+      tasks: [
+        "Markedsfør høstens teambuildingpakker",
+        "Send \"Takk for sesongen\"-nyhetsbrev",
+        "Planlegg gavekortkampanjer for vinteren"
+      ],
+      channels: "Nyhetsbrev, LinkedIn, nettside"
+    }
+  ];
+
+  const internationalMarketing = [
+    {
+      category: "Digital synlighet",
+      items: [
+        "Registrer på GetYourGuide, Viator, Expedia Local Expert, Airbnb Experiences",
+        "SEO på engelsk, tysk, nederlandsk og fransk",
+        "Google Ads mot Tyskland, Nederland, UK, Italia",
+        "Meta-kampanjer mot 'Visit Norway', 'Norwegian Fjords', 'Scandinavian Travel'"
+      ]
+    },
+    {
+      category: "Innhold & PR",
+      items: [
+        "Inviter 2-3 europeiske influensere (50-200k følgere)",
+        "Lag engelsk press kit med bilder og sitater",
+        "Send til National Geographic Traveller, Lonely Planet",
+        "Promo-video på engelsk (20 sek) - seiling, sol, historiefortelling"
+      ]
+    },
+    {
+      category: "Samarbeid",
+      items: [
+        "Kontakt Visit Norway, Visit Sørlandet, Fjord Norway",
+        "Tilby 20% provisjon til turoperatører i Tyskland/Canada/UK",
+        "Signere avtaler med reisebyråer for pakkesalg"
+      ]
+    }
+  ];
+
+  const localMarketing = [
+    {
+      category: "Fysisk synlighet",
+      items: [
+        "Bannere og beachflagg ved gjestehavna, Pollen, turistkontor",
+        "QR-koder som leder til booking",
+        "Digital skjerm på turistkontoret med dronevideo",
+        "Brosjyrer i Clarion Tyholmen, Thon, Grand Hotel, Fevik, Lyngørporten"
+      ]
+    },
+    {
+      category: "Samarbeid lokalt",
+      items: [
+        "10% provisjon til hotellresepsjoner per booking",
+        "\"Sail & Dine\" med restauranter i Pollen",
+        "Brosjyrer på Vitensenteret, Raet nasjonalpark, Merdø museum",
+        "Cruiseanløp - fleksible avganger på cruisedager"
+      ]
+    },
+    {
+      category: "Digital lokal",
+      items: [
+        "Google Maps-annonser ved søk på \"things to do in Arendal\"",
+        "Facebook/Instagram geoannonser (10 km radius)",
+        "QR-skilt ved gjestehavna, torget, Merdø-ferga",
+        "Faste kveldsturer (kl. 18:00 ti/to/lø)"
+      ]
+    }
+  ];
+
+  const quickWins = [
+    {
+      title: "Gavekortkampanje (nov-des)",
+      description: "Lav kost, høy effekt i julehandelen"
+    },
+    {
+      title: "Meta-annonser i engelsk/tysk",
+      description: "Fra januar - direkte trafikk til booking"
+    },
+    {
+      title: "OTA-registrering (februar)",
+      description: "Global synlighet på GetYourGuide, Viator"
+    },
+    {
+      title: "Influencer/PR (mars-april)",
+      description: "Gratis omtale og troverdighet"
+    },
+    {
+      title: "Geoannonser (sommer 2026)",
+      description: "Fang turister i Arendal når de vurderer aktivitet"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 p-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
+          <h1 className="text-4xl font-bold text-slate-800 mb-2">
+            Wannado Markedsføringsplan
+          </h1>
+          <p className="text-slate-600 text-lg">
+            Oktober 2025 - Oktober 2026 | Havsul & Opplevelser
+          </p>
+        </div>
+
+        {/* Navigation Tabs */}
+        <div className="bg-white rounded-lg shadow-lg mb-6 p-2">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'overview'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <Calendar size={18} />
+              Årshjul
+            </button>
+            <button
+              onClick={() => setActiveTab('international')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'international'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <Globe size={18} />
+              Internasjonal
+            </button>
+            <button
+              onClick={() => setActiveTab('local')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'local'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <MapPin size={18} />
+              Lokal
+            </button>
+            <button
+              onClick={() => setActiveTab('quickwins')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'quickwins'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <TrendingUp size={18} />
+              Hurtigvinst
+            </button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          {activeTab === 'overview' && (
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Calendar className="text-blue-600" />
+                Markedsføringsårshjul 2025-2026
+              </h2>
+              
+              <div className="space-y-4">
+                {monthlyPlan.map((month, index) => (
+                  <div
+                    key={index}
+                    className="border border-slate-200 rounded-lg p-5 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h3 className="text-xl font-semibold text-slate-800">
+                          {month.month}
+                        </h3>
+                        <p className="text-blue-600 font-medium">{month.focus}</p>
+                      </div>
+                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                        {month.channels}
+                      </span>
+                    </div>
+                    <ul className="space-y-2">
+                      {month.tasks.map((task, taskIndex) => (
+                        <li key={taskIndex} className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-slate-700">{task}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-blue-50 rounded-lg">
+                <h3 className="text-lg font-semibold text-slate-800 mb-3">
+                  Strategisk mål per fase
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <span className="font-medium text-blue-700">Høst/vinter (nå-mars):</span>
+                    <p className="text-slate-700">Bygge forventning, selge gavekort, sikre partnere</p>
+                  </div>
+                  <div>
+                    <span className="font-medium text-blue-700">Vår (april-mai):</span>
+                    <p className="text-slate-700">Synlighet og lansering - fylle sommerkalenderen</p>
+                  </div>
+                  <div>
+                    <span className="font-medium text-blue-700">Sommer (juni-august):</span>
+                    <p className="text-slate-700">Maksimere bookinger og omtale</p>
+                  </div>
+                  <div>
+                    <span className="font-medium text-blue-700">Høst (sept-okt):</span>
+                    <p className="text-slate-700">Ettermarked, kurs og lojalitet</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'international' && (
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Globe className="text-blue-600" />
+                Internasjonal markedsføring
+              </h2>
+              
+              <div className="space-y-6">
+                {internationalMarketing.map((section, index) => (
+                  <div key={index} className="border border-slate-200 rounded-lg p-5">
+                    <h3 className="text-lg font-semibold text-slate-800 mb-3">
+                      {section.category}
+                    </h3>
+                    <ul className="space-y-2">
+                      {section.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">✓</span>
+                          <span className="text-slate-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 p-5 bg-amber-50 border border-amber-200 rounded-lg">
+                <h4 className="font-semibold text-amber-900 mb-2">Viktig budskap</h4>
+                <p className="text-amber-800">
+                  "Sail the Southern Coast of Norway aboard a historic wooden ship – limited seats, summer only."
+                </p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'local' && (
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <MapPin className="text-blue-600" />
+                Lokal markedsføring i Arendal
+              </h2>
+              
+              <div className="space-y-6">
+                {localMarketing.map((section, index) => (
+                  <div key={index} className="border border-slate-200 rounded-lg p-5">
+                    <h3 className="text-lg font-semibold text-slate-800 mb-3">
+                      {section.category}
+                    </h3>
+                    <ul className="space-y-2">
+                      {section.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">✓</span>
+                          <span className="text-slate-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'quickwins' && (
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <TrendingUp className="text-blue-600" />
+                Hurtigvinst-tiltak
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                {quickWins.map((win, index) => (
+                  <div
+                    key={index}
+                    className="border-2 border-green-200 bg-green-50 rounded-lg p-5 hover:shadow-lg transition-all"
+                  >
+                    <h3 className="text-lg font-semibold text-green-900 mb-2">
+                      {index + 1}. {win.title}
+                    </h3>
+                    <p className="text-green-800">{win.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-slate-50 rounded-lg">
+                <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                  <Target className="text-blue-600" />
+                  Prioriterte målgrupper
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200">
+                    <Users className="text-blue-600 mb-2" size={24} />
+                    <h4 className="font-semibold text-slate-800 mb-1">Internasjonale turister</h4>
+                    <p className="text-sm text-slate-600">Tyskland, Nederland, UK, Italia</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-slate-200">
+                    <Users className="text-blue-600 mb-2" size={24} />
+                    <h4 className="font-semibold text-slate-800 mb-1">Lokale turister</h4>
+                    <p className="text-sm text-slate-600">I Arendal/Sørlandet under opphold</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg border border-slate-200">
+                    <Users className="text-blue-600 mb-2" size={24} />
+                    <h4 className="font-semibold text-slate-800 mb-1">Bedriftsmarkedet</h4>
+                    <p className="text-sm text-slate-600">Teambuilding og VIP-arrangementer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MarketingPlan;

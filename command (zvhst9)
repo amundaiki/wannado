@@ -1,0 +1,7 @@
+sed -i '' \
+  -e 's/border-yellow-500/border-amber-200/g' \
+  -e 's/text-yellow-900/text-gray-700/g' \
+  -e 's/bg-yellow-50/bg-amber-50/g' \
+  -e 's/border-2 border-amber-300/border border-gray-300/g' \
+  -e 's/border-t-2 border-gray-300/border-t border-gray-200/g' \
+  /Users/amundrangoy/Prosjekter/wannado/Wannado_Markedsplan_2026.html

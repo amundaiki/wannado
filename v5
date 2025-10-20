@@ -1,0 +1,802 @@
+import React, { useState } from 'react';
+import { Calendar, Globe, MapPin, Target, TrendingUp, Users, CheckSquare, Compass, FileText, DollarSign, BookOpen, ExternalLink, HelpCircle } from 'lucide-react';
+
+const MarketingPlan = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [checkedItems, setCheckedItems] = useState({});
+  const [expandedHelp, setExpandedHelp] = useState({});
+
+  const toggleCheck = (id) => {
+    setCheckedItems(prev => ({...prev, [id]: !prev[id]}));
+  };
+
+  const toggleHelp = (id) => {
+    setExpandedHelp(prev => ({...prev, [id]: !prev[id]}));
+  };
+
+  const glossary = {
+    seo: {
+      term: "SEO (Search Engine Optimization)",
+      explanation: "Søkemotoroptimalisering - gjør at nettsiden deres dukker opp høyere når folk søker på Google. Eksempel: når noen søker 'båttur Arendal' skal dere være blant de første resultatene.",
+      link: "https://www.google.com/search?q=hva+er+seo+forklart+enkelt"
+    },
+    meta: {
+      term: "Meta Ads (Facebook/Instagram annonser)",
+      explanation: "Betalte annonser på Facebook og Instagram. Dere lager en annonse med bilde/video, velger hvem som skal se den (f.eks. turister 30-60 år interessert i Norge), og betaler per klikk eller visning.",
+      link: "https://www.facebook.com/business/ads"
+    },
+    google_ads: {
+      term: "Google Ads",
+      explanation: "Betalte annonser som vises når folk søker på Google eller på andre nettsider. Dere betaler kun når noen klikker på annonsen.",
+      link: "https://ads.google.com/intl/no_no/home/"
+    },
+    ota: {
+      term: "OTA (Online Travel Agency)",
+      explanation: "Nettbaserte reisebyråer som GetYourGuide, Viator, Airbnb Experiences. Folk bestiller opplevelser der, plattformen tar provisjon (20-30%), og dere får resten + nye kunder.",
+      link: "https://www.getyourguide.com/supplier/"
+    },
+    geoannonser: {
+      term: "Geoannonser / Lokasjonbaserte annonser",
+      explanation: "Annonser som kun vises til folk som befinner seg på et bestemt sted. Eksempel: Alle innen 10 km fra Arendal sentrum får se annonse om Havsul på mobilen sin.",
+      link: "https://support.google.com/google-ads/answer/1722043"
+    },
+    qr: {
+      term: "QR-kode",
+      explanation: "En firkantet strekkode som folk kan skanne med mobilen. Når de skanner den, kommer de rett til deres bookingside. Gratis å lage på qr-code-generator.com",
+      link: "https://www.qr-code-generator.com/"
+    },
+    crm: {
+      term: "CRM (Customer Relationship Management)",
+      explanation: "Et system for å holde oversikt over kunder - hvem de er, hva de har kjøpt, deres e-postadresse etc. Eksempler: HubSpot, Mailchimp, Pipedrive.",
+      link: "https://www.hubspot.com/products/crm"
+    },
+    influencer: {
+      term: "Influencer-markedsføring",
+      explanation: "Dere inviterer personer med mange følgere på Instagram/YouTube til å oppleve Havsul gratis. De lager innhold som deres følgere ser - gratis reklame til tusenvis av mennesker.",
+      link: "https://www.google.com/search?q=influencer+marketing+guide"
+    },
+    pressekit: {
+      term: "Pressekit / Pressemappe",
+      explanation: "En PDF-fil med profesjonelle bilder, fakta om Havsul, sitater og kontaktinfo som journalister kan bruke når de skriver om dere.",
+      link: "https://www.google.com/search?q=how+to+create+a+press+kit"
+    },
+    provisjon: {
+      term: "Provisjon",
+      explanation: "En prosentandel dere betaler til noen som hjelper dere med salg. Eksempel: Hotellresepsjon får 10% av prisen hvis de anbefaler dere til en gjest som booker.",
+      link: null
+    },
+    roi: {
+      term: "ROI (Return on Investment)",
+      explanation: "Hvor mye dere tjener tilbake per krone dere bruker på markedsføring. Eksempel: Bruker 10.000 kr på annonser, får inn bookinger for 40.000 kr = ROI 400%",
+      link: "https://www.google.com/search?q=roi+calculator"
+    }
+  };
+
+  const monthlyPlan = [
+    {
+      month: "Oktober 2025",
+      phase: "Lavsesongen starter - Planlegging",
+      focus: "Planlegging og innhold",
+      tasks: [
+        {
+          task: "Gjør status på sommerens salg og anmeldelser",
+          howTo: "Logg inn på Google My Business og TripAdvisor. Tell antall bookinger, inntekt og anmeldelser. Lag et Excel-ark med oversikt.",
+          tools: ["Excel/Google Sheets", "TripAdvisor", "Google My Business"],
+          time: "2-3 timer",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Lag innhold fra årets sesong (beste bilder/video)",
+          howTo: "Gå gjennom alle bilder og videoer fra sommeren. Velg ut de 20-30 beste. Organiser dem i mapper: 'Havsul under seil', 'Fornøyde gjester', 'Solnedgang', 'Skjærgård'.",
+          tools: ["iPhone/kamera", "Google Photos eller Dropbox"],
+          time: "4-6 timer",
+          responsible: "Skipper/fotograf"
+        },
+        {
+          task: "Sett budsjett for neste års kampanjer",
+          howTo: "Basert på forventet inntekt neste år, sett av 10-20% til markedsføring. Bruk budsjettseksjonen i denne planen som mal. Eksempel: Forventet inntekt 500.000 kr → budsjett 75.000 kr til markedsføring.",
+          tools: ["Excel/budsjettmal"],
+          time: "2-3 timer",
+          responsible: "Daglig leder + økonomiansvarlig"
+        },
+        {
+          task: "Opprett engelsk og tysk versjon av nettsiden",
+          howTo: "Hvis nettsiden er laget i Wordpress: installer plugin 'WPML' eller 'Polylang'. Oversett alle sider. Alternativt: bruk Google Translate som utgangspunkt, men få en som kan språket til å kvalitetssjekke. Fokus på: Forside, Om Havsul, Booking, Priser.",
+          tools: ["Wordpress + WPML plugin", "Google Translate", "Oversetter (fiverr.com)"],
+          time: "8-12 timer",
+          cost: "Profesjonell oversettelse: 2.000-5.000 kr",
+          responsible: "Webansvarlig"
+        }
+      ],
+      channels: "Instagram, nettside, TripAdvisor, Google",
+      glossaryTerms: []
+    },
+    {
+      month: "November 2025",
+      phase: "Bygge vintersalg",
+      focus: "Gavekort & samarbeid",
+      tasks: [
+        {
+          task: "Lanser 'Gi en opplevelse til jul' kampanje",
+          howTo: "STEG 1: Lag innlegg på Facebook og Instagram med bilde av Havsul + tekst: 'Gi noe mer enn ting - gi en opplevelse på Havsul sommeren 2026'. STEG 2: Kjør annonse (boost innlegget) mot 30-60 år i Agder fylke. Budsjett: 50 kr/dag i 3 uker. STEG 3: Legg ut pressemelding på wannado.no og send til lokalavisen.",
+          tools: ["Facebook/Instagram", "Canva.com (gratis design)"],
+          time: "3-4 timer",
+          cost: "Annonse: 1.000-1.500 kr totalt",
+          responsible: "SoMe-ansvarlig"
+        },
+        {
+          task: "Lag gavekort på Havsul-tur 2026 (digitalt + fysisk)",
+          howTo: "DIGITALT: Bruk Vipps Gavekort (gratis å sette opp via Vipps Business) eller lag PDF-gavekort med Canva. FYSISK: Design et fint gavekort i Canva, print 50 stk hos Copy Cat Arendal eller Kopisenteret (ca 500 kr). Selg via nettsiden eller i resepsjon.",
+          tools: ["Vipps Business", "Canva.com", "Lokalt trykkeri"],
+          time: "4-5 timer",
+          cost: "Fysisk print: 500-1.000 kr",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Oppsøk hoteller og restauranter for partnerskap",
+          howTo: "STEG 1: Lag liste over 5-7 hoteller (Clarion Tyholmen, Thon, Grand, Fevik, Lyngørporten) og 3-4 restauranter i Pollen. STEG 2: Ring eller besøk personlig, be om møte med daglig leder. STEG 3: Presentér samarbeidsforslag: 'Stay & Sail' (hotell + seiltur pakke) eller 'Sail & Dine' (seiltur + middag). Tilby dem 10% provisjon eller felles markedsføring. STEG 4: Få skriftlig avtale.",
+          tools: ["Telefon", "Avtalemaler (kan finne på nettet)", "Visittkort"],
+          time: "10-15 timer totalt",
+          cost: "Gratis (tid)",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Start samarbeid med Visit Sørlandet om vinter-PR",
+          howTo: "STEG 1: Gå inn på visitsorlandet.com og finn kontaktinfo. STEG 2: Send e-post til deres markedsavdeling med emne: 'Samarbeid om Havsul-opplevelsen i 2026'. STEG 3: Foreslå at de inkluderer Havsul i kampanjer, blogger og sosiale medier. STEG 4: Tilby dem gratis prøvetur for deres team. STEG 5: Spør om medlemskap i Visit Sørlandet (ca 10.000 kr/år).",
+          tools: ["E-post", "Telefon"],
+          time: "2-3 timer + møte",
+          cost: "Medlemskap: 10.000-15.000 kr/år",
+          responsible: "Daglig leder"
+        }
+      ],
+      channels: "Meta Ads, lokale medier, Visit Sørlandet",
+      glossaryTerms: ['meta', 'provisjon']
+    },
+    {
+      month: "Desember 2025",
+      phase: "Julemarkedet",
+      focus: "Jul & PR",
+      tasks: [
+        {
+          task: "Kjør julekampanje i sosiale medier og lokalavis",
+          howTo: "SOSIALE MEDIER: Post 3 ganger/uke med julebilder av Havsul, gavekort, julestemning. Bruk hashtags: #julegaver #opplevelser #arendal #sørlandet. Boost 2-3 innlegg (50 kr/dag hver). LOKALAVIS: Send pressemelding til tips@agderposten.no med tittel: 'Arendal-bedrift tilbyr unike opplevelser som julegave'. Inkluder bilde og kontaktinfo.",
+          tools: ["Instagram", "Facebook", "E-post"],
+          time: "1-2 timer/uke",
+          cost: "Boost: 2.000-3.000 kr totalt",
+          responsible: "SoMe-ansvarlig"
+        },
+        {
+          task: "Presseoppslag: 'Gaven som varer – opplevelse i skjærgården'",
+          howTo: "STEG 1: Skriv en pressemelding (300-400 ord) om hvorfor opplevelser er bedre julegaver enn ting. Inkluder sitater fra fornøyde kunder og fakta om Havsul. STEG 2: Send til: Agderposten, GD, Grimstad Adressetidende, NRK Sørlandet. STEG 3: Ring opp journalister 2 dager etter for å følge opp. STEG 4: Tilby dem mulighet til intervju eller fotoshoot.",
+          tools: ["Word/Google Docs", "E-post", "Telefon"],
+          time: "4-5 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Forbered early-bird lansering for januar",
+          howTo: "STEG 1: Bestem rabatt: 15% for bookinger gjort før 1. april 2026. STEG 2: Lag grafisk materiale i Canva med tekst: 'Book tidlig - spar 15%! Sommeren 2026 på Havsul'. STEG 3: Forbered e-post til tidligere kunder. STEG 4: Skriv innlegg til SoMe som kan publiseres 2. januar.",
+          tools: ["Canva.com", "Mailchimp eller Get a Newsletter"],
+          time: "3-4 timer",
+          cost: "Gratis",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Oppdater bilder/video til OTA-plattformer",
+          howTo: "Logg inn på GetYourGuide og Viator (hvis allerede registrert). Last opp de 15-20 beste bildene fra sommeren 2025. Oppdater beskrivelsen med nye anmeldelser/sitater. Sjekk at priser er korrekte. Tips: Første bilde er viktigst - velg et spektakulært bilde av Havsul under seil.",
+          tools: ["GetYourGuide dashboard", "Viator supplier portal"],
+          time: "2-3 timer",
+          cost: "Gratis",
+          responsible: "Webansvarlig"
+        }
+      ],
+      channels: "PR, Facebook Ads, nyhetsbrev",
+      glossaryTerms: ['ota', 'meta']
+    },
+    {
+      month: "Januar 2026",
+      phase: "Internasjonalt fokus",
+      focus: "Early bird & SEO",
+      tasks: [
+        {
+          task: "Start 'Book tidlig – spar 15%' kampanje",
+          howTo: "STEG 1: Publiser kampanjen på nettsiden (banner øverst). STEG 2: Send nyhetsbrev til alle på e-postlisten med emne: 'Spar 15% på Havsul-tur sommeren 2026'. STEG 3: Post på Instagram/Facebook 2 ganger/uke. STEG 4: Boost beste innlegg (100 kr/dag i 2 uker). STEG 5: Legg til kampanje på booking-siden med nedtellingskalkulator (slutter 31. mars).",
+          tools: ["Wordpress", "Mailchimp", "Instagram/Facebook"],
+          time: "5-6 timer oppsett + løpende",
+          cost: "Annonser: 2.000-3.000 kr",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Optimaliser søk på engelsk og tysk (SEO)",
+          howTo: "STEG 1: Installer Yoast SEO plugin (gratis for Wordpress). STEG 2: For hver side på engelsk/tysk, fyll ut: Meta tittel (maks 60 tegn), Meta beskrivelse (maks 155 tegn), Focus-søkeord. Eksempler på søkeord: 'boat trip Arendal', 'sailing Norway', 'Segeltour Norwegen'. STEG 3: Sjekk at Google har indeksert sidene (søk 'site:wannado.no' på Google). STEG 4: Opprett Google My Business på engelsk hvis ikke allerede gjort.",
+          tools: ["Yoast SEO plugin", "Google Keyword Planner (gratis)", "Google My Business"],
+          time: "6-8 timer",
+          cost: "Gratis",
+          link: "https://wordpress.org/plugins/wordpress-seo/",
+          responsible: "Webansvarlig"
+        },
+        {
+          task: "Publiser 2 reiseblogg-artikler om Havsul-opplevelsen",
+          howTo: "Skriv 2 artikler (500-800 ord hver) for nettsiden. Artikkel 1: '5 grunner til å oppleve Arendals skjærgård fra en historisk seilskute'. Artikkel 2: 'Havsuls historie - en reise tilbake til 1933'. TIPS: Inkluder 5-7 bilder i hver artikkel. Bruk søkeord som 'båttur Arendal', 'seilskøyte', 'skjærgård Sørlandet' naturlig i teksten. Legg til lenke til booking-siden. Publiser på bloggseksjon på wannado.no",
+          tools: ["Word/Google Docs", "Wordpress"],
+          time: "8-10 timer totalt",
+          cost: "Gratis (egen tid) eller ekstern skribent: 2.000-4.000 kr per artikkel",
+          responsible: "Innholdsansvarlig"
+        }
+      ],
+      channels: "Google Ads, nettside, Instagram",
+      glossaryTerms: ['seo', 'google_ads']
+    },
+    {
+      month: "Februar 2026",
+      phase: "Distribusjon",
+      focus: "Internasjonal distribusjon",
+      tasks: [
+        {
+          task: "Registrer Havsul på Viator, GetYourGuide, Airbnb Experiences",
+          howTo: "VIATOR: Gå til supplier.viator.com → Klikk 'Become a supplier' → Fyll ut skjema (tar 20 min) → Last opp bilder og beskrivelse → Vent 2-3 uker på godkjenning. GETYOURGUIDE: supplier.getyourguide.com → samme prosess. AIRBNB EXPERIENCES: airbnb.com/host/experiences → Opprett konto → Lag opplevelse med bilder, pris, beskrivelse. VIKTIG: Bruk profesjonelle bilder, skriv engasjerende beskrivelse på engelsk, sett konkurransedyktige priser (sjekk hva andre tar for lignende turer).",
+          tools: ["Supplier.viator.com", "Supplier.getyourguide.com", "Airbnb.com/host"],
+          time: "4-6 timer per plattform",
+          cost: "Gratis registrering - provisjon 20-30% per booking",
+          link: "https://supplier.getyourguide.com/",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Kontakt reisebyråer i Tyskland/Nederland for pakkesalg",
+          howTo: "STEG 1: Google 'Norway tour operators Germany' og 'Reiseveranstalter Norwegen'. Lag liste med 15-20 byråer. STEG 2: Finn kontaktinfo (oftest 'Partner' eller 'Suppliers' side). STEG 3: Send e-post på engelsk: 'Partnership opportunity - Authentic sailing in Southern Norway'. Beskriv Havsul, send bilder, prisliste og tilby 20% partnerprovisjonsjon. STEG 4: Følg opp med telefon etter 1 uke. STEG 5: Avtale Zoom-møte med interesserte.",
+          tools: ["Google", "E-post", "Zoom", "Produktark (PDF)"],
+          time: "10-15 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Lag engelsk promo-video (20 sek) og pressekit",
+          howTo: "VIDEO: Film 5-10 korte klipp (hver 3-5 sek): Havsul under seil (drone), folk ombord som ler, skjærgård, solnedgang. Bruk app som InShot eller CapCut (gratis) til å sette sammen. Legg til tekst: 'Sail aboard Havsul - A 1933 wooden ship - Book your authentic Norwegian experience'. Bakgrunnsmusikk fra Epidemic Sound (30 USD/mnd). Publiser på YouTube, Instagram, Facebook. PRESSEKIT: Lag PDF i Canva med 10 bilder, fakta om Havsul (byggeår, lengde, kapasitet), sitater fra gjester, kontaktinfo, priser.",
+          tools: ["iPhone/kamera", "InShot/CapCut app", "Canva.com", "Epidemic Sound"],
+          time: "VIDEO: 4-6 timer, PRESSEKIT: 3-4 timer",
+          cost: "Musikk: 30 USD/mnd, resten gratis",
+          link: "https://www.canva.com/",
+          responsible: "Innholdsansvarlig"
+        }
+      ],
+      channels: "OTAer, PR, e-post",
+      glossaryTerms: ['ota', 'provisjon', 'pressekit']
+    },
+    {
+      month: "Mars 2026",
+      phase: "Partnerskap",
+      focus: "Hotell- og reiselivssamarbeid",
+      tasks: [
+        {
+          task: "Signér 2–3 hotellavtaler (Stay & Sail pakker)",
+          howTo: "STEG 1: Kontakt Clarion Tyholmen, Thon Hotel Arendal, Strand Hotel Fevik. Be om møte med sales manager. STEG 2: Presentér pakkeforslag: '2 netter + 3 timers Havsul-tur' til fast pris (f.eks. 3.500 kr for 2 personer). Hotellet tar booking og dere får 70% av Havsul-delen, de får 30%. Eller: Rett provisjon 10-15% til hotellet per Havsul-booking de formidler. STEG 3: Lag skriftlig avtale (1 års varighet). STEG 4: Hotellet legger pakken på sine nettsider og dere markedsfører den på deres. STEG 5: Lag felles markedsføringsmateriell.",
+          tools: ["PowerPoint (presentasjon)", "Avtalemal", "Excel (kalkulasjon)"],
+          time: "12-20 timer totalt",
+          cost: "Gratis (provisjonsavtale)",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Møte med turistkontor for sesongmateriell",
+          howTo: "Ring Arendal Turistkontor (info@visitarendal.no / 37 00 55 44) og book møte. Ta med: brosjyrer, bilder, prisliste. DISKUSJONSPUNKTER: 1) Kan de ha Wannado-brosjyrer i resepsjonen? 2) Kan dere få plass på deres nettside/sosiale medier? 3) Kan dere få digital skjerm med Havsul-video i turistinformasjonen? 4) Kan de anbefale Havsul til besøkende som spør om aktiviteter? Tilby dem gratis prøvetur for deres ansatte.",
+          tools: ["Telefon", "Brosjyrer", "USB med video"],
+          time: "3 timer (forberedelse + møte)",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Lanser betalte Meta-annonser mot 'turister i Norge sommer 2026'",
+          howTo: "STEG 1: Gå til facebook.com/adsmanager → Opprett konto (gratis). STEG 2: Klikk 'Create' → Velg mål 'Traffic' (trafikk til nettsiden). STEG 3: Målgruppe: Land: Tyskland, Nederland, UK, Danmark. Alder: 30-65. Interesser: 'Norway', 'Travel', 'Sailing', 'Scandinavia'. STEG 4: Last opp video eller bilder. Tekst (på engelsk): 'Discover Norway's coast aboard a historic wooden ship. Book your 2026 adventure on Havsul.' STEG 5: Budsjett: 100 kr/dag. Periode: mars-august. STEG 6: Lenke til engelsk bookingside. STEG 7: Publiser og overvåk resultater ukentlig.",
+          tools: ["Facebook Ads Manager", "Kredittkort"],
+          time: "3-4 timer oppsett + 1 time/uke oppfølging",
+          cost: "15.000-20.000 kr (100 kr/dag x 5 mnd)",
+          link: "https://www.facebook.com/business/ads",
+          responsible: "Markedsansvarlig"
+        }
+      ],
+      channels: "Partneravtaler, Visit Norway, Meta Ads",
+      glossaryTerms: ['meta', 'provisjon']
+    },
+    {
+      month: "April 2026",
+      phase: "Oppbygging",
+      focus: "Sesongoppvarming",
+      tasks: [
+        {
+          task: "Lanser 'sesongen starter snart' kampanje",
+          howTo: "STEG 1: Post daglig på Instagram/Facebook med countdown: '45 dager til sesongstart', '30 dager...', etc. Bruk bilder fra i fjor. STEG 2: Lag nyhetsbrev med emne: 'Havsul seiler igjen fra 15. mai - book nå!' STEG 3: Vis ledige datoer i juni-juli (skaper FOMO - fear of missing out). STEG 4: Boost beste innlegg (50 kr/dag). STEG 5: Legg ut pressemelding på nettsiden.",
+          tools: ["Instagram", "Facebook", "Mailchimp"],
+          time: "2-3 timer/uke",
+          cost: "1.500-2.000 kr (boost)",
+          responsible: "SoMe-ansvarlig"
+        },
+        {
+          task: "Inviter presse/influensere på prøveseilas",
+          howTo: "STEG 1: Lag liste over 5 lokale journalister (Agderposten, GD, NRK Sørlandet) + 5 influensere (Instagram/YouTube, 20k-200k følgere, fokus på reise/familie/Norge). STEG 2: Send personlig e-post/DM: 'Invitasjon til eksklusiv prøveseilas med Havsul 25. april - opplev skjærgården før sesongen starter'. STEG 3: Tilby gratis tur for dem + 1 ledsager. STEG 4: Be om innhold i retur (artikkel, Instagram-post, video). STEG 5: Følg opp 1 uke før arrangementet.",
+          tools: ["E-post", "Instagram DM", "Telefon"],
+          time: "5-6 timer + selve arrangementet",
+          cost: "Gratis turer (verdi 3.000-6.000 kr)",
+          responsible: "Daglig leder + PR-ansvarlig"
+        },
+        {
+          task: "Lag teaser-videoer fra klargjøring av Havsul",
+          howTo: "Film med mobil: 1) Havsul på land, 2) Maling/vask av skrog, 3) Rigging av seil, 4) Sjøsetting, 5) Første tur på vannet. Hver video: 15-30 sekunder. Legg til tekst i CapCut/InShot: 'Havsul gjøres klar for sesong 2026', 'Snart på sjøen igjen!'. Publiser som Instagram Reels og YouTube Shorts. Bruk #havsul #arendal #seilskute #sørlandet #båtliv. Post 2-3 ganger/uke.",
+          tools: ["iPhone", "CapCut/InShot app", "Instagram", "YouTube"],
+          time: "1-2 timer/uke",
+          cost: "Gratis",
+          responsible: "Skipper + SoMe-ansvarlig"
+        }
+      ],
+      channels: "PR, Instagram Reels, YouTube Shorts",
+      glossaryTerms: ['influencer']
+    },
+    {
+      month: "Mai 2026",
+      phase: "Sesongåpning",
+      focus: "Sesongåpning",
+      tasks: [
+        {
+          task: "Fysisk markedsføring i Arendal (flagg, plakater, QR-skilt)",
+          howTo: "FLAGG: Bestill 5-7 beachflagg (Wannado-logo + 'Havsul seilinger - Book på wannado.no') hos Copy Cat Arendal. Plasser ved: gjestehavna, Pollen, ved Merdø-ferga (spør om tillatelse først). PLAKATER: Design A3-plakat i Canva, print 50 stk, heng opp på oppslagstavler, turistkontor, bibliotek. QR-SKILT: Lag QR-kode på qr-code-generator.com som går til booking-siden. Print på vanntett materiale (dibond/aluminium), størrelse A4. Monter på stativ eller skru fast (med tillatelse).",
+          tools: ["Copy Cat Arendal", "Canva.com", "QR-code-generator.com", "Lokalt trykkeri"],
+          time: "6-8 timer",
+          cost: "Flagg: 3.000-5.000 kr, Plakater: 1.000 kr, QR-skilt: 1.500-2.500 kr",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Hotell- og restaurantbrosjyrer på plass (minimum 5 steder)",
+          howTo: "STEG 1: Design brosjyre (A5, dobbelsidig) i Canva. Forside: stort bilde av Havsul + 'Opplev Arendals skjærgård'. Bakside: bilder, kort tekst, priser, QR-kode, kontaktinfo. STEG 2: Print 1000 stk hos Copy Cat (ca 5.000 kr). STEG 3: Besøk personlig: Clarion, Thon, Grand Hotel, Fevik, Lyngørporten + 3-4 restauranter i Pollen. STEG 4: Spør hvor de kan stå synlig (resepsjon, lobby, på bord). STEG 5: Etterlevér nye brosjyrer hver måned.",
+          tools: ["Canva.com", "Copy Cat Arendal", "Bil for å levere"],
+          time: "4-5 timer design + 3-4 timer levering",
+          cost: "5.000-8.000 kr (print)",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Start faste kveldsturer (drop-in 2x per uke)",
+          howTo: "KONSEPT: Hver tirsdag og torsdag kl 18:00 = 'Sunset Sail with Havsul'. Max 12 personer, pris 590 kr per person. Folk kan booke samme dag via nettsiden eller ringe. MARKEDSFØRING: Post på Instagram hver tirsdag/torsdag morgen kl 09: 'Tonight at 6pm - Sunset Sail! 8 spots left. Book now: wannado.no'. Legg inn i Google My Business som 'Event'. Oppdater bookingkalender på nettsiden. Synlig knapp 'Book tonight's sail'.",
+          tools: ["Bookingsystem", "Instagram", "Google My Business"],
+          time: "30 min markedsføring per tur",
+          cost: "Gratis (tjeneste eksisterer allerede)",
+          responsible: "Skipper + SoMe-ansvarlig"
+        }
+      ],
+      channels: "Lokalt, turistkontor, Instagram",
+      glossaryTerms: ['qr']
+    },
+    {
+      month: "Juni 2026",
+      phase: "Høysesong starter",
+      focus: "Høysesongstart",
+      tasks: [
+        {
+          task: "Geoannonser mot turister i Arendal (radius 10 km)",
+          howTo: "GOOGLE ADS: Logg inn på ads.google.com → Opprett kampanje → Velg 'Local' campaign. Målgruppe: Lokasjon: 10 km radius rundt Arendal sentrum. Språk: Norsk, Engelsk, Tysk, Dansk. Enhet: Mobil. Tekst: 'Båttur i Arendal i dag? Opplev Havsul - historisk seilskute. Book nå!' Lenke til booking. Budsjett: 100-150 kr/dag. FACEBOOK/INSTAGRAM: Samme oppsett i Meta Ads Manager. Viktig: Annonsen vises kun til folk som fysisk er i Arendal (ikke folk som bor der).",
+          tools: ["Google Ads", "Meta Ads Manager"],
+          time: "3-4 timer oppsett",
+          cost: "3.000-4.500 kr/mnd (100-150 kr/dag)",
+          link: "https://support.google.com/google-ads/answer/1722043",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Del bilder og video fra hver seilas",
+          howTo: "RUTINE: Etter hver seilas, last opp 3-5 beste bilder til Instagram samme kveld. Bruk hashtags: #havsul #arendal #seiltur #sørlandet #skjærgård #visitnorway #båtliv. Tag gjester (spør om tillatelse først). Post Instagram Story under turen med tekst 'Live from Havsul'. 1 gang per uke: lag lengre post med historie fra turen. Hver søndag: lag video-sammendrag av ukens seilinger (Reel, 30-60 sek).",
+          tools: ["iPhone", "Instagram", "CapCut app"],
+          time: "15-20 min per tur",
+          cost: "Gratis",
+          responsible: "Skipper eller SoMe-ansvarlig"
+        },
+        {
+          task: "Be alle gjester legge igjen Google/TripAdvisor-anmeldelse (mål: 20+)",
+          howTo: "METODE 1: Etter hver tur, send SMS til gjestene (få nummer ved booking): 'Takk for turen! Vi setter stor pris på om du legger igjen en anmeldelse her: [lenke til Google]'. METODE 2: Ha QR-kode ombord på laminert ark: 'Likte du turen? Skann og anmeld oss!' går til Google My Business. METODE 3: Send oppfølgings-e-post 2 dager etter med lenke til både Google og TripAdvisor. Tilby 10% rabatt på neste tur for de som legger igjen anmeldelse.",
+          tools: ["SMS-tjeneste (Sendega.com)", "QR-kode", "E-post"],
+          time: "10 min per gruppe",
+          cost: "SMS: 0,50 kr/stk = 500 kr/mnd",
+          responsible: "Skipper"
+        }
+      ],
+      channels: "Instagram, Google Maps, TripAdvisor",
+      glossaryTerms: ['geoannonser', 'qr']
+    },
+    {
+      month: "Juli 2026",
+      phase: "Topp-sesong",
+      focus: "Maks synlighet",
+      tasks: [
+        {
+          task: "Influencerbesøk (engelsk innhold) - minimum 2 profiler",
+          howTo: "STEG 1: På Instagram, søk hashtags: #familytravel #norwaytravel #scandinaviatrip. Finn profiler med 50k-200k følgere som poster om Norge/familie/reise. STEG 2: Send DM: 'Hi [name], we'd love to host you aboard Havsul, our 1933 wooden ship in Arendal. Complimentary 3-hour sail for you + family in exchange for Instagram content. Interested?' STEG 3: Avtale dato i juli. STEG 4: Be om minimum: 3 Instagram posts + 1 Reel + Story-serie. STEG 5: Gi dem fakta om Havsul, historier å fortelle, best spots for foto.",
+          tools: ["Instagram", "E-post"],
+          time: "5-6 timer koordinering per influencer",
+          cost: "Gratis tur + evt. 5.000-10.000 kr honorar hvis stor profil",
+          responsible: "PR-ansvarlig + Skipper"
+        },
+        {
+          task: "Faste 'Sunset & Stories'-turer 3x per uke",
+          howTo: "KONSEPT: Mandag, onsdag, fredag kl 19:00. 2,5 timer. Inkludert: Seilas + historiefortelling + 1 glass vin/brus + snacks. Pris: 790 kr per person. MARKEDSFØRING: Post på Instagram/Facebook hver morgen det er tur: 'Tonight: Sunset & Stories. Join us at 7pm for sailing, history & wine. [X] spots left.' Legg inn som fast produkt på booking-siden. Målgruppe: Par 40-70 år, både lokale og turister.",
+          tools: ["Bookingsystem", "Instagram/Facebook"],
+          time: "Markedsføring: 20 min per tur",
+          cost: "Inkludert i eksisterende drift",
+          responsible: "Skipper + markedsansvarlig"
+        },
+        {
+          task: "Delta på Canal Street med 'mini-seilas' event eller stand",
+          howTo: "STEG 1: Kontakt Canal Street arrangør (canalstre et.no) i februar-mars og spør om deltagelse. ALTERNATIV 1: Havsul ligger til kai under festivalen - folk kan se den og få info. Ha stand med brosjyrer, bilder, bookingmulighet. ALTERNATIV 2: Tilby korte 30-minutters seilaser i løpet av dagen (499 kr per person). STEG 3: Markedsfør deltagelsen i forkant på SoMe: 'Se Havsul på Canal Street 18-20 juli!'. STEG 4: Ha 2-3 personer på standjen hele helgen.",
+          tools: ["Telt/stand", "Brosjyrer", "Mobile bookingsystem", "Kontakt Canal Street"],
+          time: "3 dager full deltakelse",
+          cost: "Standplass: 5.000-15.000 kr (avhengig av avtale)",
+          responsible: "Daglig leder + team"
+        }
+      ],
+      channels: "SoMe, PR, eventmarkedsføring",
+      glossaryTerms: ['influencer']
+    },
+    {
+      month: "August 2026",
+      phase: "Event-måned",
+      focus: "Arendalsuka & bedrifter",
+      tasks: [
+        {
+          task: "VIP-seilinger for bedrifter under Arendalsuka",
+          howTo: "STEG 1: I januar-mars, kontakt bedrifter som skal delta på Arendalsuka (politiske partier, organisasjoner, medier, konsulentselskap). STEG 2: Tilby eksklusiv seilas for deres gjester/ansatte/VIP-er. Pris: 15.000-25.000 kr for privat charter (3 timer). Inkluder mat/drikke fra lokal restaurant. STEG 3: Markedsfør på LinkedIn: 'Havsul available for corporate sailing during Arendalsuka'. STEG 4: Ha fleksibel timeplan i uke 33. STEG 5: Ta profesjonelle bilder under turene for bruk i markedsføring.",
+          tools: ["LinkedIn", "E-post", "Telefon", "Profesjonell fotograf"],
+          time: "10-15 timer salgsarbeid + ukens seilinger",
+          cost: "Fotograf: 5.000-8.000 kr for dagen",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Presseoppslag og foto",
+          howTo: "STEG 1: Inviter journalist fra Agderposten eller NRK ombord på en VIP-seilas under Arendalsuka (gratis). STEG 2: Lag 'hook' for historien: 'Politikere tar pause fra Arendalsuka ombord på historisk seilskute' eller 'Havsul: Det rolige alternativet under Arendalsuka'. STEG 3: Sørg for at fotograf får gode bilder av både Havsul og kjente gjester. STEG 4: Få tillatelse fra gjester til å bruke bilder i markedsføring. STEG 5: Del artikkel/TV-innslag massivt på SoMe etterpå.",
+          tools: ["Pressekontakter", "Fotograf", "Instagram/Facebook"],
+          time: "4-5 timer koordinering",
+          cost: "Gratis (presseturer)",
+          responsible: "PR-ansvarlig + daglig leder"
+        },
+        {
+          task: "Oppfølging mot bedriftsmarkedet for høstkurs/teambuilding",
+          howTo: "STEG 1: Samle kontaktinfo fra alle bedrifter som har brukt Wannado i sommer. STEG 2: Send e-post i slutten av august: 'Planlegger dere høstens teambuilding? Wannado tilbyr kurs, aktiviteter og skreddersydde opplevelser'. STEG 3: Ring opp HR-ansvarlige i 10-15 store bedrifter i regionen. STEG 4: Tilby pakke: 1 dags kurs/aktivitet + middag. Pris: 8.000-15.000 kr. STEG 5: Post på LinkedIn 2 ganger/uke i september om teambuildingpakker.",
+          tools: ["E-post", "LinkedIn", "Telefon", "PowerPoint (salgspresentasjon)"],
+          time: "10-12 timer salgsarbeid",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        }
+      ],
+      channels: "LinkedIn, e-post, PR",
+      glossaryTerms: []
+    },
+    {
+      month: "September 2026",
+      phase: "Nedtrapping",
+      focus: "Ettermarked & kurs",
+      tasks: [
+        {
+          task: "Markedsfør høstens teambuildingpakker",
+          howTo: "STEG 1: Lag brosjyre (PDF) med 3-5 teambuildingpakker: 'Høstaktivitet i naturen', 'Kurs + aktivitet', 'Opplevelsesdag for teamet'. STEG 2: Send til 50-100 bedrifter via LinkedIn og e-post. STEG 3: Post på LinkedIn 3 ganger/uke. Bruk artikler som 'Hvorfor høsten er perfekt for teambuilding'. STEG 4: Kontakt tidligere bedriftskunder direkte. STEG 5: Tilby rabatt: 'Book før 30. september - spar 15%'.",
+          tools: ["Canva.com", "LinkedIn", "Mailchimp", "Telefon"],
+          time: "6-8 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        },
+        {
+          task: "Send 'Takk for sesongen'-nyhetsbrev til alle kunder",
+          howTo: "STEG 1: Eksportér alle e-postadresser fra bookingsystemet (juni-september). STEG 2: I Mailchimp/Get a Newsletter: lag nyhetsbrev med emne: 'Takk for en fantastisk sommer på Havsul!'. Inkluder: Høydepunkter fra sesongen (bilder), takk til gjestene, invitasjon til å følge på Instagram, gavekort for neste år (20% rabatt hvis kjøpt før jul). STEG 3: Send ut første uke av oktober. STEG 4: Be om tilbakemelding: 'Hva var høydepunktet for deg?'",
+          tools: ["Mailchimp eller Get a Newsletter", "Bookingsystem (export)"],
+          time: "3-4 timer",
+          cost: "Gratis (Mailchimp gratis til 500 kontakter)",
+          link: "https://mailchimp.com/",
+          responsible: "Markedsansvarlig"
+        },
+        {
+          task: "Planlegg gavekortkampanjer og innhold for vinteren",
+          howTo: "STEG 1: Se på hva som fungerte i fjor. STEG 2: Lag plan for november-desember: når lansere gavekort, hvilke kanaler bruke, hvilket budskap. STEG 3: Bestill design av gavekort (fysisk og digitalt) i oktober. STEG 4: Planlegg PR-oppslag. STEG 5: Book møter med partnere (hoteller) for vintersamarbeid. STEG 6: Lag innholdskalender: hvilke innlegg skal postes når.",
+          tools: ["Excel (planlegging)", "Kalender"],
+          time: "4-5 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder + markedsansvarlig"
+        }
+      ],
+      channels: "Nyhetsbrev, LinkedIn, nettside",
+      glossaryTerms: ['crm']
+    },
+    {
+      month: "Oktober 2026",
+      phase: "Evaluering & planlegging",
+      focus: "Evaluering og planlegging",
+      tasks: [
+        {
+          task: "Evaluer sesongen: økonomisk resultat, anmeldelser, toppkanaler",
+          howTo: "ØKONOMISK: Excel-ark med totale bookinger, inntekt per måned, gjennomsnittspris per kunde, kostnader (markedsføring, drift), netto resultat. Sammenlign med budsjett og i fjor. ANMELDELSER: Tell anmeldelser på Google (mål: 30+), TripAdvisor (mål: 20+), Facebook. Gjennomsnittlig rating (mål: 4,5+). Les gjennom tilbakemeldinger - hva er tilbakevendende temaer? KANALER: I Google Analytics (hvis installert): hvilke kanaler ga mest trafikk? Direkte, Google, Instagram, OTA-plattformer? Hvilke annonser ga best ROI?",
+          tools: ["Excel", "Google Analytics", "TripAdvisor/Google dashboard"],
+          time: "6-8 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder + økonomiansvarlig"
+        },
+        {
+          task: "Oppdater nettsideinnhold basert på tilbakemeldinger",
+          howTo: "STEG 1: Les gjennom kundeanmeldelser og tilbakemeldinger. Hva spør folk ofte om? Hva savnet de info om? STEG 2: Oppdater FAQ-seksjonen på nettsiden. STEG 3: Legg til nye bilder fra sesongen. STEG 4: Oppdater sitater/anmeldelser på forsiden. STEG 5: Sjekk at priser er korrekte for neste sesong. STEG 6: Test at booking-systemet fungerer på mobil. STEG 7: Optimaliser laste-hastighet (bruk tool: pagespeed.web.dev).",
+          tools: ["Wordpress", "Google PageSpeed Insights"],
+          time: "5-6 timer",
+          cost: "Gratis",
+          link: "https://pagespeed.web.dev/",
+          responsible: "Webansvarlig"
+        },
+        {
+          task: "Lag årsrapport for samarbeidspartnere",
+          howTo: "STEG 1: Lag enkel PowerPoint (10-15 lysark) med: Sesong-høydepunkter (tall, bilder), antall gjester, nasjonaliteter, anmeldelser, medieomtale, planer for neste år. STEG 2: Send til: Hotellpartnere, Visit Sørlandet, turistkontor, restaurantpartnere. STEG 3: Takk for samarbeidet. STEG 4: Inviter til møte for å diskutere neste sesong. STEG 5: Be om tilbakemelding: hvordan kan vi forbedre samarbeidet?",
+          tools: ["PowerPoint eller Canva", "E-post"],
+          time: "4-5 timer",
+          cost: "Gratis",
+          responsible: "Daglig leder"
+        }
+      ],
+      channels: "Internt, PR, partnermøter",
+      glossaryTerms: ['roi']
+    }
+  ];
+
+  const GlossaryCard = ({ term, explanation, link }) => (
+    <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 mb-3">
+      <h4 className="font-bold text-amber-900 mb-2 flex items-center gap-2">
+        <BookOpen size={18} className="text-amber-700" />
+        {term}
+      </h4>
+      <p className="text-amber-800 text-sm mb-2">{explanation}</p>
+      {link && (
+        <a 
+          href={link} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-amber-700 text-sm font-medium hover:text-amber-900 flex items-center gap-1"
+        >
+          Les mer <ExternalLink size={14} />
+        </a>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-amber-900 to-orange-800 rounded-lg shadow-2xl p-8 mb-6 text-white">
+          <div className="flex items-center gap-4 mb-4">
+            <Compass size={48} className="text-amber-200" />
+            <div>
+              <h1 className="text-4xl font-bold">
+                Wannado Markedsføringsplan 2025-2026
+              </h1>
+              <p className="text-amber-100 text-lg">
+                Komplett guide med steg-for-steg instruksjoner
+              </p>
+            </div>
+          </div>
+          <p className="text-amber-50 text-sm italic border-l-4 border-amber-400 pl-4">
+            "Lekne og grensesprengende naturopplevelser på Sørlandet"
+          </p>
+        </div>
+
+        {/* Navigation */}
+        <div className="bg-white rounded-lg shadow-lg mb-6 p-2">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'overview'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <Calendar size={18} />
+              Måned-for-måned
+            </button>
+            <button
+              onClick={() => setActiveTab('glossary')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'glossary'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <BookOpen size={18} />
+              Ordforklaringer
+            </button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          {activeTab === 'overview' && (
+            <div>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+                <p className="text-blue-900">
+                  <strong>Slik bruker du denne planen:</strong> For hver måned finner du konkrete oppgaver med detaljerte steg-for-steg instruksjoner. 
+                  Klikk på <HelpCircle size={16} className="inline text-blue-700" /> for ekstra hjelp. 
+                  Kryss av oppgaver etter hvert som de fullføres. Ukjente ord? Se "Ordforklaringer"-fanen.
+                </p>
+              </div>
+              
+              <div className="space-y-8">
+                {monthlyPlan.map((month, monthIndex) => (
+                  <div
+                    key={monthIndex}
+                    className="border-2 border-amber-200 rounded-lg p-6 hover:shadow-xl transition-all bg-gradient-to-r from-white to-amber-50"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">
+                          {month.phase}
+                        </span>
+                        <h3 className="text-2xl font-bold text-amber-900">
+                          {month.month}
+                        </h3>
+                        <p className="text-amber-700 font-medium text-lg">{month.focus}</p>
+                      </div>
+                      <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {month.channels}
+                      </span>
+                    </div>
+
+                    {/* Show relevant glossary terms for this month */}
+                    {month.glossaryTerms.length > 0 && (
+                      <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <p className="text-sm text-blue-900 font-medium mb-2">Viktige begreper denne måneden:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {month.glossaryTerms.map(term => (
+                            <span key={term} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                              {glossary[term].term}
+                            </span>
+                          ))}
+                        </div>
+                        <button
+                          onClick={() => setActiveTab('glossary')}
+                          className="text-sm text-blue-700 font-medium mt-2 hover:text-blue-900 flex items-center gap-1"
+                        >
+                          Se forklaringer <ExternalLink size={12} />
+                        </button>
+                      </div>
+                    )}
+                    
+                    <div className="space-y-6">
+                      {month.tasks.map((taskItem, taskIndex) => {
+                        const itemId = `${monthIndex}-${taskIndex}`;
+                        const isExpanded = expandedHelp[itemId];
+                        
+                        return (
+                          <div key={taskIndex} className="bg-white p-5 rounded-lg border border-amber-200 shadow-sm">
+                            <div className="flex items-start gap-3 mb-3">
+                              <button
+                                onClick={() => toggleCheck(itemId)}
+                                className={`mt-1 flex-shrink-0 w-6 h-6 rounded border-2 transition-all ${
+                                  checkedItems[itemId]
+                                    ? 'bg-green-500 border-green-500'
+                                    : 'border-amber-400 hover:border-amber-600'
+                                }`}
+                              >
+                                {checkedItems[itemId] && (
+                                  <CheckSquare size={20} className="text-white" />
+                                )}
+                              </button>
+                              <div className="flex-1">
+                                <h4 className={`font-semibold text-lg ${checkedItems[itemId] ? 'line-through text-gray-500' : 'text-amber-900'}`}>
+                                  {taskItem.task}
+                                </h4>
+                              </div>
+                              <button
+                                onClick={() => toggleHelp(itemId)}
+                                className="flex-shrink-0 text-blue-600 hover:text-blue-800"
+                                title="Vis/skjul detaljer"
+                              >
+                                <HelpCircle size={24} />
+                              </button>
+                            </div>
+
+                            {isExpanded && (
+                              <div className="mt-4 space-y-3">
+                                <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                  <h5 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+                                    <FileText size={16} />
+                                    Slik gjør du det:
+                                  </h5>
+                                  <p className="text-blue-900 text-sm whitespace-pre-line">{taskItem.howTo}</p>
+                                </div>
+
+                                <div className="grid md:grid-cols-2 gap-3">
+                                  {taskItem.tools && (
+                                    <div className="bg-purple-50 p-3 rounded border border-purple-200">
+                                      <p className="text-xs font-semibold text-purple-900 mb-1">Verktøy du trenger:</p>
+                                      <ul className="text-sm text-purple-800 space-y-1">
+                                        {taskItem.tools.map((tool, i) => (
+                                          <li key={i}>• {tool}</li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  )}
+
+                                  {taskItem.time && (
+                                    <div className="bg-orange-50 p-3 rounded border border-orange-200">
+                                      <p className="text-xs font-semibold text-orange-900 mb-1">Tidsbruk:</p>
+                                      <p className="text-sm text-orange-800">{taskItem.time}</p>
+                                    </div>
+                                  )}
+
+                                  {taskItem.cost && (
+                                    <div className="bg-green-50 p-3 rounded border border-green-200">
+                                      <p className="text-xs font-semibold text-green-900 mb-1">Kostnad:</p>
+                                      <p className="text-sm text-green-800">{taskItem.cost}</p>
+                                    </div>
+                                  )}
+
+                                  {taskItem.responsible && (
+                                    <div className="bg-amber-50 p-3 rounded border border-amber-200">
+                                      <p className="text-xs font-semibold text-amber-900 mb-1">Ansvarlig:</p>
+                                      <p className="text-sm text-amber-800">{taskItem.responsible}</p>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {taskItem.link && (
+                                  <a 
+                                    href={taskItem.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 font-medium text-sm"
+                                  >
+                                    Les mer / Kom i gang <ExternalLink size={14} />
+                                  </a>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'glossary' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <BookOpen className="text-amber-700" />
+                Ordforklaringer - Markedsføring gjort enkelt
+              </h2>
+              
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+                <p className="text-blue-900">
+                  <strong>Her finner du forklaringer på alle faguttrykk</strong> som brukes i markedsføringsplanen. 
+                  Alle forklaringer er skrevet på enkel norsk, med eksempler fra Wannado/Havsul.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {Object.values(glossary).map((item, index) => (
+                  <GlossaryCard 
+                    key={index}
+                    term={item.term}
+                    explanation={item.explanation}
+                    link={item.link}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-2 border-green-300">
+                <h3 className="text-lg font-bold text-green-900 mb-3">Trenger du mer hjelp?</h3>
+                <p className="text-green-800 mb-4">
+                  Hvis noe fortsatt er uklart, kan dere:
+                </p>
+                <ul className="space-y-2 text-green-800">
+                  <li>• Kontakte en lokal markedsføringskonsulent i Arendal</li>
+                  <li>• Se YouTube-tutorials (søk på navnet på verktøyet + "tutorial")</li>
+                  <li>• Spørre kollegaer/andre bedriftseiere om deres erfaringer</li>
+                  <li>• Starte smått - velg 2-3 tiltak første året og lær underveis</li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MarketingPlan;
