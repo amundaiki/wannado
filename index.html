@@ -4,124 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wannado Markedsplan 2026</title>
-    <style>
-        :root {
-            --brown: #8B6F47;
-            --brown-dark: #6B5437;
-            --brown-light: #B8956A;
-            --cream: #F5F1E8;
-            --text-dark: #2C2416;
-            --text-light: #5C5246;
-            --border: #D4C4AF;
-            --shadow: rgba(139, 111, 71, 0.1);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--cream);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        .header {
-            background: var(--brown);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-        .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-        .tab {
-            background: white;
-            border: 2px solid var(--border);
-            color: var(--text-dark);
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border-radius: 8px 8px 0 0;
-            font-weight: 500;
-            transition: all 0.2s;
-            white-space: nowrap;
-            border-bottom: none;
-        }
-        .tab:hover { background: var(--brown-light); color: white; }
-        .tab.active { background: var(--brown); color: white; border-color: var(--brown); }
-        .content {
-            display: none;
-            background: white;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-        .content.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h2 {
-            color: var(--brown-dark);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            border-bottom: 2px solid var(--brown-light);
-            padding-bottom: 0.5rem;
-        }
-        h3 { color: var(--brown); margin: 1.5rem 0 0.75rem 0; font-size: 1.2rem; }
-        h4 { color: var(--brown-dark); margin: 1rem 0 0.5rem 0; font-size: 1.05rem; }
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        .kpi-card {
-            background: var(--cream);
-            border-left: 4px solid var(--brown);
-            padding: 1rem;
-            border-radius: 6px;
-        }
-        .kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--brown-dark); }
-        .product {
-            background: var(--cream);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            font-weight: 600;
-            color: var(--brown-dark);
-        }
-        .price { color: var(--brown); font-weight: 700; white-space: nowrap; }
-        .month {
-            background: white;
-            border: 2px solid var(--brown-light);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .month h3 { margin-top: 0; }
-        ul, ol { margin-left: 1.5rem; margin-top: 0.5rem; }
-        li { margin-bottom: 0.5rem; }
-        strong { color: var(--brown-dark); }
-        em { color: var(--text-light); }
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.5rem; }
-            .content { padding: 1rem; }
-            .kpi-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
@@ -130,15 +13,17 @@
     </div>
 
     <div class="container">
-        <div class="tabs">
-            <div class="tab active" onclick="showTab(0)">Oversikt</div>
-            <div class="tab" onclick="showTab(1)">Produkter & Salg</div>
-            <div class="tab" onclick="showTab(2)">Markedsføring</div>
-            <div class="tab" onclick="showTab(3)">Verktøy</div>
-            <div class="tab" onclick="showTab(4)">Årshjul</div>
-        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" class="active">Oversikt</a></li>
+                <li><a href="produkter.html">Produkter & Salg</a></li>
+                <li><a href="markedsforing.html">Markedsføring</a></li>
+                <li><a href="verktoy.html">Verktøy</a></li>
+                <li><a href="handlingsplan.html">Handlingsplaner</a></li>
+            </ul>
+        </nav>
 
-        <div class="content active">
+        <div class="section">
             <h2>Strategisk oversikt</h2>
             <p><strong>Hvem er Wannado?</strong></p>
             <p>Wannado er et aktivitets- og opplevelsesselskap i Arendal med fokus på unike naturopplevelser. Vår viktigste attraksjon er Havsul – en 43 fots trebåt fra 1933 som tar små grupper (maks 12 personer) på seilaser i Arendals skjærgård.</p>
@@ -154,7 +39,51 @@
             <h3>Visjon for 2026</h3>
             <p><em>"Havsul skal være fullbooket i høysesongen. Vi skal være 'må gjøre'-aktiviteten i Arendal. Sterk blanding av norske og internasjonale gjester."</em></p>
 
-            <h3>Mål 2026</h3>
+            <h3>Markedsføringsmål</h3>
+            <ul>
+                <li>Øke synligheten nasjonalt og internasjonalt</li>
+                <li>Etablere sterke partnerskap med hoteller og restauranter</li>
+                <li>Bygge en lojal kundebase som kommer tilbake år etter år</li>
+                <li>Skape FOMO (Fear of Missing Out) gjennom sosiale medier</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Teamet</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3>Tone Pernille Sivertsen</h3>
+                    <p class="role">Partner & Teambuilding-ekspert</p>
+                    <p>📱 +47 99 46 99 57</p>
+                    <p>✉️ tp@wannado.no</p>
+                    <h4>Ansvarsområder:</h4>
+                    <ul>
+                        <li>Administrasjon</li>
+                        <li>Teambuilding & kurs</li>
+                        <li>Hester & naturopplevelser</li>
+                        <li>Kundeoppfølging</li>
+                        <li>Foredrag</li>
+                    </ul>
+                </div>
+                <div class="team-card">
+                    <h3>Roar Laugerud</h3>
+                    <p class="role">Skipper, fotograf & guide</p>
+                    <p>📱 +47 94 82 67 10</p>
+                    <p>✉️ roar@wannado.no</p>
+                    <h4>Ansvarsområder:</h4>
+                    <ul>
+                        <li>Båtfører</li>
+                        <li>Foto/video</li>
+                        <li>Guide & historiefortelling</li>
+                        <li>Kajakk-aktiviteter</li>
+                        <li>Sikkerhet & teknisk</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mål 2026</h2>
             <div class="kpi-grid">
                 <div class="kpi-card">
                     <div class="kpi-value">200+</div>
@@ -166,7 +95,7 @@
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value">50+</div>
-                    <div>Google Reviews</div>
+                    <div>Google Reviews (snitt 4.7+)</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value">30%</div>
@@ -174,511 +103,109 @@
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value">5</div>
-                    <div>Partnerskap</div>
+                    <div>Partnerskap (3 hotell + 2 restauranter)</div>
                 </div>
             </div>
 
-            <h3>Markedsføringsbudsjett</h3>
-            <p><strong>Anbefalt:</strong> 10-20% av forventet omsetning = 80 000 - 240 000 kr</p>
-            <p><em>Fordeling for ca. 100 000 kr:</em></p>
+            <h3>Slik når vi målene:</h3>
             <ul>
-                <li><strong>Digital markedsføring:</strong> 60-70k (Meta Ads, Google Ads, SMS)</li>
-                <li><strong>Fysisk markedsføring:</strong> 15-20k (brosjyrer, bannere, QR-plakater)</li>
-                <li><strong>Innhold & produksjon:</strong> 10-15k (fotograf, dronebilder)</li>
-                <li><strong>Events & influencers:</strong> 5-10k</li>
-            </ul>
-
-            <h3>Teamet</h3>
-            <p><strong>Tone Pernille Sivertsen</strong> - Partner & Teambuilding-ekspert<br>
-            📱 +47 99 46 99 57 | ✉️ tp@wannado.no</p>
-
-            <p><strong>Roar Laugerud</strong> - Skipper, fotograf & guide<br>
-            📱 +47 94 82 67 10 | ✉️ roar@wannado.no</p>
-        </div>
-
-        <div class="content">
-            <h2>Produktideer</h2>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Sunset Sail - Drop-in</div>
-                    <div class="price">590 kr</div>
-                </div>
-                <p>2,5 timer | Juni-august | 2-3 ganger/uke<br>
-                Avslappet kveldsseilas. Drop-in-konsept, maks 12 gjester.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Sunset & Stories</div>
-                    <div class="price">790 kr</div>
-                </div>
-                <p>2,5 timer | Juni-august | 3 ganger/uke<br>
-                Premium kveldsseilas med Roar som guide. Inkluderer vin, snacks og historiefortelling.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Morning Coffee Cruise</div>
-                    <div class="price">490 kr</div>
-                </div>
-                <p>2 timer | Mai-september | Lørdager og søndager<br>
-                Rolig morgonseilas før turistmassene våkner. Inkluderer kaffe og boller.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Lunch at Sea</div>
-                    <div class="price">850 kr</div>
-                </div>
-                <p>3 timer | Juni-august | Onsdager og søndager<br>
-                Lunsjtur med kulinarisk opplevelse. Samarbeid med lokal restaurant.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Photography Sail</div>
-                    <div class="price">990 kr</div>
-                </div>
-                <p>3 timer | Mai-september | På forespørsel<br>
-                Spesialtur for fotografer. Maks 8 personer. Roar gir tips om best spots.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Stjernehimmelseilas</div>
-                    <div class="price">690 kr</div>
-                </div>
-                <p>2 timer | August-september | 1-2 ganger/uke<br>
-                Romantisk kveldsseilas under stjernehimmelen. Inkluderer varme tepper og drikker.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Juleseilas</div>
-                    <div class="price">590 kr</div>
-                </div>
-                <p>2 timer | Desember | Alle fredager og lørdager<br>
-                Koselig julestemning om bord. Gløgg og pepperkaker. Perfekt for familie og venner.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Havsul Charter - VIP</div>
-                    <div class="price">Fra 15 000 kr</div>
-                </div>
-                <p>3+ timer | Hele året | På forespørsel<br>
-                Privat charter for bedrifter eller spesielle anledninger.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Stay & Sail Package</div>
-                    <div class="price">Fra 3 500 kr</div>
-                </div>
-                <p>2 netter + 3t seilas | April-september<br>
-                Samarbeid med hotell. 2 overnattinger + 3 timers seilas.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Sail & Dine Package</div>
-                    <div class="price">1 490 kr</div>
-                </div>
-                <p>2,5t seilas + middag | Juni-august | Lørdager<br>
-                Samarbeid med restaurant. Seilas etterfulgt av 3-retters middag.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Barnas Seilskole</div>
-                    <div class="price">2 500 kr</div>
-                </div>
-                <p>3 dager x 3t | Sommerferie (uke 28-32) | 1 kurs/uke<br>
-                Lær barn å seile! Maks 8 barn per kurs (8-14 år). Inkluderer sikkerhetsopplæring.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Skjærgårdseventyr for familier</div>
-                    <div class="price">2 500 kr</div>
-                </div>
-                <p>3 timer | Juni-august | Tirsdager og torsdager<br>
-                Familievennlig aktivitetstur. Inkluderer kajakking, fiske, og utforsking av øyene.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Arendalsuka VIP-pakke</div>
-                    <div class="price">Fra 20 000 kr</div>
-                </div>
-                <p>3-4 timer | August (uke 33) | Hele uken<br>
-                Eksklusiv seilas for politikere og bedriftsledere under Arendalsuka.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Mystery Tour</div>
-                    <div class="price">690 kr</div>
-                </div>
-                <p>3 timer | Mai-september | Annenhver onsdag<br>
-                Roar bestemmer ruten basert på vær og egne favoritter!</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Propose på Havsul</div>
-                    <div class="price">15-25k</div>
-                </div>
-                <p>Tilpasset | Hele året | På forespørsel<br>
-                Eksklusiv frieri-pakke. Private charter, champagne, blomster, fotograf.</p>
-            </div>
-
-            <div class="product">
-                <div class="product-header">
-                    <div>Songkveld på Havsul</div>
-                    <div class="price">990 kr</div>
-                </div>
-                <p>2,5 timer | Juni-august | 1 gang/måned<br>
-                Konsert om bord med lokal artist. Intim setting, maks 12 gjester.</p>
-            </div>
-
-            <h3>Kreative salgsmetoder</h3>
-            <ol>
-                <li><strong>Propose på Havsul:</strong> Private frieri-pakker (15-25k)</li>
-                <li><strong>Songkveld:</strong> Konsert om bord med lokal artist</li>
-                <li><strong>Yoga på soloppgang:</strong> Morgenyoga på dekk</li>
-                <li><strong>Fiskarens spesial:</strong> Fiske-tur hvor fangsten tilberedes</li>
-                <li><strong>Paint & Sail:</strong> Kunstkurs om bord</li>
-                <li><strong>Midnattsolseilas:</strong> Juli-kvelder med sein solnedgang</li>
-                <li><strong>Havsul som filmlokasjon:</strong> Leie ut båten (5-15k/dag)</li>
-                <li><strong>Mystery Tour:</strong> Roar bestemmer ruten</li>
-                <li><strong>Barnas Seilskole:</strong> 3-dagers kurs for barn 8-14 år</li>
-                <li><strong>Arendalsuka VIP:</strong> Eksklusiv seilas under Arendalsuka</li>
-            </ol>
-
-            <h3>Tidligere kunder - 8 strategier</h3>
-            <ol>
-                <li><strong>E-postliste & nyhetsbrev:</strong> Månedlig via Mailchimp</li>
-                <li><strong>Lojalitetsprogram:</strong> 10% rabatt for gjengangere, 15% etter 3+ turer</li>
-                <li><strong>First access:</strong> 1-2 ukers eksklusiv tilgang til nye turer</li>
-                <li><strong>Bursdagskampanje:</strong> 20% rabatt i bursdagsmåneden</li>
-                <li><strong>Corporate-avtale:</strong> 3 bookinger/år med 20% rabatt</li>
-                <li><strong>Refer-a-friend:</strong> 10% til både anbefaler og ny kunde</li>
-                <li><strong>Sesongkort:</strong> Unlimited Pass (8k) eller 5-tours Pass (2.5k)</li>
-                <li><strong>Thank-you follow-up:</strong> E-post 1-2 mnd etter med 15% rabatt</li>
-            </ol>
-            <p><strong>Forventet resultat:</strong> 30-50% av 2026-bookingene fra tidligere kunder = 150-300k i ekstra omsetning!</p>
-        </div>
-
-        <div class="content">
-            <h2>Markedsføring</h2>
-
-            <h3>Sosiale medier</h3>
-            <p><strong>Hovedplattformer:</strong> Instagram (primær) + Facebook (35+ år)</p>
-
-            <h4>Ukentlig innholdsplan (høysesong):</h4>
-            <ul>
-                <li><strong>Mandag:</strong> Instagram-post + Facebook-post</li>
-                <li><strong>Tirsdag:</strong> Instagram Story behind-the-scenes</li>
-                <li><strong>Onsdag:</strong> Facebook kollasje-post</li>
-                <li><strong>Torsdag:</strong> Instagram live under tur</li>
-                <li><strong>Fredag:</strong> Boosted post (50 kr spend)</li>
-                <li><strong>Lørdag:</strong> Instagram Story-serie</li>
-                <li><strong>Søndag:</strong> Instagram Reel ukeoppsummering</li>
-            </ul>
-
-            <p><strong>Hashtags:</strong> #havsul #wannado #arendal #visitnorway #visitsørlandet #sailing #båttur #sørlandet #skjærgård #sunset #solnedgang #norwaytravel #opplevelser</p>
-
-            <p><strong>Innholdstyper som funker:</strong></p>
-            <ul>
-                <li>Solnedgangsbilder (Havsuls beste salgsargument!)</li>
-                <li>Gjestesmil (med tillatelse)</li>
-                <li>Tidslaps-video fra avgang til ankomst</li>
-                <li>Roars historiefortelling - klipp fra guiding</li>
-                <li>Båten i fokus - detaljbilder av dekk, seil, ror</li>
-                <li>Før/etter: Rolig morgen vs. solnedgang</li>
-                <li>Backstage: Båtklargjøring før avgang</li>
-            </ul>
-
-            <h3>E-postkampanjer (Mailchimp)</h3>
-            <p><strong>4 hovedkampanjer i året:</strong></p>
-            <ol>
-                <li><strong>Vår-lansering (mars):</strong> "Havsul er klar for 2026" + 15% early-bird</li>
-                <li><strong>Sommer-påminnelse (juni):</strong> "Ledige plasser på Sunset Sail!"</li>
-                <li><strong>Høst-takk (september):</strong> "Takk for en fantastisk sommer!"</li>
-                <li><strong>Vinter-gavekort (november/desember):</strong> "Gi bort en opplevelse"</li>
-            </ol>
-
-            <p><strong>Best practice:</strong></p>
-            <ul>
-                <li>Send maks 1 e-post per måned</li>
-                <li>Alltid personliser med fornavn</li>
-                <li>Bruk bilder fra ekte turer</li>
-                <li>Tydelig call-to-action (CTA) knapp</li>
-                <li>Send tirsdag-torsdag kl 9-11 (best åpningsrate)</li>
-            </ul>
-
-            <h3>SMS-markedsføring</h3>
-            <p><strong>98% åpningsrate!</strong> (vs. 20% for e-post)</p>
-            <p><strong>Bruk til:</strong></p>
-            <ul>
-                <li>Last-minute ledige plasser (30% rabatt)</li>
-                <li>Værvarsel & avlysning</li>
-                <li>Booking-påminnelse 24t før</li>
-                <li>Takk + anmeldelseslink</li>
-                <li>Eksklusivt tilbud til tidligere kunder (20% rabatt)</li>
-            </ul>
-
-            <p><strong>Plattformer:</strong> Sendega.no (0.40 kr/SMS), Twilio, Link Mobility</p>
-
-            <p><strong>Best practice:</strong></p>
-            <ul>
-                <li>Alltid ha samtykke (checkbox ved booking)</li>
-                <li>Maks 2 SMS per måned</li>
-                <li>Hold meldingen under 160 tegn hvis mulig</li>
-                <li>Send mellom 10-18 (ikke tidlig morgen eller sen kveld)</li>
-            </ul>
-
-            <h3>QR-koder</h3>
-            <p><strong>4 viktigste QR-koder:</strong></p>
-            <ol>
-                <li><strong>Google-anmeldelse QR (viktigst!):</strong> Om bord ved utgangen, på kvittering</li>
-                <li><strong>TripAdvisor-anmeldelse QR:</strong> For internasjonale turister</li>
-                <li><strong>Direkte booking QR:</strong> Hoteller, restauranter, turistinfo, brygga</li>
-                <li><strong>Instagram follow QR:</strong> Om bord, på fysiske plakater</li>
-            </ol>
-
-            <p><strong>Hvor plassere?</strong></p>
-            <ul>
-                <li>Om bord på Havsul ved utgangen</li>
-                <li>På brosjyrer som deles ut</li>
-                <li>På kvittering/bookingbekreftelse</li>
-                <li>På fysisk plakat ved brygga</li>
-                <li>På bordtelt hos partnere</li>
+                <li><strong>200+ seilinger:</strong> Krever 3-4 faste avganger/uke i høysesong + charter/spesialtur</li>
+                <li><strong>800k-1.2M omsetning:</strong> Mix av drop-in (590-790 kr), premium-turer (990 kr) og charter (15-25k)</li>
+                <li><strong>50+ anmeldelser:</strong> Be aktivt om reviews etter hver tur (QR-kode + SMS)</li>
+                <li><strong>30% internasjonale:</strong> OTA-plattformer (Viator, GetYourGuide) + engelsk/tysk nettside</li>
+                <li><strong>5 partnerskap:</strong> Stay & Sail med hoteller, Sail & Dine med restauranter</li>
             </ul>
         </div>
 
-        <div class="content">
-            <h2>Teknisk oppsett - Verktøykasse</h2>
+        <div class="section">
+            <h2>Markedsføringsbudsjett 2026</h2>
+            <p><strong>Anbefalt budsjett:</strong> 10-20% av forventet omsetning = 80 000 - 240 000 kr</p>
+            <p><em>Fordeling for et budsjett på ca. 100 000 kr:</em></p>
 
-            <h3>Prioritert liste:</h3>
-
-            <h4>1. Google My Business ⭐ (gratis, viktigst!)</h4>
-            <p><strong>Hvorfor:</strong> Folk søker "båttur Arendal" på Google - du må dukke opp!</p>
+            <h3>Digital markedsføring (60-70k)</h3>
             <ul>
-                <li>Opprett profil på google.com/business</li>
-                <li>Legg inn åpningstider, bilder, beskrivelse</li>
-                <li>Samle anmeldelser (mål: 50+ med snitt 4.7+)</li>
-                <li>Post "events" (kommende seilaser)</li>
+                <li><strong>Meta Ads (Facebook/Instagram):</strong> 100 kr/dag x 180 dager (mars-august) = 18 000 kr</li>
+                <li><strong>Google Ads:</strong> 50 kr/dag x 180 dager = 9 000 kr</li>
+                <li><strong>Geoannonser:</strong> 120 kr/dag x 90 dager (juni-august) = 10 800 kr</li>
+                <li><strong>SMS-markedsføring:</strong> 500 kr/mnd x 6 mnd = 3 000 kr</li>
+                <li><strong>OTA-provisjoner:</strong> 20% av bookinger gjennom Viator/GetYourGuide ≈ 15 000 kr</li>
+                <li><strong>Mailchimp/CRM:</strong> Gratis - 500 kontakter</li>
+                <li><strong>Profesjonell video:</strong> 5 000 kr</li>
             </ul>
 
-            <h4>2. Facebook Business Page (gratis)</h4>
+            <h3>Fysisk markedsføring (15-20k)</h3>
             <ul>
-                <li>Opprett bedriftsside</li>
-                <li>Legg inn all info</li>
-                <li>Post 2-3 ganger/uke</li>
-                <li>Opprett Meta Business Manager for annonser</li>
+                <li><strong>Brosjyrer:</strong> 5 000 - 8 000 kr (1000 stk profesjonelt design)</li>
+                <li><strong>Bannere/flagg/skilt:</strong> 5 000 - 8 000 kr</li>
+                <li><strong>QR-kode plakater:</strong> 2 000 kr (laminering + stativ)</li>
             </ul>
 
-            <h4>3. Instagram Business (gratis)</h4>
+            <h3>Innhold & produksjon (10-15k)</h3>
             <ul>
-                <li>Bytt til Business-konto</li>
-                <li>Koble til Facebook-side</li>
-                <li>Optimaliser bio med link til booking</li>
-                <li>Post 3-5 ganger/uke + Stories daglig</li>
+                <li><strong>Profesjonell fotograf:</strong> 5 000 - 8 000 kr (1 dag)</li>
+                <li><strong>Dronebilder/video:</strong> 3 000 - 5 000 kr</li>
+                <li><strong>Pressekit:</strong> 2 000 kr</li>
             </ul>
 
-            <h4>4. Bookingsystem</h4>
-            <p><strong>Anbefaling: FareHarbor</strong> (gratis - tar 6% per booking)</p>
-            <p>Norskspråklig, enkel, integreres med nettside.</p>
-            <p><em>Alternativer: Bokun (99 USD/mnd), Checkfront (49 USD/mnd), SimplyBook.me (gratis til 50 bookinger/mnd)</em></p>
-
-            <h4>5. Mailchimp (gratis opp til 500 kontakter)</h4>
+            <h3>Events & influencers (5-10k)</h3>
             <ul>
-                <li>Opprett konto på mailchimp.com</li>
-                <li>Importer kundeliste</li>
-                <li>Design nyhetsbrev med mal</li>
-                <li>Send 1 e-post/mnd</li>
+                <li><strong>Canal Street-stand:</strong> 5 000 - 15 000 kr</li>
+                <li><strong>Influencer-turer:</strong> Gratis tur = kostpris 1 500 kr x 3 = 4 500 kr</li>
             </ul>
 
-            <h4>6. Canva.com (gratis + pro 139 kr/mnd)</h4>
-            <ul>
-                <li>Lag plakater og Instagram-posts</li>
-                <li>Design QR-kode plakater</li>
-                <li>Lag Stories og Reels</li>
-            </ul>
-
-            <h3>Total kostnad for verktøy (år 1):</h3>
-            <p><strong>0-1 668 kr/år</strong> i faste kostnader (uten annonsebudsjett)</p>
-
-            <h3>Ordforklaringer</h3>
-            <ul>
-                <li><strong>SEO:</strong> Søkemotoroptimalisering - at du dukker opp høyt på Google når folk søker</li>
-                <li><strong>Meta Ads:</strong> Betalte annonser på Facebook og Instagram</li>
-                <li><strong>Google Ads:</strong> Betalte annonser øverst i Google-søkeresultater</li>
-                <li><strong>OTA:</strong> Online Travel Agency (Viator, GetYourGuide, Airbnb Experiences)</li>
-                <li><strong>Geoannonser:</strong> Annonser som kun vises til folk i et bestemt område</li>
-                <li><strong>QR-koder:</strong> Skannbare koder som tar folk direkte til nettside</li>
-                <li><strong>CRM:</strong> Customer Relationship Management - system for å holde oversikt over kunder</li>
-                <li><strong>Influencer-markedsføring:</strong> Samarbeid med profiler på Instagram/TikTok</li>
-                <li><strong>Pressekit:</strong> Samling av bilder, faktaark og kontaktinfo for journalister</li>
-                <li><strong>Provisjon:</strong> Prosentandel som OTA-plattformer tar av hver booking (15-30%)</li>
-                <li><strong>ROI:</strong> Return on Investment - avkastning på investering</li>
-            </ul>
+            <h3>ROI-forventning</h3>
+            <p>Med et budsjett på 100 000 kr og målsetning om 1 000 000 kr i omsetning:</p>
+            <p><strong>ROI = 10:1</strong> (10 kr tilbake for hver krone investert)</p>
+            <p>Dette er realistisk for opplevelsesnæringen med god digital strategi.</p>
         </div>
 
-        <div class="content">
-            <h2>Årshjul 2026</h2>
-            <p>Måned-for-måned handlingsplan for markedsføring og salg.</p>
-
-            <div class="month">
-                <h3>Oktober 2025 - Planlegging</h3>
-                <ul>
-                    <li>Evaluere sommersalget og anmeldelser</li>
-                    <li>Samle inn innhold fra sesongen (foto/video)</li>
-                    <li>Sette budsjett for neste år (10-20% av omsetning)</li>
-                    <li>Lage/oppdatere engelsk/tysk versjon av nettside</li>
-                </ul>
+        <div class="section">
+            <h2>Ordforklaringer</h2>
+            <div class="glossary-item">
+                <div class="glossary-term">SEO (Search Engine Optimization)</div>
+                <div>Søkemotoroptimalisering. At nettsiden din dukker opp høyt på Google når folk søker på "båttur Arendal" eller "opplevelser Sørlandet".</div>
             </div>
-
-            <div class="month">
-                <h3>November - Vintersalg</h3>
-                <ul>
-                    <li>Kampanje: "Gi bort en opplevelse til jul"</li>
-                    <li>Lage gavekort (digitale + fysiske)</li>
-                    <li>Kontakte hoteller/restauranter for samarbeidsavtaler</li>
-                    <li>Kontakte Visit Sørlandet for samarbeid</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Meta Ads (Facebook/Instagram-annonser)</div>
+                <div>Betalte annonser på Facebook og Instagram som kan målrettes mot spesifikke demografier og geografiske områder.</div>
             </div>
-
-            <div class="month">
-                <h3>Desember - Julemarkedsføring</h3>
-                <ul>
-                    <li>Julekampanje på sosiale medier</li>
-                    <li>Pressemelding om "opplevelser i gave"</li>
-                    <li>Forberede early-bird kampanje</li>
-                    <li>Oppdatere profiler på OTA-plattformer</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Google Ads</div>
+                <div>Betalte annonser som vises øverst i Google-søkeresultater når folk søker på relevante ord.</div>
             </div>
-
-            <div class="month">
-                <h3>Januar - Internasjonalt fokus</h3>
-                <ul>
-                    <li>Early-bird kampanje (15% rabatt før 1. mars)</li>
-                    <li>SEO-optimalisering (engelsk/tysk)</li>
-                    <li>Blogginnlegg om Havsul</li>
-                    <li>Nyhetsbrev til tidligere kunder</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">OTA (Online Travel Agency)</div>
+                <div>Nettsteder som Viator, GetYourGuide, Airbnb Experiences der turister bestiller aktiviteter.</div>
             </div>
-
-            <div class="month">
-                <h3>Februar - Distribusjon</h3>
-                <ul>
-                    <li>Registrere på Viator, GetYourGuide, Airbnb Experiences</li>
-                    <li>Kontakte tyske/nederlandske turoperatører</li>
-                    <li>Lage 20-sekunders promo-video</li>
-                    <li>Sette sammen pressekit</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Geoannonser</div>
+                <div>Annonser som bare vises til folk som befinner seg i et bestemt geografisk område (f.eks. Arendal sentrum).</div>
             </div>
-
-            <div class="month">
-                <h3>Mars - Partnerskap</h3>
-                <ul>
-                    <li>Inngå 2-3 Stay & Sail-avtaler med hoteller</li>
-                    <li>Møte med turistkontor</li>
-                    <li>Starte internasjonale Meta Ads (100 kr/dag = 15-20k totalt)</li>
-                    <li>Sette opp Google Ads (50 kr/dag)</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">QR-koder</div>
+                <div>Skannbare koder som tar folk direkte til en nettside (f.eks. booking-side eller anmeldelsesside).</div>
             </div>
-
-            <div class="month">
-                <h3>April - Sesong-oppvarming</h3>
-                <ul>
-                    <li>Kampanje: "Snart sesongstart" med nedtelling</li>
-                    <li>Invitere presse/influencers til prøveseilas</li>
-                    <li>Lage teaser-videoer fra båtklargjøring</li>
-                    <li>Poste Instagram Reels og YouTube Shorts</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">CRM (Customer Relationship Management)</div>
+                <div>System for å holde oversikt over kunder, bookinger og oppfølging.</div>
             </div>
-
-            <div class="month">
-                <h3>Mai - Sesongåpning</h3>
-                <ul>
-                    <li>Fysisk markedsføring: flagg, plakater, QR-skilt (5-8k)</li>
-                    <li>Dele ut brosjyrer til 5+ hoteller (5-8k printekostnad)</li>
-                    <li>Starte fast Sunset Sail 2x/uke</li>
-                    <li>Legge inn events i Google My Business</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Influencer-markedsføring</div>
+                <div>Samarbeid med profiler på Instagram/TikTok/YouTube som har mange følgere, mot betaling eller gratistur.</div>
             </div>
-
-            <div class="month">
-                <h3>Juni - Høysesong starter</h3>
-                <ul>
-                    <li>Geoannonser til turister (100-150 kr/dag = 3-4,5k/mnd)</li>
-                    <li>Dele bilder/videoer fra turer daglig</li>
-                    <li>Be om Google/TripAdvisor-anmeldelser (SMS + QR-kode)</li>
-                    <li>SMS-kampanje (500 kr/mnd)</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Pressekit/Pressemappe</div>
+                <div>Samling av høyoppløselige bilder, faktaark og kontaktinfo som journalister kan bruke.</div>
             </div>
-
-            <div class="month">
-                <h3>Juli - Peak sesong</h3>
-                <ul>
-                    <li>Invitere influencers (2+ profiler med 50-200k følgere)</li>
-                    <li>Starte fast "Sunset & Stories" 3x/uke</li>
-                    <li>Delta på Canal Street arrangement (stand 5-15k)</li>
-                    <li>Maksimal aktivitet på Instagram/Facebook</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">Provisjon</div>
+                <div>Prosentandel som OTA-plattformer tar av hver booking (vanligvis 15-30%).</div>
             </div>
-
-            <div class="month">
-                <h3>August - Event-måned</h3>
-                <ul>
-                    <li>Arendalsuka VIP-seilaser (uke 33)</li>
-                    <li>Pressedekning av bedriftsarrangementer</li>
-                    <li>Følge opp corporate teambuilding</li>
-                    <li>Profesjonell fotograf (5-8k)</li>
-                </ul>
-            </div>
-
-            <div class="month">
-                <h3>September - Nedtrapping</h3>
-                <ul>
-                    <li>Markedsføre høst-teambuilding-pakke</li>
-                    <li>Nyhetsbrev: "Takk for sesongen"</li>
-                    <li>Planlegge vinter-gavekort-kampanje</li>
-                    <li>Følge opp tidligere kunder</li>
-                </ul>
-            </div>
-
-            <div class="month">
-                <h3>Oktober 2026 - Evaluering</h3>
-                <ul>
-                    <li>Fullstendig sesongrapport (bookinger, omsetning, kostnader, ROI)</li>
-                    <li>Telle anmeldelser og analysere hva som fungerte</li>
-                    <li>Oppdatere nettside basert på tilbakemeldinger</li>
-                    <li>Lage årsrapport for partnere</li>
-                </ul>
+            <div class="glossary-item">
+                <div class="glossary-term">ROI (Return on Investment)</div>
+                <div>Avkastning på investering. Hvor mye penger du får tilbake for hver krone du bruker på markedsføring.</div>
             </div>
         </div>
     </div>
-
-    <script>
-        function showTab(index) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.content');
-
-            tabs.forEach((tab, i) => {
-                if (i === index) {
-                    tab.classList.add('active');
-                    contents[i].classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                    contents[i].classList.remove('active');
-                }
-            });
-        }
-    </script>
 </body>
 </html>
