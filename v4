@@ -1,0 +1,792 @@
+import React, { useState } from 'react';
+import { Calendar, Globe, MapPin, Target, TrendingUp, Users, CheckSquare, Compass, FileText, DollarSign } from 'lucide-react';
+
+const MarketingPlan = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [checkedItems, setCheckedItems] = useState({});
+
+  const toggleCheck = (id) => {
+    setCheckedItems(prev => ({...prev, [id]: !prev[id]}));
+  };
+
+  const monthlyPlan = [
+    {
+      month: "Oktober 2025",
+      phase: "Lavsesongen starter - Planlegging",
+      focus: "Planlegging og innhold",
+      tasks: [
+        "Gjør status på sommerens salg og anmeldelser",
+        "Lag innhold fra årets sesong (beste bilder/video)",
+        "Sett budsjett for neste års kampanjer",
+        "Opprett engelsk og tysk versjon av nettsiden"
+      ],
+      channels: "Instagram, nettside, TripAdvisor, Google",
+      howTo: "Samle alt materiale fra sommeren. Book fotograf/videograf hvis nødvendig. Bruk Google Analytics for å evaluere nettsidetrafikk."
+    },
+    {
+      month: "November 2025",
+      phase: "Bygge vintersalg",
+      focus: "Gavekort & samarbeid",
+      tasks: [
+        "Lanser \"Gi en opplevelse til jul\" kampanje",
+        "Lag gavekort på Havsul-tur 2026 (digitalt + fysisk)",
+        "Oppsøk hoteller og restauranter for partnerskap (Stay & Sail, Sail & Dine)",
+        "Start samarbeid med Visit Sørlandet om vinter-PR"
+      ],
+      channels: "Meta Ads, lokale medier, Visit Sørlandet",
+      howTo: "Opprett gavekortsystem via nettsiden eller Vipps. Ta personlig kontakt med hotelldirektører. Send forslag til Visit Sørlandet."
+    },
+    {
+      month: "Desember 2025",
+      phase: "Julemarkedet",
+      focus: "Jul & PR",
+      tasks: [
+        "Kjør julekampanje i sosiale medier og lokalavis",
+        "Presseoppslag: \"Gaven som varer – opplevelse i skjærgården\"",
+        "Forbered early-bird lansering for januar",
+        "Oppdater bilder/video til OTA-plattformer"
+      ],
+      channels: "PR, Facebook Ads, nyhetsbrev",
+      howTo: "Send pressemelding til Agderposten og NRK Sørlandet. Lag juledesign til SoMe-innlegg. Sett opp kampanje i Meta Ads Manager."
+    },
+    {
+      month: "Januar 2026",
+      phase: "Internasjonalt fokus",
+      focus: "Early bird & SEO",
+      tasks: [
+        "Start \"Book tidlig – spar 15%\" kampanje",
+        "Optimaliser søk på engelsk og tysk (boat trip Arendal, authentic sailing Norway)",
+        "Publiser 2 reiseblogg-artikler om Havsul-opplevelsen"
+      ],
+      channels: "Google Ads, nettside, Instagram",
+      howTo: "Bruk SEO-verktøy som Semrush/Ahrefs. Skriv bloggartikler (500-800 ord) med bilder. Sett opp Google Ads-kampanje mot utlandet."
+    },
+    {
+      month: "Februar 2026",
+      phase: "Distribusjon",
+      focus: "Internasjonal distribusjon",
+      tasks: [
+        "Registrer Havsul på Viator, GetYourGuide, Airbnb Experiences",
+        "Kontakt reisebyråer i Tyskland/Nederland for pakkesalg",
+        "Lag engelsk promo-video (20 sek) og pressekit"
+      ],
+      channels: "OTAer, PR, e-post",
+      howTo: "Opprett leverandørkonto på hver plattform (ta 2-3 uker). Lag liste over tyske reisebyråer. Film kort video med drone + ombordopptak."
+    },
+    {
+      month: "Mars 2026",
+      phase: "Partnerskap",
+      focus: "Hotell- og reiselivssamarbeid",
+      tasks: [
+        "Signér 2–3 hotellavtaler (Stay & Sail pakker)",
+        "Møte med turistkontor for sesongmateriell",
+        "Lanser betalte Meta-annonser mot \"turister i Norge sommer 2026\""
+      ],
+      channels: "Partneravtaler, Visit Norway, Meta Ads",
+      howTo: "Lag formelle avtaler med provisjonsmodell (10-20%). Print 500 brosjyrer. Sett målgruppe i Meta: turister interessert i Norge."
+    },
+    {
+      month: "April 2026",
+      phase: "Oppbygging",
+      focus: "Sesongoppvarming",
+      tasks: [
+        "Lanser \"sesongen starter snart\" kampanje",
+        "Inviter presse/influensere på prøveseilas",
+        "Lag teaser-videoer og stories fra klargjøring av Havsul"
+      ],
+      channels: "PR, Instagram Reels, YouTube Shorts",
+      howTo: "Identifiser 5 relevante influensere (familiebloggere, reisebloggere). Ta video av båtklargjøring, maling, rigging. Post 3x/uke på Instagram."
+    },
+    {
+      month: "Mai 2026",
+      phase: "Sesongåpning",
+      focus: "Sesongåpning",
+      tasks: [
+        "Fysisk markedsføring i Arendal (flagg, plakater, QR-skilt)",
+        "Hotell- og restaurantbrosjyrer på plass (minimum 5 steder)",
+        "Start faste kveldsturer (drop-in 2x per uke)"
+      ],
+      channels: "Lokalt, turistkontor, Instagram",
+      howTo: "Print flagg og skilt hos lokalt trykkeri. Lever brosjyrer personlig til hoteller. Annonsér faste tider på SoMe og Google Maps."
+    },
+    {
+      month: "Juni 2026",
+      phase: "Høysesong starter",
+      focus: "Høysesongstart",
+      tasks: [
+        "Geoannonser mot turister i Arendal (radius 10 km)",
+        "Del bilder og video fra hver seilas",
+        "Be alle gjester legge igjen Google/TripAdvisor-anmeldelse (mål: 20+ nye anmeldelser)"
+      ],
+      channels: "Instagram, Google Maps, TripAdvisor",
+      howTo: "Sett opp geotargeting i Meta Ads og Google Ads. Ta bilder på hver tur. Ha QR-kode ombord som lenker til anmeldelse."
+    },
+    {
+      month: "Juli 2026",
+      phase: "Topp-sesong",
+      focus: "Maks synlighet",
+      tasks: [
+        "Influencerbesøk (engelsk innhold) - minimum 2 profiler",
+        "Faste \"Sunset & Stories\"-turer 3x per uke",
+        "Delta på Canal Street med \"mini-seilas\" event eller stand"
+      ],
+      channels: "SoMe, PR, eventmarkedsføring",
+      howTo: "Inviter influensere gratis mot innhold. Markedsfør kveldsturer tungt. Søk om å delta på Canal Street (deadline tidlig vår)."
+    },
+    {
+      month: "August 2026",
+      phase: "Event-måned",
+      focus: "Arendalsuka & bedrifter",
+      tasks: [
+        "VIP-seilinger for bedrifter under Arendalsuka (pris høyere)",
+        "Presseoppslag og foto",
+        "Oppfølging mot bedriftsmarkedet for høstkurs og teambuilding"
+      ],
+      channels: "LinkedIn, e-post, PR",
+      howTo: "Kontakt firmaer som deltar på Arendalsuka (jan-mars). Inviter journalist ombord. Send oppfølgings-e-post til bedriftskunder."
+    },
+    {
+      month: "September 2026",
+      phase: "Nedtrapping",
+      focus: "Ettermarked & kurs",
+      tasks: [
+        "Markedsfør høstens teambuildingpakker",
+        "Send \"Takk for sesongen\"-nyhetsbrev til alle som har vært med",
+        "Planlegg gavekortkampanjer og innhold for vinteren"
+      ],
+      channels: "Nyhetsbrev, LinkedIn, nettside",
+      howTo: "Lag e-postliste av alle kunder. Design nyhetsbrev i MailChimp/Get a Newsletter. Tilby høstrabatt 20%."
+    },
+    {
+      month: "Oktober 2026",
+      phase: "Evaluering & planlegging",
+      focus: "Planlegging & innhold",
+      tasks: [
+        "Evaluer sesongen: økonomisk resultat, anmeldelser, toppkanaler",
+        "Oppdater nettsideinnhold basert på tilbakemeldinger",
+        "Lag årsrapport for samarbeidspartnere",
+        "Start planlegging av neste sesong"
+      ],
+      channels: "Internt, PR, partnermøter",
+      howTo: "Gjennomgå alle KPIer. Hold partnermøte med hoteller og turistkontor. Gjør kundeevaluering. Juster priser for neste år."
+    }
+  ];
+
+  const internationalMarketing = [
+    {
+      category: "Digital synlighet og plattformer",
+      items: [
+        {
+          action: "Registrer på GetYourGuide, Viator, Expedia Local Expert, Airbnb Experiences",
+          howTo: "Opprett leverandørkonto (gratis, tar 2-3 uker godkjenning). Last opp 10+ bilder, video, detaljert beskrivelse på engelsk.",
+          cost: "Provisjon: 15-30% per booking"
+        },
+        {
+          action: "SEO-optimalisering på engelsk, tysk, nederlandsk og fransk",
+          howTo: "Bruk Google Keyword Planner for å finne søkeord. Oppdater meta-titler og beskrivelser. Lag separate språksider.",
+          cost: "Gratis (egentid) eller SEO-byrå: 10.000-25.000 kr/mnd"
+        },
+        {
+          action: "Google Ads mot Tyskland, Nederland, UK, Italia",
+          howTo: "Opprett kampanje i Google Ads. Målgruppe: 30-65 år, reiseinteressert. Budskap: 'Authentic Norwegian Sailing Experience'",
+          cost: "Budget: 15.000-30.000 kr/mnd i sesong"
+        },
+        {
+          action: "Meta-kampanjer (Facebook/Instagram) mot reiseinteresserte",
+          howTo: "Målgruppe: følgere av Visit Norway, Norwegian Fjords, Scandinavian Travel. Bruk video (20 sek). Test 3-5 annonser.",
+          cost: "Budget: 10.000-20.000 kr/mnd"
+        }
+      ]
+    },
+    {
+      category: "Innhold, influensere & PR",
+      items: [
+        {
+          action: "Inviter 2-3 europeiske influensere (50-200k følgere)",
+          howTo: "Søk på Instagram/YouTube: #familytravel #norwayadventure. Send DM med invitasjon. Avtal innholdskrav (3 innlegg, 1 video).",
+          cost: "Gratis tur + evt. 5.000-15.000 kr honorar per influenser"
+        },
+        {
+          action: "Lag engelsk press kit (pressemappe)",
+          howTo: "PDF med 10 bilder, fakta om Havsul (1933, kulturminne), sitater fra gjester, kontaktinfo. Profesjonelt design.",
+          cost: "Designer: 5.000-10.000 kr"
+        },
+        {
+          action: "Send til National Geographic Traveller, Lonely Planet, reisejournalister",
+          howTo: "Finn e-post til redaktører (LinkedIn/nettsider). Personlig pitch: 'Historic sailing in Norway's archipelago'. Følg opp etter 2 uker.",
+          cost: "Gratis"
+        },
+        {
+          action: "Promo-video på engelsk (20 sek) - seiling, sol, historiefortelling",
+          howTo: "Film med drone + GoPro ombord. Legg til teksting på engelsk. Musikk fra Epidemic Sound. Publiser på YouTube, Instagram, Facebook.",
+          cost: "Videograf: 15.000-30.000 kr eller gjør selv"
+        }
+      ]
+    },
+    {
+      category: "Samarbeid og distribusjon",
+      items: [
+        {
+          action: "Kontakt Visit Norway, Visit Sørlandet, Fjord Norway",
+          howTo: "Send e-post med pitch. Be om å bli inkludert i markedsføringskampanjer. Delta på partnermøter. Betale medlemsavgift hvis nødvendig.",
+          cost: "Medlemskap: 5.000-20.000 kr/år"
+        },
+        {
+          action: "Tilby 20% provisjon til turoperatører i Tyskland/Canada/UK",
+          howTo: "Lag avtalemal. Kontakt turoperatører (søk 'Norway tour operators Germany'). Send produktark på engelsk med priser og datoer.",
+          cost: "Kun provisjon ved faktisk salg"
+        },
+        {
+          action: "Signere avtaler med reisebyråer for pakkesalg",
+          howTo: "Identifiser 10-15 relevante byråer. Ring/e-post med tilbud. Møte (Zoom OK). Lag formell avtale. Send oppdatert info hver sesong.",
+          cost: "Gratis - de tar margin på pakkesalg"
+        }
+      ]
+    }
+  ];
+
+  const localMarketing = [
+    {
+      category: "Fysisk synlighet i Arendal",
+      items: [
+        {
+          action: "Bannere og beachflagg ved gjestehavna, Pollen, turistkontor",
+          howTo: "Design i Wannado-profil. Print hos lokalt trykkeri (f.eks. Kopisenteret Arendal). Søk tillatelse fra kommunen for plassering.",
+          cost: "5-10 flagg: 10.000-20.000 kr"
+        },
+        {
+          action: "QR-koder som leder til booking",
+          howTo: "Generer QR på qr-code-generator.com som lenker til wannado.no/booking. Print på vanntette skilt (A4/A3).",
+          cost: "Trykkekost: 500-1.000 kr for 10 skilt"
+        },
+        {
+          action: "Digital skjerm på turistkontoret med dronevideo",
+          howTo: "Lever USB/video-fil til Arendal turistkontor. Be dem kjøre den i loop på skjermen deres. Oppdater hvert år.",
+          cost: "Gratis (hvis de godtar)"
+        },
+        {
+          action: "Brosjyrer i Clarion Tyholmen, Thon, Grand Hotel, Fevik, Lyngørporten",
+          howTo: "Design flott brosjyre (A5, dobbelsidig, gloss). Print 1000 stk. Lever personlig til resepsjoner. Be om synlig plassering.",
+          cost: "Design + trykk: 5.000-8.000 kr"
+        }
+      ]
+    },
+    {
+      category: "Partnerskap lokalt",
+      items: [
+        {
+          action: "10% provisjon til hotellresepsjoner per booking",
+          howTo: "Lag avtale: resepsjon får 10% av totalsum når de formidler booking. Oppfølging hver måned. Betal ut provisjon.",
+          cost: "Kun ved faktisk booking"
+        },
+        {
+          action: "'Sail & Dine' med restauranter i Pollen (seiltur + middag)",
+          howTo: "Møt restauranteiere (Bølgen & Moi, Arendal Mat & Vinhus). Lag felles pakke: seiltur kl 17 + middag kl 20. Markedsfør sammen.",
+          cost: "Delt markedsføringskost: 5.000-10.000 kr"
+        },
+        {
+          action: "Brosjyrer på Vitensenteret, Raet nasjonalpark, Merdø museum",
+          howTo: "Ta kontakt og lever brosjyrer. Tilby bytteavtale: de promoterer dere - dere promoterer dem ombord.",
+          cost: "Gratis"
+        },
+        {
+          action: "Cruiseanløp - fleksible avganger på cruisedager",
+          howTo: "Få cruisekalender fra havnekontoret. Tilby 'shore excursion' til cruisepassasjerer. Markedsfør via turistkontor og havneinfo.",
+          cost: "Gratis"
+        }
+      ]
+    },
+    {
+      category: "Digital lokal markedsføring",
+      items: [
+        {
+          action: "Google Maps-annonser ved søk på 'things to do in Arendal'",
+          howTo: "Opprett/oppdater Google My Business. Aktiver Local Search Ads i Google Ads. Budsjett: 50-100 kr/dag i sesong.",
+          cost: "1.500-3.000 kr/mnd i sesong"
+        },
+        {
+          action: "Facebook/Instagram geoannonser (10 km radius rundt Arendal)",
+          howTo: "I Meta Ads Manager: velg 'Location' -> sett radius 10 km rundt Arendal sentrum. Målgruppe: turister 25-65 år.",
+          cost: "100-200 kr/dag = 3.000-6.000 kr/mnd"
+        },
+        {
+          action: "QR-skilt ved gjestehavna, torget, Merdø-ferga",
+          howTo: "Laminerte skilt med QR + tekst 'Book your sailing adventure today'. Fest med strips/skruer.",
+          cost: "1.000-2.000 kr totalt"
+        },
+        {
+          action: "Faste kveldsturer (kl. 18:00 ti/to/lø) som folk kan melde seg på samme dag",
+          howTo: "Legg inn i bookingsystem. Markedsfør på Instagram Stories hver morgen: 'Tonight at 6pm - Sunset Sail. 3 spots left!'",
+          cost: "Gratis (tid til markedsføring)"
+        }
+      ]
+    }
+  ];
+
+  const quickWins = [
+    {
+      title: "1. Gavekortkampanje (november-desember)",
+      description: "Lav kostnad, høy effekt i julehandelen",
+      details: "Lag digitalt gavekort via Vipps eller nettsiden. Design julekort. Markedsfør på SoMe og lokalavis.",
+      timeline: "2 uker forberedelse",
+      cost: "5.000-10.000 kr (design + annonser)"
+    },
+    {
+      title: "2. Meta-annonser på engelsk og tysk (fra januar)",
+      description: "Direkte trafikk til bookingside",
+      details: "Opprett kampanje rettet mot tyskere og engelskmenn som planlegger Norgesferie. Bruk video fra sommeren.",
+      timeline: "Kontinuerlig jan-aug",
+      cost: "15.000-25.000 kr/mnd"
+    },
+    {
+      title: "3. OTA-registrering (februar)",
+      description: "Global synlighet på GetYourGuide, Viator",
+      details: "Opprett leverandørkonto. Last opp innhold (bilder, tekst, priser). Vent på godkjenning.",
+      timeline: "1 måned oppstart + godkjenning",
+      cost: "Gratis oppstart, 20-30% provisjon"
+    },
+    {
+      title: "4. Influencer- og PR-arbeid (mars-april)",
+      description: "Gratis omtale og høy troverdighet",
+      details: "Inviter 2-3 influensere på gratis tur. Send pressemelding til Agderposten og NRK. Lag pressekit.",
+      timeline: "2-3 måneder (inkl. innhold)",
+      cost: "0-20.000 kr (hvis honorar til influenser)"
+    },
+    {
+      title: "5. Geoannonser sommeren 2026",
+      description: "Fang turister i Arendal når de vurderer aktivitet",
+      details: "Google + Meta annonser mot alle innen 10 km radius av Arendal sentrum. Kjør juni-august.",
+      timeline: "Juni-august",
+      cost: "5.000-8.000 kr/mnd"
+    }
+  ];
+
+  const budgetOverview = {
+    low: {
+      title: "Minimum-budsjett (50.000-100.000 kr/år)",
+      items: [
+        "Gratis SoMe-markedsføring (Instagram, Facebook)",
+        "Gavekortkampanje jul",
+        "Lokale brosjyrer og flagg",
+        "1-2 influensere (gratis turer)",
+        "Google My Business optimalisering",
+        "Egen innsats på PR og innhold"
+      ]
+    },
+    medium: {
+      title: "Anbefalt budsjett (150.000-250.000 kr/år)",
+      items: [
+        "Alt i minimum +",
+        "Meta Ads (Facebook/Instagram): 60.000-100.000 kr",
+        "Google Ads: 50.000-80.000 kr",
+        "OTA-registrering (Viator, GetYourGuide)",
+        "Profesjonell video og foto: 30.000 kr",
+        "Influenser-honorar: 20.000 kr",
+        "Trykkemateriell og flagg: 15.000 kr"
+      ]
+    },
+    high: {
+      title: "Aggressiv vekst (350.000-500.000 kr/år)",
+      items: [
+        "Alt i anbefalt +",
+        "Markedsføringsbyrå/konsulent: 100.000-150.000 kr",
+        "Økt Meta/Google Ads budsjett: 150.000 kr",
+        "Internasjonal PR-kampanje: 50.000 kr",
+        "Profesjonell fotograf/videograf hele sesongen: 80.000 kr",
+        "Event-sponsing og partnermøter: 30.000 kr",
+        "CRM-system og marketing automation: 40.000 kr"
+      ]
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header med Wannado-profil */}
+        <div className="bg-gradient-to-r from-amber-900 to-orange-800 rounded-lg shadow-2xl p-8 mb-6 text-white">
+          <div className="flex items-center gap-4 mb-4">
+            <Compass size={48} className="text-amber-200" />
+            <div>
+              <h1 className="text-4xl font-bold">
+                Wannado Markedsføringsplan
+              </h1>
+              <p className="text-amber-100 text-lg">
+                Oktober 2025 - Oktober 2026 | Havsul & Naturopplevelser
+              </p>
+            </div>
+          </div>
+          <p className="text-amber-50 text-sm italic border-l-4 border-amber-400 pl-4">
+            "Lekne og grensesprengende naturopplevelser på Sørlandet"
+          </p>
+        </div>
+
+        {/* Navigation */}
+        <div className="bg-white rounded-lg shadow-lg mb-6 p-2">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'overview'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <Calendar size={18} />
+              Årshjul
+            </button>
+            <button
+              onClick={() => setActiveTab('international')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'international'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <Globe size={18} />
+              Internasjonal
+            </button>
+            <button
+              onClick={() => setActiveTab('local')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'local'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <MapPin size={18} />
+              Lokal
+            </button>
+            <button
+              onClick={() => setActiveTab('quickwins')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'quickwins'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <TrendingUp size={18} />
+              Hurtigvinst
+            </button>
+            <button
+              onClick={() => setActiveTab('budget')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                activeTab === 'budget'
+                  ? 'bg-amber-700 text-white'
+                  : 'bg-amber-50 text-amber-900 hover:bg-amber-100'
+              }`}
+            >
+              <DollarSign size={18} />
+              Budsjett
+            </button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          {activeTab === 'overview' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <Calendar className="text-amber-700" />
+                Markedsføringsårshjul 2025-2026
+              </h2>
+              
+              <div className="space-y-6">
+                {monthlyPlan.map((month, index) => (
+                  <div
+                    key={index}
+                    className="border-2 border-amber-200 rounded-lg p-6 hover:shadow-xl transition-all bg-gradient-to-r from-white to-amber-50"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">
+                          {month.phase}
+                        </span>
+                        <h3 className="text-2xl font-bold text-amber-900">
+                          {month.month}
+                        </h3>
+                        <p className="text-amber-700 font-medium text-lg">{month.focus}</p>
+                      </div>
+                      <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {month.channels}
+                      </span>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <h4 className="font-semibold text-amber-900 mb-2">Oppgaver:</h4>
+                      <ul className="space-y-2">
+                        {month.tasks.map((task, taskIndex) => {
+                          const itemId = `${index}-${taskIndex}`;
+                          return (
+                            <li key={taskIndex} className="flex items-start gap-3">
+                              <button
+                                onClick={() => toggleCheck(itemId)}
+                                className={`mt-1 flex-shrink-0 w-5 h-5 rounded border-2 transition-all ${
+                                  checkedItems[itemId]
+                                    ? 'bg-green-500 border-green-500'
+                                    : 'border-amber-400 hover:border-amber-600'
+                                }`}
+                              >
+                                {checkedItems[itemId] && (
+                                  <CheckSquare size={16} className="text-white" />
+                                )}
+                              </button>
+                              <span className={`${checkedItems[itemId] ? 'line-through text-gray-500' : 'text-amber-900'}`}>
+                                {task}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+
+                    <div className="bg-amber-100 p-4 rounded-lg border-l-4 border-amber-600">
+                      <h4 className="font-semibold text-amber-900 mb-1 flex items-center gap-2">
+                        <FileText size={16} />
+                        Hvordan gjennomføre:
+                      </h4>
+                      <p className="text-amber-800 text-sm">{month.howTo}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg border-2 border-amber-300">
+                <h3 className="text-xl font-bold text-amber-900 mb-4">
+                  Strategisk oversikt per fase
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-white p-4 rounded-lg">
+                    <span className="font-bold text-amber-800">Høst/vinter (nå-mars):</span>
+                    <p className="text-amber-900">Bygge forventning, selge gavekort, sikre partnere</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg">
+                    <span className="font-bold text-amber-800">Vår (april-mai):</span>
+                    <p className="text-amber-900">Synlighet og lansering - fylle sommerkalenderen</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg">
+                    <span className="font-bold text-amber-800">Sommer (juni-august):</span>
+                    <p className="text-amber-900">Maksimere bookinger og omtale</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg">
+                    <span className="font-bold text-amber-800">Høst (sept-okt):</span>
+                    <p className="text-amber-900">Ettermarked, kurs og lojalitet</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'international' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <Globe className="text-amber-700" />
+                Internasjonal markedsføring - Detaljert guide
+              </h2>
+              
+              <div className="space-y-6">
+                {internationalMarketing.map((section, index) => (
+                  <div key={index} className="border-2 border-amber-200 rounded-lg p-6 bg-gradient-to-br from-white to-amber-50">
+                    <h3 className="text-xl font-bold text-amber-900 mb-4 border-b-2 border-amber-300 pb-2">
+                      {section.category}
+                    </h3>
+                    <div className="space-y-4">
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="bg-white p-4 rounded-lg border border-amber-200">
+                          <h4 className="font-semibold text-amber-900 mb-2">
+                            ✓ {item.action}
+                          </h4>
+                          <div className="mb-2">
+                            <span className="text-sm font-medium text-amber-700">Hvordan:</span>
+                            <p className="text-amber-900 text-sm ml-2">{item.howTo}</p>
+                          </div>
+                          <div className="bg-green-50 p-2 rounded border-l-4 border-green-500">
+                            <span className="text-sm font-medium text-green-800">Kostnad:</span>
+                            <p className="text-green-900 text-sm">{item.cost}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 p-6 bg-gradient-to-r from-orange-100 to-amber-100 rounded-lg border-2 border-orange-300">
+                <h4 className="font-bold text-orange-900 mb-3 text-lg">Viktig budskap til internasjonale kunder:</h4>
+                <p className="text-orange-900 text-lg italic">
+                  "Sail the Southern Coast of Norway aboard Havsul, a historic wooden ship from 1933 – limited seats, summer only."
+                </p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'local' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <MapPin className="text-amber-700" />
+                Lokal markedsføring i Arendal - Detaljert guide
+              </h2>
+              
+              <div className="space-y-6">
+                {localMarketing.map((section, index) => (
+                  <div key={index} className="border-2 border-amber-200 rounded-lg p-6 bg-gradient-to-br from-white to-amber-50">
+                    <h3 className="text-xl font-bold text-amber-900 mb-4 border-b-2 border-amber-300 pb-2">
+                      {section.category}
+                    </h3>
+                    <div className="space-y-4">
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="bg-white p-4 rounded-lg border border-amber-200">
+                          <h4 className="font-semibold text-amber-900 mb-2">
+                            ✓ {item.action}
+                          </h4>
+                          <div className="mb-2">
+                            <span className="text-sm font-medium text-amber-700">Hvordan:</span>
+                            <p className="text-amber-900 text-sm ml-2">{item.howTo}</p>
+                          </div>
+                          <div className="bg-blue-50 p-2 rounded border-l-4 border-blue-500">
+                            <span className="text-sm font-medium text-blue-800">Kostnad:</span>
+                            <p className="text-blue-900 text-sm">{item.cost}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'quickwins' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <TrendingUp className="text-amber-700" />
+                Hurtigvinst-tiltak med konkret gjennomføring
+              </h2>
+              
+              <div className="grid gap-6">
+                {quickWins.map((win, index) => (
+                  <div
+                    key={index}
+                    className="border-2 border-green-300 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 hover:shadow-xl transition-all"
+                  >
+                    <h3 className="text-xl font-bold text-green-900 mb-2">
+                      {win.title}
+                    </h3>
+                    <p className="text-green-800 font-medium mb-3">{win.description}</p>
+                    <div className="bg-white p-4 rounded-lg mb-3 border border-green-200">
+                      <h4 className="font-semibold text-green-900 mb-1">Detaljer:</h4>
+                      <p className="text-green-800 text-sm">{win.details}</p>
+                    </div>
+                    <div className="flex gap-4 text-sm">
+                      <div className="bg-blue-100 px-3 py-1 rounded">
+                        <span className="font-semibold text-blue-900">Tidslinje:</span> {win.timeline}
+                      </div>
+                      <div className="bg-orange-100 px-3 py-1 rounded">
+                        <span className="font-semibold text-orange-900">Kostnad:</span> {win.cost}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg border-2 border-amber-300">
+                <h3 className="text-xl font-bold text-amber-900 mb-4 flex items-center gap-2">
+                  <Target className="text-amber-700" />
+                  Prioriterte målgrupper for Wannado
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="bg-white p-5 rounded-lg border-2 border-amber-200">
+                    <Users className="text-amber-700 mb-2" size={28} />
+                    <h4 className="font-bold text-amber-900 mb-1">Internasjonale turister</h4>
+                    <p className="text-sm text-amber-800">Tyskland, Nederland, UK, Italia, Canada, USA</p>
+                  </div>
+                  <div className="bg-white p-5 rounded-lg border-2 border-amber-200">
+                    <Users className="text-amber-700 mb-2" size={28} />
+                    <h4 className="font-bold text-amber-900 mb-1">Norske turister</h4>
+                    <p className="text-sm text-amber-800">Familier og par som besøker Arendal/Sørlandet på ferie</p>
+                  </div>
+                  <div className="bg-white p-5 rounded-lg border-2 border-amber-200">
+                    <Users className="text-amber-700 mb-2" size={28} />
+                    <h4 className="font-bold text-amber-900 mb-1">Bedriftsmarkedet</h4>
+                    <p className="text-sm text-amber-800">Teambuilding, VIP-arrangementer, Arendalsuka</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'budget' && (
+            <div>
+              <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center gap-2">
+                <DollarSign className="text-amber-700" />
+                Budsjettoversikt - 3 scenarioer
+              </h2>
+              
+              <div className="space-y-6">
+                <div className="border-2 border-blue-300 rounded-lg p-6 bg-gradient-to-br from-blue-50 to-cyan-50">
+                  <h3 className="text-xl font-bold text-blue-900 mb-4">{budgetOverview.low.title}</h3>
+                  <ul className="space-y-2">
+                    {budgetOverview.low.items.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-blue-600 mt-1">✓</span>
+                        <span className="text-blue-900">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 p-3 bg-blue-100 rounded">
+                    <p className="text-sm text-blue-900"><strong>Best for:</strong> Oppstart eller svært begrenset budsjett. Krever mye egeninnsats.</p>
+                  </div>
+                </div>
+
+                <div className="border-2 border-green-300 rounded-lg p-6 bg-gradient-to-br from-green-50 to-emerald-50">
+                  <div className="flex items-center gap-2 mb-4">
+                    <h3 className="text-xl font-bold text-green-900">{budgetOverview.medium.title}</h3>
+                    <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">ANBEFALT</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {budgetOverview.medium.items.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-green-600 mt-1">✓</span>
+                        <span className="text-green-900">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 p-3 bg-green-100 rounded">
+                    <p className="text-sm text-green-900"><strong>Best for:</strong> Balansert vekst med målbar ROI. Dekker det viktigste for god synlighet.</p>
+                  </div>
+                </div>
+
+                <div className="border-2 border-purple-300 rounded-lg p-6 bg-gradient-to-br from-purple-50 to-pink-50">
+                  <h3 className="text-xl font-bold text-purple-900 mb-4">{budgetOverview.high.title}</h3>
+                  <ul className="space-y-2">
+                    {budgetOverview.high.items.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-purple-600 mt-1">✓</span>
+                        <span className="text-purple-900">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 p-3 bg-purple-100 rounded">
+                    <p className="text-sm text-purple-900"><strong>Best for:</strong> Rask skalering og maksimal markedsandel. Profesjonell drift.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 p-6 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg border-2 border-orange-300">
+                <h3 className="text-lg font-bold text-orange-900 mb-3">Viktig om ROI (Return on Investment):</h3>
+                <ul className="space-y-2 text-orange-900">
+                  <li>• <strong>Gavekortsalg</strong> gir umiddelbar inntekt (ROI 300-500%)</li>
+                  <li>• <strong>Meta/Google Ads</strong> forventes ROI 150-300% i høysesongen</li>
+                  <li>• <strong>OTA-plattformer</strong> har provisjon, men ekspanderer markedet betydelig</li>
+                  <li>• <strong>PR og influensere</strong> har langsiktig effekt - vanskelig å måle direkte</li>
+                  <li>• Følg bookinger per kanal i bookingsystemet for å optimalisere budsjettet</li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MarketingPlan;
