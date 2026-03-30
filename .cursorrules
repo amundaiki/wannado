@@ -1,0 +1,17 @@
+# Wannado
+
+## Obsidian Memory (Påkrevd)
+
+**Les:** `obsidian/CODING_MEMORY.md`
+
+**Fyll inn timen i daily note:** `obsidian/Kalender/1 Daglig/YYYY-MM-DD.md`
+```markdown
+| 14:00 | 🔧 [[Wannado]]: Kort beskrivelse |
+```
+
+---
+
+## Project Rules
+
+- Respond in Norwegian
+- Test changes before committing

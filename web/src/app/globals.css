@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brown: var(--brown);
+  --color-brown-mid: var(--brown-mid);
+  --color-brown-muted: var(--brown-muted);
+  --color-brown-light: var(--brown-light);
+  --color-teal: var(--teal);
+  --color-sand: var(--sand);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
+
+  --font-inter: var(--font-inter);
+  --font-space: var(--font-space);
+  --font-dm: var(--font-dm);
+}
+
+:root {
+  --brown: #48382B;
+  --brown-mid: #6B5744;
+  --brown-muted: #8B7355;
+  --brown-light: #b8a48e;
+  --teal: #00838f;
+  --sand: #fdd79a;
+  --cream: #faf8f4;
+  --warm-white: #f5f2ed;
+  --border: #e4ddd3;
+  --card-bg: #ffffff;
+}
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--sand);
+  color: var(--brown);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-space), sans-serif;
+}
