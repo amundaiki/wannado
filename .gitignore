@@ -36,3 +36,14 @@ npm-debug.log*
 
 # Vercel
 .vercel
+
+# Obsidian
+.obsidian/
+! .obsidian/templates/
+! .obsidian/scripts/
+
+# Editor
+.cursor/
+.cursorrules
+CLAUDE.md
+AGENTS.md
