@@ -16,9 +16,91 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  name: "Seiltur med Listerskøyta Havsul",
+  description:
+    "Kulturvandring i Arendals skjærgård med den historiske Listerskøyta Havsul fra 1933. Historiefortelling om seilskutetiden, losvirksomhet og uthavner.",
+  touristType: "Cultural",
+  provider: {
+    "@type": "TouristAttraction",
+    name: "Wannado",
+    url: "https://wannado.no",
+    telephone: "+4799469957",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Skarestrand 11",
+      addressLocality: "Kongshavn",
+      postalCode: "4812",
+      addressCountry: "NO",
+    },
+  },
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Seiltur per person",
+      price: "350",
+      priceCurrency: "NOK",
+      eligibleQuantity: {
+        "@type": "QuantitativeValue",
+        maxValue: 12,
+        unitText: "personer",
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "Charter Havsul",
+      price: "3500",
+      priceCurrency: "NOK",
+      unitText: "per time",
+    },
+  ],
+  itinerary: {
+    "@type": "ItemList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Avgang fra Pollen i Arendal" },
+      { "@type": "ListItem", position: 2, name: "Seilas forbi Merdø" },
+      { "@type": "ListItem", position: 3, name: "Brattekleiv Skipsverft" },
+    ],
+  },
+  image: "https://wannado.no/images/havsul.jpg",
+};
+
+const galleryImages = [
+  {
+    src: "/images/scraped/sailing/P7300114.jpg",
+    alt: "Gjester nyter seilasen ombord i Havsul i Arendals skjærgård",
+  },
+  {
+    src: "/images/scraped/sailing/P9010367.jpg",
+    alt: "Havsul seiler forbi Merdø med gjester ombord",
+  },
+  {
+    src: "/images/scraped/sailing/hav-1-2.jpg",
+    alt: "Listerskøyta Havsul med seil oppe langs Sørlandskysten",
+  },
+  {
+    src: "/images/scraped/sailing/hav-2-2.jpg",
+    alt: "Havsul på sjøen med Arendals skjærgård i bakgrunnen",
+  },
+  {
+    src: "/images/scraped/sailing/hav-4-2.jpg",
+    alt: "Seiltur med Havsul i solnedgang ved Arendal",
+  },
+  {
+    src: "/images/scraped/sailing/hav-7-2.jpg",
+    alt: "Historisk seilas med Listerskøyta Havsul utenfor Arendal",
+  },
+];
+
 export default function SeilturerPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -261,7 +343,7 @@ export default function SeilturerPage() {
               </div>
 
               <Link
-                href="/kontakt"
+                href="/kontakt?tjeneste=Seilturer"
                 className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
               >
                 Bestill seiltur
@@ -270,6 +352,34 @@ export default function SeilturerPage() {
                 Vi svarer vanligvis innen 24 timer
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Gallery */}
+      <section className="bg-warm-white py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-space text-3xl md:text-4xl font-bold text-brown text-center mb-4">
+            Bilder fra Havsul
+          </h2>
+          <p className="font-inter text-lg text-brown-mid text-center max-w-2xl mx-auto mb-14">
+            Fra turer i Arendals vakre skjærgård med Listerskøyta Havsul.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image) => (
+              <div
+                key={image.src}
+                className="relative overflow-hidden rounded-2xl aspect-[3/2]"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -405,7 +515,7 @@ export default function SeilturerPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/kontakt"
+              href="/kontakt?tjeneste=Seilturer"
               className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
             >
               Bestill nå
