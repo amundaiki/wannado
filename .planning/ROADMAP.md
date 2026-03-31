@@ -14,7 +14,7 @@
 - [x] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
 - [ ] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema
 - [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
-- [ ] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder
+- [x] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder (completed 2026-03-31)
 - [ ] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer
 - [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
@@ -144,7 +144,7 @@ Plans:
   2. Grønlandsekspedisjonen har ekte bilder fra scraped/landscape/
   3. Kontakt-CTA med riktig telefonnummer
   4. JSON-LD Event schema
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 10-01-PLAN.md — Ekte bilder i foredragskort og JSON-LD Event schema

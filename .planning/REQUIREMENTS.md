@@ -96,7 +96,7 @@
 | PAGE-02, CONT-04 (seil) | Fase 7: Seilturer | Complete |
 | PAGE-03, CONT-04 (kajakk) | Fase 8: Kajakkturer | Pending |
 | PAGE-04, CONT-04 (team) | Fase 9: Teambuilding | Pending |
-| PAGE-05 | Fase 10: Foredrag | Pending |
+| PAGE-05 | Fase 10: Foredrag | Complete |
 | PAGE-10 | Fase 11: Om oss | Pending |
 | PAGE-07, FORM-01, FORM-02, FORM-03 | Fase 12: Kontakt | Pending |
 | PAGE-11 | Fase 13: Utleie | Complete |

@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-31T16:51:18Z"
+last_updated: "2026-03-31T16:52:00Z"
 progress:
   total_phases: 17
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 21
-  completed_plans: 9
+  completed_plans: 10
 ---
 
 # Project State
@@ -18,7 +18,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 6 (Forside) fullfort, klar for fase 7+ (Seilturer, Kajakkturer, etc.)
+**Current focus:** Fase 8 (Kajakkturer) fullfort, klar for fase 9+ (Teambuilding, Om oss, etc.)
 
 ## Completed Phases
 
@@ -31,6 +31,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
 | 6 | Forside | Alle 6 forsidekomponenter bruker next/image med ekte scraped-bilder, hero LCP optimalisert |
 | 7 | Seilturer | 6-bilders galleri, JSON-LD TouristTrip schema, CTA-routing til kontaktskjema med pre-seleksjon |
+| 8 | Kajakkturer | 10 ekte bilder, JSON-LD Product schema for 6 kurs, TouristTrip for guidede turer, CTA til /kontakt?tjeneste=Kajakktur |
 | 10 | Foredrag | Ekte bilder (JTI + Gronland) og JSON-LD Event schema for begge foredrag |
 | 13 | Utleie | Redesignet fra raa dump til polert serviceside med hero, utstyrskort, praktisk info og CTA |
 
@@ -91,5 +92,11 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Fulgte seilturer-sidens grid-layout (3+2 kolonne) for innhold og priskort
 - La til kajakkutleie-spesifikt bilde i innholdsseksjonen for visuell tyngde
 
+## Decisions (Phase 10)
+
+- Restrukturerte kort med separat bildeholder (aspect-[3/2]) og padded innholdsomraade
+- Brukte JSON-LD array med to Event-objekter i en enkelt script-tag
+- Utelot startDate fra Event schema siden foredragene er bestillbare paa foresporstel
+
 ---
-*Last updated: 2026-03-31 after completing phase 13 plan 01*
+*Last updated: 2026-03-31 after completing phase 10 plan 01*
