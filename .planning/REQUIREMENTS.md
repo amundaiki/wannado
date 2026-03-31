@@ -93,7 +93,7 @@
 | CONT-01, CONT-02, CONT-03 | Fase 2: Innhenting | Complete |
 | NAV-01 til NAV-04 | Fase 3: Navigasjon | Complete |
 | PAGE-01 | Fase 6: Forside | Complete |
-| PAGE-02, CONT-04 (seil) | Fase 7: Seilturer | Pending |
+| PAGE-02, CONT-04 (seil) | Fase 7: Seilturer | Complete |
 | PAGE-03, CONT-04 (kajakk) | Fase 8: Kajakkturer | Pending |
 | PAGE-04, CONT-04 (team) | Fase 9: Teambuilding | Pending |
 | PAGE-05 | Fase 10: Foredrag | Pending |

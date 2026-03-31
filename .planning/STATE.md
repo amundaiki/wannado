@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-31T16:35:47.731Z"
+status: in-progress
+last_updated: "2026-03-31T16:43:55Z"
 progress:
   total_phases: 17
-  completed_phases: 6
-  total_plans: 21
-  completed_plans: 6
+  completed_phases: 7
+  total_plans: 22
+  completed_plans: 7
 ---
 
 # Project State
@@ -30,12 +30,13 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 4 | Sidebygging | /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /api/contact |
 | 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
 | 6 | Forside | Alle 6 forsidekomponenter bruker next/image med ekte scraped-bilder, hero LCP optimalisert |
+| 7 | Seilturer | 6-bilders galleri, JSON-LD TouristTrip schema, CTA-routing til kontaktskjema med pre-seleksjon |
 
 ## Pending Phases (en per nettside-seksjon)
 
 | # | Phase | Mål |
 |---|-------|-----|
-| 7 | Seilturer | Havsul-bilder, JSON-LD TouristTrip |
+| 7 | ~~Seilturer~~ | Fullfort: galleri, JSON-LD TouristTrip, CTA-routing |
 | 8 | Kajakkturer | 56 kajakkbilder, kursbilder, Product schema |
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
 | 10 | Foredrag | Grønlandsbilder, Event schema |
@@ -76,5 +77,11 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Importerte next/image som NextImage i ScrollVideoSection for a unnga konflikt med browser Image constructor
 - P7270038.jpg korrigert til 1024x624 (planen antok 1280x960)
 
+## Decisions (Phase 7)
+
+- Brukte useSearchParams i ContactForm for aa lese ?tjeneste= fra URL, med Suspense boundary i kontakt/page.tsx
+- Valgte 6 unike bilder fra scraped/sailing/, hoppet over duplikater (hav-1-2-1, hav-1-2-2)
+- JSON-LD TouristTrip med to Offer-objekter for per-person og charter-pris
+
 ---
-*Last updated: 2026-03-31 after completing phase 6 plan 01*
+*Last updated: 2026-03-31 after completing phase 7 plan 01*

@@ -11,7 +11,7 @@
 - [x] **Phase 4: Sidebygging** - Grunnleggende sider bygget
 - [x] **Phase 5: SEO-grunnlag** - Sitemap, robots, JSON-LD, redirects
 - [x] **Phase 6: Forside** - Polert forside med ekte bilder, Lighthouse 90+
-- [ ] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
+- [x] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
 - [ ] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema
 - [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
 - [ ] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder
@@ -104,7 +104,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 07-01-PLAN.md - Bildegalleri, JSON-LD TouristTrip, CTA med tjeneste-forhåndsvalg
+- [x] 07-01-PLAN.md - Bildegalleri, JSON-LD TouristTrip, CTA med tjeneste-forhåndsvalg
 
 ### Phase 8: Kajakkturer
 **Goal:** Ferdigstill kajakksiden med ekte kursbilder og turbilder
@@ -253,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 15 planning*
+*Last updated: 2026-03-31 after Phase 7 execution*
