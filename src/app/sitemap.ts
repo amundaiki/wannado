@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/menneskene`, lastModified: now, changeFrequency: 'yearly', priority: 0.6 },
     { url: `${baseUrl}/kontakt`, lastModified: now, changeFrequency: 'yearly', priority: 0.7 },
     { url: `${baseUrl}/referanser`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/praktisk-informasjon`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${baseUrl}/personvern`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
   ];
 }

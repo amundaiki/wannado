@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-31T16:59:01.597Z"
+last_updated: "2026-03-31T17:07:28Z"
 progress:
   total_phases: 17
-  completed_phases: 13
+  completed_phases: 14
   total_plans: 21
-  completed_plans: 13
+  completed_plans: 14
 ---
 
 # Project State
@@ -18,7 +18,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 11 (Om oss) fullfort, klar for fase 9 (Teambuilding), 12 (Kontakt), etc.
+**Current focus:** Fase 9 (Teambuilding) fullfort, klar for fase 15 (Blogg), 16 (SEO-polering), 17 (Deploy).
 
 ## Completed Phases
 
@@ -37,6 +37,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 14 | Referanser | 29 bedrifter i rutenett, 2 testimonials, TV-opptredener, TripAdvisor-lenke, CTA |
 | 11 | Om oss | Redesignet /om-oss med bedriftshistorie, teamprofiler (Tone Pernille + Roar), sertifiseringsbadger, verdier, CTA, /menneskene 301-redirect |
 | 12 | Kontakt | Resend e-post-integrasjon, Google Maps iframe, case-insensitive ?tjeneste= pre-seleksjon, CTA-routing fra alle tjenestesider |
+| 9 | Teambuilding | 6 ekte arrangementsbilder, JSON-LD Product schema, referansegrid, CTA til /kontakt?tjeneste=Teambuilding |
 
 ## Pending Phases (en per nettside-seksjon)
 
@@ -44,7 +45,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 |---|-------|-----|
 | 7 | ~~Seilturer~~ | Fullfort: galleri, JSON-LD TouristTrip, CTA-routing |
 | 8 | ~~Kajakkturer~~ | Fullfort: 10 ekte bilder, JSON-LD Product + TouristTrip, CTA-routing |
-| 9 | Teambuilding | Arrangementsbilder, Product schema |
+| 9 | ~~Teambuilding~~ | Fullfort: 6 arrangementsbilder, JSON-LD Product schema, referansegrid, CTA-routing |
 | 10 | ~~Foredrag~~ | Fullfort: ekte bilder, JSON-LD Event schema |
 | 11 | ~~Om oss~~ | Fullfort: bedriftshistorie, teamprofiler, sertifiseringer, verdier, /menneskene redirect |
 | 12 | ~~Kontakt~~ | Fullfort: Resend e-post, Google Maps, ?tjeneste= CTA-routing |
@@ -121,5 +122,11 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - .gitignore-unntak: la til !.env.local.example saa eksempelfilen spores i git
 - Seilturer, kajakkturer, teambuilding hadde allerede ?tjeneste= fra tidligere faser (7, 8, 9)
 
+## Decisions (Phase 9)
+
+- Gjenbrukte ContactForm useSearchParams-stotte fra fase 7, ingen endringer i ContactForm.tsx
+- Dynamisk JSON-LD generert fra products-array med schemaPrices Record-oppslag, ikke duplisert statisk schema
+- Referanseseksjon som grid-kort (2 kolonner mobil, 3 kolonner tablet+) med lenke til /referanser
+
 ---
-*Last updated: 2026-03-31 after completing phase 12 plan 01*
+*Last updated: 2026-03-31 after completing phase 9 plan 01*
