@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Kajakkurs og kajakkturer Arendal | Wannado",
     description:
       "Kajakkurs fra nybegynner til ekspedisjon i Arendals skjærgård. Alt utstyr inkludert. Fra kr 1 250,-.",
-    images: ["/images/kajakk-kurs-bilde.jpg"],
+    images: ["/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"],
   },
 };
 
@@ -25,6 +25,8 @@ const courses = [
     description:
       "Perfekt start for nybegynnere. Lær grunnleggende padleteknikk, sikkerhet og selvberging. Du får våttkort etter bestått kurs.",
     highlight: true,
+    image: "/images/scraped/kayak/pusnes-introkurs-4613.jpg",
+    imageAlt: "Nybegynner padler kajakk i rolig vann ved Arendal",
   },
   {
     name: "Grunnkurs hav",
@@ -33,6 +35,8 @@ const courses = [
     privatePrice: "Kr 3 500,- (privat)",
     description:
       "Grundig opplæring i havpadling med fokus på navigasjon, værforståelse og gruppeteknikk. Inkluderer alt utstyr.",
+    image: "/images/scraped/kayak/kajakkurs-strandhotell-4010.jpg",
+    imageAlt: "Kajakkene klare for grunnkurs hav på stranden",
   },
   {
     name: "Teknikkurs",
@@ -40,6 +44,8 @@ const courses = [
     price: "Kr 3 500,-",
     description:
       "For deg som vil videreutvikle padleteknikken. Fokus på effektive padletak, kantring og avansert manøvrering.",
+    image: "/images/scraped/kayak/kajakkurs-redning-DSC_0165.jpg",
+    imageAlt: "Kajakkpadler sett ovenfra i grønt vann under teknikkurs",
   },
   {
     name: "Rullekurs",
@@ -47,6 +53,8 @@ const courses = [
     price: "Kr 1 250,-",
     description:
       "Lær den viktigste selvbergingsteknikken. Rullekurset gir deg tryggheten til å padle i mer utfordrende forhold.",
+    image: "/images/scraped/kayak/kajakkursredning-3619.jpg",
+    imageAlt: "Redningstrening i kajakk på åpent vann",
   },
   {
     name: "Tøffe tak",
@@ -54,6 +62,8 @@ const courses = [
     price: "Kr 1 350,-",
     description:
       "Utfordrende kurs for deg som vil teste grensene. Padling i bølger, strøm og vind under trygge rammer.",
+    image: "/images/scraped/kayak/bolgepadling-5570.jpg",
+    imageAlt: "Rød kajakk i dramatisk bølgepadling",
   },
   {
     name: "Turkurs / Ekspedisjonskurs",
@@ -61,6 +71,8 @@ const courses = [
     price: "Kr 3 500,-",
     description:
       "Planlegging og gjennomføring av lengre kajakkekspedisjoner. Bivuakk, navigasjon og ledelse i felten.",
+    image: "/images/scraped/kayak/grebbestad-2013-3804.jpg",
+    imageAlt: "Leirbål med kajakker i bakgrunnen under ekspedisjonskurs",
   },
 ];
 
@@ -72,8 +84,8 @@ export default function KajakkturerPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[500px] flex items-end">
         <Image
-          src="/images/kajakk-kurs-bilde.jpg"
-          alt="Kajakkpadling i Arendals skjærgård"
+          src="/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"
+          alt="Gruppe kajakkpadlere vinker fra vannet med norsk kystby i bakgrunnen"
           fill
           className="object-cover"
           priority
@@ -131,36 +143,47 @@ export default function KajakkturerPage() {
             {courses.map((course) => (
               <div
                 key={course.name}
-                className={`bg-white rounded-2xl p-8 border hover:shadow-md transition-shadow ${
+                className={`bg-white rounded-2xl overflow-hidden border hover:shadow-md transition-shadow ${
                   course.highlight
                     ? "border-teal/40 ring-1 ring-teal/20"
                     : "border-border"
                 }`}
               >
-                {course.highlight && (
-                  <span className="inline-block font-inter text-xs font-semibold text-teal uppercase tracking-[2px] mb-3">
-                    Mest populært
-                  </span>
-                )}
-                <h3 className="font-space text-xl font-bold text-brown mb-2">
-                  {course.name}
-                </h3>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="font-space text-2xl font-bold text-brown">
-                    {course.price}
-                  </span>
-                  <span className="font-inter text-sm text-brown-muted">
-                    / {course.duration}
-                  </span>
+                <div className="relative h-40">
+                  <Image
+                    src={course.image}
+                    alt={course.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
-                {course.privatePrice && (
-                  <p className="font-inter text-sm text-brown-muted mb-3">
-                    Privatundervisning: {course.privatePrice}
+                <div className="p-8">
+                  {course.highlight && (
+                    <span className="inline-block font-inter text-xs font-semibold text-teal uppercase tracking-[2px] mb-3">
+                      Mest populært
+                    </span>
+                  )}
+                  <h3 className="font-space text-xl font-bold text-brown mb-2">
+                    {course.name}
+                  </h3>
+                  <div className="flex items-baseline gap-3 mb-4">
+                    <span className="font-space text-2xl font-bold text-brown">
+                      {course.price}
+                    </span>
+                    <span className="font-inter text-sm text-brown-muted">
+                      / {course.duration}
+                    </span>
+                  </div>
+                  {course.privatePrice && (
+                    <p className="font-inter text-sm text-brown-muted mb-3">
+                      Privatundervisning: {course.privatePrice}
+                    </p>
+                  )}
+                  <p className="font-inter text-sm text-brown-mid leading-relaxed">
+                    {course.description}
                   </p>
-                )}
-                <p className="font-inter text-sm text-brown-mid leading-relaxed">
-                  {course.description}
-                </p>
+                </div>
               </div>
             ))}
           </div>
@@ -181,8 +204,8 @@ export default function KajakkturerPage() {
           <div className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-md transition-shadow">
             <div className="relative h-56">
               <Image
-                src="/images/kajakk-kurs-bilde.jpg"
-                alt="Guidet kajakksafari i skjærgården ved Arendal"
+                src="/images/scraped/kayak/kajakktur-16510307442.jpg"
+                alt="Guidet kajakktur gjennom skjærgården med hvite sørlandshus"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -208,8 +231,8 @@ export default function KajakkturerPage() {
           <div className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-md transition-shadow">
             <div className="relative h-56">
               <Image
-                src="/images/gronland-kajakk-3.jpg"
-                alt="Kajakktur langs fyrene ved Arendal"
+                src="/images/scraped/kayak/kajakktur-fyr-oslofjorden-3995.jpg"
+                alt="Kajakkpadler på vei mot fyrtårn langs kysten"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -238,20 +261,14 @@ export default function KajakkturerPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white rounded-2xl p-10 md:p-14 border border-border">
             <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center flex-shrink-0">
-                <svg
-                  className="w-12 h-12 text-teal"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/scraped/kayak/fyr-til-fyr-4656.jpg"
+                  alt="Roar Laugerud, kajakkguide og Veileder Hav"
+                  width={96}
+                  height={96}
+                  className="rounded-full object-cover"
+                />
               </div>
               <div>
                 <h2 className="font-space text-2xl md:text-3xl font-bold text-brown mb-2">
