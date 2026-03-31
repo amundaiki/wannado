@@ -1,20 +1,26 @@
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # Build output
-.next/
-out/
+/.next/
+/out/
 dist/
-build/
+/build
+/coverage
 
 # Environment
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
 
 # Claude local settings
 .claude/settings.local.json

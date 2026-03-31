@@ -1,0 +1,285 @@
+[
+  {
+    "facebookUrl": "https://www.facebook.com/wannado.no",
+    "postId": "1505106728283735",
+    "pageName": "wannado.no",
+    "url": "https://www.facebook.com/wannado.no/posts/pfbid021EC5NygYdJNmwuREcqfdu1VnA9cbrsQmVfcKuENkm5YCAr8kyqSKosht6mTE6FB1l",
+    "time": "2026-03-16T12:00:19.000Z",
+    "timestamp": 1773662419,
+    "user": {
+      "id": "100063532665227",
+      "name": "Wannado",
+      "profileUrl": "https://www.facebook.com/100063532665227",
+      "profilePic": "https://scontent-dfw6-1.xx.fbcdn.net/v/t39.30808-1/361269710_750467727080976_5751242434401052573_n.png?stp=cp0_dst-png_s50x50&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TTJgdrv-svUQ7kNvwFa41ZH&_nc_oc=Adr-OJRNSSyRodGZUX3XLpH3iXyzT7tT6oZzruMOGtQNGmEOZF9rOhxLwNRZC6xW0i98L6KW2bFVCPt8chVjiRro&_nc_zt=24&_nc_ht=scontent-dfw6-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afy4nKcwSWsK8c_9DSUjHUr2OawTCgOQcHBMI5JOo1YlyA&oe=69D1D3D4"
+    },
+    "collaborators": [],
+    "text": "Kystkultur er spennende og gøy, og her fikk vi sagt litt her også...\n\n",
+    "link": "https://www.tvagder.no/nb/watch/11167",
+    "previewTitle": "Bygningsarven - Arendal",
+    "previewDescription": "I denne episoden besøker vi Merdø, en gammel uthavn i Arendals skjærgård, og hører historier fra seilskutetidens storhetstid.",
+    "previewSource": "tvagder.no",
+    "previewTarget": {
+      "__typename": "ExternalUrl",
+      "article_author": null,
+      "external_url": "https://www.tvagder.no/nb/watch/11167",
+      "id": "226547524203272:1505106724950402"
+    },
+    "likes": 4,
+    "shares": 1,
+    "topReactionsCount": 1,
+    "media": [
+      {
+        "thumbnail": "https://external-dfw5-3.xx.fbcdn.net/emg1/v/t13/11565026292429393517?url=https%3A%2F%2Ftvkiosken.image-service.eu-north-1-prod.vmnd.tv%2Fapi%2Fv2%2Fimg%2F69aec24ae4b0b0944f760978-1773060684689&fb_obo=1&utld=vmnd.tv&stp=c0.5000x0.5000f_dst-jpg_flffffff_p500x261_q75_tt6&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_oc=AdoLhngQ-rgIpz4fdUkv8Hz7tguZHdLobU7f587ZzKGMv7Yj9yiNxPc5xHKzY6caFdgyRVBUykbLkgZY2drgbsjF&ccb=13-1&oh=06_Q3-9AdFhTvidDQflr1OGO4Uh7mKmGhso6PCwHVv889AJMSOX&oe=69CDC42F&_nc_sid=139b9a",
+        "__typename": "GenericAttachmentMedia",
+        "__isMedia": "GenericAttachmentMedia",
+        "flexible_height_share_image": null,
+        "large_share_image": {
+          "height": 261,
+          "uri": "https://external-dfw5-3.xx.fbcdn.net/emg1/v/t13/11565026292429393517?url=https%3A%2F%2Ftvkiosken.image-service.eu-north-1-prod.vmnd.tv%2Fapi%2Fv2%2Fimg%2F69aec24ae4b0b0944f760978-1773060684689&fb_obo=1&utld=vmnd.tv&stp=c0.5000x0.5000f_dst-jpg_flffffff_p500x261_q75_tt6&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_oc=AdoLhngQ-rgIpz4fdUkv8Hz7tguZHdLobU7f587ZzKGMv7Yj9yiNxPc5xHKzY6caFdgyRVBUykbLkgZY2drgbsjF&ccb=13-1&oh=06_Q3-9AdFhTvidDQflr1OGO4Uh7mKmGhso6PCwHVv889AJMSOX&oe=69CDC42F&_nc_sid=139b9a",
+          "width": 500
+        },
+        "id": "1505106724950402"
+      }
+    ],
+    "feedbackId": "ZmVlZGJhY2s6MTUwNTEwNjcyODI4MzczNQ==",
+    "reactionLikeCount": 4,
+    "topLevelUrl": "https://www.facebook.com/100063532665227/posts/1505106728283735",
+    "facebookId": "100063532665227",
+    "pageAdLibrary": {
+      "id": "106546522758305",
+      "owner_business": null,
+      "pamv_comms_data": null
+    },
+    "inputUrl": "https://www.facebook.com/wannado.no"
+  },
+  {
+    "facebookUrl": "https://www.facebook.com/wannado.no",
+    "postId": "1445182704276138",
+    "pageName": "wannado.no",
+    "url": "https://www.facebook.com/wannado.no/posts/pfbid0gbtJgBqwCM2dGNBMyob1giuDmxmJEb5yEvMTf234C58YBSJgfadswCYKfJAk1aKRl",
+    "time": "2026-01-09T07:27:26.000Z",
+    "timestamp": 1767943646,
+    "user": {
+      "id": "100063532665227",
+      "name": "Wannado",
+      "profileUrl": "https://www.facebook.com/100063532665227",
+      "profilePic": "https://scontent-dfw6-1.xx.fbcdn.net/v/t39.30808-1/361269710_750467727080976_5751242434401052573_n.png?stp=cp0_dst-png_s50x50&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TTJgdrv-svUQ7kNvwFa41ZH&_nc_oc=Adr-OJRNSSyRodGZUX3XLpH3iXyzT7tT6oZzruMOGtQNGmEOZF9rOhxLwNRZC6xW0i98L6KW2bFVCPt8chVjiRro&_nc_zt=24&_nc_ht=scontent-dfw6-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afy4nKcwSWsK8c_9DSUjHUr2OawTCgOQcHBMI5JOo1YlyA&oe=69D1D3D4"
+    },
+    "collaborators": [],
+    "text": "",
+    "likes": 0,
+    "shares": 0,
+    "topReactionsCount": 0,
+    "feedbackId": "ZmVlZGJhY2s6MTQ0NTE4MjcwNDI3NjEzOA==",
+    "sharedPost": {
+      "pageName": {
+        "id": "100063532665227",
+        "name": "Wannado",
+        "profileUrl": "https://www.facebook.com/wannado.no",
+        "profilePic": "https://scontent-dfw6-1.xx.fbcdn.net/v/t39.30808-1/361269710_750467727080976_5751242434401052573_n.png?stp=cp0_dst-png_s40x40&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TTJgdrv-svUQ7kNvwFa41ZH&_nc_oc=Adr-OJRNSSyRodGZUX3XLpH3iXyzT7tT6oZzruMOGtQNGmEOZF9rOhxLwNRZC6xW0i98L6KW2bFVCPt8chVjiRro&_nc_zt=24&_nc_ht=scontent-dfw6-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afw9ILi23DSQwqGlZ3rnKirmf3mDwHP065cBQynhk6a9_w&oe=69D1D3D4"
+      },
+      "url": "https://www.facebook.com/wannado.no/posts/pfbid02bTXFPH1VTTTnKs2uiLM9CdXRg3DtHFHbzAEWgRSUXwJyizf7BEAgQGQa5n986YsFl",
+      "time": "2025-10-07T10:12:29.000Z",
+      "timestamp": 1759831949,
+      "user": {
+        "id": "100063532665227",
+        "name": "Wannado",
+        "profileUrl": "https://www.facebook.com/wannado.no",
+        "profilePic": "https://scontent-dfw6-1.xx.fbcdn.net/v/t39.30808-1/361269710_750467727080976_5751242434401052573_n.png?stp=cp0_dst-png_s40x40&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TTJgdrv-svUQ7kNvwFa41ZH&_nc_oc=Adr-OJRNSSyRodGZUX3XLpH3iXyzT7tT6oZzruMOGtQNGmEOZF9rOhxLwNRZC6xW0i98L6KW2bFVCPt8chVjiRro&_nc_zt=24&_nc_ht=scontent-dfw6-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afw9ILi23DSQwqGlZ3rnKirmf3mDwHP065cBQynhk6a9_w&oe=69D1D3D4"
+      },
+      "text": "📈JTI NYTTE OG HUSKEREGLER\n\nHAR DU TATT JTI, og tenker «hva nå..»?\n🤔🤔🤔\n\nMange har etterhvert «testet seg» på JTI. Og de har fått sine fire bokstaver; ISTJ, ENFP eller 14 andre kombinasjoner. \nOg hva så..? \nHva kan vi bruke disse bokstavene våre til? Både personlig og for arbeidsplassen (ja - som ofte har betalt for gildet💰)\n\n💃🏻JTI nytteverdi person: \n👌🏻Sette pris på egne og andres spesielle evner og styrker\n👌🏻Lære hvordan utnytte min og andres styrke\n👌🏻Å øke din lære om hvordan mennesker oppfatter tilgjengelig informasjon\n👌🏻Supplere og forbedre de områder som jeg kanskje overser eller som ikke faller så lett  for meg\n👌🏻Diskutere dine følelser ut fra et objektivt rammeverk\n👌🏻Kommunisere både mer effektivt og forståelig med andre\n👌🏻Samarbeide bedre hjemme og på jobben\n👌🏻Å forstå hvorfor noe faller lett for enkelte, og vanskelig for andre\n👌🏻Bruk kunnskapen om personlighetstyper til å forstå deg selv og dynamikken i relasjoner\n\nNyttig å huske om du har testet deg på din JTI-type:\n✅Informasjon om din type kan hjelpe deg til en bedre forståelse av deg selv\n✅Din type er en kombinasjon av preferansene du har valgt\n✅Du valgte din type når du svarte på de 56 dilemmaene\n✅Det er ingen \"gode\" eller \"dårlige\" typer og ingen \"bedre\" eller \"dårligere\" kombinasjoner av typer\n✅Vi bruker alle preferansene på forskjellige tidspunkter\n✅Type er ingen unnskyldning for å gjøre noe – eller for å ikke gjøre noe\n✅Type forklarer ikke alt, for eksempel måler ikke JTI evner eller talent\n\n✔️Og så bedriften da; hva gjør de med alle disse bokstavene..?\n\nJTI kan med gode, rutinerte konsulenter (som meg selv😇) få ganske stor Nytteverdi for organisasjonen\n\n👍Få en logisk ordnet modell for menneskelig adferd\n👍Redusere uproduktive konflikter\n👍Identifisere styrker og muligheter i grupper\n👍Få en teori som er rimelig enkel å forstå\n👍Bygge opp forståelse for normer og kultur\n👍Forstå hvordan en person passer i sin jobb\n👍Få en test som er enkel å administrere og som er kostnadseffektiv\n👍Få et logisk oversiktlig verktøy og en god  tilnærming  til psykososiale temaer i  bedriften\n\nJeg er lett å få tak i (99469957) - inviter meg på en kaffe da vel😇",
+      "media": [
+        {
+          "mediaset_token": "pcb.1363861145741628",
+          "url": "https://www.facebook.com/wannado.no/posts/pfbid02bTXFPH1VTTTnKs2uiLM9CdXRg3DtHFHbzAEWgRSUXwJyizf7BEAgQGQa5n986YsFl",
+          "comet_product_tag_feed_overlay_renderer": null
+        },
+        {
+          "thumbnail": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/557714679_1363861199074956_4552222746411321231_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_ohc=emNUMhH7FF0Q7kNvwH9U4DT&_nc_oc=Adpn5ud-a4Xvk5VA-A3Rle4SE14iO45SbcexYf6jjmf3tryK7CWdp8eLnijhkP9E83J7HmRnpKubBzKJv-78d8_o&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfwLupMubbwx8fkVNmNGwwd-u1Dvc-DMNJQBVMSlPSXvxw&oe=69D1B766",
+          "__typename": "Photo",
+          "is_playable": false,
+          "image": {
+            "uri": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/557714679_1363861199074956_4552222746411321231_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_ohc=emNUMhH7FF0Q7kNvwH9U4DT&_nc_oc=Adpn5ud-a4Xvk5VA-A3Rle4SE14iO45SbcexYf6jjmf3tryK7CWdp8eLnijhkP9E83J7HmRnpKubBzKJv-78d8_o&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfwLupMubbwx8fkVNmNGwwd-u1Dvc-DMNJQBVMSlPSXvxw&oe=69D1B766",
+            "height": 356,
+            "width": 590
+          },
+          "id": "1363860062408403",
+          "__isMedia": "Photo",
+          "photo_cix_screen": null,
+          "copyright_banner_info": null,
+          "owner": {
+            "__typename": "User",
+            "id": "100063532665227"
+          },
+          "ocrText": "No photo description available."
+        },
+        {
+          "thumbnail": "https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/557376614_1363860079075068_4996230339830786793_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=2Dscq-o_EpYQ7kNvwEDtp5F&_nc_oc=AdrHRVTDpvLrUofC-uxtDC1hTS1dJfTyJPwY6pUzBomnr3XM2QewWFdKN9vVqS_2fW1GDZuAXhX51uKphO4aUK6r&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfwHA2z2ZEfSl1VCn3EiAY7gfY8yYmyR-tWKQlUTuwdDbw&oe=69D1D072",
+          "__typename": "Photo",
+          "is_playable": false,
+          "image": {
+            "uri": "https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/557376614_1363860079075068_4996230339830786793_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=2Dscq-o_EpYQ7kNvwEDtp5F&_nc_oc=AdrHRVTDpvLrUofC-uxtDC1hTS1dJfTyJPwY6pUzBomnr3XM2QewWFdKN9vVqS_2fW1GDZuAXhX51uKphO4aUK6r&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfwHA2z2ZEfSl1VCn3EiAY7gfY8yYmyR-tWKQlUTuwdDbw&oe=69D1D072",
+            "height": 409,
+            "width": 590
+          },
+          "id": "1363860069075069",
+          "__isMedia": "Photo",
+          "photo_cix_screen": null,
+          "copyright_banner_info": null,
+          "owner": {
+            "__typename": "User",
+            "id": "100063532665227"
+          },
+          "ocrText": "No photo description available."
+        }
+      ]
+    },
+    "topLevelUrl": "https://www.facebook.com/100063532665227/posts/1445182704276138",
+    "facebookId": "100063532665227",
+    "pageAdLibrary": {
+      "id": "106546522758305",
+      "owner_business": null,
+      "pamv_comms_data": null
+    },
+    "inputUrl": "https://www.facebook.com/wannado.no"
+  },
+  {
+    "facebookUrl": "https://www.facebook.com/wannado.no",
+    "postId": "1389446683183074",
+    "pageName": "wannado.no",
+    "url": "https://www.facebook.com/wannado.no/posts/pfbid02QvpTJitgB8ZZpmicW7AWuhQHVT7BH9RDLtx8r6255AodfpSv2fa1p9sbfJZ72nbYl",
+    "time": "2025-11-03T06:38:35.000Z",
+    "timestamp": 1762151915,
+    "user": {
+      "id": "100063532665227",
+      "name": "Wannado",
+      "profileUrl": "https://www.facebook.com/100063532665227",
+      "profilePic": "https://scontent-dfw6-1.xx.fbcdn.net/v/t39.30808-1/361269710_750467727080976_5751242434401052573_n.png?stp=cp0_dst-png_s50x50&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=TTJgdrv-svUQ7kNvwFa41ZH&_nc_oc=Adr-OJRNSSyRodGZUX3XLpH3iXyzT7tT6oZzruMOGtQNGmEOZF9rOhxLwNRZC6xW0i98L6KW2bFVCPt8chVjiRro&_nc_zt=24&_nc_ht=scontent-dfw6-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afy4nKcwSWsK8c_9DSUjHUr2OawTCgOQcHBMI5JOo1YlyA&oe=69D1D3D4"
+    },
+    "collaborators": [],
+    "text": "På lørdag fikk vi prøvekjørt vår nye teambuilding BEDRAGER 🤩\nForræder, nesten som på TV, men vi løser gåten på ca 2 timer👍 \nLogistikken funka som bare det, og det er bare å kjøre på med flere slike!\nKan med hell arrangeres hos/med:\nBjellandstrand Gård\nStrand Hotel Fevik\nClarion Hotel Tyholmen\nGrand Hotel Arendal\nArendal Herregaard SPA & Resort\nKrøgeneslåven\n…eller rett og slett bare «hjemme hos dere» - i en kantine, møterom, lekerom el.l.",
+    "textReferences": [
+      {
+        "id": "100063787352743",
+        "url": "https://www.facebook.com/bjellandstrand",
+        "profile_url": "https://www.facebook.com/bjellandstrand",
+        "short_name": "Bjellandstrand Gård",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": true,
+        "mobileUrl": "https://m.facebook.com/bjellandstrand/"
+      },
+      {
+        "id": "100049469602146",
+        "url": "https://www.facebook.com/strandhotelfevik",
+        "profile_url": "https://www.facebook.com/strandhotelfevik",
+        "short_name": "Strand Hotel Fevik",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": false,
+        "mobileUrl": "https://m.facebook.com/strandhotelfevik/"
+      },
+      {
+        "id": "100063786691095",
+        "url": "https://www.facebook.com/ClarionHotelTyholmen",
+        "profile_url": "https://www.facebook.com/ClarionHotelTyholmen",
+        "short_name": "Clarion Hotel Tyholmen",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": false,
+        "mobileUrl": "https://m.facebook.com/ClarionHotelTyholmen/"
+      },
+      {
+        "id": "100057331244512",
+        "url": "https://www.facebook.com/grandhotelarendal",
+        "profile_url": "https://www.facebook.com/grandhotelarendal",
+        "short_name": "Grand Hotel Arendal",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": false,
+        "mobileUrl": "https://m.facebook.com/grandhotelarendal/"
+      },
+      {
+        "id": "100063469183885",
+        "url": "https://www.facebook.com/arendalherregaard",
+        "profile_url": "https://www.facebook.com/arendalherregaard",
+        "short_name": "Arendal Herregaard SPA & Resort",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": false,
+        "mobileUrl": "https://m.facebook.com/arendalherregaard/"
+      },
+      {
+        "id": "100064473408633",
+        "url": "https://www.facebook.com/Krogeneslaaven",
+        "profile_url": "https://www.facebook.com/Krogeneslaaven",
+        "short_name": "Krøgeneslåven",
+        "work_info": null,
+        "work_foreign_entity_info": null,
+        "is_verified": false,
+        "mobileUrl": "https://m.facebook.com/Krogeneslaaven/"
+      }
+    ],
+    "likes": 36,
+    "comments": 6,
+    "shares": 4,
+    "topReactionsCount": 3,
+    "media": [
+      {
+        "mediaset_token": "pcb.1389446683183074",
+        "url": "https://www.facebook.com/wannado.no/posts/pfbid02QvpTJitgB8ZZpmicW7AWuhQHVT7BH9RDLtx8r6255AodfpSv2fa1p9sbfJZ72nbYl",
+        "comet_product_tag_feed_overlay_renderer": null
+      },
+      {
+        "thumbnail": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/573613947_1389446763183066_1902286487436270309_n.jpg?stp=cp6_dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_ohc=zoEKc28mc5oQ7kNvwHj_pmW&_nc_oc=AdqQyNY4Zfe-kIG8oRyHFeGuCz8--UWNLQPVzD1YgAxpm2y-7eJ0QenoYn2CN8PWjG_M6iBmBzodL1OsLbbB6bLC&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afx6kdYbNJQZKFNrP2vQcJqRLfI3c9BAOAqSlklKPEDwBA&oe=69D1A785",
+        "__typename": "Photo",
+        "is_playable": false,
+        "image": {
+          "uri": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/573613947_1389446763183066_1902286487436270309_n.jpg?stp=cp6_dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_ohc=zoEKc28mc5oQ7kNvwHj_pmW&_nc_oc=AdqQyNY4Zfe-kIG8oRyHFeGuCz8--UWNLQPVzD1YgAxpm2y-7eJ0QenoYn2CN8PWjG_M6iBmBzodL1OsLbbB6bLC&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_Afx6kdYbNJQZKFNrP2vQcJqRLfI3c9BAOAqSlklKPEDwBA&oe=69D1A785",
+          "height": 443,
+          "width": 590
+        },
+        "id": "1389444836516592",
+        "__isMedia": "Photo",
+        "photo_cix_screen": null,
+        "copyright_banner_info": null,
+        "owner": {
+          "__typename": "User",
+          "id": "100063532665227"
+        },
+        "ocrText": "No photo description available."
+      },
+      {
+        "thumbnail": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/574581827_1390357709758638_743283267999519619_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_ohc=sLVMZxlvG00Q7kNvwGH3tGU&_nc_oc=AdoLQbQTe9iodDUfQMtsWayCKbZGkWxyKppTxo6RTV75HhaUbIOC8mTgp2mHLg-lJcej0sTZ8XABSjLYi3voBU0t&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfzafiyXrIujInkfOBFftC7TQo-BV4J1c_C0-Jx9mYNCXg&oe=69D1B730",
+        "__typename": "Photo",
+        "is_playable": false,
+        "image": {
+          "uri": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/574581827_1390357709758638_743283267999519619_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_ohc=sLVMZxlvG00Q7kNvwGH3tGU&_nc_oc=AdoLQbQTe9iodDUfQMtsWayCKbZGkWxyKppTxo6RTV75HhaUbIOC8mTgp2mHLg-lJcej0sTZ8XABSjLYi3voBU0t&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=54oxBQXXNlyI2bjhLtXJNQ&_nc_ss=7a389&oh=00_AfzafiyXrIujInkfOBFftC7TQo-BV4J1c_C0-Jx9mYNCXg&oe=69D1B730",
+          "height": 332,
+          "width": 590
+        },
+        "id": "1390357706425305",
+        "__isMedia": "Photo",
+        "photo_cix_screen": null,
+        "copyright_banner_info": null,
+        "owner": {
+          "__typename": "User",
+          "id": "100063532665227"
+        },
+        "ocrText": "No photo description available."
+      }
+    ],
+    "feedbackId": "ZmVlZGJhY2s6MTM4OTQ0NjY4MzE4MzA3NA==",
+    "reactionLikeCount": 34,
+    "reactionLoveCount": 1,
+    "reactionWowCount": 1,
+    "topLevelUrl": "https://www.facebook.com/100063532665227/posts/1389446683183074",
+    "facebookId": "100063532665227",
+    "pageAdLibrary": {
+      "id": "106546522758305",
+      "owner_business": null,
+      "pamv_comms_data": null
+    },
+    "inputUrl": "https://www.facebook.com/wannado.no"
+  }
+]
