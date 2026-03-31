@@ -48,8 +48,8 @@
 - [x] **PAGE-10**: Om oss / Menneskene (/om-oss) med team-profiler og bedriftshistorie
 - [x] **PAGE-11**: Utleie (/utleie) med priser og utstyroversikt for kajakk og kano
 - [x] **PAGE-12**: Referanser (/referanser) med kundeoversikt og testimonials
-- [ ] **PAGE-13**: Personvern (/personvern) med GDPR-info
-- [ ] **PAGE-14**: Praktisk informasjon (/praktisk-informasjon) med møtesteder og utstyrsliste
+- [x] **PAGE-13**: Personvern (/personvern) med GDPR-info
+- [x] **PAGE-14**: Praktisk informasjon (/praktisk-informasjon) med møtesteder og utstyrsliste
 
 ### SEO
 
@@ -59,8 +59,8 @@
 - [x] **SEO-04**: Title-tags og meta descriptions på alle sider
 - [x] **SEO-05**: 301-redirect fra gamle WordPress-URLer
 - [x] **SEO-06**: JSON-LD TouristTrip/Product schema på tjenestesider
-- [ ] **SEO-07**: Vercel Analytics integrert
-- [ ] **SEO-08**: OG-bilder for alle sider
+- [x] **SEO-07**: Vercel Analytics integrert
+- [x] **SEO-08**: OG-bilder for alle sider
 
 ### CMS
 

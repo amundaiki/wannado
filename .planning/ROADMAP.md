@@ -20,7 +20,7 @@
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
 - [x] **Phase 14: Referanser** - 29 bedrifter i rutenett, testimonials, TV-opptredener (completed 2026-03-31)
 - [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
-- [ ] **Phase 16: SEO-polering** - Schema per side, OG-bilder, analytics
+- [x] **Phase 16: SEO-polering** - JSON-LD Product schema, OG-bilder, GDPR personvern, praktisk info, Vercel Analytics (completed 2026-03-31)
 - [ ] **Phase 17: Deploy** - Vercel deploy, domene, DNS
 
 ## Phase Details
@@ -229,12 +229,12 @@ Plans:
   3. Personvern-side redesignet
   4. Praktisk informasjon-side med møtesteder
   5. Analytics integrert
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 16-01-PLAN.md — JSON-LD schema på tjenestesider + OG-bilder for alle sider
-- [ ] 16-02-PLAN.md — Redesign personvern (GDPR) og praktisk informasjon
-- [ ] 16-03-PLAN.md — Vercel Analytics-integrasjon
+- [x] 16-01-PLAN.md — JSON-LD schema på tjenestesider + OG-bilder for alle sider
+- [x] 16-02-PLAN.md — Redesign personvern (GDPR) og praktisk informasjon
+- [x] 16-03-PLAN.md — Vercel Analytics-integrasjon
 
 ### Phase 17: Deploy
 **Goal:** Produksjons-deploy med domene og DNS
@@ -253,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 12 execution*
+*Last updated: 2026-03-31 after Phase 16 execution*

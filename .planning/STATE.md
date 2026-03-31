@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-31T17:07:28Z"
+last_updated: "2026-03-31T17:12:36Z"
 progress:
   total_phases: 17
-  completed_phases: 14
+  completed_phases: 15
   total_plans: 21
-  completed_plans: 14
+  completed_plans: 17
 ---
 
 # Project State
@@ -18,7 +18,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 9 (Teambuilding) fullfort, klar for fase 15 (Blogg), 16 (SEO-polering), 17 (Deploy).
+**Current focus:** Fase 16 (SEO-polering) fullfort, klar for fase 15 (Blogg) og 17 (Deploy).
 
 ## Completed Phases
 
@@ -38,6 +38,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 11 | Om oss | Redesignet /om-oss med bedriftshistorie, teamprofiler (Tone Pernille + Roar), sertifiseringsbadger, verdier, CTA, /menneskene 301-redirect |
 | 12 | Kontakt | Resend e-post-integrasjon, Google Maps iframe, case-insensitive ?tjeneste= pre-seleksjon, CTA-routing fra alle tjenestesider |
 | 9 | Teambuilding | 6 ekte arrangementsbilder, JSON-LD Product schema, referansegrid, CTA til /kontakt?tjeneste=Teambuilding |
+| 16 | SEO-polering | JSON-LD Product schema på teambuilding, OG-bilder på alle sider, GDPR personvern, praktisk info redesign, Vercel Analytics |
 
 ## Pending Phases (en per nettside-seksjon)
 
@@ -52,14 +53,14 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
 | 14 | ~~Referanser~~ | Fullfort: 29 bedrifter, testimonials, TV-opptredener, TripAdvisor |
 | 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
-| 16 | SEO-polering | Schema per side, OG-bilder, analytics |
+| 16 | ~~SEO-polering~~ | Fullfort: JSON-LD, OG-bilder, GDPR personvern, praktisk info, Vercel Analytics |
 | 17 | Deploy | Vercel, domene, DNS |
 
 ## Current Build State
 
 **Build:** `npm run build` OK, 22 routes (inkl. sitemap.xml, robots.txt)
-**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie, /referanser, /om-oss
-**Sider med rå innholdsdump:** /booking, /kurs, /personvern, /praktisk-informasjon, /samarbeidspartnere
+**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie, /referanser, /om-oss, /personvern, /praktisk-informasjon
+**Sider med rå innholdsdump:** /booking, /kurs, /samarbeidspartnere
 
 ## Scraped Assets
 
@@ -128,5 +129,13 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Dynamisk JSON-LD generert fra products-array med schemaPrices Record-oppslag, ikke duplisert statisk schema
 - Referanseseksjon som grid-kort (2 kolonner mobil, 3 kolonner tablet+) med lenke til /referanser
 
+## Decisions (Phase 16)
+
+- Seilturer, kajakkturer og foredrag hadde allerede JSON-LD fra fase 7, 8, 10; kun teambuilding trengte ny schema
+- Dynamisk JSON-LD generert fra products-array med schemaPrices Record-oppslag
+- 6 Lucide-ikoner for praktisk informasjon: MapPin, Shirt, Users, Calendar, Shield, CreditCard
+- Personvern-siden sier eksplisitt ingen tredjepartssporing, cookiefri Vercel Analytics
+- @vercel/analytics v2.0.1 importert fra '@vercel/analytics/next' i root layout
+
 ---
-*Last updated: 2026-03-31 after completing phase 9 plan 01*
+*Last updated: 2026-03-31 after completing phase 16 (SEO-polering)*
