@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "Kontakt Wannado - Bestill opplevelse eller tur | Wannado",
   description:
     "Ta kontakt med Wannado for å bestille teambuilding, kajakkturer, seilturer, foredrag eller andre opplevelser i Arendal. Vi svarer innen 24 timer.",
+  openGraph: {
+    title: "Kontakt Wannado - Bestill opplevelse eller tur",
+    description:
+      "Ta kontakt med Wannado for å bestille opplevelser i Arendal. Vi svarer innen 24 timer.",
+    images: ["/images/havsul.jpg"],
+  },
 };
 
 const contacts = [

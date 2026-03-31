@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Praktisk informasjon - Wannado",
+  description:
+    "Praktisk informasjon om Wannados arrangement. Oppmøtesteder, påkledning, utstyr, forsikring og betalingsvilkår.",
+  openGraph: {
+    title: "Praktisk informasjon - Wannado",
+    description:
+      "Praktisk informasjon om Wannados arrangement og turer.",
+    images: ["/images/baat-fb.jpg"],
+  },
+};
 
 export default function Page() {
   return (

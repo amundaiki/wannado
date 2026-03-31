@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Personvern - Wannado",
+  description:
+    "Personvernerklæring for Wannado. Informasjon om hvordan vi behandler dine personopplysninger i henhold til GDPR.",
+  openGraph: {
+    title: "Personvern - Wannado",
+    description: "Personvernerklæring for Wannado.",
+    images: ["/images/baat-fb.jpg"],
+  },
+};
 
 export default function Page() {
   return (

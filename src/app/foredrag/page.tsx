@@ -9,6 +9,13 @@ export const metadata: Metadata = {
     "Foredrag Arendal - JTI personlighetsanalyse og Grønlandsekspedisjon | Wannado",
   description:
     "Inspirerende foredrag for bedrifter og organisasjoner. JTI personlighetsanalyse basert på C.G. Jung, og Roars kajakkekspedisjon til Øst-Grønland. Bestill i dag!",
+  openGraph: {
+    title:
+      "Foredrag Arendal - JTI personlighetsanalyse og Grønlandsekspedisjon | Wannado",
+    description:
+      "Inspirerende foredrag for bedrifter. JTI personlighetsanalyse og Grønlandsekspedisjon. Bestill i dag!",
+    images: ["/images/tp-typeteori.jpg"],
+  },
 };
 
 const jsonLd = [
