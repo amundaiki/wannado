@@ -195,7 +195,10 @@ Plans:
   1. 49+ bedriftsnavn presentert visuelt
   2. 2-3 utvalgte testimonials
   3. TV-opptredener: Jakten på Kjærligheten, 71° nord
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 14-01-PLAN.md — Referansedata, bedriftsrutenett, testimonials, TV-seksjonen og TripAdvisor
 
 ### Phase 15: Blogg + CMS
 **Goal:** Sanity CMS med blogg for SEO-innholdsmarkedsføring
@@ -234,4 +237,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 10 planning*
+*Last updated: 2026-03-31 after Phase 14 planning*
