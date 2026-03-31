@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ContactForm from "@/components/ui/ContactForm";
@@ -66,7 +67,13 @@ export default function KontaktPage() {
               <h2 className="font-space font-bold text-xl text-brown mb-4">
                 Send forespørsel
               </h2>
-              <ContactForm />
+              <Suspense
+                fallback={
+                  <div className="bg-cream rounded-2xl p-6 md:p-8 h-[500px] animate-pulse" />
+                }
+              >
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* RIGHT: Contact Info */}

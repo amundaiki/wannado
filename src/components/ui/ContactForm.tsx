@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 
 type FormStatus = "idle" | "pending" | "success" | "error";
 
@@ -13,8 +14,17 @@ const serviceOptions = [
   "Annet",
 ];
 
-export default function ContactForm() {
+interface ContactFormProps {
+  defaultService?: string;
+}
+
+export default function ContactForm({ defaultService }: ContactFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const searchParams = useSearchParams();
+  const serviceParam = defaultService || searchParams.get("tjeneste") || "";
+  const initialService = serviceOptions.includes(serviceParam)
+    ? serviceParam
+    : "";
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -127,7 +137,7 @@ export default function ContactForm() {
           id="contact-service"
           name="service"
           required
-          defaultValue=""
+          defaultValue={initialService}
           className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-inter text-sm text-brown focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
         >
           <option value="" disabled>
