@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         destination: '/kajakkturer',
         permanent: true,
       },
+      {
+        source: '/menneskene',
+        destination: '/om-oss',
+        permanent: true,
+      },
     ];
   },
   images: {
