@@ -1,71 +1,174 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { COMPANIES, TESTIMONIALS, TV_APPEARANCES } from "@/lib/data/references";
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: "Referanser - Bedrifter og kunder | Wannado",
+  description:
+    "Over 30 bedrifter har valgt Wannado for teambuilding og opplevelser. Les hva kundene sier om oss.",
+};
+
+export default function ReferanserPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <Navbar />
-      <div className="pt-40 pb-20 bg-brown text-white text-center">
-        <h1 className="font-space text-4xl md:text-6xl font-bold">Referanser</h1>
-      </div>
-      <div className="flex-grow max-w-[900px] mx-auto px-6 py-20">
-        <div className="bg-white p-10 md:p-14 rounded-2xl shadow-sm border border-border">
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Dette er noen av de som har vært med oss.`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Direkte tilbakemeldinger fra fornøyde kursdeltakere ang innføring i JTI:Engasjert kursholder, var gøy og viktig! J Bra å gå litt mer i dybden i forhold til oss som team. Bra at det er skalaer innenfor de ulike typene, og ikke bare bli satt i en «bås» Bra med god forklaring (hefte) Nyttig i forhold til oss som jobber med prosjekt og i team hele tiden. Nyttig å tenke på det at en verdsetter alle egenskapene og at det bra at vi er ulike (vet jo det, men nyttig å gå litt mer inn i det.:.)`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Vi har etterhvert hatt gleden av å leke med mange – både bedrifter, lag, foreninger, og vennegjenger. Her er et utvalg:`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Aker Solutions, Pusnes`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Amfi Arena`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Befalets fellesorganisasjon`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Flexmodul`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Lady Circle`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Aker Kværner, Kristiansand`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`NODE`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`National Oilwell Varco`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Teekay`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Origo Solutions`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Statens Vegvesen`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Arendal Kommune`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Kvadraturen skolesenter`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Fylkeskommunens ansatte`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`«Jakten på Kjærligheten» 2011`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Norges Blindeforbund med NO LIMIT 2012`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Lindeberg Skole`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Protan`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`71′ nord, uttak til sesong 2009`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`ABCenter`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Skatt Sør`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Statoil Hydro`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Agder Energi`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Durapart`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`KPMG`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Frilynt Ungdomsforening`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Ups & Downs`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`ERV Teknikk`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Stærk & co`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Sørlandskirken`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Idrettsleiren v/Agder idrettskrets`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Veldig mange barnehageansatte`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Ennå flere barnebursdager i alderen 6-80 år`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Tripadvisor`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Google`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Visit Sørlandet?`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Tusen takk!`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Gruppen fra NOV var i ekstase da de kom hjem, det var virkelig et supert opplegg! Kort oppsummert fortalte oppdragsgiver:`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`ALT gikk på skinner. Utvelgelsen av lagene ble gjort på en særdeles artig måte. Oppgavene var utfordrende, engasjerende og morsomme. Klatreparken var spennende og gøy. Maten fra Bjellestrand Gård var i ypperste klasse (hils og si det!) og det var en fin atmosfære i wanna in’ på kvelden. Opplegget passet for alle, og samtlige var så fornøyde. Og Tone Pernille; takk for en usedvanlig god service fra første telefon! Det har vært en glede å samarbeide med deg og jeg håper det blir mer fremover:).`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Charlotte Beckmann Østeby`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`(Besøk til Wannado)`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`,`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Cforyou`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Hei Tone Pernille!`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Tusen takk for en fantastisk «pangstart» på dagen! Tilbakemeldingene var blant annet:`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`For et løft`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Dette var morsomt!`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Tror aldri jeg har vært så nær mine kollegaer før`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Kan ikke huske sist jeg lo så godt`}</p>
-            <p className="font-inter text-lg text-brown-mid leading-relaxed mb-6">{`Det ble en snakkis utover dagen, og startet noen gode refleksjoner og samtaler om hvordan bringe dette inn på arbeidsplassen. Tusen takk for det, Tone Pernille – for en gave!`}</p>
-            
+
+      {/* Hero */}
+      <section className="pt-40 pb-20 bg-brown text-white text-center px-6">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="font-space text-4xl md:text-6xl font-bold mb-6">
+            Våre referanser
+          </h1>
+          <p className="font-inter text-lg md:text-xl text-white/80 leading-relaxed">
+            Vi har hatt gleden av å leke med mange. Både bedrifter, lag,
+            foreninger og vennegjenger.
+          </p>
         </div>
-      </div>
+      </section>
+
+      {/* Bedriftsrutenett */}
+      <section className="bg-warm-white py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12">
+            <SectionHeader
+              eyebrow="Kunder"
+              title="Bedrifter som har valgt oss"
+              center={true}
+            />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {COMPANIES.map((company) => (
+              <div
+                key={company}
+                className="bg-white rounded-xl p-4 shadow-sm border border-border text-center hover:shadow-md hover:border-teal/30 transition-all duration-200"
+              >
+                <span className="font-inter text-sm md:text-base text-brown-mid font-medium">
+                  {company}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="text-brown-muted text-sm italic text-center mt-6">
+            ...og mange flere bedrifter, lag, foreninger og vennegjenger
+          </p>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-cream py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-12">
+            <SectionHeader
+              eyebrow="Tilbakemeldinger"
+              title="Hva kundene sier"
+              center={true}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {TESTIMONIALS.map((testimonial) => (
+              <div
+                key={testimonial.author}
+                className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-border"
+              >
+                <span className="font-dm text-5xl text-brown-light/40 leading-none mb-4 block">
+                  {"\u201C"}
+                </span>
+                <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed italic">
+                  {testimonial.quote}
+                </p>
+                <span className="font-inter text-sm font-semibold text-brown mt-6 block">
+                  {testimonial.author}
+                </span>
+                <span className="font-inter text-xs text-teal block mt-1">
+                  {testimonial.company}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TV-opptredener */}
+      <section className="bg-brown text-white py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="font-inter text-sm font-semibold uppercase tracking-widest text-white/60 mb-3">
+              Sett på TV
+            </p>
+            <h2 className="font-space font-bold text-3xl md:text-4xl text-white">
+              Wannado på skjermen
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
+            {TV_APPEARANCES.map((appearance) => (
+              <div
+                key={appearance.show}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10"
+              >
+                <span className="font-space text-3xl font-bold text-sand mb-2 block">
+                  {appearance.year}
+                </span>
+                <h3 className="font-space text-xl font-bold text-white mb-2">
+                  {appearance.show}
+                </h3>
+                <p className="font-inter text-sm text-white/70 leading-relaxed">
+                  {appearance.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TripAdvisor */}
+      <section className="bg-warm-white py-12 md:py-16 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-space font-bold text-2xl text-brown mb-6">
+            Se hva andre sier om oss
+          </h2>
+          <a
+            href="https://www.tripadvisor.com/Attraction_Review-g2376662-d6023658-Reviews-Wannado-Arendal_Agder_Eastern_Norway.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-teal text-white font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-teal/90 transition-colors duration-200"
+          >
+            Les anmeldelser på TripAdvisor
+          </a>
+        </div>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-brown rounded-2xl p-8 md:p-12 text-center text-white">
+            <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
+              Klar for din neste opplevelse?
+            </h2>
+            <p className="font-inter text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-xl mx-auto">
+              Kontakt oss for å høre mer om hva vi kan tilby din bedrift eller
+              gruppe.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center bg-white text-brown font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
+              >
+                Send forespørsel
+              </Link>
+              <a
+                href="tel:+4799469957"
+                className="inline-flex items-center justify-center border border-white/30 text-white font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-200"
+              >
+                Ring oss: +47 99 46 99 57
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
