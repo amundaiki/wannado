@@ -16,7 +16,7 @@
 - [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
 - [x] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder (completed 2026-03-31)
 - [x] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer (completed 2026-03-31)
-- [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
+- [x] **Phase 12: Kontakt** - Resend e-post, Google Maps, CTA-routing (completed 2026-03-31)
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
 - [x] **Phase 14: Referanser** - 29 bedrifter i rutenett, testimonials, TV-opptredener (completed 2026-03-31)
 - [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
@@ -172,10 +172,10 @@ Plans:
   2. Kontaktskjema sender e-post til mail@wannado.no
   3. Google Maps embed med Skarestrand-lokasjon
   4. URL-parameter ?tjeneste=X forhåndsvelger tjeneste i skjemaet
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 12-01-PLAN.md — Resend e-postintegrasjon, Google Maps embed, URL-param forhåndsvalg, oppdater CTA-lenker
+- [x] 12-01-PLAN.md — Resend e-postintegrasjon, Google Maps embed, URL-param forhåndsvalg, oppdater CTA-lenker
 
 ### Phase 13: Utleie
 **Goal:** Redesign utleiesiden med priser og utstyrsoversikt
@@ -253,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 11 execution*
+*Last updated: 2026-03-31 after Phase 12 execution*

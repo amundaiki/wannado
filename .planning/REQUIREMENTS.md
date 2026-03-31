@@ -34,7 +34,7 @@
 
 - [x] **FORM-01**: Kontaktskjema med felt for navn, e-post, telefon, tjeneste, melding
 - [x] **FORM-02**: API-route som tar imot forespørsel
-- [ ] **FORM-03**: E-postutsendelse via Resend til mail@wannado.no
+- [x] **FORM-03**: E-postutsendelse via Resend til mail@wannado.no
 
 ### Navigasjon
 

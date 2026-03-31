@@ -6,9 +6,9 @@ status: unknown
 last_updated: "2026-03-31T16:59:01.597Z"
 progress:
   total_phases: 17
-  completed_phases: 12
+  completed_phases: 13
   total_plans: 21
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State
@@ -36,6 +36,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 8 | Kajakkturer | 10 ekte bilder, JSON-LD Product schema for 6 kurs, TouristTrip for guidede turer, CTA til /kontakt?tjeneste=Kajakktur |
 | 14 | Referanser | 29 bedrifter i rutenett, 2 testimonials, TV-opptredener, TripAdvisor-lenke, CTA |
 | 11 | Om oss | Redesignet /om-oss med bedriftshistorie, teamprofiler (Tone Pernille + Roar), sertifiseringsbadger, verdier, CTA, /menneskene 301-redirect |
+| 12 | Kontakt | Resend e-post-integrasjon, Google Maps iframe, case-insensitive ?tjeneste= pre-seleksjon, CTA-routing fra alle tjenestesider |
 
 ## Pending Phases (en per nettside-seksjon)
 
@@ -46,7 +47,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
 | 10 | ~~Foredrag~~ | Fullfort: ekte bilder, JSON-LD Event schema |
 | 11 | ~~Om oss~~ | Fullfort: bedriftshistorie, teamprofiler, sertifiseringer, verdier, /menneskene redirect |
-| 12 | Kontakt | Resend e-post, Google Maps |
+| 12 | ~~Kontakt~~ | Fullfort: Resend e-post, Google Maps, ?tjeneste= CTA-routing |
 | 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
 | 14 | ~~Referanser~~ | Fullfort: 29 bedrifter, testimonials, TV-opptredener, TripAdvisor |
 | 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
@@ -113,5 +114,12 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Begge profiler inkluderer telefonnummer og e-post for bedre kontakttilgjengelighet
 - Sertifiseringsbadger som inline-block bg-teal/10 text-teal rounded-full spans
 
+## Decisions (Phase 12)
+
+- Lazy Resend-initialisering: SDK instansieres kun inni handler nar RESEND_API_KEY finnes, unngaar build-feil
+- Case-insensitive URL-parametermatch med Array.find + toLowerCase for robusthet
+- .gitignore-unntak: la til !.env.local.example saa eksempelfilen spores i git
+- Seilturer, kajakkturer, teambuilding hadde allerede ?tjeneste= fra tidligere faser (7, 8, 9)
+
 ---
-*Last updated: 2026-03-31 after completing phase 11 plan 01*
+*Last updated: 2026-03-31 after completing phase 12 plan 01*
