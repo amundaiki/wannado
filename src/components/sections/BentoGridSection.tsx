@@ -1,36 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const BENTO_DATA = [
   {
     title: "Skreddersydde arrangementer",
     price: "Fra 15.000,-",
-    img: "/images/tp-typeteori.jpg",
+    img: "/images/scraped/teambuilding/DaVinchi-pa-Strand-8579.jpg",
     large: true,
   },
   {
     title: "Ride & Reconnect",
     price: "Helgepakke",
-    img: "/images/20230910_125202-1280x960.jpg",
+    img: "/images/scraped/landscape/20230521_180051-2024-scaled.jpg",
     large: false,
   },
   {
     title: "Arendalsuka VIP",
     price: "I august",
-    img: "/images/P7270038.jpg",
+    img: "/images/scraped/sailing/baat-fb-havsul.jpg",
     bottom: true,
   },
   {
     title: "Kajakkurs for alle",
     price: "Våttkort",
-    img: "/images/kajakk-kurs-bilde.jpg",
+    img: "/images/scraped/kayak/53G0425-scaled.jpg",
     bottom: true,
   },
   {
     title: "Juleseilas",
     price: "Magisk desember",
-    img: "/images/baat-fb.jpg",
+    img: "/images/scraped/sailing/hav-4-2.jpg",
     bottom: true,
   },
 ];
@@ -49,14 +50,15 @@ export default function BentoGridSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-2 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[300px] md:h-auto"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={BENTO_DATA[0].img}
               alt={BENTO_DATA[0].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 66vw"
+              className="object-cover transition-transform duration-700 group-hover/card:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-            
+
             <div className="absolute bottom-6 left-6 z-10 transition-transform duration-300 group-hover/card:translate-x-2">
               <h3 className="font-space text-2xl md:text-3xl font-semibold text-white">
                 {BENTO_DATA[0].title}
@@ -77,11 +79,12 @@ export default function BentoGridSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="md:col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[300px] md:h-auto"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={BENTO_DATA[1].img}
               alt={BENTO_DATA[1].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover/card:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
             
@@ -106,11 +109,12 @@ export default function BentoGridSection() {
               transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
               className="col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[250px] md:h-auto"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={item.img}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover/card:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
               

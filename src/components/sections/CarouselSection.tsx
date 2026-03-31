@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import Image from "next/image";
 
 const CAROUSEL_DATA = [
   {
@@ -10,29 +11,37 @@ const CAROUSEL_DATA = [
     title: "Vinterkajakk & Sauna",
     desc: "Guidet padling mellom isdekkede holmer, etterfulgt av rykende varm badstue.",
     price: "Fra 890,-",
-    img: "/images/gronland-kajakk-3.jpg"
+    img: "/images/scraped/kayak/53G0425-scaled.jpg",
+    width: 2560,
+    height: 1707,
   },
   {
     badge: "Premium",
     title: "Sunset & Stories",
     desc: "Vår mest populære tur. Seilskuta Havsul i solnedgang med lokale tapas og historisk sus.",
     price: "Fra 790,-",
-    img: "/images/20230910_125202-1280x960.jpg"
+    img: "/images/scraped/sailing/hav-4-2.jpg",
+    width: 1024,
+    height: 683,
   },
   {
     badge: "Nyhet",
     title: "Silent Sailing Retreat",
     desc: "Koble helt av fra hverdagen. En digital detox under seil, designet for indre ro.",
     price: "Fra 1290,-",
-    img: "/images/P7270038.jpg"
+    img: "/images/scraped/sailing/P9010367.jpg",
+    width: 1024,
+    height: 641,
   },
   {
     badge: "Familie",
     title: "Skjærgårdseventyr",
     desc: "Ta med barna på oppdagelsesferd. Krabbefiske, sjørøverhistorier og lærerik lek.",
     price: "Fra 625,-",
-    img: "/images/utleie-bilde.jpg"
-  }
+    img: "/images/scraped/sailing/P7300114.jpg",
+    width: 1024,
+    height: 768,
+  },
 ];
 
 export default function CarouselSection() {
@@ -95,10 +104,12 @@ export default function CarouselSection() {
                 className="flex-none w-[80%] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] snap-start bg-card-bg rounded-xl border border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer"
               >
                 <div className="relative aspect-[3/2] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={item.img}
                     alt={item.title}
+                    width={item.width}
+                    height={item.height}
+                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                   <div className="absolute top-4 left-4 bg-card-bg text-brown font-inter text-[11px] font-medium px-3 py-1.5 rounded-md shadow-sm">

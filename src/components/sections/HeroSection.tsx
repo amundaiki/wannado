@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const words = ["ro og balanse", "neste opplevelse", "eventyr på havet"];
 
@@ -18,11 +19,14 @@ export default function HeroSection() {
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       {/* Background Image */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/baat-fb.jpg"
-        alt="Havsul under seil"
-        className="absolute inset-0 w-full h-full object-cover"
+      <Image
+        src="/images/scraped/sailing/baat-fb-havsul.jpg"
+        alt="Havsul under seil i Arendals skjaergaard"
+        fill
+        priority
+        sizes="100vw"
+        quality={85}
+        className="object-cover"
       />
       
       {/* Subtle Overlay gradient */}
