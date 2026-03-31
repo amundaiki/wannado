@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Klar for fase 6 (Forside) eller valgfri fase
+**Current focus:** Fase 6 (Forside) fullfort, klar for fase 7+ (Seilturer, Kajakkturer, etc.)
 
 ## Completed Phases
 
@@ -16,12 +16,12 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 3 | Navigasjon | Navbar med ekte SVG-logo, 5 nav-lenker, Footer, ServiceCard, SectionHeader, ContactForm |
 | 4 | Sidebygging | /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /api/contact |
 | 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
+| 6 | Forside | Alle 6 forsidekomponenter bruker next/image med ekte scraped-bilder, hero LCP optimalisert |
 
 ## Pending Phases (en per nettside-seksjon)
 
 | # | Phase | Mål |
 |---|-------|-----|
-| 6 | Forside | Ekte bilder, Lighthouse 90+ |
 | 7 | Seilturer | Havsul-bilder, JSON-LD TouristTrip |
 | 8 | Kajakkturer | 56 kajakkbilder, kursbilder, Product schema |
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
@@ -56,5 +56,12 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | SVG-logo (wordmark) | 1 | public/images/wannado-logo.svg |
 | Havsul-bilde | 1 | public/images/havsul.jpg |
 
+## Decisions (Phase 6)
+
+- Brukte next/image fill-modus for container-bilder (Hero, BentoGrid, ScrollVideo poster)
+- Brukte next/image width/height-modus for CSS-kontrollerte bilder (Carousel, People, Feature)
+- Importerte next/image som NextImage i ScrollVideoSection for a unnga konflikt med browser Image constructor
+- P7270038.jpg korrigert til 1024x624 (planen antok 1280x960)
+
 ---
-*Last updated: 2026-03-31 after roadmap restructuring*
+*Last updated: 2026-03-31 after completing phase 6 plan 01*

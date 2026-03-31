@@ -10,7 +10,7 @@
 - [x] **Phase 3: Navigasjon** - Logo, navbar, footer, UI-komponenter
 - [x] **Phase 4: Sidebygging** - Grunnleggende sider bygget
 - [x] **Phase 5: SEO-grunnlag** - Sitemap, robots, JSON-LD, redirects
-- [ ] **Phase 6: Forside** - Polert forside med ekte bilder, Lighthouse 90+
+- [x] **Phase 6: Forside** - Polert forside med ekte bilder, Lighthouse 90+
 - [ ] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
 - [ ] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema
 - [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
@@ -89,7 +89,7 @@
 **Plans:** 1 plan
 
 Plans:
-- [ ] 06-01-PLAN.md — Erstatt alle placeholder-bilder med next/image og ekte scraped-bilder
+- [x] 06-01-PLAN.md — Erstatt alle placeholder-bilder med next/image og ekte scraped-bilder
 
 ### Phase 7: Seilturer
 **Goal:** Ferdigstill seiltursiden med ekte bilder fra Havsul og skjærgården

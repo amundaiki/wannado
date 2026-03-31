@@ -5,18 +5,20 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import NextImage from "next/image";
 
 const FRAME_COUNT = 90;
-const FRAME_PATH = "/videos/havsul-frames/frame_";
 
 function getFrameSrc(index: number): string {
   const padded = String(index + 1).padStart(3, "0");
-  return `${FRAME_PATH}${padded}.jpg`;
+  return `/videos/havsul-frames/frame_${padded}.jpg`;
 }
 
 export default function ScrollVideoSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(FRAME_COUNT).fill(null));
+  const currentFrameRef = useRef(0);
+  const rafRef = useRef<number>(0);
+  const [ready, setReady] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -25,83 +27,113 @@ export default function ScrollVideoSection() {
 
   const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
 
-  // Tekst-animasjoner via scroll
   const subtitleOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.7, 0.85], [0, 1, 1, 0]);
   const headingOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.65, 0.8], [0, 1, 1, 0]);
   const headingY = useTransform(scrollYProgress, [0.2, 0.35, 0.65, 0.8], [30, 0, 0, -30]);
   const ctaOpacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.75], [0, 1, 1, 0]);
 
-  const drawFrame = useCallback((index: number) => {
+  // Sett canvas-størrelse (kun ved mount og resize)
+  const sizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const img = imagesRef.current[Math.round(index)];
-    if (!img?.complete) return;
-
-    // Sett canvas-buffer til viewport-størrelse for skarp rendering
-    const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
+    ctxRef.current = canvas.getContext("2d");
+    ctxRef.current?.scale(dpr, dpr);
+  }, []);
 
-    // Cover-stil: beregn korrekt posisjon og størrelse
+  // Tegn et frame til canvas (uten å resette størrelse)
+  const drawFrame = useCallback((index: number) => {
+    const canvas = canvasRef.current;
+    const ctx = ctxRef.current;
+    const frameIdx = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(index)));
+    const img = imagesRef.current[frameIdx];
+    if (!canvas || !ctx || !img) return;
+
+    const rect = canvas.getBoundingClientRect();
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = rect.width / rect.height;
 
-    let drawWidth: number, drawHeight: number, drawX: number, drawY: number;
-
+    let dw: number, dh: number, dx: number, dy: number;
     if (imgRatio > canvasRatio) {
-      // Bildet er bredere enn canvas - crop sider
-      drawHeight = rect.height;
-      drawWidth = rect.height * imgRatio;
-      drawX = (rect.width - drawWidth) / 2;
-      drawY = 0;
+      dh = rect.height;
+      dw = rect.height * imgRatio;
+      dx = (rect.width - dw) / 2;
+      dy = 0;
     } else {
-      // Bildet er høyere enn canvas - crop topp/bunn
-      drawWidth = rect.width;
-      drawHeight = rect.width / imgRatio;
-      drawX = 0;
-      drawY = (rect.height - drawHeight) / 2;
+      dw = rect.width;
+      dh = rect.width / imgRatio;
+      dx = 0;
+      dy = (rect.height - dh) / 2;
     }
 
-    ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    ctx.drawImage(img, dx, dy, dw, dh);
+    currentFrameRef.current = frameIdx;
   }, []);
 
+  // Last frames i batcher (10 om gangen)
   useEffect(() => {
-    let loadedCount = 0;
-    const images: HTMLImageElement[] = [];
+    let cancelled = false;
 
-    for (let i = 0; i < FRAME_COUNT; i++) {
-      const img = new Image();
-      img.src = getFrameSrc(i);
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === FRAME_COUNT) {
-          setLoaded(true);
-          drawFrame(0);
-        }
-      };
-      images.push(img);
+    async function loadBatch(start: number, end: number): Promise<void> {
+      const promises = [];
+      for (let i = start; i < end && i < FRAME_COUNT; i++) {
+        promises.push(
+          new Promise<void>((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              if (!cancelled) imagesRef.current[i] = img;
+              resolve();
+            };
+            img.onerror = () => resolve(); // Ikke blokker på feil
+            img.src = getFrameSrc(i);
+          })
+        );
+      }
+      await Promise.all(promises);
     }
 
-    imagesRef.current = images;
-  }, [drawFrame]);
+    async function loadAll() {
+      // Last første batch (frame 0 og noen til) først for rask visning
+      await loadBatch(0, 10);
+      if (cancelled) return;
 
+      // Sett opp canvas og tegn første frame
+      sizeCanvas();
+      drawFrame(0);
+      setReady(true);
+
+      // Last resten i bakgrunnen
+      for (let i = 10; i < FRAME_COUNT; i += 10) {
+        if (cancelled) return;
+        await loadBatch(i, i + 10);
+      }
+    }
+
+    loadAll();
+    return () => { cancelled = true; };
+  }, [sizeCanvas, drawFrame]);
+
+  // Oppdater canvas ved scroll
   useMotionValueEvent(frameIndex, "change", (latest) => {
-    if (loaded) {
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
       drawFrame(latest);
-    }
+    });
   });
 
-  // Tegn om ved resize
+  // Resize-handler
   useEffect(() => {
-    if (!loaded) return;
-    const handleResize = () => drawFrame(frameIndex.get());
+    const handleResize = () => {
+      sizeCanvas();
+      drawFrame(currentFrameRef.current);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [loaded, drawFrame, frameIndex]);
+  }, [sizeCanvas, drawFrame]);
 
   return (
     <section
@@ -109,10 +141,10 @@ export default function ScrollVideoSection() {
       className="relative h-[300vh] bg-brown"
     >
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        {!loaded && (
+        {!ready && (
           <NextImage
             src="/images/havsul-poster.jpg"
-            alt="Listerskoyten Havsul"
+            alt="Listerskøyten Havsul"
             fill
             sizes="100vw"
             className="object-cover"
@@ -122,7 +154,7 @@ export default function ScrollVideoSection() {
         <canvas
           ref={canvasRef}
           className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${
-            loaded ? "opacity-100" : "opacity-0"
+            ready ? "opacity-100" : "opacity-0"
           }`}
         />
 

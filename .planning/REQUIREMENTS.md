@@ -16,7 +16,7 @@
 - [x] **CONT-01**: Innhold fra wannado.no er hentet og lagret
 - [x] **CONT-02**: Bilder er lastet ned fra wannado.no
 - [x] **CONT-03**: SVG-logo og Havsul-bilde er tilgjengelig
-- [ ] **CONT-04**: Scraped bilder integrert på alle sider
+- [x] **CONT-04**: Scraped bilder integrert på alle sider
 
 ### Sider
 
@@ -92,7 +92,7 @@
 | STRUCT-01, STRUCT-02 | Fase 1: Mappestruktur | Complete |
 | CONT-01, CONT-02, CONT-03 | Fase 2: Innhenting | Complete |
 | NAV-01 til NAV-04 | Fase 3: Navigasjon | Complete |
-| PAGE-01 | Fase 6: Forside | Pending |
+| PAGE-01 | Fase 6: Forside | Complete |
 | PAGE-02, CONT-04 (seil) | Fase 7: Seilturer | Pending |
 | PAGE-03, CONT-04 (kajakk) | Fase 8: Kajakkturer | Pending |
 | PAGE-04, CONT-04 (team) | Fase 9: Teambuilding | Pending |
