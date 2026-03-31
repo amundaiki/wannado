@@ -158,14 +158,18 @@ Plans:
 - [ ] 11-01-PLAN.md — Combined /om-oss page with team profiles, company history, certifications, and /menneskene redirect
 
 ### Phase 12: Kontakt
-**Goal:** E-postintegrasjon og Google Maps
+**Goal:** E-postintegrasjon, Google Maps og tjeneste-forhåndsvalg via URL-parameter
 **Depends on:** Phase 5
 **Requirements:** FORM-03
 **Success Criteria** (what must be TRUE):
   1. Resend API konfigurert
   2. Kontaktskjema sender e-post til mail@wannado.no
   3. Google Maps embed med Skarestrand-lokasjon
-**Plans:** TBD
+  4. URL-parameter ?tjeneste=X forhåndsvelger tjeneste i skjemaet
+**Plans:** 1 plan
+
+Plans:
+- [ ] 12-01-PLAN.md — Resend e-postintegrasjon, Google Maps embed, URL-param forhåndsvalg, oppdater CTA-lenker
 
 ### Phase 13: Utleie
 **Goal:** Redesign utleiesiden med priser og utstyrsoversikt
@@ -224,4 +228,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 11 planning*
+*Last updated: 2026-03-31 after Phase 12 planning*
