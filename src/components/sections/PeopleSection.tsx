@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const PEOPLE = [
   {
@@ -8,15 +9,19 @@ const PEOPLE = [
     role: "Leken & teambuilding",
     bio: "Tone har siden 2005 brukt sin lidenskap for energi, hester og teambuilding for å engasjere. Sertifisert i JTI og NLP-coach, bygger hun tillit og løfter de rundt seg.",
     email: "tp@wannado.no",
-    img: "/images/tp-typeteori.jpg"
+    img: "/images/tp-typeteori.jpg",
+    width: 1280,
+    height: 800,
   },
   {
     name: "Roar Laugerud",
     role: "Trygghet & opplevelser",
     bio: "Roar er Veileder Hav, Skipper og fotograf. Med ro og lang erfaring skaper han trygge rammer der folk kan utfordre seg selv - enten det er i kajakk eller under fulle seil på Havsul.",
     email: "roar@wannado.no",
-    img: "/images/P7270038.jpg"
-  }
+    img: "/images/P7270038.jpg",
+    width: 1024,
+    height: 624,
+  },
 ];
 
 export default function PeopleSection() {
@@ -42,10 +47,12 @@ export default function PeopleSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: idx * 0.2 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={person.img}
                 alt={person.name}
+                width={person.width}
+                height={person.height}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full aspect-[4/5] object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-500"
               />
               <div className="mt-8">

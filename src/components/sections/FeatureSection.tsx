@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function FeatureSection() {
   return (
@@ -16,17 +17,21 @@ export default function FeatureSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/tp-typeteori.jpg"
+            <Image
+              src="/images/scraped/teambuilding/Bungeerunning-7607.jpg"
               alt="Teambuilding med Wannado"
+              width={2250}
+              height={1500}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-[16/11] object-cover rounded-lg shadow-sm"
             />
             {/* Overlapping smaller image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/20230910_125202-1280x960.jpg"
+            <Image
+              src="/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg"
               alt="Kreativt samarbeid"
+              width={2250}
+              height={1500}
+              sizes="(max-width: 768px) 60vw, 30vw"
               className="absolute -bottom-10 -right-6 md:-right-12 w-[60%] md:w-[55%] aspect-video object-cover rounded-lg border-4 border-card-bg shadow-xl"
             />
           </motion.div>
