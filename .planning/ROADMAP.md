@@ -152,7 +152,10 @@ Plans:
   2. Tone Pernille og Roar har fulle profiler med bilder
   3. Wannados historie og verdier beskrevet
   4. Sertifiseringer: JTI, NLP, Veileder Hav, Skipper
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 11-01-PLAN.md — Combined /om-oss page with team profiles, company history, certifications, and /menneskene redirect
 
 ### Phase 12: Kontakt
 **Goal:** E-postintegrasjon og Google Maps
@@ -221,4 +224,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 9 planning*
+*Last updated: 2026-03-31 after Phase 11 planning*
