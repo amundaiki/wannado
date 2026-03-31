@@ -162,7 +162,7 @@ export default function OpplevelserPage() {
           </div>
           <div className="mt-10">
             <Link
-              href="/kontakt"
+              href="/kontakt?tjeneste=Kajakktur"
               className="inline-block bg-brown text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
             >
               Gå til kontaktskjema

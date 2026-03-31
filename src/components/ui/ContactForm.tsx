@@ -22,9 +22,11 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const searchParams = useSearchParams();
   const serviceParam = defaultService || searchParams.get("tjeneste") || "";
-  const initialService = serviceOptions.includes(serviceParam)
-    ? serviceParam
-    : "";
+  const matchedService =
+    serviceOptions.find(
+      (opt) => opt.toLowerCase() === serviceParam.toLowerCase()
+    ) || "";
+  const initialService = matchedService;
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

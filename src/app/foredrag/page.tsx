@@ -188,7 +188,7 @@ export default function ForedragPage() {
                   Kontakt: Tone Pernille Sivertsen, tp@wannado.no, +47 99 46 99 57
                 </p>
                 <Link
-                  href="/kontakt"
+                  href="/kontakt?tjeneste=Foredrag/JTI"
                   className="inline-flex items-center justify-center bg-white text-teal font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
                 >
                   Bestill JTI-foredrag
@@ -258,7 +258,7 @@ export default function ForedragPage() {
                   Kontakt: Roar Laugerud, roar@wannado.no, +47 94 82 67 10
                 </p>
                 <Link
-                  href="/kontakt"
+                  href="/kontakt?tjeneste=Foredrag/JTI"
                   className="inline-flex items-center justify-center bg-white text-brown font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
                 >
                   Bestill foredrag
@@ -281,7 +281,7 @@ export default function ForedragPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/kontakt"
+              href="/kontakt?tjeneste=Foredrag/JTI"
               className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-[#5a4838] transition-colors duration-200"
             >
               Send forespørsel

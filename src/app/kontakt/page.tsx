@@ -152,6 +152,23 @@ export default function KontaktPage() {
                 </div>
               </div>
 
+              {/* Google Maps */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border">
+                <h3 className="font-space font-bold text-lg text-brown p-6 pb-0">
+                  Finn oss
+                </h3>
+                <div className="p-6 pt-4">
+                  <iframe
+                    src="https://www.google.com/maps?q=Skarestrand+11,+4812+Kongshavn,+Norway&output=embed"
+                    className="w-full h-64 md:h-72 rounded-lg"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Wannado, Skarestrand 11, 4812 Kongshavn"
+                  />
+                </div>
+              </div>
+
               {/* Availability note */}
               <div className="bg-teal/10 rounded-2xl p-6">
                 <p className="font-inter text-sm text-teal font-medium mb-1">
