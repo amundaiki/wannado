@@ -98,7 +98,10 @@
   3. Priser og praktisk info er korrekt
   4. JSON-LD TouristTrip schema
   5. CTA leder til /kontakt med forhåndsvalgt "Seilturer"
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 07-01-PLAN.md - Bildegalleri, JSON-LD TouristTrip, CTA med tjeneste-forhåndsvalg
 
 ### Phase 8: Kajakkturer
 **Goal:** Ferdigstill kajakksiden med ekte kursbilder og turbilder
