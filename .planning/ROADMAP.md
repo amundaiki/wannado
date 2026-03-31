@@ -1,225 +1,215 @@
 # Roadmap: Wannado nettside
 
 **Created:** 2026-03-31
-**Phases:** 17 (5 ferdig, 12 gjenstår)
+**Total Phases:** 17
 
-## Phase Overview
+## Phases
 
-| # | Phase | Goal | Requirements | Status |
-|---|-------|------|-------------|--------|
-| 1 | Mappestruktur | Next.js fra root, Vercel-klar | STRUCT-01, STRUCT-02 | ✓ Complete |
-| 2 | Innhenting | Innhold og bilder fra wannado.no | CONT-01 til CONT-03 | ✓ Complete |
-| 3 | Navigasjon | Logo, navbar, footer, UI-komponenter | NAV-01 til NAV-04 | ✓ Complete |
-| 4 | Sidebygging | Grunnleggende sider bygget | PAGE-01 til PAGE-07 | ✓ Complete |
-| 5 | SEO-grunnlag | Sitemap, robots, JSON-LD, redirects | SEO-01 til SEO-05 | ✓ Complete |
-| 6 | Forside | Polert forside med ekte bilder | PAGE-01 | ○ Pending |
-| 7 | Seilturer | Ferdig seiltur-side med bilder | PAGE-02 | ○ Pending |
-| 8 | Kajakkturer | Ferdig kajakk-side med bilder | PAGE-03 | ○ Pending |
-| 9 | Teambuilding | Ferdig teambuilding med bilder | PAGE-04 | ○ Pending |
-| 10 | Foredrag | Ferdig foredragside med bilder | PAGE-05 | ○ Pending |
-| 11 | Om oss | Team-profiler og bedriftshistorie | PAGE-10 | ○ Pending |
-| 12 | Kontakt | E-postintegrasjon med Resend | FORM-03 | ○ Pending |
-| 13 | Utleie | Utstyrsutleie med priser | PAGE-11 | ○ Pending |
-| 14 | Referanser | Kundeoversikt og testimonials | PAGE-12 | ○ Pending |
-| 15 | Blogg + CMS | Sanity CMS, bloggsider | CMS-01 til CMS-04, PAGE-08, PAGE-09 | ○ Pending |
-| 16 | SEO-polering | Schema per side, OG-bilder, analytics | SEO-06 til SEO-08, PAGE-13, PAGE-14 | ○ Pending |
-| 17 | Deploy | Vercel deploy, domene, DNS | STRUCT-03 | ○ Pending |
+- [x] **Phase 1: Mappestruktur** - Next.js fra root, Vercel-klar
+- [x] **Phase 2: Innhenting** - Innhold og bilder fra wannado.no
+- [x] **Phase 3: Navigasjon** - Logo, navbar, footer, UI-komponenter
+- [x] **Phase 4: Sidebygging** - Grunnleggende sider bygget
+- [x] **Phase 5: SEO-grunnlag** - Sitemap, robots, JSON-LD, redirects
+- [ ] **Phase 6: Forside** - Polert forside med ekte bilder, Lighthouse 90+
+- [ ] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
+- [ ] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema
+- [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
+- [ ] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder
+- [ ] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer
+- [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
+- [ ] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder
+- [ ] **Phase 14: Referanser** - 49+ bedrifter, testimonials, TV-opptredener
+- [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
+- [ ] **Phase 16: SEO-polering** - Schema per side, OG-bilder, analytics
+- [ ] **Phase 17: Deploy** - Vercel deploy, domene, DNS
 
----
+## Phase Details
 
-## Phase 6: Forside
+### Phase 1: Mappestruktur
+**Goal:** Next.js 16 kjører fra root-mappen, klar for Vercel-deploy
+**Depends on:** Nothing
+**Requirements:** STRUCT-01, STRUCT-02
+**Success Criteria** (what must be TRUE):
+  1. Next.js bygger fra root med `npm run build`
+  2. Alle 15+ ruter rendrer
+**Plans:** TBD
 
-**Goal:** Poler forsiden med ekte bilder fra scraped/, optimaliser hero-seksjonen, og sørg for at den konverterer.
+### Phase 2: Innhenting
+**Goal:** All tekst og bilder fra wannado.no lagret lokalt
+**Depends on:** Phase 1
+**Requirements:** CONT-01, CONT-02, CONT-03
+**Success Criteria** (what must be TRUE):
+  1. 10+ sider scraped som markdown i content/scraped/
+  2. Alle bilder lastet ned til public/images/scraped/
+  3. SVG-logo tilgjengelig
+**Plans:** TBD
 
+### Phase 3: Navigasjon
+**Goal:** Logo, navbar, footer og gjenbrukbare UI-komponenter
+**Depends on:** Phase 2
+**Requirements:** NAV-01, NAV-02, NAV-03, NAV-04
+**Success Criteria** (what must be TRUE):
+  1. Navbar bruker ekte SVG-logo
+  2. 5+ navigasjonspunkter
+  3. Footer med kontaktinfo
+  4. ServiceCard, SectionHeader, ContactForm komponenter
+**Plans:** TBD
+
+### Phase 4: Sidebygging
+**Goal:** Alle hovedsider bygget med design og innhold
+**Depends on:** Phase 3
+**Requirements:** PAGE-01 til PAGE-07, FORM-01, FORM-02
+**Success Criteria** (what must be TRUE):
+  1. /seilturer, /kajakkturer, /opplevelser bygget
+  2. /teambuilding, /foredrag, /kontakt bygget
+  3. API-route for kontaktskjema
+**Plans:** TBD
+
+### Phase 5: SEO-grunnlag
+**Goal:** Teknisk SEO-infrastruktur
+**Depends on:** Phase 4
+**Requirements:** SEO-01 til SEO-05
+**Success Criteria** (what must be TRUE):
+  1. /sitemap.xml tilgjengelig
+  2. /robots.txt tilgjengelig
+  3. JSON-LD LocalBusiness på forside
+  4. 301-redirects fra gamle URLer
+**Plans:** TBD
+
+### Phase 6: Forside
+**Goal:** Poler forsiden med ekte bilder fra scraped/, optimaliser hero-seksjonen, sørg for at den konverterer
+**Depends on:** Phase 5
 **Requirements:** PAGE-01, CONT-04 (forside)
+**Success Criteria** (what must be TRUE):
+  1. Hero-seksjonen bruker ekte bilde (ikke placeholder)
+  2. CarouselSection har ekte bilder fra scraped/kayak/, scraped/sailing/
+  3. BentoGridSection bruker ekte bilder
+  4. Alle bilder bruker next/image med width/height
+  5. Siden scorer 90+ på Lighthouse Performance
+**Plans:** TBD
 
-**Success criteria:**
-1. Hero-seksjonen bruker ekte bilde (ikke placeholder)
-2. CarouselSection har ekte bilder fra scraped/kayak/, scraped/sailing/
-3. BentoGridSection bruker ekte bilder
-4. Alle bilder bruker next/image med width/height
-5. Siden scorer 90+ på Lighthouse Performance
-
-**Bilder tilgjengelig:** `public/images/scraped/sailing/`, `public/images/scraped/kayak/`, `public/images/scraped/landscape/`
-
----
-
-## Phase 7: Seilturer
-
-**Goal:** Ferdigstill seiltursiden med ekte bilder fra Havsul og skjærgården.
-
+### Phase 7: Seilturer
+**Goal:** Ferdigstill seiltursiden med ekte bilder fra Havsul og skjærgården
+**Depends on:** Phase 5
 **Requirements:** PAGE-02, CONT-04 (seil)
+**Success Criteria** (what must be TRUE):
+  1. Hero bruker ekte Havsul-bilde
+  2. Bildegalleri eller sekundære bilder fra scraped/sailing/
+  3. Priser og praktisk info er korrekt
+  4. JSON-LD TouristTrip schema
+  5. CTA leder til /kontakt med forhåndsvalgt "Seilturer"
+**Plans:** TBD
 
-**Success criteria:**
-1. Hero bruker ekte Havsul-bilde (public/images/havsul.jpg allerede lastet)
-2. Bildegalleri eller sekundære bilder fra scraped/sailing/ (9 bilder tilgjengelig)
-3. Priser og praktisk info er korrekt
-4. JSON-LD TouristTrip schema
-5. CTA leder til /kontakt med forhåndsvalgt "Seilturer" i dropdown
-
-**Bilder tilgjengelig:** `public/images/scraped/sailing/baat-fb-havsul.jpg`, `hav-*.jpg`, `P7300114.jpg`, `P9010367.jpg`
-
----
-
-## Phase 8: Kajakkturer
-
-**Goal:** Ferdigstill kajakksiden med ekte kursbilder og turbilder.
-
+### Phase 8: Kajakkturer
+**Goal:** Ferdigstill kajakksiden med ekte kursbilder og turbilder
+**Depends on:** Phase 5
 **Requirements:** PAGE-03, CONT-04 (kajakk)
+**Success Criteria** (what must be TRUE):
+  1. Hero bruker ekte kajakkbilde
+  2. Kurskort har relevante bilder fra scraped/kayak/
+  3. Guidede turer har landskapsbilder
+  4. JSON-LD Product schema for kurs
+  5. CTA leder til /kontakt med forhåndsvalgt "Kajakktur"
+**Plans:** TBD
 
-**Success criteria:**
-1. Hero bruker ekte kajakkbilde
-2. Kurskort har relevante bilder fra scraped/kayak/ (56 bilder tilgjengelig)
-3. Guidede turer har landskapsbilder
-4. JSON-LD Product schema for kurs
-5. CTA leder til /kontakt med forhåndsvalgt "Kajakktur"
-
-**Bilder tilgjengelig:** `public/images/scraped/kayak/` (56 stk: kurs, turer, vinterpadling, Grønland)
-
----
-
-## Phase 9: Teambuilding
-
-**Goal:** Ferdigstill teambuildingsiden med ekte arrangementsbilder.
-
+### Phase 9: Teambuilding
+**Goal:** Ferdigstill teambuildingsiden med ekte arrangementsbilder
+**Depends on:** Phase 5
 **Requirements:** PAGE-04, CONT-04 (team)
+**Success Criteria** (what must be TRUE):
+  1. Produktkort har ekte bilder fra scraped/teambuilding/
+  2. Referanseseksjon med visuell presentasjon
+  3. JSON-LD Product schema for hvert arrangement
+  4. CTA leder til /kontakt med forhåndsvalgt "Teambuilding"
+**Plans:** TBD
 
-**Success criteria:**
-1. Produktkort har ekte bilder fra scraped/teambuilding/ (6 bilder tilgjengelig)
-2. Referanseseksjonen har bedriftslogoer eller mer visuell presentasjon
-3. JSON-LD Product schema for hvert arrangement
-4. CTA leder til /kontakt med forhåndsvalgt "Teambuilding"
-
-**Bilder tilgjengelig:** `public/images/scraped/teambuilding/` (Bungeerunning, DaVinchi, Strand Hotell)
-
----
-
-## Phase 10: Foredrag
-
-**Goal:** Ferdigstill foredragssiden med bilder og utvidet innhold.
-
+### Phase 10: Foredrag
+**Goal:** Ferdigstill foredragssiden med bilder og utvidet innhold
+**Depends on:** Phase 5
 **Requirements:** PAGE-05
+**Success Criteria** (what must be TRUE):
+  1. JTI-kortet har ekte bilde
+  2. Grønlandsekspedisjonen har ekte bilder fra scraped/landscape/
+  3. Kontakt-CTA med riktig telefonnummer
+  4. JSON-LD Event schema
+**Plans:** TBD
 
-**Success criteria:**
-1. JTI-kortet har ekte bilde (Tone Pernille)
-2. Grønlandsekspedisjonen har ekte bilder fra scraped/landscape/ (isfjell, Grønland)
-3. Kontakt-CTA med riktig telefonnummer
-4. JSON-LD Event schema
-
-**Bilder tilgjengelig:** `public/images/scraped/landscape/isfjell-gronland-*.jpg`, `kimmiut-gronland-1920.jpg`
-
----
-
-## Phase 11: Om oss
-
-**Goal:** Redesign Om oss / Menneskene-sidene til en samlet side med team-profiler og bedriftshistorie.
-
+### Phase 11: Om oss
+**Goal:** Redesign Om oss/Menneskene til en samlet side med team-profiler og bedriftshistorie
+**Depends on:** Phase 5
 **Requirements:** PAGE-10
+**Success Criteria** (what must be TRUE):
+  1. Samlet /om-oss side (redirect /menneskene → /om-oss)
+  2. Tone Pernille og Roar har fulle profiler med bilder
+  3. Wannados historie og verdier beskrevet
+  4. Sertifiseringer: JTI, NLP, Veileder Hav, Skipper
+**Plans:** TBD
 
-**Success criteria:**
-1. Samlet /om-oss side (redirect /menneskene → /om-oss)
-2. Tone Pernille og Roar har fulle profiler med bilder
-3. Wannados historie og verdier
-4. Sertifiseringer: JTI, NLP, Veileder Hav, Skipper
-5. Visuelt tiltalende layout, ikke bare tekst
-
----
-
-## Phase 12: Kontakt
-
-**Goal:** E-postintegrasjon slik at kontaktskjemaet sender ekte e-post.
-
+### Phase 12: Kontakt
+**Goal:** E-postintegrasjon og Google Maps
+**Depends on:** Phase 5
 **Requirements:** FORM-03
+**Success Criteria** (what must be TRUE):
+  1. Resend API konfigurert
+  2. Kontaktskjema sender e-post til mail@wannado.no
+  3. Google Maps embed med Skarestrand-lokasjon
+**Plans:** TBD
 
-**Success criteria:**
-1. Resend API-nøkkel konfigurert i .env.local
-2. Kontaktskjema sender e-post til mail@wannado.no
-3. Bruker får bekreftelsesmelding
-4. Google Maps embed med Skarestrand-lokasjon
-
-**Manuelt steg:** Bruker må opprette Resend-konto og legge til API-nøkkel
-
----
-
-## Phase 13: Utleie
-
-**Goal:** Redesign utleiesiden med priser og utstyrsoversikt.
-
+### Phase 13: Utleie
+**Goal:** Redesign utleiesiden med priser og utstyrsoversikt
+**Depends on:** Phase 5
 **Requirements:** PAGE-11
+**Success Criteria** (what must be TRUE):
+  1. Kajakk- og kanoutleie med priser
+  2. Utstyrsliste med bilder
+  3. Oppmøtested og kontakt-CTA
+**Plans:** TBD
 
-**Success criteria:**
-1. Kajakk- og kanoutleie med priser (fra content/scraped/)
-2. Utstyrsliste med bilder
-3. Oppmøtested: Skarestrand
-4. Kontakt-CTA
-5. Metadata og SEO-tittel
-
----
-
-## Phase 14: Referanser
-
-**Goal:** Redesign referansesiden med kundeoversikt og testimonials.
-
+### Phase 14: Referanser
+**Goal:** Redesign referansesiden med kundeoversikt og testimonials
+**Depends on:** Phase 5
 **Requirements:** PAGE-12
+**Success Criteria** (what must be TRUE):
+  1. 49+ bedriftsnavn presentert visuelt
+  2. 2-3 utvalgte testimonials
+  3. TV-opptredener: Jakten på Kjærligheten, 71° nord
+**Plans:** TBD
 
-**Success criteria:**
-1. 49+ bedriftsnavn presentert visuelt (logo-grid eller navne-grid)
-2. 2-3 utvalgte testimonials med sitat og firma
-3. TV-opptreden: "Jakten på Kjærligheten" 2011, "71° nord" 2009
-4. TripAdvisor-kobling
-
-**Innhold tilgjengelig:** `content/scraped/referanser.md`
-
----
-
-## Phase 15: Blogg + CMS
-
-**Goal:** Sanity CMS satt opp med blogg for SEO-innholdsmarkedsføring.
-
+### Phase 15: Blogg + CMS
+**Goal:** Sanity CMS med blogg for SEO-innholdsmarkedsføring
+**Depends on:** Phase 5
 **Requirements:** CMS-01 til CMS-04, PAGE-08, PAGE-09
+**Success Criteria** (what must be TRUE):
+  1. Sanity prosjekt opprettet og konfigurert
+  2. Innholdsskjemaer: blogPost, service, testimonial, teamMember
+  3. Sanity Studio på /studio
+  4. /blog viser bloggposter fra Sanity
+  5. /blog/[slug] rendrer enkeltartikkel
+**Plans:** TBD
 
-**Success criteria:**
-1. `npx sanity@latest init` kjørt og prosjekt opprettet
-2. Innholdsskjemaer: blogPost, service, testimonial, teamMember
-3. Sanity Studio tilgjengelig på /studio
-4. /blog viser bloggposter fra Sanity
-5. /blog/[slug] rendrer enkeltartikkel med Portable Text
-6. ISR med revalidate: 3600
-
-**Manuelt steg:** Bruker kjører `npx sanity@latest init`
-
----
-
-## Phase 16: SEO-polering
-
-**Goal:** Avansert SEO: schema per side, OG-bilder, personvern og praktisk info.
-
+### Phase 16: SEO-polering
+**Goal:** Avansert SEO: schema per side, OG-bilder, analytics
+**Depends on:** Phase 6-14
 **Requirements:** SEO-06 til SEO-08, PAGE-13, PAGE-14
+**Success Criteria** (what must be TRUE):
+  1. JSON-LD schema på alle tjenestesider
+  2. OG-bilder for alle sider
+  3. Personvern-side redesignet
+  4. Praktisk informasjon-side med møtesteder
+  5. Analytics integrert
+**Plans:** TBD
 
-**Success criteria:**
-1. JSON-LD schema på alle tjenestesider (TouristTrip, Product, Event)
-2. OG-bilder generert for alle sider
-3. Personvern-side redesignet med riktig GDPR-info
-4. Praktisk informasjon-side med møtesteder, parkering, utstyr
-5. Vercel Analytics eller Google Analytics integrert
-
----
-
-## Phase 17: Deploy
-
-**Goal:** Produksjons-deploy med domene og DNS.
-
+### Phase 17: Deploy
+**Goal:** Produksjons-deploy med domene og DNS
+**Depends on:** Phase 6-16
 **Requirements:** STRUCT-03
-
-**Success criteria:**
-1. Vercel-prosjekt opprettet
-2. wannado.no DNS peker på Vercel
-3. SSL-sertifikat aktivt
-4. 301-redirects fra gamle URLer fungerer i produksjon
-5. Core Web Vitals alle grønne
-
-**Manuelt steg:** DNS-endring hos nåværende hostingleverandør
+**Success Criteria** (what must be TRUE):
+  1. Vercel-prosjekt opprettet
+  2. wannado.no DNS peker på Vercel
+  3. SSL-sertifikat aktivt
+  4. Core Web Vitals alle grønne
+**Plans:** TBD
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after restructuring to per-section phases*
+*Last updated: 2026-03-31 after restructuring to GSD-compatible format*
