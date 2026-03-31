@@ -76,9 +76,155 @@ const courses = [
   },
 ];
 
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Kajakkurs hos Wannado",
+  description: "Kajakkurs fra nybegynner til ekspedisjon i Arendals skjærgård",
+  numberOfItems: 6,
+  itemListElement: [
+    {
+      "@type": "Product",
+      position: 1,
+      name: "Våttkort / Introduksjonskurs",
+      description:
+        "Perfekt start for nybegynnere. Lær grunnleggende padleteknikk, sikkerhet og selvberging. Du får våttkort etter bestått kurs.",
+      offers: {
+        "@type": "Offer",
+        price: "1350",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+    {
+      "@type": "Product",
+      position: 2,
+      name: "Grunnkurs hav",
+      description:
+        "Grundig opplæring i havpadling med fokus på navigasjon, værforståelse og gruppeteknikk. Inkluderer alt utstyr.",
+      offers: {
+        "@type": "Offer",
+        price: "3000",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+    {
+      "@type": "Product",
+      position: 3,
+      name: "Teknikkurs",
+      description:
+        "For deg som vil videreutvikle padleteknikken. Fokus på effektive padletak, kantring og avansert manøvrering.",
+      offers: {
+        "@type": "Offer",
+        price: "3500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+    {
+      "@type": "Product",
+      position: 4,
+      name: "Rullekurs",
+      description:
+        "Lær den viktigste selvbergingsteknikken. Rullekurset gir deg tryggheten til å padle i mer utfordrende forhold.",
+      offers: {
+        "@type": "Offer",
+        price: "1250",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+    {
+      "@type": "Product",
+      position: 5,
+      name: "Tøffe tak",
+      description:
+        "Utfordrende kurs for deg som vil teste grensene. Padling i bølger, strøm og vind under trygge rammer.",
+      offers: {
+        "@type": "Offer",
+        price: "1350",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+    {
+      "@type": "Product",
+      position: 6,
+      name: "Turkurs / Ekspedisjonskurs",
+      description:
+        "Planlegging og gjennomføring av lengre kajakkekspedisjoner. Bivuakk, navigasjon og ledelse i felten.",
+      offers: {
+        "@type": "Offer",
+        price: "3500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Kajakkurs",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Kajakkurs",
+    },
+  ],
+};
+
+const tourSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  name: "Guidede kajakkturer i Arendal",
+  description: "Guidede kajakkturer i skjærgården med erfaren veileder",
+  touristType: "Kayaking",
+  provider: {
+    "@type": "Organization",
+    name: "Wannado",
+    telephone: "+4794826710",
+  },
+  subTrip: [
+    {
+      "@type": "TouristTrip",
+      name: "Skjærgårdssafari",
+      description:
+        "En guidet tur gjennom Arendals vakre skjærgård. Perfekt for deg som vil oppleve naturen uten kursformat. Vi tilpasser turen etter gruppens nivå og ønsker.",
+      offers: {
+        "@type": "Offer",
+        price: "1350",
+        priceCurrency: "NOK",
+      },
+    },
+    {
+      "@type": "TouristTrip",
+      name: "Fyr til fyr",
+      description:
+        "Padle mellom de historiske fyrene langs kysten. En lengre tur for deg med noe erfaring som ønsker en skikkelig opplevelse i Sørlandets fineste farvann.",
+    },
+  ],
+};
+
 export default function KajakkturerPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourSchema) }}
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -346,7 +492,7 @@ export default function KajakkturerPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/kontakt"
+              href="/kontakt?tjeneste=Kajakktur"
               className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
             >
               Bestill kurs eller tur
