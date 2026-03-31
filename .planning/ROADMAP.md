@@ -116,7 +116,10 @@ Plans:
   3. Guidede turer har landskapsbilder
   4. JSON-LD Product schema for kurs
   5. CTA leder til /kontakt med forhåndsvalgt "Kajakktur"
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 08-01-PLAN.md — Ekte bilder, JSON-LD Product schema, CTA med tjeneste-forhåndsvalg
 
 ### Phase 9: Teambuilding
 **Goal:** Ferdigstill teambuildingsiden med ekte arrangementsbilder
@@ -210,7 +213,11 @@ Plans:
   3. Sanity Studio på /studio
   4. /blog viser bloggposter fra Sanity
   5. /blog/[slug] rendrer enkeltartikkel
-**Plans:** TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 15-01-PLAN.md — Sanity CMS oppsett: brukerinitiering, innholdsskjemaer, klient og Studio-rute
+- [ ] 15-02-PLAN.md — Blogg-sider: /blog listeside og /blog/[slug] artikkelside med ISR
 
 ### Phase 16: SEO-polering
 **Goal:** Avansert SEO: schema per side, OG-bilder, analytics
@@ -246,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 16 planning*
+*Last updated: 2026-03-31 after Phase 15 planning*
