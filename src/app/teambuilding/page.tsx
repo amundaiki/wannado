@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
   description:
     "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
+  openGraph: {
+    title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
+    description:
+      "Teambuilding i Arendal med 15 års erfaring. Utendørs utfordringer, mordmysterier, innendørs konkurranser og JTI. Fra kr 4 500.",
+    images: ["/images/scraped/teambuilding/Bungeerunning-7607.jpg"],
+  },
 };
 
 const schemaPrices: Record<string, number> = {
