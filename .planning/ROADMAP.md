@@ -127,7 +127,10 @@ Plans:
   2. Referanseseksjon med visuell presentasjon
   3. JSON-LD Product schema for hvert arrangement
   4. CTA leder til /kontakt med forhåndsvalgt "Teambuilding"
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — Bilder på produktkort, JSON-LD Product schema, visuell referanseseksjon, CTA med forhåndsvalg
 
 ### Phase 10: Foredrag
 **Goal:** Ferdigstill foredragssiden med bilder og utvidet innhold
@@ -218,4 +221,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after restructuring to GSD-compatible format*
+*Last updated: 2026-03-31 after Phase 9 planning*
