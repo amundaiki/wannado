@@ -45,7 +45,7 @@
 
 ### Sekundære sider
 
-- [ ] **PAGE-10**: Om oss / Menneskene (/om-oss) med team-profiler og bedriftshistorie
+- [x] **PAGE-10**: Om oss / Menneskene (/om-oss) med team-profiler og bedriftshistorie
 - [x] **PAGE-11**: Utleie (/utleie) med priser og utstyroversikt for kajakk og kano
 - [x] **PAGE-12**: Referanser (/referanser) med kundeoversikt og testimonials
 - [ ] **PAGE-13**: Personvern (/personvern) med GDPR-info

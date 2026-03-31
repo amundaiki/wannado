@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-last_updated: "2026-03-31T16:51:04Z"
+last_updated: "2026-03-31T16:54:31Z"
 progress:
   total_phases: 17
-  completed_phases: 10
+  completed_phases: 11
   total_plans: 21
-  completed_plans: 10
+  completed_plans: 11
 ---
 
 # Project State
@@ -18,7 +18,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 8 (Kajakkturer) og 14 (Referanser) fullfort, klar for fase 9+ (Teambuilding, Om oss, etc.)
+**Current focus:** Fase 11 (Om oss) fullfort, klar for fase 9 (Teambuilding), 12 (Kontakt), etc.
 
 ## Completed Phases
 
@@ -35,6 +35,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 13 | Utleie | Redesignet fra raa dump til polert serviceside med hero, utstyrskort, praktisk info og CTA |
 | 8 | Kajakkturer | 10 ekte bilder, JSON-LD Product schema for 6 kurs, TouristTrip for guidede turer, CTA til /kontakt?tjeneste=Kajakktur |
 | 14 | Referanser | 29 bedrifter i rutenett, 2 testimonials, TV-opptredener, TripAdvisor-lenke, CTA |
+| 11 | Om oss | Redesignet /om-oss med bedriftshistorie, teamprofiler (Tone Pernille + Roar), sertifiseringsbadger, verdier, CTA, /menneskene 301-redirect |
 
 ## Pending Phases (en per nettside-seksjon)
 
@@ -44,7 +45,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 8 | ~~Kajakkturer~~ | Fullfort: 10 ekte bilder, JSON-LD Product + TouristTrip, CTA-routing |
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
 | 10 | ~~Foredrag~~ | Fullfort: ekte bilder, JSON-LD Event schema |
-| 11 | Om oss | Redesign fra raw dump, team-profiler |
+| 11 | ~~Om oss~~ | Fullfort: bedriftshistorie, teamprofiler, sertifiseringer, verdier, /menneskene redirect |
 | 12 | Kontakt | Resend e-post, Google Maps |
 | 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
 | 14 | ~~Referanser~~ | Fullfort: 29 bedrifter, testimonials, TV-opptredener, TripAdvisor |
@@ -55,8 +56,8 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 ## Current Build State
 
 **Build:** `npm run build` OK, 22 routes (inkl. sitemap.xml, robots.txt)
-**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie, /referanser
-**Sider med rå innholdsdump:** /booking, /kurs, /om-oss, /personvern, /praktisk-informasjon, /samarbeidspartnere
+**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie, /referanser, /om-oss
+**Sider med rå innholdsdump:** /booking, /kurs, /personvern, /praktisk-informasjon, /samarbeidspartnere
 
 ## Scraped Assets
 
@@ -105,5 +106,12 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Brukte ItemList-wrapper rundt Product-schemas for bedre sokeresultatvisning av kurskatalog
 - Handmatchet hvert kursbilde til ferdighetsniva: rolig vann for intro, strandoppsett for grunnkurs, dramatisk surf for avansert
 
+## Decisions (Phase 11)
+
+- Beholdt PeopleSection.tsx fordi forsiden (src/app/page.tsx) bruker den; fjernet kun fra om-oss
+- Brukte blockquote-element for "Hva er DIN lek?" pullquote med font-dm italic
+- Begge profiler inkluderer telefonnummer og e-post for bedre kontakttilgjengelighet
+- Sertifiseringsbadger som inline-block bg-teal/10 text-teal rounded-full spans
+
 ---
-*Last updated: 2026-03-31 after completing phase 8 plan 01*
+*Last updated: 2026-03-31 after completing phase 11 plan 01*

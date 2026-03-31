@@ -15,7 +15,7 @@
 - [x] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema (completed 2026-03-31)
 - [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
 - [x] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder (completed 2026-03-31)
-- [ ] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer
+- [x] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer (completed 2026-03-31)
 - [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
 - [x] **Phase 14: Referanser** - 29 bedrifter i rutenett, testimonials, TV-opptredener (completed 2026-03-31)
@@ -158,10 +158,10 @@ Plans:
   2. Tone Pernille og Roar har fulle profiler med bilder
   3. Wannados historie og verdier beskrevet
   4. Sertifiseringer: JTI, NLP, Veileder Hav, Skipper
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 11-01-PLAN.md — Combined /om-oss page with team profiles, company history, certifications, and /menneskene redirect
+- [x] 11-01-PLAN.md — Combined /om-oss page with team profiles, company history, certifications, and /menneskene redirect
 
 ### Phase 12: Kontakt
 **Goal:** E-postintegrasjon, Google Maps og tjeneste-forhåndsvalg via URL-parameter
@@ -253,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 8 execution*
+*Last updated: 2026-03-31 after Phase 11 execution*
