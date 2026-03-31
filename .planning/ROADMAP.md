@@ -86,7 +86,10 @@
   3. BentoGridSection bruker ekte bilder
   4. Alle bilder bruker next/image med width/height
   5. Siden scorer 90+ på Lighthouse Performance
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 06-01-PLAN.md — Erstatt alle placeholder-bilder med next/image og ekte scraped-bilder
 
 ### Phase 7: Seilturer
 **Goal:** Ferdigstill seiltursiden med ekte bilder fra Havsul og skjærgården
