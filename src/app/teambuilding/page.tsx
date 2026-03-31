@@ -10,112 +10,13 @@ export const metadata: Metadata = {
     "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
 };
 
-const teambuildingSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Product",
-      name: "360\u00B0 Wannado",
-      description:
-        "Et 71\u00B0 nord-lignende arrangement med utfordrende aktiviteter for lag som ønsker å bli bedre kjent. Tankenøtter og samarbeidsoppgaver.",
-      offers: {
-        "@type": "Offer",
-        price: "16500",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-    {
-      "@type": "Product",
-      name: "Heia dem som vinner",
-      description:
-        "Innendørs konkurranse inspirert av TV-programmer som Vinn på minuttet og Mesternes Mester.",
-      offers: {
-        "@type": "Offer",
-        price: "16500",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-    {
-      "@type": "Product",
-      name: "Påfyll",
-      description:
-        "Utendørs arrangement på Bjellandstrand Gård på Tromøy. Lek, kreativitet og samspill, avsluttet med deilig mat fra jord og hage.",
-      offers: {
-        "@type": "Offer",
-        price: "1950",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "1950",
-          priceCurrency: "NOK",
-          unitText: "per person",
-        },
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-    {
-      "@type": "Product",
-      name: "Cluedo",
-      description:
-        "Mordmysterie der lagene samler spor og eliminerer mistenkte for å avsløre morderen, våpenet, åstedet og motivet.",
-      offers: {
-        "@type": "Offer",
-        price: "16500",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-    {
-      "@type": "Product",
-      name: "Mord i Cicilia",
-      description:
-        "Sittende mordmysterie der deltakerne ledes gjennom et mysterium rundt kafébord i møterommet.",
-      offers: {
-        "@type": "Offer",
-        price: "4500",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-    {
-      "@type": "Product",
-      name: "Kajakk og skjærgårdssafari",
-      description:
-        "Introduksjon til kajakk med enkel padleteknikk, tilrettelagt for gruppen. Alt nødvendig utstyr er inkludert.",
-      offers: {
-        "@type": "Offer",
-        price: "1350",
-        priceCurrency: "NOK",
-        availability: "https://schema.org/InStock",
-        url: "https://wannado.no/kontakt",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "1350",
-          priceCurrency: "NOK",
-          unitText: "per person",
-        },
-      },
-      brand: { "@type": "Organization", name: "Wannado" },
-      category: "Teambuilding",
-    },
-  ],
+const schemaPrices: Record<string, number> = {
+  "360\u00B0 Wannado": 16500,
+  "Heia dem som vinner": 16500,
+  "Påfyll": 1950,
+  "Cluedo": 16500,
+  "Mord i Cicilia": 4500,
+  "Kajakk og skjærgårdssafari": 1350,
 };
 
 const products = [
@@ -194,11 +95,33 @@ const references = [
 ];
 
 export default function TeambuildingPage() {
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@graph": products.map((product) => ({
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      brand: {
+        "@type": "Organization",
+        name: "Wannado",
+      },
+      offers: {
+        "@type": "Offer",
+        price: schemaPrices[product.name],
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt?tjeneste=Teambuilding",
+      },
+      image: `https://wannado.no${product.image}`,
+      category: "Teambuilding",
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(teambuildingSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
       <Navbar />
 
@@ -354,16 +277,27 @@ export default function TeambuildingPage() {
           <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-10">
             Blant våre kunder
           </h2>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {references.map((company) => (
-              <span
+              <div
                 key={company}
-                className="font-inter text-base text-brown-muted font-medium"
+                className="bg-white rounded-xl py-4 px-5 text-center shadow-sm border border-border"
               >
-                {company}
-              </span>
+                <span className="font-inter text-sm font-medium text-brown">
+                  {company}
+                </span>
+              </div>
             ))}
           </div>
+          <p className="font-inter text-sm text-brown-muted mt-8 text-center">
+            Totalt har over 49 bedrifter valgt Wannado for sine arrangementer.{" "}
+            <Link
+              href="/referanser"
+              className="text-teal hover:text-brown underline transition-colors"
+            >
+              Se alle referanser
+            </Link>
+          </p>
         </div>
       </section>
 
