@@ -133,7 +133,7 @@ Plans:
 - [ ] 09-01-PLAN.md — Bilder på produktkort, JSON-LD Product schema, visuell referanseseksjon, CTA med forhåndsvalg
 
 ### Phase 10: Foredrag
-**Goal:** Ferdigstill foredragssiden med bilder og utvidet innhold
+**Goal:** Ferdigstill foredragssiden med Grønlandsbilder og Event schema
 **Depends on:** Phase 5
 **Requirements:** PAGE-05
 **Success Criteria** (what must be TRUE):
@@ -141,7 +141,10 @@ Plans:
   2. Grønlandsekspedisjonen har ekte bilder fra scraped/landscape/
   3. Kontakt-CTA med riktig telefonnummer
   4. JSON-LD Event schema
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 10-01-PLAN.md — Ekte bilder i foredragskort og JSON-LD Event schema
 
 ### Phase 11: Om oss
 **Goal:** Redesign Om oss/Menneskene til en samlet side med team-profiler og bedriftshistorie
@@ -179,7 +182,10 @@ Plans:
   1. Kajakk- og kanoutleie med priser
   2. Utstyrsliste med bilder
   3. Oppmøtested og kontakt-CTA
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 13-01-PLAN.md — Redesign utleieside med hero, utstyrskort, praktisk info og CTA
 
 ### Phase 14: Referanser
 **Goal:** Redesign referansesiden med kundeoversikt og testimonials
@@ -228,4 +234,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 12 planning*
+*Last updated: 2026-03-31 after Phase 10 planning*
