@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, DM_Serif_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body className="antialiased text-brown bg-cream">
         {/* We can manage load animation by adding a simple script or just make it visible initially. For Next.js, opacity-100 is simpler unless we strictly port the JS logic.  Let's make it visible by default here by removing opacity-0. */}
         {children}
+        <Analytics />
       </body>
     </html>
   );
