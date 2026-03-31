@@ -11,9 +11,101 @@ export const metadata: Metadata = {
     "Inspirerende foredrag for bedrifter og organisasjoner. JTI personlighetsanalyse basert på C.G. Jung, og Roars kajakkekspedisjon til Øst-Grønland. Bestill i dag!",
 };
 
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "JTI Foredrag: Jungiansk Type Index",
+    description:
+      "Inspirerende foredrag om personlighet og samarbeid basert på C.G. Jungs preferanseteorier. JTI kartlegger hvordan vi mennesker er forskjellige.",
+    url: "https://wannado.no/foredrag",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: "Avtalt sted",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Arendal",
+        addressRegion: "Agder",
+        addressCountry: "NO",
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Wannado",
+      url: "https://wannado.no",
+    },
+    performer: {
+      "@type": "Person",
+      name: "Tone Pernille Sivertsen",
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Foredrag (45 min)",
+        price: "6000",
+        priceCurrency: "NOK",
+        url: "https://wannado.no/kontakt",
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: "Full teamanalyse (hel dag)",
+        price: "1000",
+        priceCurrency: "NOK",
+        url: "https://wannado.no/kontakt",
+        availability: "https://schema.org/InStock",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "1000",
+          priceCurrency: "NOK",
+          unitText: "per person",
+        },
+      },
+    ],
+    image: "https://wannado.no/images/tp-typeteori.jpg",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "Grønlandsekspeditionen: Kajakkekspedisjon til Øst-Grønland",
+    description:
+      "Roar deler opplevelsen fra sin kajakkekspedisjon til Øst-Grønland gjennom fantastiske bilder og video fra et av verdens mest spektakulære landskap.",
+    url: "https://wannado.no/foredrag",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: "Avtalt sted",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Arendal",
+        addressRegion: "Agder",
+        addressCountry: "NO",
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Wannado",
+      url: "https://wannado.no",
+    },
+    performer: {
+      "@type": "Person",
+      name: "Roar Laugerud",
+    },
+    image:
+      "https://wannado.no/images/scraped/landscape/kimmiut-gronland-1920.jpg",
+  },
+];
+
 export default function ForedragPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       {/* Hero */}
