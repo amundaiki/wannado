@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-31T16:46:42.935Z"
+last_updated: "2026-03-31T16:51:18Z"
 progress:
   total_phases: 17
-  completed_phases: 7
+  completed_phases: 9
   total_plans: 21
-  completed_plans: 7
+  completed_plans: 9
 ---
 
 # Project State
@@ -31,6 +31,8 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
 | 6 | Forside | Alle 6 forsidekomponenter bruker next/image med ekte scraped-bilder, hero LCP optimalisert |
 | 7 | Seilturer | 6-bilders galleri, JSON-LD TouristTrip schema, CTA-routing til kontaktskjema med pre-seleksjon |
+| 10 | Foredrag | Ekte bilder (JTI + Gronland) og JSON-LD Event schema for begge foredrag |
+| 13 | Utleie | Redesignet fra raa dump til polert serviceside med hero, utstyrskort, praktisk info og CTA |
 
 ## Pending Phases (en per nettside-seksjon)
 
@@ -39,10 +41,10 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 7 | ~~Seilturer~~ | Fullfort: galleri, JSON-LD TouristTrip, CTA-routing |
 | 8 | Kajakkturer | 56 kajakkbilder, kursbilder, Product schema |
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
-| 10 | Foredrag | Grønlandsbilder, Event schema |
+| 10 | ~~Foredrag~~ | Fullfort: ekte bilder, JSON-LD Event schema |
 | 11 | Om oss | Redesign fra raw dump, team-profiler |
 | 12 | Kontakt | Resend e-post, Google Maps |
-| 13 | Utleie | Redesign med priser |
+| 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
 | 14 | Referanser | 49+ bedrifter, testimonials |
 | 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
 | 16 | SEO-polering | Schema per side, OG-bilder, analytics |
@@ -51,8 +53,8 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 ## Current Build State
 
 **Build:** `npm run build` OK, 23 routes (inkl. sitemap.xml, robots.txt)
-**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt
-**Sider med rå innholdsdump:** /booking, /kurs, /menneskene, /om-oss, /personvern, /praktisk-informasjon, /referanser, /samarbeidspartnere, /utleie
+**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie
+**Sider med rå innholdsdump:** /booking, /kurs, /menneskene, /om-oss, /personvern, /praktisk-informasjon, /referanser, /samarbeidspartnere
 
 ## Scraped Assets
 
@@ -83,5 +85,11 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Valgte 6 unike bilder fra scraped/sailing/, hoppet over duplikater (hav-1-2-1, hav-1-2-2)
 - JSON-LD TouristTrip med to Offer-objekter for per-person og charter-pris
 
+## Decisions (Phase 13)
+
+- Brukte "Ta kontakt" som prisplassholder for alle tre utleiekategorier (enkel kajakk, dobbel kajakk, kano) med TODO-kommentar
+- Fulgte seilturer-sidens grid-layout (3+2 kolonne) for innhold og priskort
+- La til kajakkutleie-spesifikt bilde i innholdsseksjonen for visuell tyngde
+
 ---
-*Last updated: 2026-03-31 after completing phase 7 plan 01*
+*Last updated: 2026-03-31 after completing phase 13 plan 01*

@@ -46,7 +46,7 @@
 ### Sekundære sider
 
 - [ ] **PAGE-10**: Om oss / Menneskene (/om-oss) med team-profiler og bedriftshistorie
-- [ ] **PAGE-11**: Utleie (/utleie) med priser og utstyroversikt for kajakk og kano
+- [x] **PAGE-11**: Utleie (/utleie) med priser og utstyroversikt for kajakk og kano
 - [ ] **PAGE-12**: Referanser (/referanser) med kundeoversikt og testimonials
 - [ ] **PAGE-13**: Personvern (/personvern) med GDPR-info
 - [ ] **PAGE-14**: Praktisk informasjon (/praktisk-informasjon) med møtesteder og utstyrsliste
@@ -99,7 +99,7 @@
 | PAGE-05 | Fase 10: Foredrag | Pending |
 | PAGE-10 | Fase 11: Om oss | Pending |
 | PAGE-07, FORM-01, FORM-02, FORM-03 | Fase 12: Kontakt | Pending |
-| PAGE-11 | Fase 13: Utleie | Pending |
+| PAGE-11 | Fase 13: Utleie | Complete |
 | PAGE-12 | Fase 14: Referanser | Pending |
 | CMS-01 til CMS-04, PAGE-08, PAGE-09 | Fase 15: Blogg + CMS | Pending |
 | SEO-06 til SEO-08, PAGE-13, PAGE-14 | Fase 16: SEO-polering | Pending |

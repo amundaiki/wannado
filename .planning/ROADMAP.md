@@ -17,7 +17,7 @@
 - [ ] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder
 - [ ] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer
 - [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
-- [ ] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder
+- [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
 - [ ] **Phase 14: Referanser** - 49+ bedrifter, testimonials, TV-opptredener
 - [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
 - [ ] **Phase 16: SEO-polering** - Schema per side, OG-bilder, analytics
@@ -185,7 +185,7 @@ Plans:
   1. Kajakk- og kanoutleie med priser
   2. Utstyrsliste med bilder
   3. Oppmøtested og kontakt-CTA
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 13-01-PLAN.md — Redesign utleieside med hero, utstyrskort, praktisk info og CTA
