@@ -222,7 +222,12 @@ Plans:
   3. Personvern-side redesignet
   4. Praktisk informasjon-side med møtesteder
   5. Analytics integrert
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 16-01-PLAN.md — JSON-LD schema på tjenestesider + OG-bilder for alle sider
+- [ ] 16-02-PLAN.md — Redesign personvern (GDPR) og praktisk informasjon
+- [ ] 16-03-PLAN.md — Vercel Analytics-integrasjon
 
 ### Phase 17: Deploy
 **Goal:** Produksjons-deploy med domene og DNS
@@ -241,4 +246,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 17 planning*
+*Last updated: 2026-03-31 after Phase 16 planning*
