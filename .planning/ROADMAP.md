@@ -198,7 +198,7 @@ Plans:
   1. 49+ bedriftsnavn presentert visuelt
   2. 2-3 utvalgte testimonials
   3. TV-opptredener: Jakten på Kjærligheten, 71° nord
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [x] 14-01-PLAN.md — Referansedata, bedriftsrutenett, testimonials, TV-seksjonen og TripAdvisor
