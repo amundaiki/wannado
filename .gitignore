@@ -17,6 +17,7 @@ dist/
 
 # Environment
 .env*
+!.env.local.example
 
 # TypeScript
 *.tsbuildinfo
@@ -42,6 +43,9 @@ npm-debug.log*
 
 # Vercel
 .vercel
+
+# Raw video files (too large for git)
+public/videos/havsul-raw.mp4
 
 # Obsidian
 .obsidian/
