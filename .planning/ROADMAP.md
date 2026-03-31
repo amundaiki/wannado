@@ -18,7 +18,7 @@
 - [ ] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer
 - [ ] **Phase 12: Kontakt** - Resend e-postintegrasjon, Google Maps
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
-- [ ] **Phase 14: Referanser** - 49+ bedrifter, testimonials, TV-opptredener
+- [x] **Phase 14: Referanser** - 29 bedrifter i rutenett, testimonials, TV-opptredener (completed 2026-03-31)
 - [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
 - [ ] **Phase 16: SEO-polering** - Schema per side, OG-bilder, analytics
 - [ ] **Phase 17: Deploy** - Vercel deploy, domene, DNS
@@ -201,7 +201,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 14-01-PLAN.md — Referansedata, bedriftsrutenett, testimonials, TV-seksjonen og TripAdvisor
+- [x] 14-01-PLAN.md — Referansedata, bedriftsrutenett, testimonials, TV-seksjonen og TripAdvisor
 
 ### Phase 15: Blogg + CMS
 **Goal:** Sanity CMS med blogg for SEO-innholdsmarkedsføring
@@ -253,4 +253,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 7 execution*
+*Last updated: 2026-03-31 after Phase 14 execution*

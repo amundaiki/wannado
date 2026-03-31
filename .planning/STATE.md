@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-31T16:52:00Z"
+status: in-progress
+last_updated: "2026-03-31T16:51:04Z"
 progress:
   total_phases: 17
   completed_phases: 10
@@ -18,7 +18,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 8 (Kajakkturer) fullfort, klar for fase 9+ (Teambuilding, Om oss, etc.)
+**Current focus:** Fase 8 (Kajakkturer) og 14 (Referanser) fullfort, klar for fase 9+ (Teambuilding, Om oss, etc.)
 
 ## Completed Phases
 
@@ -31,31 +31,32 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
 | 6 | Forside | Alle 6 forsidekomponenter bruker next/image med ekte scraped-bilder, hero LCP optimalisert |
 | 7 | Seilturer | 6-bilders galleri, JSON-LD TouristTrip schema, CTA-routing til kontaktskjema med pre-seleksjon |
-| 8 | Kajakkturer | 10 ekte bilder, JSON-LD Product schema for 6 kurs, TouristTrip for guidede turer, CTA til /kontakt?tjeneste=Kajakktur |
 | 10 | Foredrag | Ekte bilder (JTI + Gronland) og JSON-LD Event schema for begge foredrag |
 | 13 | Utleie | Redesignet fra raa dump til polert serviceside med hero, utstyrskort, praktisk info og CTA |
+| 8 | Kajakkturer | 10 ekte bilder, JSON-LD Product schema for 6 kurs, TouristTrip for guidede turer, CTA til /kontakt?tjeneste=Kajakktur |
+| 14 | Referanser | 29 bedrifter i rutenett, 2 testimonials, TV-opptredener, TripAdvisor-lenke, CTA |
 
 ## Pending Phases (en per nettside-seksjon)
 
 | # | Phase | Mål |
 |---|-------|-----|
 | 7 | ~~Seilturer~~ | Fullfort: galleri, JSON-LD TouristTrip, CTA-routing |
-| 8 | Kajakkturer | 56 kajakkbilder, kursbilder, Product schema |
+| 8 | ~~Kajakkturer~~ | Fullfort: 10 ekte bilder, JSON-LD Product + TouristTrip, CTA-routing |
 | 9 | Teambuilding | Arrangementsbilder, Product schema |
 | 10 | ~~Foredrag~~ | Fullfort: ekte bilder, JSON-LD Event schema |
 | 11 | Om oss | Redesign fra raw dump, team-profiler |
 | 12 | Kontakt | Resend e-post, Google Maps |
 | 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
-| 14 | Referanser | 49+ bedrifter, testimonials |
+| 14 | ~~Referanser~~ | Fullfort: 29 bedrifter, testimonials, TV-opptredener, TripAdvisor |
 | 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
 | 16 | SEO-polering | Schema per side, OG-bilder, analytics |
 | 17 | Deploy | Vercel, domene, DNS |
 
 ## Current Build State
 
-**Build:** `npm run build` OK, 23 routes (inkl. sitemap.xml, robots.txt)
-**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie
-**Sider med rå innholdsdump:** /booking, /kurs, /menneskene, /om-oss, /personvern, /praktisk-informasjon, /referanser, /samarbeidspartnere
+**Build:** `npm run build` OK, 22 routes (inkl. sitemap.xml, robots.txt)
+**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /utleie, /referanser
+**Sider med rå innholdsdump:** /booking, /kurs, /om-oss, /personvern, /praktisk-informasjon, /samarbeidspartnere
 
 ## Scraped Assets
 
@@ -92,11 +93,17 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Fulgte seilturer-sidens grid-layout (3+2 kolonne) for innhold og priskort
 - La til kajakkutleie-spesifikt bilde i innholdsseksjonen for visuell tyngde
 
-## Decisions (Phase 10)
+## Decisions (Phase 14)
 
-- Restrukturerte kort med separat bildeholder (aspect-[3/2]) og padded innholdsomraade
-- Brukte JSON-LD array med to Event-objekter i en enkelt script-tag
-- Utelot startDate fra Event schema siden foredragene er bestillbare paa foresporstel
+- Brukte as const arrays med TypeScript-typer for typesikker referansedata i src/lib/data/
+- 29 bedrifter etter filtrering: fjernet TV-show-oppforinger, generiske oppforinger og lenker fra radata
+- Anonym forfatter for pangstart-testimonial da kilden ikke navngis i scraped innhold
+
+## Decisions (Phase 8)
+
+- Gjenbrukte ContactForm useSearchParams-stotte fra fase 7, ingen endringer i ContactForm.tsx
+- Brukte ItemList-wrapper rundt Product-schemas for bedre sokeresultatvisning av kurskatalog
+- Handmatchet hvert kursbilde til ferdighetsniva: rolig vann for intro, strandoppsett for grunnkurs, dramatisk surf for avansert
 
 ---
-*Last updated: 2026-03-31 after completing phase 10 plan 01*
+*Last updated: 2026-03-31 after completing phase 8 plan 01*
