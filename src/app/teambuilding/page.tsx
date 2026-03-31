@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,114 @@ export const metadata: Metadata = {
     "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
 };
 
+const teambuildingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      name: "360\u00B0 Wannado",
+      description:
+        "Et 71\u00B0 nord-lignende arrangement med utfordrende aktiviteter for lag som ønsker å bli bedre kjent. Tankenøtter og samarbeidsoppgaver.",
+      offers: {
+        "@type": "Offer",
+        price: "16500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+    {
+      "@type": "Product",
+      name: "Heia dem som vinner",
+      description:
+        "Innendørs konkurranse inspirert av TV-programmer som Vinn på minuttet og Mesternes Mester.",
+      offers: {
+        "@type": "Offer",
+        price: "16500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+    {
+      "@type": "Product",
+      name: "Påfyll",
+      description:
+        "Utendørs arrangement på Bjellandstrand Gård på Tromøy. Lek, kreativitet og samspill, avsluttet med deilig mat fra jord og hage.",
+      offers: {
+        "@type": "Offer",
+        price: "1950",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "1950",
+          priceCurrency: "NOK",
+          unitText: "per person",
+        },
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+    {
+      "@type": "Product",
+      name: "Cluedo",
+      description:
+        "Mordmysterie der lagene samler spor og eliminerer mistenkte for å avsløre morderen, våpenet, åstedet og motivet.",
+      offers: {
+        "@type": "Offer",
+        price: "16500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+    {
+      "@type": "Product",
+      name: "Mord i Cicilia",
+      description:
+        "Sittende mordmysterie der deltakerne ledes gjennom et mysterium rundt kafébord i møterommet.",
+      offers: {
+        "@type": "Offer",
+        price: "4500",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+    {
+      "@type": "Product",
+      name: "Kajakk og skjærgårdssafari",
+      description:
+        "Introduksjon til kajakk med enkel padleteknikk, tilrettelagt for gruppen. Alt nødvendig utstyr er inkludert.",
+      offers: {
+        "@type": "Offer",
+        price: "1350",
+        priceCurrency: "NOK",
+        availability: "https://schema.org/InStock",
+        url: "https://wannado.no/kontakt",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "1350",
+          priceCurrency: "NOK",
+          unitText: "per person",
+        },
+      },
+      brand: { "@type": "Organization", name: "Wannado" },
+      category: "Teambuilding",
+    },
+  ],
+};
+
 const products = [
   {
     name: "360\u00B0 Wannado",
@@ -16,7 +125,9 @@ const products = [
       "Et 71\u00B0 nord-lignende arrangement med utfordrende aktiviteter for lag som ønsker å bli bedre kjent. Tankenøtter og samarbeidsoppgaver i et lavt til moderat aktivitetsnivå.",
     price: "Fra kr 16 500,- / kr 550 pr pers over 30",
     duration: "2 timer",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/Bungeerunning-7607.jpg",
+    alt: "Deltakere i utendørs lagkonkurranse under teambuilding med Wannado",
   },
   {
     name: "Heia dem som vinner",
@@ -24,7 +135,9 @@ const products = [
       "Innendørs konkurranse inspirert av TV-programmer som Vinn på minuttet og Mesternes Mester. Wannado organiserer oppgavene, tidtakingen og opplegg, dere leverer energien.",
     price: "Fra kr 16 500,- / kr 550 pr pers over 30",
     duration: "2 timer",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/DaVinchi-pa-Strand-8579.jpg",
+    alt: "Innendørs teambuilding-konkurranse på hotell med engasjerte deltakere",
   },
   {
     name: "Påfyll",
@@ -32,7 +145,9 @@ const products = [
       "Utendørs arrangement på Bjellandstrand Gård på Tromøy. En herlig dag med lek, kreativitet og samspill, avsluttet med deilig mat fra jord og hage. Inkludert venue, mat og kaffe/te.",
     price: "Kr 1 950,- pr person",
     duration: "2-3 timer + middag",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg",
+    alt: "Gruppeaktivitet utendørs med kolleger under Påfyll-arrangementet",
   },
   {
     name: "Cluedo",
@@ -40,7 +155,9 @@ const products = [
       "Mordmysterie der lagene samler spor og eliminerer mistenkte for å avsløre morderen, våpenet, åstedet og motivet. Tilgjengelig på Strand Hotel Fevik, Lillesand Hotell Norge, Lyngørporten, Kragerø Resort og Arendal Herregaard.",
     price: "Fra kr 16 500,- / kr 550 pr pers over 30",
     duration: "2 timer",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/DaVinchi-pa-Strand-8588.jpg",
+    alt: "Mordmysterie-arrangement på hotell der lag løser gåter sammen",
   },
   {
     name: "Mord i Cicilia",
@@ -48,7 +165,9 @@ const products = [
       "Sittende mordmysterie der deltakerne ledes gjennom et mysterium rundt kafebord i møterommet. Skaper spennende situasjoner og festlig kommunikasjon.",
     price: "Fra kr 4 500,-",
     duration: "1-1,5 timer",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg",
+    alt: "Deltakere rundt bord under sittende mordmysterie med Wannado",
   },
   {
     name: "Kajakk og skjærgårdssafari",
@@ -56,7 +175,9 @@ const products = [
       "Introduksjon til kajakk med enkel padleteknikk, tilrettelagt for gruppen. Alt nødvendig utstyr er inkludert. Perfekt som tilleggsaktivitet til en teambuildingdag.",
     price: "Fra kr 1 350,- pr person",
     duration: "3 timer",
-    href: "/kontakt",
+    href: "/kontakt?tjeneste=Teambuilding",
+    image: "/images/scraped/teambuilding/Bungeerunning-7634.jpg",
+    alt: "Utendørs aktivitet som del av teambuilding-opplevelse med Wannado",
   },
 ];
 
@@ -75,6 +196,10 @@ const references = [
 export default function TeambuildingPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teambuildingSchema) }}
+      />
       <Navbar />
 
       {/* Hero */}
@@ -130,28 +255,39 @@ export default function TeambuildingPage() {
             {products.map((product) => (
               <div
                 key={product.name}
-                className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-border flex flex-col hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl shadow-sm border border-border flex flex-col hover:shadow-md transition-shadow duration-300 overflow-hidden"
               >
-                <h3 className="font-space font-bold text-xl text-brown mb-3">
-                  {product.name}
-                </h3>
-                <p className="font-inter text-sm md:text-base text-brown-mid leading-relaxed mb-4 flex-1">
-                  {product.description}
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <span className="font-space font-bold text-teal text-lg">
-                    {product.price}
-                  </span>
-                  <span className="font-inter text-xs text-brown-muted">
-                    {product.duration}
-                  </span>
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
-                <Link
-                  href={product.href}
-                  className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 self-start"
-                >
-                  Bestill
-                </Link>
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <h3 className="font-space font-bold text-xl text-brown mb-3">
+                    {product.name}
+                  </h3>
+                  <p className="font-inter text-sm md:text-base text-brown-mid leading-relaxed mb-4 flex-1">
+                    {product.description}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 mb-5">
+                    <span className="font-space font-bold text-teal text-lg">
+                      {product.price}
+                    </span>
+                    <span className="font-inter text-xs text-brown-muted">
+                      {product.duration}
+                    </span>
+                  </div>
+                  <Link
+                    href={product.href}
+                    className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 self-start"
+                  >
+                    Bestill
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -200,7 +336,7 @@ export default function TeambuildingPage() {
               </div>
             </div>
             <Link
-              href="/kontakt"
+              href="/kontakt?tjeneste=Foredrag%2FJTI"
               className="inline-flex items-center justify-center bg-white text-teal font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
             >
               Bestill foredrag
@@ -244,7 +380,7 @@ export default function TeambuildingPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/kontakt"
+                href="/kontakt?tjeneste=Teambuilding"
                 className="inline-flex items-center justify-center bg-white text-brown font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
               >
                 Send forespørsel
