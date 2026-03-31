@@ -58,7 +58,7 @@
 - [x] **SEO-03**: JSON-LD LocalBusiness på forside
 - [x] **SEO-04**: Title-tags og meta descriptions på alle sider
 - [x] **SEO-05**: 301-redirect fra gamle WordPress-URLer
-- [ ] **SEO-06**: JSON-LD TouristTrip/Product schema på tjenestesider
+- [x] **SEO-06**: JSON-LD TouristTrip/Product schema på tjenestesider
 - [ ] **SEO-07**: Vercel Analytics integrert
 - [ ] **SEO-08**: OG-bilder for alle sider
 
