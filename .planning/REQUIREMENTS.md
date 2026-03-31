@@ -43,13 +43,24 @@
 - [x] **NAV-03**: "Bestill tur" CTA-knapp
 - [x] **NAV-04**: Footer med kontaktinfo og lenker
 
+### Sekundære sider
+
+- [ ] **PAGE-10**: Om oss / Menneskene (/om-oss) med team-profiler og bedriftshistorie
+- [ ] **PAGE-11**: Utleie (/utleie) med priser og utstyroversikt for kajakk og kano
+- [ ] **PAGE-12**: Referanser (/referanser) med kundeoversikt og testimonials
+- [ ] **PAGE-13**: Personvern (/personvern) med GDPR-info
+- [ ] **PAGE-14**: Praktisk informasjon (/praktisk-informasjon) med møtesteder og utstyrsliste
+
 ### SEO
 
-- [ ] **SEO-01**: Sitemap.xml tilgjengelig
-- [ ] **SEO-02**: Robots.txt
-- [ ] **SEO-03**: JSON-LD LocalBusiness på forside
+- [x] **SEO-01**: Sitemap.xml tilgjengelig
+- [x] **SEO-02**: Robots.txt
+- [x] **SEO-03**: JSON-LD LocalBusiness på forside
 - [x] **SEO-04**: Title-tags og meta descriptions på alle sider
-- [ ] **SEO-05**: 301-redirect fra gamle WordPress-URLer
+- [x] **SEO-05**: 301-redirect fra gamle WordPress-URLer
+- [ ] **SEO-06**: JSON-LD TouristTrip/Product schema på tjenestesider
+- [ ] **SEO-07**: Vercel Analytics integrert
+- [ ] **SEO-08**: OG-bilder for alle sider
 
 ### CMS
 
@@ -78,12 +89,27 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| STRUCT-01 til STRUCT-02 | Fase 1 | Complete |
-| CONT-01 til CONT-03 | Fase 2 | Complete |
-| PAGE-01 til PAGE-07, FORM-01 til FORM-02, NAV-01 til NAV-04 | Fase 4 | Complete |
-| SEO-01 til SEO-05 | Fase 5 | In Progress |
-| CMS-01 til CMS-04 | Fase 6 | Pending |
-| PAGE-08 til PAGE-09, FORM-03, CONT-04 | Fase 6 | Pending |
+| STRUCT-01, STRUCT-02 | Fase 1: Mappestruktur | Complete |
+| CONT-01, CONT-02, CONT-03 | Fase 2: Innhenting | Complete |
+| NAV-01 til NAV-04 | Fase 3: Navigasjon | Complete |
+| PAGE-01 | Fase 6: Forside | Pending |
+| PAGE-02, CONT-04 (seil) | Fase 7: Seilturer | Pending |
+| PAGE-03, CONT-04 (kajakk) | Fase 8: Kajakkturer | Pending |
+| PAGE-04, CONT-04 (team) | Fase 9: Teambuilding | Pending |
+| PAGE-05 | Fase 10: Foredrag | Pending |
+| PAGE-10 | Fase 11: Om oss | Pending |
+| PAGE-07, FORM-01, FORM-02, FORM-03 | Fase 12: Kontakt | Pending |
+| PAGE-11 | Fase 13: Utleie | Pending |
+| PAGE-12 | Fase 14: Referanser | Pending |
+| CMS-01 til CMS-04, PAGE-08, PAGE-09 | Fase 15: Blogg + CMS | Pending |
+| SEO-06 til SEO-08, PAGE-13, PAGE-14 | Fase 16: SEO-polering | Pending |
+| STRUCT-03, SEO-07 | Fase 17: Deploy | Pending |
+
+**Coverage:**
+- v1 requirements: 35 total
+- Mapped to phases: 35
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-31*
+*Last updated: 2026-03-31 after roadmap restructuring*

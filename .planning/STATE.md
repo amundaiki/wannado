@@ -5,46 +5,56 @@
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 5 - SEO og teknisk grunnlag
-
-## Current Phase: 5 - SEO og infrastruktur
-
-**Goal:** Legge til sitemap, robots.txt, JSON-LD og redirects
+**Current focus:** Klar for fase 6 (Forside) eller valgfri fase
 
 ## Completed Phases
 
-### Fase 1: Mappestruktur
-- ✓ Next.js 16 app flyttet fra web/ til root
-- ✓ npm install kjørt, next build OK (21 routes)
+| # | Phase | Hva ble gjort |
+|---|-------|--------------|
+| 1 | Mappestruktur | Next.js 16 flyttet fra web/ til root, npm install, build OK |
+| 2 | Innhenting | 10 sider scraped, 131 bilder lastet ned, SVG-logo og Havsul-bilde |
+| 3 | Navigasjon | Navbar med ekte SVG-logo, 5 nav-lenker, Footer, ServiceCard, SectionHeader, ContactForm |
+| 4 | Sidebygging | /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt, /api/contact |
+| 5 | SEO-grunnlag | sitemap.xml, robots.txt, JSON-LD LocalBusiness, meta, 301-redirects |
 
-### Fase 2: Innhentning
-- ✓ 10 sider scraped fra wannado.no til content/scraped/
-- ✓ 131 bilder lastet ned til public/images/scraped/
-- ✓ SVG-logo lastet ned til public/images/wannado-logo.svg
-- ✓ Havsul-bilde til public/images/havsul.jpg
+## Pending Phases (en per nettside-seksjon)
 
-### Fase 4: Sidebygging
-- ✓ Navbar: ekte SVG-logo, 5 nav-lenker
-- ✓ UI: ServiceCard, SectionHeader, ContactForm komponenter
-- ✓ /seilturer: hero, priser, feature-cards, CTA
-- ✓ /kajakkturer: kursoversikt, guide-profil, CTA
-- ✓ /opplevelser: 4 kategorikort, kontakt CTA
-- ✓ /teambuilding: 6 produktkort, JTI-seksjon, referanser
-- ✓ /foredrag: JTI + Grønlandsekspedisjon
-- ✓ /kontakt: skjema + kontaktinfo
-- ✓ /api/contact: Route Handler
+| # | Phase | Mål |
+|---|-------|-----|
+| 6 | Forside | Ekte bilder, Lighthouse 90+ |
+| 7 | Seilturer | Havsul-bilder, JSON-LD TouristTrip |
+| 8 | Kajakkturer | 56 kajakkbilder, kursbilder, Product schema |
+| 9 | Teambuilding | Arrangementsbilder, Product schema |
+| 10 | Foredrag | Grønlandsbilder, Event schema |
+| 11 | Om oss | Redesign fra raw dump, team-profiler |
+| 12 | Kontakt | Resend e-post, Google Maps |
+| 13 | Utleie | Redesign med priser |
+| 14 | Referanser | 49+ bedrifter, testimonials |
+| 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
+| 16 | SEO-polering | Schema per side, OG-bilder, analytics |
+| 17 | Deploy | Vercel, domene, DNS |
 
-## Next Steps
+## Current Build State
 
-### Fase 5 (pågår): SEO
-- Sitemap.ts
-- Robots.ts
-- JSON-LD LocalBusiness
-- Redirects fra gamle URLer
+**Build:** `npm run build` OK, 23 routes (inkl. sitemap.xml, robots.txt)
+**Sider med design:** /, /seilturer, /kajakkturer, /opplevelser, /teambuilding, /foredrag, /kontakt
+**Sider med rå innholdsdump:** /booking, /kurs, /menneskene, /om-oss, /personvern, /praktisk-informasjon, /referanser, /samarbeidspartnere, /utleie
 
-### Fase 6 (neste): CMS og polering
-1. Brukeren kjører: `npx sanity@latest init` i rotmappen
-2. Blogg (/blog og /blog/[slug])
-3. Resend e-postintegrasjon for kontaktskjema
-4. Bilder fra scraped/ integrert på sider
-5. Vercel deploy
+## Scraped Assets
+
+| Type | Antall | Plassering |
+|------|--------|-----------|
+| Tekst (markdown) | 10 filer | content/scraped/ |
+| Kajakkbilder | 56 | public/images/scraped/kayak/ |
+| Landskapsbilder | 25 | public/images/scraped/landscape/ |
+| Seilbilder | 9 | public/images/scraped/sailing/ |
+| Teambuildingbilder | 6 | public/images/scraped/teambuilding/ |
+| Aktivitetsbilder | 8 | public/images/scraped/activities/ |
+| Ikoner | 17 | public/images/scraped/icons/ |
+| Logoer | 5 | public/images/scraped/logo/ |
+| Diverse | 5 | public/images/scraped/misc/ |
+| SVG-logo (wordmark) | 1 | public/images/wannado-logo.svg |
+| Havsul-bilde | 1 | public/images/havsul.jpg |
+
+---
+*Last updated: 2026-03-31 after roadmap restructuring*
