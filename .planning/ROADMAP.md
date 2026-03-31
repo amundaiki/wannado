@@ -233,8 +233,12 @@ Plans:
   2. wannado.no DNS peker på Vercel
   3. SSL-sertifikat aktivt
   4. Core Web Vitals alle grønne
-**Plans:** TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 17-01-PLAN.md — Vercel-prosjekt oppsett, preview deploy, verifisering av ruter og redirects
+- [ ] 17-02-PLAN.md — DNS-cutover, SSL-verifisering, Core Web Vitals-sjekk
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 14 planning*
+*Last updated: 2026-03-31 after Phase 17 planning*
