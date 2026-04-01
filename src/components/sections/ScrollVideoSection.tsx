@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import NextImage from "next/image";
 
-const FRAME_COUNT = 90;
+const FRAME_COUNT = 52;
 
 function getFrameSrc(index: number): string {
   const padded = String(index + 1).padStart(3, "0");

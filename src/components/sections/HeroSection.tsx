@@ -8,6 +8,16 @@ const words = ["ro og balanse", "neste opplevelse", "eventyr på havet"];
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,16 +28,32 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src="/images/scraped/sailing/baat-fb-havsul.jpg"
-        alt="Havsul under seil i Arendals skjaergaard"
-        fill
-        priority
-        sizes="100vw"
-        quality={85}
-        className="object-cover"
-      />
+      {/* Background: video on desktop, static image on mobile */}
+      {isMobile ? (
+        <Image
+          src="/images/scraped/sailing/baat-fb-havsul.jpg"
+          alt="Havsul under seil i Arendals skjærgård"
+          fill
+          priority
+          sizes="100vw"
+          quality={85}
+          className="object-cover"
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/scraped/sailing/baat-fb-havsul.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="/videos/havsul-clip-01-aerial-kystby.mp4"
+            type="video/mp4"
+          />
+        </video>
+      )}
       
       {/* Subtle Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#48382B]/70 via-[#48382B]/20 to-transparent z-10" />

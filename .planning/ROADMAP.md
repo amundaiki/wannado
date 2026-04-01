@@ -3,6 +3,8 @@
 **Created:** 2026-03-31
 **Total Phases:** 17
 
+**Execution override (2026-03-31):** Fase 15 (Blogg + CMS) er flyttet til siste fase etter deploy. Fase 17 er derfor siste pre-launch fase.
+
 ## Phases
 
 - [x] **Phase 1: Mappestruktur** - Next.js fra root, Vercel-klar
@@ -13,13 +15,13 @@
 - [x] **Phase 6: Forside** - Polert forside med ekte bilder, Lighthouse 90+
 - [x] **Phase 7: Seilturer** - Ferdig seiltur-side med Havsul-bilder og JSON-LD
 - [x] **Phase 8: Kajakkturer** - Ferdig kajakk-side med kursbilder og Product schema (completed 2026-03-31)
-- [ ] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder
+- [x] **Phase 9: Teambuilding** - Ferdig teambuilding med arrangementsbilder (completed 2026-03-31)
 - [x] **Phase 10: Foredrag** - Ferdig foredragside med Grønlandsbilder (completed 2026-03-31)
 - [x] **Phase 11: Om oss** - Team-profiler, bedriftshistorie, sertifiseringer (completed 2026-03-31)
 - [x] **Phase 12: Kontakt** - Resend e-post, Google Maps, CTA-routing (completed 2026-03-31)
 - [x] **Phase 13: Utleie** - Utstyrsutleie med priser og bilder (completed 2026-03-31)
 - [x] **Phase 14: Referanser** - 29 bedrifter i rutenett, testimonials, TV-opptredener (completed 2026-03-31)
-- [ ] **Phase 15: Blogg + CMS** - Sanity CMS, /blog, /blog/[slug]
+- [ ] **Phase 15: Blogg + CMS** - Utsatt til post-launch siste fase: Sanity CMS, /blog, /blog/[slug]
 - [x] **Phase 16: SEO-polering** - JSON-LD Product schema, OG-bilder, GDPR personvern, praktisk info, Vercel Analytics (completed 2026-03-31)
 - [ ] **Phase 17: Deploy** - Vercel deploy, domene, DNS
 
@@ -133,7 +135,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 09-01-PLAN.md — Bilder på produktkort, JSON-LD Product schema, visuell referanseseksjon, CTA med forhåndsvalg
+- [x] 09-01-PLAN.md — Bilder på produktkort, JSON-LD Product schema, visuell referanseseksjon, CTA med forhåndsvalg
 
 ### Phase 10: Foredrag
 **Goal:** Ferdigstill foredragssiden med Grønlandsbilder og Event schema
@@ -147,7 +149,7 @@ Plans:
 **Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 10-01-PLAN.md — Ekte bilder i foredragskort og JSON-LD Event schema
+- [x] 10-01-PLAN.md — Ekte bilder i foredragskort og JSON-LD Event schema
 
 ### Phase 11: Om oss
 **Goal:** Redesign Om oss/Menneskene til en samlet side med team-profiler og bedriftshistorie
@@ -188,7 +190,7 @@ Plans:
 **Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 13-01-PLAN.md — Redesign utleieside med hero, utstyrskort, praktisk info og CTA
+- [x] 13-01-PLAN.md — Redesign utleieside med hero, utstyrskort, praktisk info og CTA
 
 ### Phase 14: Referanser
 **Goal:** Redesign referansesiden med kundeoversikt og testimonials
@@ -205,8 +207,9 @@ Plans:
 
 ### Phase 15: Blogg + CMS
 **Goal:** Sanity CMS med blogg for SEO-innholdsmarkedsføring
-**Depends on:** Phase 5
+**Depends on:** Phase 17 (execution override), ellers Phase 5 teknisk
 **Requirements:** CMS-01 til CMS-04, PAGE-08, PAGE-09
+**Execution Note:** Utsatt til post-launch. Denne fasen tas etter at Vercel-deploy, domene og DNS er verifisert.
 **Success Criteria** (what must be TRUE):
   1. Sanity prosjekt opprettet og konfigurert
   2. Innholdsskjemaer: blogPost, service, testimonial, teamMember
@@ -238,7 +241,7 @@ Plans:
 
 ### Phase 17: Deploy
 **Goal:** Produksjons-deploy med domene og DNS
-**Depends on:** Phase 6-16
+**Depends on:** Phase 6-16 (fase 15 er eksplisitt utsatt)
 **Requirements:** STRUCT-03
 **Success Criteria** (what must be TRUE):
   1. Vercel-prosjekt opprettet
@@ -253,4 +256,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-31*
-*Last updated: 2026-03-31 after Phase 16 execution*
+*Last updated: 2026-03-31 after reprioritizing deploy ahead of blog/CMS*

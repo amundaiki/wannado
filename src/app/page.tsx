@@ -3,9 +3,11 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import CarouselSection from "@/components/sections/CarouselSection";
 import BentoGridSection from "@/components/sections/BentoGridSection";
+import ScrollVideoSection from "@/components/sections/ScrollVideoSection";
 import FeatureSection from "@/components/sections/FeatureSection";
 import PeopleSection from "@/components/sections/PeopleSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import VideoBanner from "@/components/ui/VideoBanner";
 
 export default function Home() {
   return (
@@ -49,9 +51,38 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <CarouselSection />
+      <ScrollVideoSection />
       <BentoGridSection />
+
+      {/* Fyrtårn - cinematisk pusterom mellom BentoGrid og Feature */}
+      <VideoBanner
+        src="/videos/havsul-clip-05-fyrtarn.mp4"
+        height="h-[40vh]"
+        overlay="dark"
+      />
+
       <FeatureSection />
+
+      {/* Ankomst Merdø - stort cinematisk moment før People */}
+      <VideoBanner
+        src="/videos/havsul-clip-06-merdo-ankomst.mp4"
+        height="h-[60vh]"
+        overlay="dark"
+      >
+        <p className="font-dm text-lg italic text-white/80 md:text-xl">
+          Velkommen ombord
+        </p>
+      </VideoBanner>
+
       <PeopleSection />
+
+      {/* Vanndetalj - rolig overgang til testimonials */}
+      <VideoBanner
+        src="/videos/havsul-clip-03-vanndetalj.mp4"
+        height="h-[30vh]"
+        overlay="light"
+      />
+
       <TestimonialsSection />
       <Footer />
     </main>

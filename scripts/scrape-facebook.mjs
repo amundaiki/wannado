@@ -82,7 +82,7 @@ async function waitForRun(runId) {
   console.log('Venter på at Apify er ferdig (kan ta noen minutter)...');
 
   let attempts = 0;
-  const maxAttempts = 120; // maks 10 min (5s intervall)
+  const maxAttempts = 360; // maks 30 min (5s intervall)
 
   while (attempts < maxAttempts) {
     await new Promise((r) => setTimeout(r, 5000));

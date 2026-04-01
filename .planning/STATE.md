@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-31T17:16:42.655Z"
+last_updated: "2026-03-31T18:40:53Z"
 progress:
   total_phases: 17
   completed_phases: 15
@@ -18,7 +18,9 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** Konvertere turister og bedrifter til å booke Wannado-opplevelser
-**Current focus:** Fase 16 (SEO-polering) fullfort, klar for fase 15 (Blogg) og 17 (Deploy).
+**Current focus:** Fase 17 (Deploy) er aktiv. Fase 15 (Blogg + CMS) er utsatt til post-launch som siste fase.
+
+**Execution override (2026-03-31):** Sanity/CMS flyttes bak deploy. Vi prioriterer preview/produksjonssetting først, og tar blogg/CMS etter at domenet er live.
 
 ## Completed Phases
 
@@ -52,9 +54,9 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 | 12 | ~~Kontakt~~ | Fullfort: Resend e-post, Google Maps, ?tjeneste= CTA-routing |
 | 13 | ~~Utleie~~ | Fullfort: hero, utstyrskort, praktisk info, CTA, SEO-metadata |
 | 14 | ~~Referanser~~ | Fullfort: 29 bedrifter, testimonials, TV-opptredener, TripAdvisor |
-| 15 | Blogg + CMS | Sanity, /blog, /blog/[slug] |
-| 16 | ~~SEO-polering~~ | Fullfort: JSON-LD, OG-bilder, GDPR personvern, praktisk info, Vercel Analytics |
 | 17 | Deploy | Vercel, domene, DNS |
+| 15 | Blogg + CMS | Utsatt til siste fase etter deploy: Sanity, /blog, /blog/[slug] |
+| 16 | ~~SEO-polering~~ | Fullfort: JSON-LD, OG-bilder, GDPR personvern, praktisk info, Vercel Analytics |
 
 ## Current Build State
 
@@ -138,4 +140,4 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - @vercel/analytics v2.0.1 importert fra '@vercel/analytics/next' i root layout
 
 ---
-*Last updated: 2026-03-31 after completing phase 16 (SEO-polering)*
+*Last updated: 2026-03-31 after reprioritizing phase 17 ahead of phase 15*
