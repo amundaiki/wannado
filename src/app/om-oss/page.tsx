@@ -210,8 +210,56 @@ export default function OmOssPage() {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Interview Videos Section */}
       <section className="bg-cream py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="font-space text-3xl md:text-4xl font-bold text-brown text-center mb-6">
+            Bli bedre kjent med oss
+          </h2>
+          <p className="font-inter text-lg text-brown-mid text-center max-w-2xl mx-auto mb-14 leading-relaxed">
+            Hør Tone og Roar fortelle om Wannado, Havsul og lidenskapen for opplevelser på sjøen.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
+                <video
+                  controls
+                  preload="metadata"
+                  poster="/images/tp-typeteori.jpg"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/havsul-intervju-tone.mp4" type="video/mp4" />
+                  Nettleseren din støtter ikke videoavspilling.
+                </video>
+              </div>
+              <h3 className="font-space text-xl font-semibold text-brown mt-4">
+                Tone Pernille om Wannado
+              </h3>
+            </div>
+
+            <div>
+              <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
+                <video
+                  controls
+                  preload="metadata"
+                  poster="/images/P7270038.jpg"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/havsul-intervju-roar.mp4" type="video/mp4" />
+                  Nettleseren din støtter ikke videoavspilling.
+                </video>
+              </div>
+              <h3 className="font-space text-xl font-semibold text-brown mt-4">
+                Roar om livet på sjøen
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="bg-warm-white py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="font-space text-3xl md:text-4xl font-bold text-brown text-center mb-14">
             Våre verdier

@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Kajakk", href: "/kajakkturer" },
   { label: "Teambuilding", href: "/teambuilding" },
   { label: "Foredrag", href: "/foredrag" },
+  { label: "Om oss", href: "/om-oss" },
 ];
 
 export default function Navbar() {
