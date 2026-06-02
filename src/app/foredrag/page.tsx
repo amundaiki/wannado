@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { sanityFetch } from "@/sanity/lib/live";
+import {
+  allProductsQuery,
+  formatNok,
+  type SanityProduct,
+} from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
   title:
@@ -106,7 +112,30 @@ const jsonLd = [
   },
 ];
 
-export default function ForedragPage() {
+const JTI_PRODUCT_ID = "8dd12817-b5af-4b50-ba12-0aba6019c495";
+const GREENLAND_PRODUCT_ID = "6cad492a-1b9b-4318-bce1-00a11646985f";
+
+export const dynamic = "force-dynamic";
+
+export default async function ForedragPage() {
+  const { data: sanityProducts } = await sanityFetch({
+    query: allProductsQuery,
+    perspective: "published",
+  });
+
+  const productById = new Map<string, SanityProduct>(
+    sanityProducts.map((product: SanityProduct) => [product._id, product]),
+  );
+
+  const jtiProduct = productById.get(JTI_PRODUCT_ID);
+  const greenlandProduct = productById.get(GREENLAND_PRODUCT_ID);
+  const jtiPrice = jtiProduct?.price
+    ? `Fra kr ${formatNok(jtiProduct.price)},-`
+    : "Fra kr 6 000,-";
+  const greenlandPrice = greenlandProduct?.price
+    ? `Fra kr ${formatNok(greenlandProduct.price)},-`
+    : "Kontakt oss for tilpasset tilbud";
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <script
@@ -138,8 +167,11 @@ export default function ForedragPage() {
           <div className="bg-teal rounded-2xl text-white flex flex-col overflow-hidden">
             <div className="relative w-full aspect-[3/2]">
               <Image
-                src="/images/tp-typeteori.jpg"
-                alt="Tone Pernille Sivertsen holder boken Typeforståelse, JTI personlighetsanalyse"
+                src={jtiProduct?.imageUrl || "/images/tp-typeteori.jpg"}
+                alt={
+                  jtiProduct?.imageAlt ||
+                  "Tone Pernille Sivertsen holder boken Typeforståelse, JTI personlighetsanalyse"
+                }
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -150,13 +182,11 @@ export default function ForedragPage() {
                 Personlighetsanalyse
               </p>
               <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
-                JTI: Jungiansk Type Index
+                {jtiProduct?.name || "JTI: Jungiansk Type Index"}
               </h2>
               <p className="font-inter text-base text-white/90 leading-relaxed mb-4">
-                Et inspirerende foredrag om personlighet og samarbeid, basert på
-                C.G. Jungs preferanseteorier. JTI kartlegger hvordan vi mennesker
-                er forskjellige, uten sortering i &quot;bra&quot; eller
-                &quot;mindre bra&quot;.
+                {jtiProduct?.descriptionText ||
+                  "Et inspirerende foredrag om personlighet og samarbeid, basert på C.G. Jungs preferanseteorier. JTI kartlegger hvordan vi mennesker er forskjellige, uten sortering i \"bra\" eller \"mindre bra\"."}
               </p>
               <p className="font-inter text-base text-white/90 leading-relaxed mb-6">
                 Forstå hvordan ulike personligheter påvirker samarbeid, og få
@@ -166,8 +196,10 @@ export default function ForedragPage() {
               <div className="space-y-4 mb-8 flex-1">
                 <div className="bg-white/10 rounded-xl p-4">
                   <div className="flex items-baseline justify-between mb-1">
-                    <p className="font-space font-bold text-lg">Foredrag</p>
-                    <p className="font-space font-bold text-lg">Fra kr 6 000,-</p>
+                    <p className="font-space font-bold text-lg">
+                      {jtiProduct?.name || "Foredrag"}
+                    </p>
+                    <p className="font-space font-bold text-lg">{jtiPrice}</p>
                   </div>
                   <p className="font-inter text-sm text-white/70">
                     Ca 45 minutter. Engasjerende introduksjon til
@@ -208,8 +240,14 @@ export default function ForedragPage() {
           <div className="bg-brown rounded-2xl text-white flex flex-col overflow-hidden">
             <div className="relative w-full aspect-[3/2]">
               <Image
-                src="/images/scraped/landscape/kimmiut-gronland-1920.jpg"
-                alt="Kimmiut landsby på Øst-Grønland med snødekte fjell og isbre"
+                src={
+                  greenlandProduct?.imageUrl ||
+                  "/images/scraped/landscape/kimmiut-gronland-1920.jpg"
+                }
+                alt={
+                  greenlandProduct?.imageAlt ||
+                  "Kimmiut landsby på Øst-Grønland med snødekte fjell og isbre"
+                }
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -220,12 +258,11 @@ export default function ForedragPage() {
                 Ekspedisjonsforedrag
               </p>
               <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
-                Grønlandsekspeditionen
+                {greenlandProduct?.name || "Grønlandsekspeditionen"}
               </h2>
               <p className="font-inter text-base text-white/90 leading-relaxed mb-4">
-                Roar tok med seg kajakken til Øst-Grønland. I dette foredraget
-                deler han opplevelsen gjennom fantastiske bilder og video fra en
-                ekspedisjon i et av verdens mest spektakulære landskap.
+                {greenlandProduct?.descriptionText ||
+                  "Roar tok med seg kajakken til Øst-Grønland. I dette foredraget deler han opplevelsen gjennom fantastiske bilder og video fra en ekspedisjon i et av verdens mest spektakulære landskap."}
               </p>
               <p className="font-inter text-base text-white/90 leading-relaxed mb-6">
                 Et inspirerende foredrag om mot, forberedelse og naturopplevelser i
@@ -254,8 +291,8 @@ export default function ForedragPage() {
                     Pris og varighet
                   </p>
                   <p className="font-inter text-sm text-white/70">
-                    Kontakt oss for tilpasset tilbud. Foredraget tilpasses
-                    publikum og anledning.
+                    {greenlandPrice} og foredraget tilpasses publikum og
+                    anledning.
                   </p>
                 </div>
               </div>

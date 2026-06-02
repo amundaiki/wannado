@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { sanityFetch } from "@/sanity/lib/live";
+import {
+  allProductsQuery,
+  formatNok,
+  type SanityProduct,
+} from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
   title: "Kajakkurs og kajakkturer Arendal | Wannado",
@@ -16,8 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
-const courses = [
+const courseMeta = [
   {
+    id: "f2fc0825-3e4d-4dee-96fc-c5b2e46be4ec",
     name: "Våttkort / Introduksjonskurs",
     duration: "3 timer",
     price: "Kr 1 350,-",
@@ -29,6 +36,7 @@ const courses = [
     imageAlt: "Nybegynner padler kajakk i rolig vann ved Arendal",
   },
   {
+    id: "88a9fa43-5c56-4bad-9133-0f4f402c50f7",
     name: "Grunnkurs hav",
     duration: "16 timer",
     price: "Kr 3 000,-",
@@ -39,6 +47,7 @@ const courses = [
     imageAlt: "Kajakkene klare for grunnkurs hav på stranden",
   },
   {
+    id: "e639299b-81d9-42b8-b576-1621ecfab8be",
     name: "Teknikkurs",
     duration: "16 timer",
     price: "Kr 3 500,-",
@@ -48,6 +57,7 @@ const courses = [
     imageAlt: "Kajakkpadler sett ovenfra i grønt vann under teknikkurs",
   },
   {
+    id: "6bbf424c-db51-46b4-8391-f106c8717f06",
     name: "Rullekurs",
     duration: "3 timer",
     price: "Kr 1 250,-",
@@ -57,6 +67,7 @@ const courses = [
     imageAlt: "Redningstrening i kajakk på åpent vann",
   },
   {
+    id: "0461c90c-a334-4769-84c0-42f7bf4fec3e",
     name: "Tøffe tak",
     duration: "5 timer",
     price: "Kr 1 350,-",
@@ -66,6 +77,7 @@ const courses = [
     imageAlt: "Rød kajakk i dramatisk bølgepadling",
   },
   {
+    id: "379b4ca2-e84d-4e4d-8ba9-b66520ec2500",
     name: "Turkurs / Ekspedisjonskurs",
     duration: "2 dager",
     price: "Kr 3 500,-",
@@ -75,6 +87,8 @@ const courses = [
     imageAlt: "Leirbål med kajakker i bakgrunnen under ekspedisjonskurs",
   },
 ];
+
+export const dynamic = "force-dynamic";
 
 const courseSchema = {
   "@context": "https://schema.org",
@@ -214,7 +228,29 @@ const tourSchema = {
   ],
 };
 
-export default function KajakkturerPage() {
+export default async function KajakkturerPage() {
+  const { data: products } = await sanityFetch({
+    query: allProductsQuery,
+    perspective: "published",
+  });
+
+  const productById = new Map<string, SanityProduct>(
+    products.map((product: SanityProduct) => [product._id, product]),
+  );
+  const courses = courseMeta.map((course) => {
+    const sanityCourse = productById.get(course.id);
+    const priceValue = sanityCourse?.price ?? Number.parseInt(course.price.replace(/\D/g, ""), 10);
+    return {
+      ...course,
+      name: sanityCourse?.name || course.name,
+      description: sanityCourse?.descriptionText || course.description,
+      price: `Kr ${formatNok(priceValue)},-`,
+      image: sanityCourse?.imageUrl || course.image,
+      imageAlt: sanityCourse?.imageAlt || course.imageAlt,
+      highlight: course.highlight,
+    };
+  });
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <script

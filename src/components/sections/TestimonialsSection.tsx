@@ -1,117 +1,149 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const MARQUEE_ITEMS = [
-  "Uforglemmelig kveld", "Fantastisk mannskap", "Magisk solnedgang", "Perfekt for teambuilding",
-  "Historisk sus", "Nydelig mat", "Trygt og profesjonelt", "Anbefales på det varmeste",
-  "Uforglemmelig kveld", "Fantastisk mannskap", "Magisk solnedgang", "Perfekt for teambuilding"
-];
-
-const QUOTES = [
-  {
-    text: "En helt magisk opplevelse. Å se Arendal fra sjøsiden i solnedgang ombord på en så flott skute, med nydelig servering, var høydepunktet på sommeren.",
-    author: "Kari N.",
-    tour: "Sunset & Stories"
-  },
-  {
-    text: "Teambuildingen på Havsul ga oss akkurat det pusterommet vi trengte. Fantastisk opplegg fra Tone og Roar som virkelig sveiset gjengen sammen.",
-    author: "Ledergruppe",
-    tour: "Skreddersydd arrangement"
-  },
-  {
-    text: "Barna snakker fortsatt om krabbefisket og å få svinge på roret. En super feriedag for hele familien!",
-    author: "Familien Olsen",
-    tour: "Skjærgårdseventyr"
-  }
-];
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  COMPANIES,
+  TESTIMONIALS,
+  TRIPADVISOR_FEEDBACK,
+} from "@/lib/data/references";
 
 export default function TestimonialsSection() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % QUOTES.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section>
-      {/* Marquee Banner */}
-      <div className="bg-brown py-4 overflow-hidden flex flex-col gap-1.5">
+    <section className="bg-card-bg py-16 md:py-28">
+      <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 35, ease: "linear", repeat: Infinity }}
-          className="flex whitespace-nowrap min-w-max"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
         >
-          {MARQUEE_ITEMS.map((item, i) => (
-            <div key={i} className="flex items-center">
-              <span className="font-inter text-sm text-white/40 tracking-wider px-5">{item}</span>
-              <span className="text-white/25 px-1">•</span>
-            </div>
-          ))}
+          <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
+            Referanser
+          </span>
+          <h2 className="mt-4 font-space text-3xl font-semibold text-brown md:text-5xl">
+            Ekte tilbakemeldinger fra folk som har vært ute med oss
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl font-inter text-base leading-7 text-brown-mid md:text-lg">
+            Når opplevelsen fungerer, merkes det etterpå. De beste bevisene ligger i
+            det gjestene faktisk forteller videre.
+          </p>
         </motion.div>
-        
-        <motion.div
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{ duration: 45, ease: "linear", repeat: Infinity }}
-          className="flex whitespace-nowrap min-w-max"
-        >
-          {MARQUEE_ITEMS.map((item, i) => (
-            <div key={`reverse-${i}`} className="flex items-center">
-              <span className="font-inter text-sm text-white/40 tracking-wider px-5">{item}</span>
-              <span className="text-white/25 px-1">•</span>
-            </div>
-          ))}
-        </motion.div>
-      </div>
 
-      {/* Animated Quotes */}
-      <div className="bg-card-bg py-16 md:py-28">
-        <div className="max-w-[800px] mx-auto px-6 text-center">
-          <div className="relative min-h-[220px] md:min-h-[180px] flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="absolute w-full"
-              >
-                <div className="mb-6 font-dm text-4xl md:text-5xl text-brown-light/30 leading-none">
-                  &#8220;
-                </div>
-                <p className="font-space text-xl md:text-[26px] font-medium text-brown leading-relaxed max-w-2xl mx-auto">
-                  {QUOTES[index].text}
+        <div className="mt-14 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          {TESTIMONIALS.map((quote, index) => (
+            <motion.article
+              key={`${quote.author}-${quote.company}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: index * 0.08, ease: "easeOut" }}
+              className="rounded-[28px] border border-border bg-white p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
+            >
+              <div className="flex items-center gap-1 text-sand">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <svg
+                    key={starIndex}
+                    className="h-4 w-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="mt-6 font-space text-xl leading-9 text-brown md:text-[28px]">
+                <span aria-hidden="true">&ldquo;</span>
+                {quote.quote}
+                <span aria-hidden="true">&rdquo;</span>
+              </p>
+              <div className="mt-8 border-t border-border pt-5">
+                <p className="font-inter text-sm font-semibold uppercase tracking-[2px] text-brown">
+                  {quote.author}
                 </p>
-                <div className="mt-8">
-                  <span className="font-inter text-[15px] font-semibold text-brown block">
-                    {QUOTES[index].author}
-                  </span>
-                  <span className="font-inter text-[13px] text-teal block mt-1">
-                    {QUOTES[index].tour}
-                  </span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                <p className="mt-1 font-inter text-sm text-teal">{quote.company}</p>
+                {"context" in quote && quote.context ? (
+                  <p className="mt-2 font-inter text-sm text-brown-muted">{quote.context}</p>
+                ) : null}
+              </div>
+            </motion.article>
+          ))}
+
+          {TRIPADVISOR_FEEDBACK.map((feedback) => (
+            <motion.article
+              key={`${feedback.source}-${feedback.title}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
+              className="rounded-[28px] border border-sand/30 bg-[linear-gradient(180deg,#fffaf2_0%,#fff_100%)] p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
+                  {feedback.source}
+                </span>
+                <span className="rounded-full bg-sand/15 px-3 py-1 font-inter text-[11px] font-semibold text-brown">
+                  {feedback.rating}
+                </span>
+              </div>
+              <p className="mt-6 font-space text-xl leading-9 text-brown md:text-[28px]">
+                <span aria-hidden="true">&ldquo;</span>
+                {feedback.title}
+                <span aria-hidden="true">&rdquo;</span>
+              </p>
+              <p className="mt-4 font-inter text-base leading-7 text-brown-mid">
+                {feedback.summary}
+              </p>
+              <div className="mt-8 border-t border-border pt-5">
+                <p className="font-inter text-sm font-semibold uppercase tracking-[2px] text-brown">
+                  {feedback.source}
+                </p>
+                <p className="mt-1 font-inter text-sm text-brown-muted">
+                  {feedback.year}
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="mt-14 rounded-[28px] border border-border/80 bg-cream px-6 py-8 md:px-8"
+        >
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-brown-muted">
+                Et utvalg kunder
+              </p>
+              <p className="mt-3 font-inter text-base leading-7 text-brown-mid">
+                Bedrifter, lag og vennegjenger har brukt Wannado til kickoff,
+                teambuilding, læring og opplevelser i mange år.
+              </p>
+            </div>
+            <Link
+              href="/referanser"
+              className="inline-flex items-center justify-center rounded-full border border-brown/15 px-5 py-3 font-inter text-sm font-medium text-brown transition-colors hover:border-teal/40 hover:text-teal"
+            >
+              Se flere referanser
+            </Link>
           </div>
-          
-          <div className="flex justify-center gap-3 mt-10">
-            {QUOTES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === index ? "bg-brown scale-125" : "bg-border hover:bg-brown-light"
-                }`}
-                aria-label={`Show quote ${i + 1}`}
-              />
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            {COMPANIES.slice(0, 10).map((company) => (
+              <span
+                key={company}
+                className="rounded-full border border-brown/10 bg-white px-4 py-2 font-inter text-sm text-brown-mid"
+              >
+                {company}
+              </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

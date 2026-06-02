@@ -1,120 +1,142 @@
 # External Integrations
 
-**Analysis Date:** 2026-03-31
+**Analysis Date:** 2026-04-01
 
 ## APIs & External Services
 
-**None currently integrated.**
+### Resend (Email)
 
-The codebase has zero external API calls, SDK imports, or third-party service integrations. All content is hardcoded in component files. This is an early-stage project with static content only.
+- **SDK:** `resend` ^6.10.0
+- **Used in:** `src/app/api/contact/route.ts`
+- **Purpose:** Sends contact form submissions as HTML emails to `mail@wannado.no`
+- **Sender:** `Wannado Kontaktskjema <onboarding@resend.dev>` (using Resend's shared domain)
+- **Env var:** `RESEND_API_KEY` (required in production; gracefully falls back to console.log when missing)
+- **Fields:** name, email, phone (optional), service, message
+
+### Vercel Analytics
+
+- **SDK:** `@vercel/analytics` ^2.0.1
+- **Used in:** `src/app/layout.tsx` (renders `<Analytics />` component)
+- **Purpose:** Cookieless, privacy-friendly web analytics
+- **Configuration:** Zero-config; no env vars needed when deployed on Vercel
+
+### Google Maps (Embed)
+
+- **Used in:** `src/app/kontakt/page.tsx`
+- **Method:** Standard `<iframe>` embed (no API key required)
+- **URL:** `https://www.google.com/maps?q=Skarestrand+11,+4812+Kongshavn,+Norway&output=embed`
+- **Purpose:** Shows business location on contact page
 
 ## Data Storage
 
 **Databases:**
-- None. No database, ORM, or data layer exists.
+- None. No database, ORM, or data layer.
 
 **File Storage:**
-- Local filesystem only. Static images served from `web/public/images/`.
+- Local filesystem only. Static images/videos served from `public/`.
+
+**Content Data:**
+- `src/lib/data/references.ts` - Company references list, testimonials, and TV appearances (typed `as const` exports)
+- All other page content is hardcoded in `.tsx` files
 
 **Caching:**
-- None configured. No Redis, Memcached, or Next.js cache configuration.
+- Vercel edge caching (default Next.js behavior)
+- Custom cache headers in `vercel.json`: images get 1-year immutable cache
 
 ## Content Management
 
 **CMS:**
-- None. All page content is hardcoded directly in `.tsx` files.
-- Subpage content appears to be migrated from the old WordPress site as plain text strings in JSX (`{` backtick strings `}`).
-- No headless CMS, Sanity, Contentful, or similar integration exists.
+- None currently integrated
+- `next.config.ts` has `cdn.sanity.io` configured in `images.remotePatterns`, indicating Sanity CMS integration is planned
 
 ## Authentication & Identity
 
-**Auth Provider:**
-- None. No authentication system exists.
-- No user accounts, login, or session management.
+- None. No auth system, no user accounts.
 
 ## Monitoring & Observability
 
-**Error Tracking:**
-- None. No Sentry, LogRocket, or similar service.
-
 **Analytics:**
-- None currently implemented in the new site.
-- The old WordPress site used Google Analytics and Facebook Pixel (mentioned in `web/src/app/personvern/page.tsx` privacy policy text).
+- Vercel Analytics (cookieless, integrated via `@vercel/analytics`)
 
-**Logs:**
-- None configured. Standard Next.js console output only.
+**Error Tracking:**
+- None. No Sentry, LogRocket, or similar.
+
+**Logging:**
+- Standard Next.js console output only
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- Not yet configured for the new site
-- Old site runs on Apache with Varnish-cache at wannado.no
-- No `vercel.json` or deployment configuration files present
+- Vercel (linked project: `prj_sYmyCkpwjlMg0qGkjgBsQ0QUluxS`, team: `team_Rfl5K62mG3EFZ3WN6Ba3QcFT`)
+- Project name on Vercel: `wannado`
+- Domain: wannado.no
 
 **CI Pipeline:**
-- None. No `.github/workflows/`, no CI configuration of any kind.
+- No `.github/workflows/` or external CI
+- Vercel handles build + deploy on git push (default behavior)
 
-## Email & Communication
+**Security Headers (`vercel.json`):**
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: DENY`
+- `Referrer-Policy: strict-origin-when-cross-origin`
 
-**Contact Methods (hardcoded, not integrated):**
-- `mailto:` links to `mail@wannado.no`, `tp@wannado.no`, `roar@wannado.no`
-- `tel:` links to phone numbers
-- No contact form, no email service (SendGrid, Resend, etc.)
+## SEO Infrastructure
 
-## Social Media
+**Implemented:**
+- Dynamic `robots.ts` (`src/app/robots.ts`) - allows all except `/api/` and `/studio/`
+- Dynamic `sitemap.ts` (`src/app/sitemap.ts`) - 12 URLs with priorities and change frequencies
+- Per-page `metadata` exports on 12 pages (generateMetadata not used; static exports)
+- Root metadata in `src/app/layout.tsx`: title template, OpenGraph, Twitter cards
+- OpenGraph image: `/images/baat-fb.jpg`
+- HTML lang: `nb` (Norwegian Bokmal)
+- 4 permanent redirects from old WordPress URLs in `next.config.ts`
 
-**Linked (placeholder only):**
-- Instagram, Facebook, LinkedIn links in `web/src/components/layout/Footer.tsx` - all point to `#` (not connected)
-- No social media API integrations
-- No Open Graph or social sharing metadata beyond basic `<title>` and `<meta description>`
-
-## Booking & Payments
-
-**Booking System:**
-- None integrated. The booking page (`web/src/app/booking/page.tsx`) contains only static text.
-- The old WordPress site had booking forms; these have not been ported.
-- No payment processing (Stripe, Vipps, etc.)
-- CLAUDE.md notes: "Booking-integrasjon: finn eksisterende booking-API på nåværende side før ny løsning velges."
-
-## SEO & Search
-
-**SEO Tools:**
-- `squirrel.toml` at project root configures an SEO crawler/auditor (Squirrel)
-- Basic metadata set in `web/src/app/layout.tsx` via Next.js `Metadata` export
-- No `sitemap.xml` generation
-- No `robots.txt`
+**Not implemented:**
 - No structured data / JSON-LD schema markup
-- No `generateMetadata` on individual pages
-
-## Webhooks & Callbacks
-
-**Incoming:**
-- None. No API routes exist (`web/src/app/api/` directory does not exist).
-
-**Outgoing:**
-- None.
+- No `generateMetadata` (all metadata is static per-page exports)
 
 ## Environment Configuration
 
 **Required env vars:**
-- None. The application has zero environment variable dependencies.
 
-**Secrets location:**
-- No secrets exist in the codebase. No `.env` files present.
+| Variable | Service | Required | Fallback |
+|---|---|---|---|
+| `RESEND_API_KEY` | Resend email | Production only | Console.log in dev |
+
+**Env files:**
+- `.env` - exists (gitignored)
+- `.env.local.example` - template with `RESEND_API_KEY` placeholder
+
+## API Routes
+
+| Route | Method | Purpose |
+|---|---|---|
+| `/api/contact` | POST | Contact form handler; sends email via Resend |
+
+## Webhooks & Callbacks
+
+- None (incoming or outgoing)
+
+## Social Media
+
+**Linked in Footer (`src/components/layout/Footer.tsx`):**
+- Instagram, Facebook, LinkedIn links (check if still `#` placeholders or real URLs)
+
+## Booking & Payments
+
+- None integrated
+- Booking page exists (`src/app/booking/page.tsx`) but contains static content only
+- No payment processing (Stripe, Vipps, etc.)
 
 ## Planned / Needed Integrations
 
-Based on CLAUDE.md project requirements, these integrations will be needed:
+Based on project requirements:
 
-1. **Booking system** - Critical requirement. Must investigate old site's booking API before choosing solution.
-2. **Analytics** - Google Analytics / similar (old site had GA + Facebook Pixel)
-3. **CMS or content layer** - Current hardcoded content is not sustainable for a business site with frequent updates
-4. **Contact forms** - Currently just mailto links; needs proper form handling
-5. **Social media links** - Footer has placeholder `#` links
-6. **SEO infrastructure** - sitemap.xml, robots.txt, structured data, per-page metadata
-7. **Image optimization** - Currently using raw `<img>` tags instead of `next/image`
-8. **Blog/content platform** - Required per CLAUDE.md for SEO strategy
+1. **Sanity CMS** - `cdn.sanity.io` already configured in `next.config.ts`; integration not yet built
+2. **Booking system** - Critical business requirement; not yet started
+3. **Blog platform** - Required for SEO strategy; depends on CMS integration
+4. **Structured data** - JSON-LD schema markup for local business, events, reviews
 
 ---
 
-*Integration audit: 2026-03-31*
+*Integration audit: 2026-04-01*

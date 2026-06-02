@@ -1,220 +1,188 @@
-# Codebase Structure
+# Structure
 
-**Analysis Date:** 2026-03-31
+> Analysis date: 2026-04-01
 
 ## Directory Layout
 
 ```
-wannado/
-├── web/                          # Next.js application (main codebase)
-│   ├── src/
-│   │   ├── app/                  # App Router pages and global styles
-│   │   │   ├── layout.tsx        # Root layout (fonts, metadata, <html>)
-│   │   │   ├── page.tsx          # Homepage (composed of section components)
-│   │   │   ├── globals.css       # Tailwind v4 theme, CSS variables, base styles
-│   │   │   ├── booking/          # Booking stub page
-│   │   │   ├── foredrag/         # Foredrag (lectures) stub page
-│   │   │   ├── kontakt/          # Contact stub page
-│   │   │   ├── kulturvandring-med-sjarmerende-treskoyte/  # Cultural tour stub page
-│   │   │   ├── kurs/             # Courses stub page
-│   │   │   ├── menneskene/       # People stub page
-│   │   │   ├── om-oss/           # About page (uses PeopleSection component)
-│   │   │   ├── opplevelser/      # Experiences stub page
-│   │   │   ├── personvern/       # Privacy policy stub page
-│   │   │   ├── praktisk-informasjon/  # Practical info stub page
-│   │   │   ├── referanser/       # References/testimonials stub page
-│   │   │   ├── samarbeidspartnere/    # Partners stub page
-│   │   │   ├── teambuilding/     # Teambuilding stub page
-│   │   │   └── utleie/           # Equipment rental stub page
-│   │   └── components/
-│   │       ├── layout/           # Shared structural components
-│   │       │   ├── Navbar.tsx    # Fixed navbar with scroll-hide animation
-│   │       │   └── Footer.tsx    # Site footer with contact info and links
-│   │       ├── sections/         # Homepage section components
-│   │       │   ├── HeroSection.tsx
-│   │       │   ├── CarouselSection.tsx
-│   │       │   ├── BentoGridSection.tsx
-│   │       │   ├── FeatureSection.tsx
-│   │       │   ├── PeopleSection.tsx
-│   │       │   └── TestimonialsSection.tsx
-│   │       └── ui/               # Empty, reserved for reusable UI primitives
-│   ├── public/
-│   │   ├── images/               # Site photographs (JPG)
-│   │   ├── file.svg              # Default Next.js SVG assets
-│   │   ├── globe.svg
-│   │   ├── next.svg
-│   │   ├── vercel.svg
-│   │   └── window.svg
-│   ├── package.json              # Dependencies and scripts
-│   ├── next.config.ts            # Next.js config (empty/default)
-│   ├── tsconfig.json             # TypeScript config with @/* path alias
-│   ├── eslint.config.mjs         # ESLint with next/core-web-vitals + typescript
-│   ├── postcss.config.mjs        # PostCSS with Tailwind v4 plugin
-│   ├── AGENTS.md                 # Next.js agent instructions
-│   └── CLAUDE.md                 # References AGENTS.md
-├── docs/
-│   └── arkiv/                    # Historical files from old WordPress site
-│       ├── backup/               # Old HTML page backups
-│       ├── css/                  # Old CSS files
-│       ├── pages/                # Old page content files
-│       ├── all info              # Scraped content from old site
-│       ├── strategi              # Marketing strategy document
-│       └── v1-v5                 # Iterative design versions
-├── .planning/
-│   └── codebase/                 # Architecture analysis documents (this file)
-├── CLAUDE.md                     # Project-level Claude instructions
-├── README.md                     # Project overview
-├── index.html                    # Old static homepage (197KB, pre-Next.js)
-├── squirrel.toml                 # Squirrel config
-├── årshjul                       # Annual planning wheel (Norwegian text)
-├── markedsføring                 # Marketing plan (Norwegian text)
-├── meneskene                     # People descriptions (Norwegian text)
-├── produktideer                  # Product ideas (Norwegian text)
-└── v1-v5                         # Design iteration documents
+src/
+  app/                              # Next.js App Router pages
+    api/
+      contact/
+        route.ts                    # POST endpoint for contact form (Resend email)
+    booking/
+      page.tsx                      # Stub page (scraped content, unfinished)
+    foredrag/
+      page.tsx                      # JTI lectures and Greenland expedition page
+    kajakkturer/
+      page.tsx                      # Kayak courses and guided tours page
+    kontakt/
+      page.tsx                      # Contact page with form + info sidebar
+    kulturvandring-med-sjarmerende-treskoyte/
+      page.tsx                      # Legacy URL stub (redirected to /seilturer)
+    kurs/
+      page.tsx                      # Stub page (scraped content, unfinished)
+    om-oss/
+      page.tsx                      # About page with team profiles and videos
+    opplevelser/
+      page.tsx                      # Experience overview with category cards
+    personvern/
+      page.tsx                      # Privacy policy (GDPR compliant)
+    praktisk-informasjon/
+      page.tsx                      # Practical info (meeting points, gear, safety)
+    referanser/
+      page.tsx                      # References, testimonials, TV appearances
+    samarbeidspartnere/
+      page.tsx                      # Stub page (scraped content, unfinished)
+    seilturer/
+      page.tsx                      # Sailing tours with Havsul page
+    teambuilding/
+      page.tsx                      # Corporate teambuilding products page
+    utleie/
+      page.tsx                      # Kayak/canoe rental page
+    favicon.ico                     # Site favicon
+    globals.css                     # Tailwind v4 config, color tokens, base styles
+    layout.tsx                      # Root layout (fonts, metadata, analytics)
+    page.tsx                        # Homepage (composes section components)
+    robots.ts                       # robots.txt generation
+    sitemap.ts                      # XML sitemap generation
+
+  components/
+    layout/
+      Footer.tsx                    # Site footer (4-column, links, contacts, social)
+      Navbar.tsx                    # Fixed navbar with scroll behavior and mobile drawer
+
+    sections/                       # Homepage section components (all "use client")
+      BentoGridSection.tsx          # 5-item image grid with hover blur
+      CarouselSection.tsx           # Horizontal scrolling experience cards
+      FeatureSection.tsx            # Two-column teambuilding feature
+      HeroSection.tsx               # Full-screen hero with video/image + rotating text
+      PeopleSection.tsx             # Team member profiles with video cards
+      ScrollVideoSection.tsx        # Scroll-driven frame-by-frame video (canvas)
+      TestimonialsSection.tsx       # Marquee banner + rotating quote carousel
+      WaterDividerSection.tsx       # Video divider strip (currently unused)
+
+    ui/                             # Reusable UI components
+      ContactForm.tsx               # Contact form with API integration
+      PersonVideoCard.tsx           # Image-to-video reveal card
+      SectionHeader.tsx             # Reusable section header (eyebrow/title/desc)
+      ServiceCard.tsx               # Service/product card with pricing
+      VideoBanner.tsx               # Autoplay video banner with overlay options
+
+  lib/
+    data/
+      references.ts                 # Typed constants: companies, testimonials, TV
 ```
 
 ## Directory Purposes
 
-**`web/src/app/`:**
-- Purpose: Next.js App Router file-system routes
-- Contains: `page.tsx` files for each route, root `layout.tsx`, `globals.css`
-- Key files: `web/src/app/layout.tsx` (root layout), `web/src/app/page.tsx` (homepage), `web/src/app/globals.css` (theme)
-
-**`web/src/components/sections/`:**
-- Purpose: Self-contained homepage sections, each with hardcoded data and Framer Motion animations
-- Contains: 6 section components, all `"use client"` with default exports
-- Key files: `web/src/components/sections/HeroSection.tsx` (hero with word rotation), `web/src/components/sections/CarouselSection.tsx` (experience cards)
-
-**`web/src/components/layout/`:**
-- Purpose: Shared structural chrome (navigation and footer)
-- Contains: `Navbar.tsx` (client component with scroll tracking), `Footer.tsx` (server component)
-- Key files: Both files are imported manually by every page
-
-**`web/src/components/ui/`:**
-- Purpose: Reserved for reusable atomic UI components (buttons, cards, inputs, etc.)
-- Contains: Nothing yet (empty directory)
-- Key files: None
-
-**`web/public/images/`:**
-- Purpose: Static photograph assets used across the site
-- Contains: 7 JPG files (outdoor activities, kayaking, sailing, lectures)
-- Key files: `baat-fb.jpg` (hero background), `gronland-kajakk-3.jpg` (kayak card), `tp-typeteori.jpg` (teambuilding/people)
-
-**`docs/arkiv/`:**
-- Purpose: Historical reference material from the old WordPress site and earlier design iterations
-- Contains: Old HTML backups, CSS, scraped content, strategy docs, 5 iterative design versions
-- Key files: `all info` (full scraped content from old site), `strategi` (marketing strategy)
+| Directory | Purpose |
+|---|---|
+| `src/app/` | Route segments (one `page.tsx` per route), API routes, global layout and styles |
+| `src/app/api/` | Server-side API endpoints (currently only contact form) |
+| `src/components/layout/` | Structural components used across all pages (Navbar, Footer) |
+| `src/components/sections/` | Self-contained homepage sections with animations |
+| `src/components/ui/` | Smaller reusable UI building blocks |
+| `src/lib/data/` | Static data constants and types |
 
 ## Key File Locations
 
-**Entry Points:**
-- `web/src/app/layout.tsx`: Root layout, font loading, HTML metadata
-- `web/src/app/page.tsx`: Homepage composition
-
-**Configuration:**
-- `web/package.json`: Dependencies (Next.js 16, React 19, Framer Motion, Lucide, Tailwind v4)
-- `web/next.config.ts`: Next.js configuration (currently empty/default)
-- `web/tsconfig.json`: TypeScript with `@/*` path alias mapping to `./src/*`
-- `web/eslint.config.mjs`: ESLint with core-web-vitals and TypeScript presets
-- `web/postcss.config.mjs`: PostCSS with `@tailwindcss/postcss` plugin
-
-**Styling/Theme:**
-- `web/src/app/globals.css`: Complete color palette (10 CSS custom properties), Tailwind v4 `@theme` mapping, base body styles, heading font-family override
-
-**Core Logic:**
-- `web/src/components/sections/HeroSection.tsx`: Animated hero with word rotation (useEffect interval)
-- `web/src/components/sections/CarouselSection.tsx`: Horizontal scroll carousel with navigation buttons
-- `web/src/components/sections/TestimonialsSection.tsx`: Auto-rotating testimonial quotes with marquee banner
-- `web/src/components/layout/Navbar.tsx`: Scroll-aware fixed navbar with show/hide animation
-
-**Content Pages:**
-- `web/src/app/teambuilding/page.tsx`: Most content-rich stub page (~64 lines of text)
-- `web/src/app/referanser/page.tsx`: Client references and testimonials stub
-- `web/src/app/booking/page.tsx`: Booking information stub (unstructured)
+| Need | File |
+|---|---|
+| Root layout, fonts, metadata | `src/app/layout.tsx` |
+| Global CSS, color tokens | `src/app/globals.css` |
+| Homepage composition | `src/app/page.tsx` |
+| Contact form API | `src/app/api/contact/route.ts` |
+| SEO sitemap | `src/app/sitemap.ts` |
+| SEO robots | `src/app/robots.ts` |
+| Redirects from old site | `next.config.ts` |
+| Security headers, caching | `vercel.json` |
+| Reference/testimonial data | `src/lib/data/references.ts` |
+| TypeScript config | `tsconfig.json` |
+| ESLint config | `eslint.config.mjs` |
+| PostCSS config | `postcss.config.mjs` |
 
 ## Naming Conventions
 
-**Files:**
-- Page components: `page.tsx` (Next.js convention)
-- Layout: `layout.tsx` (Next.js convention)
-- Section components: `PascalCase` with `Section` suffix: `HeroSection.tsx`, `CarouselSection.tsx`
-- Layout components: `PascalCase` descriptive names: `Navbar.tsx`, `Footer.tsx`
-- CSS: `globals.css` (single file)
+### Files and Directories
+- **Route segments**: lowercase with hyphens (`om-oss`, `praktisk-informasjon`, `kajakkturer`)
+- **Components**: PascalCase (`HeroSection.tsx`, `ContactForm.tsx`, `PersonVideoCard.tsx`)
+- **Data files**: lowercase (`references.ts`)
+- **API routes**: `route.ts` within named directory (`api/contact/route.ts`)
 
-**Directories:**
-- Route segments: Norwegian kebab-case: `om-oss/`, `praktisk-informasjon/`, `kulturvandring-med-sjarmerende-treskoyte/`
-- Component groups: lowercase singular category: `layout/`, `sections/`, `ui/`
+### Component Organization
+- `layout/` - Components that appear on every page (Navbar, Footer)
+- `sections/` - Large, self-contained homepage sections
+- `ui/` - Smaller, potentially reusable components
 
-**Exports:**
-- All components use `export default function ComponentName()`
-- No named exports, no barrel files (no `index.ts` re-exports)
+### Exports
+- All components use **default exports**
+- Data constants use **named exports** with `as const` assertions
+- Types are exported alongside their data (`Company`, `Testimonial`, `TvAppearance`)
 
-**Data Constants:**
-- Module-level `const` arrays in SCREAMING_SNAKE_CASE: `CAROUSEL_DATA`, `BENTO_DATA`, `PEOPLE`, `QUOTES`, `MARQUEE_ITEMS`
+### Data Constants
+- Uppercase for constant arrays: `CAROUSEL_DATA`, `BENTO_DATA`, `PEOPLE`, `MARQUEE_ITEMS`, `QUOTES`
+- Lowercase for page-scoped data: `courses`, `products`, `references`, `categories`, `contacts`
+- JSON-LD variables: `jsonLd`, `courseSchema`, `tourSchema`, `productSchema`
+
+### CSS/Styling
+- Tailwind v4 utility classes exclusively (no CSS modules, no styled-components)
+- Custom colors via CSS custom properties in `:root`, mapped to Tailwind via `@theme`
+- Font families referenced as Tailwind classes: `font-inter`, `font-space`, `font-dm`
+- Consistent semantic color classes: `text-brown`, `text-brown-mid`, `text-teal`, `bg-cream`, `bg-warm-white`
 
 ## Where to Add New Code
 
-**New Page Route:**
-- Create directory: `web/src/app/{route-name-in-norwegian}/`
-- Add file: `web/src/app/{route-name-in-norwegian}/page.tsx`
-- Import Navbar and Footer manually (no shared layout beyond root)
-- Add per-page `metadata` export for SEO
+### New Page
+1. Create directory under `src/app/` with hyphenated name (e.g., `src/app/hesteridning/`)
+2. Add `page.tsx` with `Metadata` export and default component
+3. Include `<Navbar />` and `<Footer />` in the returned JSX
+4. Add JSON-LD structured data if service page
+5. Add URL to `src/app/sitemap.ts`
+6. Add link to `src/components/layout/Navbar.tsx` `navLinks` array if primary navigation
 
-**New Homepage Section:**
-- Create: `web/src/components/sections/{Name}Section.tsx`
-- Add `"use client"` directive if using Framer Motion or React hooks
-- Define data as module-level constants in SCREAMING_SNAKE_CASE
-- Import and place in `web/src/app/page.tsx` at desired position
+### New Homepage Section
+1. Create component in `src/components/sections/` with PascalCase name
+2. Add `"use client"` directive if using Framer Motion or browser APIs
+3. Import and place in `src/app/page.tsx` in desired position
 
-**New Reusable UI Component:**
-- Create: `web/src/components/ui/{ComponentName}.tsx`
-- Use for atomic elements: buttons, cards, inputs, badges, modals
+### New UI Component
+1. Create in `src/components/ui/` with PascalCase name
+2. Use default export
+3. Add `"use client"` only if component uses hooks or browser APIs
 
-**New Layout Component:**
-- Create: `web/src/components/layout/{ComponentName}.tsx`
-- Use for structural elements: sidebars, headers, breadcrumbs
+### New API Route
+1. Create directory under `src/app/api/` (e.g., `src/app/api/booking/`)
+2. Add `route.ts` with named exports for HTTP methods (`GET`, `POST`, etc.)
+3. Update `src/app/robots.ts` if the path should be disallowed from crawlers
 
-**New Shared Utility/Hook:**
-- Create: `web/src/lib/{utilName}.ts` or `web/src/hooks/{useHookName}.ts`
-- These directories do not exist yet; create them as needed
+### New Data/Constants
+1. Add to `src/lib/data/` as a new file or extend existing ones
+2. Use `as const` assertions for typed constants
+3. Export types alongside data
 
-**New API Route (when backend is needed):**
-- Create: `web/src/app/api/{endpoint}/route.ts`
-- No API routes exist yet
+### New Hook or Utility
+1. Create `src/lib/hooks/` or `src/lib/utils/` directory (does not exist yet)
+2. Use named exports for hooks (`useX`) and utility functions
 
-**New Global Styles/Theme Changes:**
-- Edit: `web/src/app/globals.css`
-- Add CSS custom properties to `:root` block
-- Map to Tailwind via `@theme` block
+## External Dependencies
 
-## Special Directories
+| Package | Version | Purpose |
+|---|---|---|
+| `next` | 16.2.1 | Framework |
+| `react` / `react-dom` | 19.2.4 | UI library |
+| `framer-motion` | ^12.38.0 | Animations (hero, scroll, carousel, reveals) |
+| `lucide-react` | ^1.7.0 | Icons (Menu, X, MapPin, etc.) |
+| `resend` | ^6.10.0 | Email sending for contact form |
+| `@vercel/analytics` | ^2.0.1 | Cookieless analytics |
+| `tailwindcss` | ^4 | CSS framework |
 
-**`web/.next/`:**
-- Purpose: Next.js build output and dev server cache
-- Generated: Yes (by `next build` and `next dev`)
-- Committed: No (in `.gitignore`)
+## Static Assets
 
-**`web/node_modules/`:**
-- Purpose: Installed npm dependencies
-- Generated: Yes (by `npm install`)
-- Committed: No (in `.gitignore`)
-
-**`docs/arkiv/`:**
-- Purpose: Historical reference from old WordPress site; not used by the application
-- Generated: No (manually created/scraped)
-- Committed: Yes
-
-**`web/public/`:**
-- Purpose: Static assets served at root URL path
-- Generated: No
-- Committed: Yes
-- Note: Contains default Next.js SVG files that should be cleaned up, plus actual site photos in `images/`
-
-**`.planning/codebase/`:**
-- Purpose: Architecture analysis and planning documents
-- Generated: By analysis tools
-- Committed: Yes
-
----
-
-*Structure analysis: 2026-03-31*
+| Path | Contents |
+|---|---|
+| `public/images/` | Hero images, team photos, service images (~13 files) |
+| `public/images/scraped/` | Images organized by category (sailing, kayak, teambuilding, landscape) |
+| `public/videos/` | 6 Havsul video clips (MP4), interview videos |
+| `public/videos/havsul-frames/` | 52 JPEG frames for scroll video section |
+| `public/images/wannado-logo.svg` | Company logo |

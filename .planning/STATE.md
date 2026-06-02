@@ -139,5 +139,11 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 - Personvern-siden sier eksplisitt ingen tredjepartssporing, cookiefri Vercel Analytics
 - @vercel/analytics v2.0.1 importert fra '@vercel/analytics/next' i root layout
 
+## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 18 added: Fiks sikkerhet, UX og kodekvalitet fra code review
+
 ---
-*Last updated: 2026-03-31 after reprioritizing phase 17 ahead of phase 15*
+*Last updated: 2026-04-01 after adding phase 18 from code review findings*

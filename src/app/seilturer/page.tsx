@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { sanityFetch } from "@/sanity/lib/live";
+import {
+  formatNok,
+  productsByIdsQuery,
+  type SanityProduct,
+} from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
   title: "Seilturer Arendal - Listerskøyta Havsul fra 1933 | Wannado",
@@ -94,20 +100,70 @@ const galleryImages = [
   },
 ];
 
-export default function SeilturerPage() {
+const HAVSUL_PRODUCT_ID = "2457ff17-bd5e-4e7e-80bb-204ed7fdb135";
+
+const fallbackProduct: SanityProduct = {
+  _id: HAVSUL_PRODUCT_ID,
+  name: "Seiltur med Listerskøyta Havsul",
+  price: 350,
+  inStock: true,
+  descriptionText:
+    "Kulturvandring i Arendals skjærgård med den historiske Listerskøyta Havsul fra 1933. Historiefortelling om seilskutetiden, losvirksomhet og uthavner.",
+  imageAlt: "Listerskøyta Havsul seiler i Arendals skjærgård",
+  imageUrl: "/images/havsul.jpg",
+};
+
+export const dynamic = "force-dynamic";
+
+export default async function SeilturerPage() {
+  const { data: products } = await sanityFetch({
+    query: productsByIdsQuery,
+    params: { ids: [HAVSUL_PRODUCT_ID] },
+    perspective: "published",
+  });
+
+  const product = products[0] ?? fallbackProduct;
+  const displayPrice = `Kr ${formatNok(product.price ?? 350)},-`;
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            ...jsonLd,
+            name: product.name,
+            description: product.descriptionText,
+            offers: [
+              {
+                "@type": "Offer",
+                name: "Seiltur per person",
+                price: String(product.price ?? 350),
+                priceCurrency: "NOK",
+                eligibleQuantity: {
+                  "@type": "QuantitativeValue",
+                  maxValue: 12,
+                  unitText: "personer",
+                },
+              },
+              {
+                "@type": "Offer",
+                name: "Charter Havsul",
+                price: "3500",
+                priceCurrency: "NOK",
+                unitText: "per time",
+              },
+            ],
+          }),
+        }}
       />
       <Navbar />
 
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[500px] flex items-end">
         <Image
-          src="/images/havsul.jpg"
-          alt="Listerskøyta Havsul seiler i Arendals skjærgård"
+          src={product.imageUrl || "/images/havsul.jpg"}
+          alt={product.imageAlt || "Listerskøyta Havsul seiler i Arendals skjærgård"}
           fill
           className="object-cover"
           priority
@@ -119,13 +175,12 @@ export default function SeilturerPage() {
             Seiltur i skjærgården
           </p>
           <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
-            Seil med Havsul
+            {product.name}
             <br />
             fra 1933
           </h1>
           <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
-            En kulturvandring til sjøs gjennom Arendals rike maritime historie,
-            ombord i en autentisk Listerskøyte.
+            {product.descriptionText}
           </p>
         </div>
       </section>
@@ -139,9 +194,7 @@ export default function SeilturerPage() {
               Historiefortelling i Arendals skjærgård
             </h2>
             <p className="font-inter text-lg text-brown-mid leading-relaxed">
-              Sett deg inn i Arendals storhetstid under seilskutetiden. Ombord i
-              Listerskøyta Havsul, bygget i 1933, får du innblikk i
-              skipsbygging, losvirksomhet, fanteliv og livet langs kysten.
+              {product.descriptionText}
             </p>
             <p className="font-inter text-lg text-brown-mid leading-relaxed">
               Vi seiler forbi uthavnen Merdø og Brattekleiv Skipsverft, med
@@ -275,7 +328,7 @@ export default function SeilturerPage() {
                   Per person
                 </p>
                 <p className="font-space text-4xl font-bold text-brown">
-                  Kr 350,-
+                  {displayPrice}
                 </p>
                 <ul className="mt-3 space-y-1.5 font-inter text-sm text-brown-mid">
                   <li className="flex items-center gap-2">
@@ -365,21 +418,76 @@ export default function SeilturerPage() {
           <p className="font-inter text-lg text-brown-mid text-center max-w-2xl mx-auto mb-14">
             Fra turer i Arendals vakre skjærgård med Listerskøyta Havsul.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {galleryImages.map((image, idx) => (
               <div
                 key={image.src}
-                className="relative overflow-hidden rounded-2xl aspect-[3/2]"
+                className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
+                  idx === 0 ? "sm:col-span-2 aspect-[2/1]" : "aspect-[3/2]"
+                }`}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-full"
+                  width={idx === 0 ? 1200 : 600}
+                  height={idx === 0 ? 600 : 400}
+                  sizes={idx === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-brown/0 group-hover:bg-brown/10 transition-colors duration-300" />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Møt skipperen */}
+      <section className="bg-cream py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
+                Møt skipperen
+              </p>
+              <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-4">
+                Roar Laugerud
+              </h2>
+              <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mb-4">
+                Roar er mannen ved roret. Med Veileder Hav-sertifikat, fritidsskipper og
+                BCU nest høyeste nivå bak seg, er han en av Norges mest erfarne
+                padleinstruktører og skippere. Hans rolige tilstedeværelse og levende
+                historiefortelling gjør hver seiltur unik.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full">
+                  Veileder Hav
+                </span>
+                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full">
+                  Fritidsskipper
+                </span>
+                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full">
+                  Autorisert 12 passasjerer
+                </span>
+              </div>
+              <a
+                href="mailto:roar@wannado.no"
+                className="font-inter text-sm font-medium text-brown-muted hover:text-brown transition-colors"
+              >
+                roar@wannado.no
+              </a>
+            </div>
+            <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
+              <video
+                className="meet-video w-full h-full object-cover"
+                muted
+                playsInline
+                preload="metadata"
+                controls
+                poster="/images/P7270038.jpg"
+              >
+                <source src="/videos/havsul-intervju-roar.mp4#t=2" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
       </section>

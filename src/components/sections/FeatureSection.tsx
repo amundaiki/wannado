@@ -49,32 +49,32 @@ export default function FeatureSection() {
               For Bedrifter
             </div>
             <h2 className="font-space text-3xl md:text-5xl font-bold text-brown leading-[1.15] mt-3">
-              Følg din ledestjerne. Bygg sterkere team.
+              Teambuilding som bygger tillit og samhold.
             </h2>
             <p className="font-inter text-base md:text-lg text-brown-mid leading-[1.8] mt-6">
-              Våre teambuilding-kurs er utviklet med over 20 års erfaring innen prestasjonskultur 
-              og JTI/NLP-metodikk. Utfordre komfortsonen, lær mer om dere selv og hverandre 
-              – på sjøen, med hester, eller på utvalgte destinasjoner.
+              I over 15 år har Wannado laget opplegg for grupper som trenger mer enn en hyggelig dag ute.
+              Vi kombinerer lek, samarbeid og tydelige rammer slik at dere får en opplevelse som merkes
+              lenge etter at dagen er over.
             </p>
             <ul className="mt-8 space-y-3 font-inter text-sm md:text-base text-brown-muted">
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0"></span>
-                Skreddersydde ledergruppe-samlinger
+                360° Wannado, Cluedo og Mord i Cicilia
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0"></span>
-                Seiling, navigasjon og felles master-oppgaver
+                Innendørs og utendørs opplegg tilpasset gruppen
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0"></span>
-                Aktiviteter med islandshest for mestring og tillit
+                Mulighet for faglig påfyll med foredrag og JTI
               </li>
             </ul>
             <a
-              href="#kontakt"
+              href="/teambuilding"
               className="inline-block mt-10 font-inter text-base font-medium text-brown hover:text-teal hover:underline transition-colors"
             >
-              Les mer om våre bedriftskurs &rarr;
+              Les mer om teambuilding &rarr;
             </a>
           </motion.div>
 

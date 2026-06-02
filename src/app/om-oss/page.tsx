@@ -225,12 +225,13 @@ export default function OmOssPage() {
               <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
                 <video
                   controls
+                  muted
+                  playsInline
                   preload="metadata"
                   poster="/images/tp-typeteori.jpg"
                   className="w-full h-full object-cover"
                 >
-                  <source src="/videos/havsul-intervju-tone.mp4" type="video/mp4" />
-                  Nettleseren din støtter ikke videoavspilling.
+                  <source src="/videos/havsul-intervju-tone.mp4#t=2" type="video/mp4" />
                 </video>
               </div>
               <h3 className="font-space text-xl font-semibold text-brown mt-4">
@@ -242,12 +243,13 @@ export default function OmOssPage() {
               <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
                 <video
                   controls
+                  muted
+                  playsInline
                   preload="metadata"
                   poster="/images/P7270038.jpg"
                   className="w-full h-full object-cover"
                 >
-                  <source src="/videos/havsul-intervju-roar.mp4" type="video/mp4" />
-                  Nettleseren din støtter ikke videoavspilling.
+                  <source src="/videos/havsul-intervju-roar.mp4#t=2" type="video/mp4" />
                 </video>
               </div>
               <h3 className="font-space text-xl font-semibold text-brown mt-4">

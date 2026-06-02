@@ -26,11 +26,9 @@ export default function ScrollVideoSection() {
   });
 
   const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
-
-  const subtitleOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.7, 0.85], [0, 1, 1, 0]);
-  const headingOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.65, 0.8], [0, 1, 1, 0]);
-  const headingY = useTransform(scrollYProgress, [0.2, 0.35, 0.65, 0.8], [30, 0, 0, -30]);
-  const ctaOpacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.75], [0, 1, 1, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0.16, 0.28, 0.68, 0.82], [0, 1, 1, 0]);
+  const contentY = useTransform(scrollYProgress, [0.16, 0.28, 0.68, 0.82], [36, 0, 0, -24]);
+  const contentScale = useTransform(scrollYProgress, [0.16, 0.28, 0.68, 0.82], [0.985, 1, 1, 0.995]);
 
   // Sett canvas-størrelse (kun ved mount og resize)
   const sizeCanvas = useCallback(() => {
@@ -138,18 +136,18 @@ export default function ScrollVideoSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] bg-brown"
+      className="relative h-[300vh] bg-[#1f1712]"
     >
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        {!ready && (
-          <NextImage
-            src="/images/havsul-poster.jpg"
-            alt="Listerskøyten Havsul"
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-        )}
+        <NextImage
+          src="/images/havsul-poster.jpg"
+          alt="Listerskøyten Havsul"
+          fill
+          sizes="100vw"
+          className={`object-cover transition-opacity duration-700 ${
+            ready ? "opacity-0" : "opacity-100"
+          }`}
+        />
 
         <canvas
           ref={canvasRef}
@@ -160,28 +158,28 @@ export default function ScrollVideoSection() {
 
         <div className="absolute inset-0 bg-black/30" />
 
-        <div className="relative z-10 text-center px-6">
-          <motion.p
-            className="font-dm italic text-cream/80 text-lg md:text-xl mb-3"
-            style={{ opacity: subtitleOpacity }}
-          >
+        <motion.div
+          className="relative z-10 px-6 text-center will-change-transform"
+          style={{ opacity: contentOpacity, y: contentY, scale: contentScale }}
+        >
+          <p className="font-dm italic text-cream/80 text-lg md:text-xl mb-3">
             Listerskøyta Havsul
-          </motion.p>
-          <motion.h2
-            className="font-space text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-            style={{ opacity: headingOpacity, y: headingY }}
-          >
+          </p>
+          <h2 className="font-space text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Seil gjennom historien
-          </motion.h2>
-          <motion.div style={{ opacity: ctaOpacity }}>
+          </h2>
+          <div>
             <a
               href="/seilturer"
-              className="inline-block bg-teal text-white font-space font-semibold px-8 py-3 rounded-full hover:bg-teal/90 transition-colors"
+              className="inline-block bg-teal text-white font-space font-semibold px-8 py-3.5 rounded-full hover:bg-teal/90 transition-colors text-base md:text-lg"
             >
               Se seilturene
             </a>
-          </motion.div>
-        </div>
+            <p className="font-inter text-white/50 text-sm mt-4">
+              Med skipper Roar ved roret
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

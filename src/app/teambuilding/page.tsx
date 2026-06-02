@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { sanityFetch } from "@/sanity/lib/live";
+import {
+  allProductsQuery,
+  formatNok,
+  type SanityProduct,
+} from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
   title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
@@ -16,17 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
-const schemaPrices: Record<string, number> = {
-  "360\u00B0 Wannado": 16500,
-  "Heia dem som vinner": 16500,
-  "Påfyll": 1950,
-  "Cluedo": 16500,
-  "Mord i Cicilia": 4500,
-  "Kajakk og skjærgårdssafari": 1350,
-};
-
 const products = [
   {
+    id: "513c0676-c037-403f-8b78-f7c5d4c1a8a7",
     name: "360\u00B0 Wannado",
     description:
       "Et 71\u00B0 nord-lignende arrangement med utfordrende aktiviteter for lag som ønsker å bli bedre kjent. Tankenøtter og samarbeidsoppgaver i et lavt til moderat aktivitetsnivå.",
@@ -37,6 +35,7 @@ const products = [
     alt: "Deltakere i utendørs lagkonkurranse under teambuilding med Wannado",
   },
   {
+    id: "cb24fedf-ee87-498e-89d3-f6d89534e2ce",
     name: "Heia dem som vinner",
     description:
       "Innendørs konkurranse inspirert av TV-programmer som Vinn på minuttet og Mesternes Mester. Wannado organiserer oppgavene, tidtakingen og opplegg, dere leverer energien.",
@@ -47,6 +46,7 @@ const products = [
     alt: "Innendørs teambuilding-konkurranse på hotell med engasjerte deltakere",
   },
   {
+    id: "ea1cd107-08e2-4f00-a936-ee5c7149b867",
     name: "Påfyll",
     description:
       "Utendørs arrangement på Bjellandstrand Gård på Tromøy. En herlig dag med lek, kreativitet og samspill, avsluttet med deilig mat fra jord og hage. Inkludert venue, mat og kaffe/te.",
@@ -57,6 +57,7 @@ const products = [
     alt: "Gruppeaktivitet utendørs med kolleger under Påfyll-arrangementet",
   },
   {
+    id: "a6ab44be-0c0b-4016-b659-b4a0873364db",
     name: "Cluedo",
     description:
       "Mordmysterie der lagene samler spor og eliminerer mistenkte for å avsløre morderen, våpenet, åstedet og motivet. Tilgjengelig på Strand Hotel Fevik, Lillesand Hotell Norge, Lyngørporten, Kragerø Resort og Arendal Herregaard.",
@@ -67,6 +68,7 @@ const products = [
     alt: "Mordmysterie-arrangement på hotell der lag løser gåter sammen",
   },
   {
+    id: "5cf46212-dbcb-4e39-8fce-9ae31c76a95b",
     name: "Mord i Cicilia",
     description:
       "Sittende mordmysterie der deltakerne ledes gjennom et mysterium rundt kafebord i møterommet. Skaper spennende situasjoner og festlig kommunikasjon.",
@@ -77,6 +79,7 @@ const products = [
     alt: "Deltakere rundt bord under sittende mordmysterie med Wannado",
   },
   {
+    id: "3d8e18c5-a512-4503-89bc-8df26e8f22bc",
     name: "Kajakk og skjærgårdssafari",
     description:
       "Introduksjon til kajakk med enkel padleteknikk, tilrettelagt for gruppen. Alt nødvendig utstyr er inkludert. Perfekt som tilleggsaktivitet til en teambuildingdag.",
@@ -87,6 +90,13 @@ const products = [
     alt: "Utendørs aktivitet som del av teambuilding-opplevelse med Wannado",
   },
 ];
+
+export const dynamic = "force-dynamic";
+
+function firstNumber(value: string) {
+  const match = value.match(/\d[\d\s]*/);
+  return match ? Number.parseInt(match[0].replace(/\s/g, ""), 10) : 0;
+}
 
 const references = [
   "Aker Solutions",
@@ -100,10 +110,38 @@ const references = [
   "Teekay",
 ];
 
-export default function TeambuildingPage() {
+export default async function TeambuildingPage() {
+  const { data: sanityProducts } = await sanityFetch({
+    query: allProductsQuery,
+    perspective: "published",
+  });
+
+  const productById = new Map<string, SanityProduct>(
+    sanityProducts.map((product: SanityProduct) => [product._id, product]),
+  );
+
+  const productCards = products.map((product) => {
+    const sanityProduct = productById.get(product.id);
+    const priceValue =
+      sanityProduct?.price ??
+      firstNumber(product.price);
+
+    return {
+      ...product,
+      name: sanityProduct?.name || product.name,
+      description: sanityProduct?.descriptionText || product.description,
+      price:
+        product.price.startsWith("Kr")
+          ? `Kr ${formatNok(priceValue)},-`
+          : product.price,
+      image: sanityProduct?.imageUrl || product.image,
+      alt: sanityProduct?.imageAlt || product.alt,
+    };
+  });
+
   const productSchema = {
     "@context": "https://schema.org",
-    "@graph": products.map((product) => ({
+    "@graph": productCards.map((product) => ({
       "@type": "Product",
       name: product.name,
       description: product.description,
@@ -113,12 +151,14 @@ export default function TeambuildingPage() {
       },
       offers: {
         "@type": "Offer",
-        price: schemaPrices[product.name],
+        price: firstNumber(product.price),
         priceCurrency: "NOK",
         availability: "https://schema.org/InStock",
         url: "https://wannado.no/kontakt?tjeneste=Teambuilding",
       },
-      image: `https://wannado.no${product.image}`,
+      image: product.image.startsWith("http")
+        ? product.image
+        : `https://wannado.no${product.image}`,
       category: "Teambuilding",
     })),
   };
@@ -181,7 +221,7 @@ export default function TeambuildingPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {products.map((product) => (
+            {productCards.map((product) => (
               <div
                 key={product.name}
                 className="bg-white rounded-2xl shadow-sm border border-border flex flex-col hover:shadow-md transition-shadow duration-300 overflow-hidden"
@@ -219,6 +259,53 @@ export default function TeambuildingPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Møt fasilitatoren */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="relative overflow-hidden rounded-xl aspect-video bg-brown/5">
+              <video
+                className="meet-video w-full h-full object-cover"
+                muted
+                playsInline
+                preload="metadata"
+                controls
+                poster="/images/tp-typeteori.jpg"
+              >
+                <source src="/videos/havsul-intervju-tone.mp4#t=2" type="video/mp4" />
+              </video>
+            </div>
+            <div>
+              <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
+                Møt fasilitatoren
+              </p>
+              <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-4">
+                Tone Pernille Sivertsen
+              </h2>
+              <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mb-4">
+                Med JTI-sertifisering, NLP Master Coach-utdanning og over 15 års erfaring
+                med gruppeopplevelser, vet Tone hvordan hun skal skape rom for lek, mestring
+                og ekte samhold. Hun tilpasser hvert arrangement etter gruppens dynamikk.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full">
+                  JTI-sertifisert
+                </span>
+                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full">
+                  NLP Master Coach
+                </span>
+              </div>
+              <a
+                href="tel:+4799469957"
+                className="font-inter text-sm font-medium text-brown-muted hover:text-brown transition-colors"
+              >
+                +47 99 46 99 57
+              </a>
+            </div>
           </div>
         </div>
       </section>

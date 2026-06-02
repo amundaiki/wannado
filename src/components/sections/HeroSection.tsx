@@ -5,19 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const words = ["ro og balanse", "neste opplevelse", "eventyr på havet"];
+const HERO_POSTER = "/images/scraped/sailing/baat-fb-havsul.jpg";
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mql.matches);
-
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,33 +19,34 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* Background: video on desktop, static image on mobile */}
-      {isMobile ? (
-        <Image
-          src="/images/scraped/sailing/baat-fb-havsul.jpg"
-          alt="Havsul under seil i Arendals skjærgård"
-          fill
-          priority
-          sizes="100vw"
-          quality={85}
-          className="object-cover"
+    <section className="relative w-full min-h-[100dvh] overflow-hidden">
+      <Image
+        src={HERO_POSTER}
+        alt="Havsul under seil i Arendals skjærgård"
+        fill
+        priority
+        sizes="100vw"
+        quality={85}
+        className="object-cover"
+      />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={HERO_POSTER}
+        onLoadedData={() => setIsVideoReady(true)}
+        onCanPlay={() => setIsVideoReady(true)}
+        className={`absolute inset-0 hidden h-full w-full object-cover transition-opacity duration-700 md:block ${
+          isVideoReady ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <source
+          src="/videos/havsul-clip-01-aerial-kystby.mp4"
+          type="video/mp4"
         />
-      ) : (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/scraped/sailing/baat-fb-havsul.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="/videos/havsul-clip-01-aerial-kystby.mp4"
-            type="video/mp4"
-          />
-        </video>
-      )}
+      </video>
       
       {/* Subtle Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#48382B]/70 via-[#48382B]/20 to-transparent z-10" />
@@ -64,7 +57,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-space font-bold text-white leading-[1.1] text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+          className="font-space font-bold text-white leading-[1.1] text-[clamp(2.25rem,5vw+1rem,4.5rem)]"
         >
           Finn din<br />
           <span className="block h-[1.2em] relative overflow-hidden mt-2">
@@ -87,9 +80,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="font-inter text-white/70 mt-6 max-w-lg text-lg md:text-xl"
+          className="font-inter text-white/90 mt-6 max-w-[70ch] text-lg md:text-xl"
         >
-          Mennesker trenger pusterom. Ombord i vår skøyte fra 1933, 
+          Mennesker trenger pusterom. Ombord i vår skøyte fra 1933,
           gjennom Sørlandets vakre skjærgård, finner vi tilbake til lek og fellesskap.
         </motion.p>
 
@@ -114,7 +107,7 @@ export default function HeroSection() {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: [0.4, 0, 0.2, 1],
             }}
             className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/60"
           />

@@ -87,49 +87,72 @@ export default function UtleiePage() {
               </h3>
 
               {/* Enkel kajakk */}
-              {/* TODO: Sett inn faktisk pris når tilgjengelig */}
               <div className="mb-6 pb-6 border-b border-border">
                 <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
                   Enkel kajakk
                 </p>
                 <p className="font-space text-2xl font-bold text-brown">
-                  Ta kontakt
+                  Fra kr 250,-
                 </p>
                 <p className="font-inter text-sm text-brown-mid mt-1">
-                  for pris og tilgjengelighet
+                  per time, inkludert utstyr
                 </p>
               </div>
 
               {/* Dobbel kajakk */}
-              {/* TODO: Sett inn faktisk pris når tilgjengelig */}
               <div className="mb-6 pb-6 border-b border-border">
                 <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
                   Dobbel kajakk
                 </p>
                 <p className="font-space text-2xl font-bold text-brown">
-                  Ta kontakt
+                  Fra kr 350,-
                 </p>
                 <p className="font-inter text-sm text-brown-mid mt-1">
-                  for pris og tilgjengelighet
+                  per time, inkludert utstyr
                 </p>
               </div>
 
               {/* Kano */}
-              {/* TODO: Sett inn faktisk pris når tilgjengelig */}
               <div className="mb-8">
                 <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
                   Kano
                 </p>
                 <p className="font-space text-2xl font-bold text-brown">
-                  Ta kontakt
+                  Fra kr 200,-
                 </p>
                 <p className="font-inter text-sm text-brown-mid mt-1">
-                  for pris og tilgjengelighet
+                  per time, inkludert utstyr
+                </p>
+              </div>
+
+              {/* Dobbel kajakk */}
+              <div className="mb-6 pb-6 border-b border-border">
+                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                  Dobbel kajakk
+                </p>
+                <p className="font-space text-2xl font-bold text-brown">
+                  Fra kr 350,-
+                </p>
+                <p className="font-inter text-sm text-brown-mid mt-1">
+                  per time, inkludert utstyr
+                </p>
+              </div>
+
+              {/* Kano */}
+              <div className="mb-8">
+                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                  Kano
+                </p>
+                <p className="font-space text-2xl font-bold text-brown">
+                  Fra kr 200,-
+                </p>
+                <p className="font-inter text-sm text-brown-mid mt-1">
+                  per time, inkludert utstyr
                 </p>
               </div>
 
               <Link
-                href="/kontakt"
+                href="/kontakt?tjeneste=Utleie"
                 className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
               >
                 Bestill utleie
@@ -251,12 +274,12 @@ export default function UtleiePage() {
             med Roar for å reservere.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/kontakt"
-              className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
-            >
-              Bestill utleie
-            </Link>
+              <Link
+                href="/kontakt?tjeneste=Utleie"
+                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
+              >
+                Bestill utleie
+              </Link>
             <a
               href="tel:+4794826710"
               className="inline-block border-2 border-white/30 text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"

@@ -1,238 +1,232 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-03-31
-
-## Tech Debt
-
-**All content pages are raw WordPress text dumps:**
-- Issue: 12 of 13 sub-pages (`/booking`, `/teambuilding`, `/opplevelser`, `/kontakt`, `/foredrag`, `/utleie`, `/kurs`, `/menneskene`, `/referanser`, `/samarbeidspartnere`, `/personvern`, `/praktisk-informasjon`, `/kulturvandring-med-sjarmerende-treskoyte`) contain unstructured text scraped from the old WordPress site, rendered as consecutive `<p>` tags with no headings, lists, links, images, or semantic HTML.
-- Files:
-  - `web/src/app/booking/page.tsx`
-  - `web/src/app/teambuilding/page.tsx`
-  - `web/src/app/opplevelser/page.tsx`
-  - `web/src/app/kontakt/page.tsx`
-  - `web/src/app/foredrag/page.tsx`
-  - `web/src/app/utleie/page.tsx`
-  - `web/src/app/kurs/page.tsx`
-  - `web/src/app/menneskene/page.tsx`
-  - `web/src/app/referanser/page.tsx`
-  - `web/src/app/samarbeidspartnere/page.tsx`
-  - `web/src/app/personvern/page.tsx`
-  - `web/src/app/praktisk-informasjon/page.tsx`
-  - `web/src/app/kulturvandring-med-sjarmerende-treskoyte/page.tsx`
-- Impact: Unusable for end users. No semantic structure means terrible SEO. No booking forms, no CTAs, no images. The text is sometimes fragmented mid-sentence (e.g., email address split across 4 `<p>` tags in `booking/page.tsx` lines 31-34). Placeholder content like `"Tekst her"` in `samarbeidspartnere/page.tsx` lines 14, 16, 18.
-- Fix approach: Rewrite every sub-page with proper semantic HTML, headings, images, CTAs, and structured content. Consider a CMS (Sanity, Contentful) or at minimum extract content into structured data files.
-
-**All images use native `<img>` instead of `next/image`:**
-- Issue: Every image in the codebase uses raw `<img>` tags with ESLint rule `@next/next/no-img-element` explicitly disabled via inline comments. This bypasses Next.js image optimization (WebP/AVIF conversion, lazy loading, responsive srcset, blur placeholder).
-- Files:
-  - `web/src/components/sections/HeroSection.tsx` (line 22)
-  - `web/src/components/sections/CarouselSection.tsx` (line 98)
-  - `web/src/components/sections/BentoGridSection.tsx` (lines 52, 80, 109)
-  - `web/src/components/sections/FeatureSection.tsx` (lines 19, 26)
-  - `web/src/components/sections/PeopleSection.tsx` (line 45)
-- Impact: Large unoptimized images served to all devices. The hero image `baat-fb.jpg` is 620KB as a JPEG, likely 2-3x larger than needed. Degrades Core Web Vitals (LCP), wastes bandwidth on mobile, and hurts SEO ranking.
-- Fix approach: Replace all `<img>` with `next/image`. Set `priority` on the hero image. Add `sizes` attributes. Consider converting images to WebP/AVIF at build time.
-
-**Every homepage section is a client component:**
-- Issue: All 7 section components on the homepage have `"use client"` directives, making the entire page a client-side rendered application. Most of these components use Framer Motion for entrance animations, but the content itself is static.
-- Files:
-  - `web/src/components/sections/HeroSection.tsx`
-  - `web/src/components/sections/CarouselSection.tsx`
-  - `web/src/components/sections/BentoGridSection.tsx`
-  - `web/src/components/sections/FeatureSection.tsx`
-  - `web/src/components/sections/PeopleSection.tsx`
-  - `web/src/components/sections/TestimonialsSection.tsx`
-  - `web/src/components/layout/Navbar.tsx`
-- Impact: No server-side rendering benefit for content. Larger JavaScript bundle shipped to client. Search engines may not index content reliably. Contradicts Next.js RSC architecture.
-- Fix approach: Extract static content into Server Components. Create thin client wrapper components only for the animation logic. Use CSS animations or `motion` components with server-rendered children where possible.
-
-**Footer uses `<a>` tags instead of Next.js `<Link>`:**
-- Issue: All navigation links in the Footer use raw `<a href="...">` instead of `next/link`, causing full page reloads on every click.
-- Files: `web/src/components/layout/Footer.tsx` (lines 17-20, 56, 68-69)
-- Impact: Slower navigation, no client-side routing benefit, poor UX.
-- Fix approach: Replace `<a href>` with `<Link href>` for all internal navigation links.
-
-**No shared page layout or template:**
-- Issue: Every sub-page manually imports and renders `<Navbar />` and `<Footer />`, and duplicates the same wrapper `<main>` element with identical className. There is no shared layout beyond `layout.tsx`.
-- Files: All 13 page files under `web/src/app/*/page.tsx`
-- Impact: Navbar and Footer re-render on every navigation. Layout changes must be applied to 13+ files. Violates DRY.
-- Fix approach: Move `<Navbar />` and `<Footer />` into `web/src/app/layout.tsx`. Create a route group layout for sub-pages with the standard hero header pattern.
-
-**All content is hardcoded in components:**
-- Issue: Product data (carousel items, bento grid, testimonials, people) is hardcoded as const arrays inside component files. No CMS, no data files, no API calls.
-- Files:
-  - `web/src/components/sections/CarouselSection.tsx` (CAROUSEL_DATA, lines 7-36)
-  - `web/src/components/sections/BentoGridSection.tsx` (BENTO_DATA, lines 5-36)
-  - `web/src/components/sections/TestimonialsSection.tsx` (QUOTES, MARQUEE_ITEMS, lines 6-28)
-  - `web/src/components/sections/PeopleSection.tsx` (PEOPLE, lines 5-20)
-- Impact: Content changes require code deployments. Not scalable for the client who needs to update pricing, add new experiences, etc.
-- Fix approach: Extract to data files at minimum. Evaluate CMS integration (Sanity, Contentful, or headless WordPress) for client self-service.
-
-## Known Bugs
-
-**Booking page has fragmented email addresses:**
-- Symptoms: The email address `tp@wannado.no` is split across 4 separate `<p>` tags: "tp", "@wannado", ".no" on lines 31-33 of the booking page. Same for `roar@wannado.no`. This was likely a scraping artifact from the WordPress site.
-- Files: `web/src/app/booking/page.tsx` (lines 30-34, 38-40)
-- Trigger: Simply visiting `/booking`
-- Workaround: None. The email addresses are unreadable and unclickable.
-
-**Samarbeidspartnere page has placeholder text:**
-- Symptoms: The page shows literal placeholder text "Tekst her" repeated 3 times.
-- Files: `web/src/app/samarbeidspartnere/page.tsx` (lines 14, 16, 18)
-- Trigger: Visiting `/samarbeidspartnere`
-- Workaround: None.
-
-**Spelling error in praktisk-informasjon page:**
-- Symptoms: Text reads "skalder" instead of "skader" (injuries) on line 19.
-- Files: `web/src/app/praktisk-informasjon/page.tsx` (line 19)
-- Trigger: Visiting `/praktisk-informasjon`
-- Workaround: None.
-
-**Spelling error in samarbeidspartnere page:**
-- Symptoms: "Gjveving" instead of "Gjeving" on line 17.
-- Files: `web/src/app/samarbeidspartnere/page.tsx` (line 17)
-- Trigger: Visiting `/samarbeidspartnere`
-- Workaround: None.
-
-**Kulturvandring page has raw slug as heading:**
-- Symptoms: The h1 tag renders `"Kulturvandring-med-sjarmerende-treskoyte"` with hyphens instead of spaces and missing special character ø (should be "skøyte").
-- Files: `web/src/app/kulturvandring-med-sjarmerende-treskoyte/page.tsx` (line 9)
-- Trigger: Visiting the kulturvandring page
-- Workaround: None.
-
-**Praktisk-informasjon page has raw slug as heading:**
-- Symptoms: The h1 tag renders `"Praktisk-informasjon"` with a hyphen.
-- Files: `web/src/app/praktisk-informasjon/page.tsx` (line 9)
-- Trigger: Visiting the page
-- Workaround: None.
-
-## Security Considerations
-
-**No Content Security Policy:**
-- Risk: The site has no CSP headers configured. XSS attacks could inject scripts.
-- Files: `web/next.config.ts` (empty config)
-- Current mitigation: None.
-- Recommendations: Add security headers (CSP, X-Frame-Options, X-Content-Type-Options) via `next.config.ts` headers configuration or middleware.
-
-**Personvern page references tracking that does not exist:**
-- Risk: The privacy policy at `/personvern` mentions "Google og Facebook" tracking codes, but the new site has no analytics, tracking pixels, or cookie consent mechanism implemented.
-- Files: `web/src/app/personvern/page.tsx`
-- Current mitigation: None. The privacy policy is outdated/inaccurate.
-- Recommendations: Either implement the tracking (with proper cookie consent per Norwegian GDPR/ekom regulations) or rewrite the privacy policy to match reality. A cookie consent banner is legally required before setting tracking cookies.
-
-**No GDPR cookie consent mechanism:**
-- Risk: If any analytics or tracking is added, Norwegian law (ekomloven / personopplysningsloven) requires explicit consent before placing non-essential cookies.
-- Files: Not applicable (nothing implemented yet)
-- Current mitigation: None.
-- Recommendations: Plan for a cookie consent solution before adding any analytics.
-
-## Performance Bottlenecks
-
-**Unoptimized hero image (620KB):**
-- Problem: The hero section loads `baat-fb.jpg` (620KB) as a raw `<img>` tag with no lazy loading, no srcset, no format optimization.
-- Files: `web/src/components/sections/HeroSection.tsx` (line 23)
-- Cause: Using `<img>` instead of `next/image`. No image optimization pipeline.
-- Improvement path: Switch to `next/image` with `priority`, `fill`, and `sizes`. Convert source images to modern formats. Consider responsive breakpoints.
-
-**Framer Motion bundle on every page:**
-- Problem: 6 components import `framer-motion`, which adds roughly 30-50KB gzipped to the client bundle. It is loaded on the homepage for entrance animations that play once.
-- Files: All section components + `web/src/components/layout/Navbar.tsx`
-- Cause: Every section component is `"use client"` and imports framer-motion.
-- Improvement path: Evaluate whether CSS animations (`@keyframes` + `IntersectionObserver`) could replace simple fade-in/slide-up animations. Reserve framer-motion for the carousel and marquee where JavaScript control is needed.
-
-**No font subsetting for Norwegian characters:**
-- Problem: Google Fonts are loaded with `subsets: ["latin"]` only. Norwegian characters (aeoeaa) are in the Latin subset, but the extended subset may be needed for all glyphs used in content.
-- Files: `web/src/app/layout.tsx` (lines 5-21)
-- Cause: Default configuration.
-- Improvement path: Verify that all Norwegian characters render correctly. Add `"latin-ext"` subset if needed.
-
-## Fragile Areas
-
-**Homepage composition in page.tsx:**
-- Files: `web/src/app/page.tsx`
-- Why fragile: The homepage is a flat list of 7 section components with no error boundaries. If any section throws, the entire page breaks.
-- Safe modification: Add error boundaries around each section. Test each section independently.
-- Test coverage: Zero tests exist.
-
-**CSS custom property chain:**
-- Files: `web/src/app/globals.css`
-- Why fragile: Tailwind theme colors are mapped via a double indirection: `:root` CSS variables -> `@theme` CSS variables -> Tailwind utility classes. If a `:root` variable name changes, the `@theme` mapping breaks silently with no build error.
-- Safe modification: Always update both `:root` and `@theme` blocks together. Consider using Tailwind v4's direct theme configuration instead of the indirection.
-- Test coverage: None. Visual regression testing would catch this.
-
-## Scaling Limits
-
-**No CMS or data layer:**
-- Current capacity: Content supports exactly what is hardcoded. Adding a new experience or changing a price requires a developer.
-- Limit: The client cannot self-manage any content.
-- Scaling path: Integrate a headless CMS. Sanity or Contentful are good options for this scale. Alternatively, markdown files with frontmatter could work as a simpler approach.
-
-**No booking system:**
-- Current capacity: Zero online bookings. The "Bestill tur" button links to `/kontakt` which shows only a postal address.
-- Limit: All bookings must happen via phone/email. Major friction for customers.
-- Scaling path: Investigate the existing WordPress booking system mentioned in CLAUDE.md. Integrate a booking solution (Cal.com, Bookingkit, or custom forms with email notifications).
-
-## Dependencies at Risk
-
-**Next.js 16.2.1 (pre-release / bleeding edge):**
-- Risk: Next.js 16 is very recent (2026). APIs may be unstable or change between minor versions. The project's own `AGENTS.md` warns about breaking changes.
-- Impact: Build failures or runtime errors after updates. Community resources and Stack Overflow answers may not cover v16 issues.
-- Migration plan: Pin the exact version. Follow Next.js release notes carefully. Consider downgrading to the latest stable 15.x if stability is needed.
-
-**framer-motion ^12.38.0:**
-- Risk: Major version 12 is recent. The caret range allows auto-updating to 12.x patches which occasionally introduce breaking changes in framer-motion's history.
-- Impact: Animations could break after `npm install` on a different machine/CI.
-- Migration plan: Pin exact version in package.json or use a lockfile consistently.
-
-## Missing Critical Features
-
-**No mobile navigation:**
-- Problem: The navbar links (`<ul className="hidden md:flex ...">` in `web/src/components/layout/Navbar.tsx` line 54) are hidden on mobile with no hamburger menu or mobile navigation drawer.
-- Blocks: Mobile users can only see the "Bestill tur" button. Cannot navigate to any sub-page from mobile.
-
-**No SEO metadata on sub-pages:**
-- Problem: Only the root layout has metadata (`web/src/app/layout.tsx` line 23). No sub-page exports its own `metadata` or `generateMetadata`. Every page shows the same title "Wannado - Hva er din lek?" and the same description.
-- Blocks: Impossible to rank for page-specific keywords. Critical blocker given the project goal of top-3 SEO ranking.
-
-**No sitemap.xml or robots.txt:**
-- Problem: No `sitemap.ts`, `robots.ts` in `web/src/app/`, no static files in `web/public/`.
-- Blocks: Search engines cannot discover pages efficiently. Essential for SEO.
-
-**No favicon:**
-- Problem: No `favicon.ico` in `web/public/`, no `icon.tsx` or `apple-icon.tsx` in `web/src/app/`.
-- Blocks: Professional appearance in browser tabs and bookmarks.
-
-**No error.tsx or not-found.tsx:**
-- Problem: No error boundary pages or custom 404 page exist anywhere in the app.
-- Blocks: Users who hit a bad URL see the default Next.js 404 page. No brand consistency.
-
-**No structured data / schema markup:**
-- Problem: No JSON-LD or schema.org markup for local business, events, or services.
-- Blocks: Rich snippets in Google. Critical for SEO goals described in CLAUDE.md.
-
-**No contact form:**
-- Problem: The `/kontakt` page shows only a postal address. No form, no email links, no phone numbers on that page.
-- Blocks: Customer inquiries.
-
-**Placeholder social media links:**
-- Problem: Instagram, Facebook, and LinkedIn links in the Footer all point to `href="#"`.
-- Files: `web/src/components/layout/Footer.tsx` (lines 45, 48, 51)
-- Blocks: Social proof and social media traffic.
-
-**Personvern and Vilkaar footer links are dead:**
-- Problem: Footer "Personvern" and "Vilkaar" links point to `href="#"` instead of `/personvern` and a terms page.
-- Files: `web/src/components/layout/Footer.tsx` (lines 68-69)
-- Blocks: Legal compliance.
-
-## Test Coverage Gaps
-
-**No tests exist:**
-- What's not tested: Everything. Zero test files, no test framework configured, no test runner in package.json scripts.
-- Files: Entire `web/src/` directory
-- Risk: Any refactoring (such as migrating from `<img>` to `next/image`, restructuring layouts, or adding a CMS) has no safety net. Regressions will go unnoticed until manual review.
-- Priority: Medium. The codebase is small enough to manually verify, but tests should be added before any major restructuring.
+**Analysis Date:** 2026-04-01
+**Codebase:** `src/` (Next.js 16 + React 19 + Tailwind v4 + Framer Motion)
 
 ---
 
-*Concerns audit: 2026-03-31*
+## 1. Security
+
+### 1.1 Contact API has no rate limiting or spam protection
+- **Severity:** High
+- **File:** `src/app/api/contact/route.ts`
+- The POST endpoint accepts unlimited requests with no rate limiting, CAPTCHA, or honeypot field. Any bot can spam the endpoint and flood the Resend inbox. In dev mode (no `RESEND_API_KEY`), the endpoint silently succeeds and logs to console, masking the vulnerability.
+
+### 1.2 Contact API is vulnerable to HTML injection in email body
+- **Severity:** High
+- **File:** `src/app/api/contact/route.ts` (lines 39-64)
+- User-submitted fields (`name`, `email`, `phone`, `service`, `message`) are interpolated directly into the HTML email template with no sanitization. An attacker can inject arbitrary HTML/CSS into the outgoing email, enabling phishing attacks against the recipient (mail@wannado.no).
+
+### 1.3 No email format validation on server side
+- **Severity:** Medium
+- **File:** `src/app/api/contact/route.ts` (lines 6-13)
+- The API checks `!email` for presence but does not validate the email format. Malformed `replyTo` addresses will cause silent failures or Resend errors.
+
+### 1.4 dangerouslySetInnerHTML used for JSON-LD (acceptable pattern)
+- **Severity:** Low
+- **Files:** `src/app/page.tsx`, `src/app/seilturer/page.tsx`, `src/app/teambuilding/page.tsx`, `src/app/foredrag/page.tsx`, `src/app/kajakkturer/page.tsx`
+- Used exclusively for `JSON.stringify()` of schema objects. Data is hardcoded, not user-supplied. Low risk, but worth noting.
+
+### 1.5 Google Maps iframe loads without consent mechanism
+- **Severity:** Low
+- **File:** `src/app/kontakt/page.tsx` (lines 167-174)
+- The Google Maps embed loads on page visit with no cookie consent. Depending on GDPR interpretation, this may transmit user data to Google without prior consent.
+
+---
+
+## 2. Tech Debt
+
+### 2.1 Three stub pages with raw WordPress text dumps
+- **Severity:** High
+- **Files:**
+  - `src/app/booking/page.tsx` (55 lines of unstructured `<p>` tags, broken email addresses split across multiple elements, emoji characters)
+  - `src/app/kurs/page.tsx` (26 lines, just a list of course names with no real content)
+  - `src/app/samarbeidspartnere/page.tsx` (51 lines, placeholder text like `"Tekst her"`)
+- These are publicly accessible pages with no metadata, no meaningful content, and damage SEO. The `/booking` page contains broken formatting where email addresses like `tp@wannado.no` are split across four separate `<p>` tags.
+
+### 2.2 Three TODO comments for missing pricing data
+- **Severity:** Medium
+- **File:** `src/app/utleie/page.tsx` (lines 90, 104, 118)
+- Comments: `{/* TODO: Sett inn faktisk pris nar tilgjengelig */}`. All three rental types (single kayak, double kayak, canoe) show "Ta kontakt" instead of actual prices.
+
+### 2.3 Raw `<img>` tag in Navbar instead of next/image
+- **Severity:** Medium
+- **File:** `src/components/layout/Navbar.tsx` (lines 67-73)
+- The logo uses a raw `<img>` element: `<img src="/images/wannado-logo.svg" alt="Wannado" .../>`. This bypasses Next.js image optimization. For SVGs this has minimal performance impact, but it violates the codebase convention of using `next/image` everywhere else.
+
+### 2.4 Footer uses `<a>` tags instead of Next.js `<Link>` for internal navigation
+- **Severity:** Low
+- **File:** `src/components/layout/Footer.tsx` (lines 17-21, 53, 65)
+- Internal links (`/opplevelser`, `/teambuilding`, `/kontakt`, `/personvern`) use raw `<a>` tags instead of `next/link`, causing full page reloads instead of client-side navigation.
+
+### 2.5 Sitemap references non-existent route `/menneskene`
+- **Severity:** Medium
+- **File:** `src/app/sitemap.ts` (line 15)
+- The sitemap includes `https://wannado.no/menneskene` which redirects to `/om-oss` via `next.config.ts`. Sitemap should list canonical URLs, not redirect sources.
+
+### 2.6 BentoGrid items are not linked to any destination
+- **Severity:** Low
+- **File:** `src/components/sections/BentoGridSection.tsx`
+- Grid items have `cursor-pointer` and hover effects but are not wrapped in links. Users see clickable-looking cards that do nothing when clicked.
+
+---
+
+## 3. Performance
+
+### 3.1 111 MB of video files served from public directory
+- **Severity:** High
+- **Path:** `public/videos/`
+- Six video clips (6-25 MB each), two interview videos (~12 MB each), and a hero video (25 MB). These are served as static assets with no CDN-level adaptive bitrate or format optimization. On slow connections, initial page load will be severely impacted.
+- `public/videos/havsul-hero.mp4` is 25 MB and not referenced in code (the hero uses `havsul-clip-01-aerial-kystby.mp4` at 6 MB). Dead file.
+
+### 3.2 Scroll video section loads 52 JPEG frames (11 MB total)
+- **Severity:** High
+- **File:** `src/components/sections/ScrollVideoSection.tsx`
+- **Path:** `public/videos/havsul-frames/` (52 files, 11 MB)
+- All 52 frames are loaded eagerly via `new Image()` in batches of 10. On mobile or slow networks this is ~11 MB of image downloads for a single section. No lazy loading, no WebP/AVIF format, no responsive sizing. The canvas-based rendering also bypasses Next.js image optimization.
+
+### 3.3 Three autoplay videos on homepage consume bandwidth
+- **Severity:** Medium
+- **File:** `src/app/page.tsx` via `VideoBanner` component (`src/components/ui/VideoBanner.tsx`)
+- Three `<VideoBanner>` instances on the homepage autoplay video clips (fyrtarn 12 MB, merdo-ankomst 17 MB, vanndetalj 5 MB). Combined with the hero video, the homepage potentially loads 40+ MB of video. No `preload="none"` attribute, no intersection observer to delay loading.
+
+### 3.4 HeroSection detects mobile via JavaScript instead of CSS
+- **Severity:** Low
+- **File:** `src/components/sections/HeroSection.tsx` (lines 13-19)
+- Uses `window.matchMedia("(max-width: 767px)")` in useEffect to conditionally render video vs image. This means desktop content flashes briefly on mobile (or vice versa) before the effect runs. A CSS-based approach (`<picture>` or media queries) would avoid the layout shift.
+
+### 3.5 Framer Motion is heavily used across the entire codebase
+- **Severity:** Low
+- **Files:** 10 components import from `framer-motion`
+- Every section component uses Framer Motion for entrance animations (`whileInView`), the navbar uses scroll-based animations, and the testimonials use `AnimatePresence`. The library adds ~30 KB to the client bundle. Currently acceptable, but any additional animation libraries would push bundle size.
+
+---
+
+## 4. Missing Critical Features
+
+### 4.1 No error.tsx, not-found.tsx, loading.tsx, or global-error.tsx
+- **Severity:** High
+- **Path:** `src/app/`
+- Zero error boundary files exist anywhere in the application. If any page throws a runtime error, users see the default Next.js error page with no branding. Missing `not-found.tsx` means 404 responses show the default Next.js 404 page. No `loading.tsx` means no skeleton/loading UI during route transitions.
+
+### 4.2 No Suspense boundaries except on ContactForm
+- **Severity:** Medium
+- **File:** `src/app/kontakt/page.tsx` (lines 76-82)
+- Only one Suspense boundary exists in the entire app, wrapping `ContactForm` (which uses `useSearchParams`). No other pages have loading states or streaming SSR boundaries.
+
+### 4.3 No blog / content section exists
+- **Severity:** High
+- Per `CLAUDE.md`: "Blogg for SEO er pakrevd." No blog routes, no CMS integration (Sanity is configured in `next.config.ts` for remote images but not used), no content management system. This is a critical gap for the stated SEO strategy.
+
+### 4.4 No hesteridning (horse riding) page
+- **Severity:** Medium
+- Per `CLAUDE.md`, horse riding is one of the six core services. It is mentioned in text on `/om-oss`, `/kontakt`, and `FeatureSection`, but has no dedicated page. The `/kurs` page mentions "Hestekurs" as a stub line.
+
+### 4.5 No booking integration
+- **Severity:** High
+- Per `CLAUDE.md`: "Booking-funksjonalitet er kritisk." The `/booking` page is a raw WordPress text dump. All "Bestill" buttons throughout the site link to the contact form. There is no actual booking/reservation system, calendar, or payment flow.
+
+---
+
+## 5. Accessibility
+
+### 5.1 Zero ARIA attributes on page-level components
+- **Severity:** High
+- **Files:** All page components in `src/app/`
+- No `role`, `aria-label`, `aria-live`, or `aria-describedby` attributes on any main content areas, sections, or interactive elements at the page level. The only ARIA usage is:
+  - `aria-label` on Navbar hamburger button
+  - `aria-label` on carousel prev/next buttons
+  - `aria-label` on Footer social links
+  - `aria-label` on PersonVideoCard play button
+  - `aria-label` on testimonial dots (English text: "Show quote X" on a Norwegian site)
+
+### 5.2 Testimonial dots have English ARIA labels on Norwegian site
+- **Severity:** Low
+- **File:** `src/components/sections/TestimonialsSection.tsx` (line 119)
+- `aria-label={`Show quote ${i + 1}`}` should be Norwegian, e.g. "Vis sitat X".
+
+### 5.3 Carousel has no keyboard navigation
+- **Severity:** Medium
+- **File:** `src/components/sections/CarouselSection.tsx`
+- The horizontal scroll carousel only supports mouse/touch scrolling and button clicks. No keyboard navigation (arrow keys) is implemented. Button labels are in English ("Previous", "Next").
+
+### 5.4 Mobile menu does not trap focus
+- **Severity:** Medium
+- **File:** `src/components/layout/Navbar.tsx`
+- The mobile drawer handles ESC key and locks body scroll, but does not implement focus trapping. Tab key can reach elements behind the drawer overlay.
+
+### 5.5 Auto-rotating testimonials with no pause control
+- **Severity:** Medium
+- **File:** `src/components/sections/TestimonialsSection.tsx` (lines 36-40)
+- The testimonial carousel auto-rotates every 6 seconds with no pause button. WCAG 2.2.2 requires a mechanism to pause, stop, or hide auto-updating content. Clicking a dot does not stop the interval.
+
+---
+
+## 6. Hydration Risks
+
+### 6.1 Footer renders dynamic date in server component
+- **Severity:** Medium
+- **File:** `src/components/layout/Footer.tsx` (line 62)
+- `{new Date().getFullYear()}` renders during build/SSR. If the build happens on December 31 and the page is served on January 1, the year will be stale until rebuild. Not a hydration mismatch risk per se (it is a server component), but the year could be wrong for statically generated pages.
+
+---
+
+## 7. Fragile Areas
+
+### 7.1 Large single-file pages with no component extraction
+- **Severity:** Medium
+- **Files:**
+  - `src/app/seilturer/page.tsx` (591 lines)
+  - `src/app/kajakkturer/page.tsx` (513 lines)
+  - `src/app/teambuilding/page.tsx` (389 lines)
+  - `src/app/om-oss/page.tsx` (383 lines)
+- These pages contain all content, layout, and styling inline. No extraction into section components. Modifying one section requires careful editing of a long file. The seilturer page has 100+ lines of inline SVG icons.
+
+### 7.2 Inline SVG icons duplicated across pages
+- **Severity:** Low
+- **Files:** `src/app/seilturer/page.tsx`, `src/app/utleie/page.tsx`, `src/app/teambuilding/page.tsx`
+- Check mark, location pin, clock, phone, and group icons are copy-pasted as full inline SVGs across multiple pages. These should be extracted to shared icon components or use the existing `lucide-react` dependency.
+
+### 7.3 Hardcoded content with no CMS
+- **Severity:** Medium
+- **Files:** All page files, `src/components/sections/CarouselSection.tsx`, `src/components/sections/PeopleSection.tsx`, `src/components/sections/TestimonialsSection.tsx`
+- All prices, descriptions, testimonials, team bios, and contact info are hardcoded in TSX files. Any content change requires a code deployment. The `next.config.ts` configures Sanity CDN as a remote image source, but no Sanity integration exists.
+
+---
+
+## 8. Dependencies
+
+### 8.1 Resend email service has no domain verification
+- **Severity:** Medium
+- **File:** `src/app/api/contact/route.ts` (line 35)
+- Emails are sent from `onboarding@resend.dev` (Resend's default sandbox domain). This means emails likely land in spam. A verified custom domain (e.g., `noreply@wannado.no`) is required for production.
+
+### 8.2 Dependency versions are loose (caret ranges)
+- **Severity:** Low
+- **File:** `package.json`
+- All dependencies use `^` ranges. No lockfile issues observed, but `framer-motion` v12 and `next` v16 are both recent major versions that may receive breaking minor updates.
+
+---
+
+## 9. Test Coverage
+
+### 9.1 Zero test files exist
+- **Severity:** High
+- No test files, no test configuration, no test dependencies (`jest`, `vitest`, `playwright`, `testing-library`). No `__tests__` directories. No CI pipeline for testing. The contact form submission, API route, and all interactive components (carousel, testimonials, scroll video, mobile nav) are completely untested.
+
+---
+
+## Summary Table
+
+| Category | Critical | High | Medium | Low |
+|----------|----------|------|--------|-----|
+| Security | 0 | 2 | 1 | 2 |
+| Tech Debt | 0 | 1 | 2 | 3 |
+| Performance | 0 | 2 | 1 | 2 |
+| Missing Features | 0 | 3 | 1 | 0 |
+| Accessibility | 0 | 1 | 3 | 1 |
+| Hydration | 0 | 0 | 1 | 0 |
+| Fragile Areas | 0 | 0 | 2 | 1 |
+| Dependencies | 0 | 0 | 1 | 1 |
+| Testing | 0 | 1 | 0 | 0 |
+| **Total** | **0** | **10** | **12** | **10** |

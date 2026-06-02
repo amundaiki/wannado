@@ -1,132 +1,177 @@
 # Architecture
 
-**Analysis Date:** 2026-03-31
+> Analysis date: 2026-04-01
 
 ## Pattern Overview
 
-**Overall:** Next.js 16 App Router with section-based component composition
+Static-first Next.js 16 App Router site. All pages are React Server Components with inline content (no CMS, no database). Client interactivity is isolated to specific components via `"use client"` directives. A single API route handles the contact form via Resend email service.
 
-**Key Characteristics:**
-- Static marketing site with no backend, no API routes, no database
-- All content is hardcoded in component files and page files (no CMS, no data fetching)
-- Homepage is composed of discrete, self-contained section components
-- Sub-pages follow a uniform "stub page" template with raw text content from the old WordPress site
-- Client-side interactivity via Framer Motion for animations and scroll-based effects
-- No server-side data fetching, no Server Actions, no route handlers
+The codebase follows a **page-centric** pattern: each route file contains its own metadata, JSON-LD schema markup, and full page layout (including Navbar/Footer). There is no shared page wrapper or template component; layout composition is repeated per page.
 
 ## Layers
 
-**Presentation Layer (Pages):**
-- Purpose: Define routes and compose components into full pages
-- Location: `web/src/app/`
-- Contains: Next.js App Router page files (`page.tsx`) and root layout (`layout.tsx`)
-- Depends on: Layout components, Section components
-- Used by: Next.js router (file-system routing)
+### 1. Pages (`src/app/**/page.tsx`)
 
-**Section Components:**
-- Purpose: Self-contained homepage sections with their own data, markup, and animation logic
-- Location: `web/src/components/sections/`
-- Contains: `HeroSection.tsx`, `CarouselSection.tsx`, `BentoGridSection.tsx`, `FeatureSection.tsx`, `PeopleSection.tsx`, `TestimonialsSection.tsx`
-- Depends on: Framer Motion, Lucide icons
-- Used by: `web/src/app/page.tsx` (homepage), `web/src/app/om-oss/page.tsx` (reuses PeopleSection)
+18 route segments total. Each page is a Server Component that exports `metadata` and a default component. Pages fall into four categories:
 
-**Layout Components:**
-- Purpose: Shared navigation and footer used across all pages
-- Location: `web/src/components/layout/`
-- Contains: `Navbar.tsx`, `Footer.tsx`
-- Depends on: Framer Motion (Navbar), Lucide icons (Navbar), Next.js Link
-- Used by: Every page file manually imports and renders these
+**Polished service pages** (full custom layout, hero, pricing, CTA):
+- `src/app/page.tsx` (homepage, composes 8+ section components)
+- `src/app/seilturer/page.tsx` (sailing tours)
+- `src/app/kajakkturer/page.tsx` (kayak courses and tours)
+- `src/app/teambuilding/page.tsx` (corporate teambuilding)
+- `src/app/foredrag/page.tsx` (lectures/JTI)
+- `src/app/opplevelser/page.tsx` (experience overview)
+- `src/app/om-oss/page.tsx` (about page with team profiles)
+- `src/app/kontakt/page.tsx` (contact form + info sidebar)
+- `src/app/utleie/page.tsx` (equipment rental)
+- `src/app/referanser/page.tsx` (references/testimonials)
+- `src/app/praktisk-informasjon/page.tsx` (practical info)
+- `src/app/personvern/page.tsx` (privacy policy)
 
-**UI Components:**
-- Purpose: Reusable atomic UI primitives
-- Location: `web/src/components/ui/`
-- Contains: Empty directory, no components exist yet
-- Used by: Nothing
+**Stub/placeholder pages** (scraped content, minimal styling):
+- `src/app/booking/page.tsx`
+- `src/app/kurs/page.tsx`
+- `src/app/samarbeidspartnere/page.tsx`
+- `src/app/kulturvandring-med-sjarmerende-treskoyte/page.tsx`
 
-**Styling Layer:**
-- Purpose: Global CSS variables, Tailwind v4 theme, base styles
-- Location: `web/src/app/globals.css`
-- Contains: Custom color palette (brown, teal, sand, cream), font family mappings, base body styles
-- Used by: All components via Tailwind utility classes
+### 2. Sections (`src/components/sections/`)
+
+Reusable homepage section components, all `"use client"` for Framer Motion animations:
+
+| Component | Purpose | Key deps |
+|---|---|---|
+| `HeroSection.tsx` | Full-screen hero with video (desktop) / image (mobile), rotating text | framer-motion, next/image |
+| `CarouselSection.tsx` | Horizontal scroll card carousel for featured experiences | framer-motion, next/image |
+| `ScrollVideoSection.tsx` | Scroll-driven frame-by-frame video playback using canvas | framer-motion, canvas API |
+| `BentoGridSection.tsx` | 5-item bento grid with hover blur effects | framer-motion, next/image |
+| `FeatureSection.tsx` | Two-column teambuilding feature with overlapping images | framer-motion, next/image |
+| `PeopleSection.tsx` | Team member profiles with video cards | framer-motion, PersonVideoCard |
+| `TestimonialsSection.tsx` | Marquee text banner + rotating quote carousel | framer-motion |
+| `WaterDividerSection.tsx` | Simple looping video divider | none (unused currently) |
+
+### 3. Layout (`src/components/layout/`)
+
+| Component | Purpose | Client? |
+|---|---|---|
+| `Navbar.tsx` | Fixed navbar with scroll hide/show, mobile drawer | Yes (framer-motion, lucide-react) |
+| `Footer.tsx` | 4-column footer with links, contacts, social | No (Server Component) |
+
+### 4. UI Components (`src/components/ui/`)
+
+| Component | Purpose | Client? |
+|---|---|---|
+| `ContactForm.tsx` | Form with service select, posts to `/api/contact` | Yes (useSearchParams, useState) |
+| `PersonVideoCard.tsx` | Image-to-video reveal card with IntersectionObserver autoplay | Yes |
+| `VideoBanner.tsx` | Configurable video banner with overlay options | Yes |
+| `SectionHeader.tsx` | Reusable eyebrow + title + description header | No |
+| `ServiceCard.tsx` | Product/service card with price, badge, CTA | Yes (framer-motion) |
+
+### 5. API Routes (`src/app/api/`)
+
+Single route: `src/app/api/contact/route.ts`
+- Accepts POST with `{ name, email, phone, service, message }`
+- Validates required fields (name, email, message)
+- Sends HTML email via Resend to `mail@wannado.no`
+- Falls back to console.log when `RESEND_API_KEY` is missing (dev mode)
+- Returns JSON `{ success, message }`
+
+### 6. Data Layer (`src/lib/data/`)
+
+Single file: `src/lib/data/references.ts`
+- Exports typed constants: `COMPANIES`, `TESTIMONIALS`, `TV_APPEARANCES`
+- Uses `as const` for type narrowing
+- Consumed by `src/app/referanser/page.tsx`
 
 ## Data Flow
 
-**Content Rendering (Homepage):**
+### Static Content
+All page content is hardcoded in TSX files. No CMS, no dynamic data fetching, no database. Service prices, descriptions, course details, team bios are all inline constants within page files.
 
-1. `web/src/app/layout.tsx` loads Google Fonts (Inter, Space Grotesk, DM Serif Display) and sets HTML lang to `nb`
-2. `web/src/app/page.tsx` composes all section components in order: Navbar, Hero, Carousel, BentoGrid, Feature, People, Testimonials, Footer
-3. Each section component contains its own hardcoded data arrays (e.g., `CAROUSEL_DATA`, `BENTO_DATA`, `PEOPLE`, `QUOTES`) and renders them with Framer Motion animations
+### Contact Form Flow
+```
+ContactForm (client) -> POST /api/contact -> Resend API -> mail@wannado.no
+                                          -> (fallback: console.log in dev)
+```
+The form reads `?tjeneste=` from URL search params to pre-select a service.
 
-**Content Rendering (Sub-pages):**
-
-1. Each sub-page route (e.g., `/opplevelser`, `/teambuilding`) has its own `page.tsx`
-2. Every sub-page imports Navbar and Footer, then renders a brown hero header + a white card with raw text paragraphs
-3. Content is plain text strings migrated from the old WordPress site, not structured data
-
-**State Management:**
-- No global state management (no Context, no Redux, no Zustand)
-- Local component state only: `useState` for scroll position tracking (Navbar), word rotation index (HeroSection), testimonial rotation index (TestimonialsSection)
-- Scroll-based state via Framer Motion's `useScroll` and `useMotionValueEvent` in Navbar
-
-## Key Abstractions
-
-**Section Component Pattern:**
-- Purpose: Encapsulate a homepage section as a self-contained unit with data + UI + animation
-- Examples: `web/src/components/sections/HeroSection.tsx`, `web/src/components/sections/CarouselSection.tsx`, `web/src/components/sections/BentoGridSection.tsx`
-- Pattern: Each is a `"use client"` component exporting a default function. Data is defined as module-level constants. Animations use Framer Motion's `motion.*` components with `whileInView` viewport triggers.
-
-**Stub Page Pattern:**
-- Purpose: Placeholder pages for all routes from the old WordPress site
-- Examples: `web/src/app/foredrag/page.tsx`, `web/src/app/kontakt/page.tsx`, `web/src/app/utleie/page.tsx`, `web/src/app/teambuilding/page.tsx`
-- Pattern: Every stub page has identical structure: Navbar, brown hero with `<h1>`, white card with `<p>` elements containing raw text. No semantic HTML, no structured content, no images.
-
-**Manual Layout Composition:**
-- Purpose: Pages manually include Navbar and Footer rather than using nested layouts
-- Examples: All page files import and render `Navbar` + `Footer` directly
-- Pattern: No use of `layout.tsx` for shared chrome beyond the root layout. Each page independently wraps its content with `<main>` + Navbar + Footer. This means there is no shared layout at the route-group level.
+### Video/Media
+- Hero: MP4 video on desktop, static JPG fallback on mobile (detected via `matchMedia`)
+- Scroll video: 52 JPEG frames loaded in batches and rendered to canvas, driven by scroll position
+- Video banners: Autoplay looping MP4s with configurable overlay
+- Interview videos: Click-to-play with IntersectionObserver autoplay/pause
 
 ## Entry Points
 
-**Root Layout:**
-- Location: `web/src/app/layout.tsx`
-- Triggers: Every page render
-- Responsibilities: Load Google Fonts (Inter, Space Grotesk, DM Serif Display), set `<html lang="nb">`, apply font CSS variables and base classes to `<body>`
+- `src/app/layout.tsx` - Root layout, loads fonts (Inter, Space Grotesk, DM Serif Display), sets `lang="nb"`, includes Vercel Analytics
+- `src/app/page.tsx` - Homepage, composes all major sections
+- `src/app/api/contact/route.ts` - Only API endpoint
 
-**Homepage:**
-- Location: `web/src/app/page.tsx`
-- Triggers: Navigation to `/`
-- Responsibilities: Compose and render all homepage sections in order. This is the only fully designed page.
+## Key Abstractions
 
-**Sub-pages (12 routes):**
-- Location: `web/src/app/{route}/page.tsx` where route is one of: `booking`, `foredrag`, `kontakt`, `kulturvandring-med-sjarmerende-treskoyte`, `kurs`, `menneskene`, `om-oss`, `opplevelser`, `personvern`, `praktisk-informasjon`, `referanser`, `samarbeidspartnere`, `teambuilding`, `utleie`
-- Triggers: Navigation to respective URL path
-- Responsibilities: Render placeholder content from old WordPress site. Only `om-oss` reuses a section component (`PeopleSection`); all others are raw text stubs.
+### Font System
+Three Google Fonts loaded in `layout.tsx` via `next/font/google`, exposed as CSS variables:
+- `--font-inter` (Inter) - Body text
+- `--font-space` (Space Grotesk) - Headings
+- `--font-dm` (DM Serif Display, italic) - Accent/decorative text
+
+### Color System
+Custom color tokens defined as CSS custom properties in `src/app/globals.css`:
+- `brown` palette: `#48382B` (primary), `brown-mid`, `brown-muted`, `brown-light`
+- `teal`: `#00838f` (accent/CTA)
+- `sand`: `#fdd79a` (highlight/selection)
+- `cream`: `#faf8f4` (page background)
+- `warm-white`: `#f5f2ed` (section background alt)
+- `border`: `#e4ddd3`
+
+Colors are mapped to Tailwind v4 via `@theme` directive in globals.css.
+
+### Animation Pattern
+All animations use Framer Motion with consistent patterns:
+- `whileInView` with `viewport={{ once: true }}` for scroll-triggered reveals
+- `AnimatePresence` for enter/exit transitions (hero text, testimonials, mobile menu)
+- `useScroll` + `useTransform` for scroll-linked effects (navbar, scroll video)
 
 ## Error Handling
 
-**Strategy:** None implemented
-
-**Patterns:**
-- No `error.tsx` boundary files exist
-- No `not-found.tsx` custom 404 page exists
-- No `loading.tsx` loading states exist
-- No `global-error.tsx` exists
-- No try/catch blocks anywhere (no data fetching to handle errors for)
+- **API route**: try/catch with generic 500 JSON response and `console.error`
+- **Contact form**: client-side status state (`idle | pending | success | error`) with inline error message and phone number fallback
+- **No error.tsx or not-found.tsx files exist** - relies on Next.js defaults
+- **No global error boundary**
 
 ## Cross-Cutting Concerns
 
-**Logging:** None. No logging framework, no console.log calls in production code.
+### SEO
+- Per-page `Metadata` exports with title template (`%s | Wannado`), description, OpenGraph
+- JSON-LD structured data on service pages (TouristTrip, Product, Event, ItemList, TouristAttraction)
+- `src/app/sitemap.ts` - Static sitemap with 12 URLs
+- `src/app/robots.ts` - Allows all, disallows `/api/` and `/studio/`
+- `metadataBase` set to `https://wannado.no`
 
-**Validation:** None. No forms, no user input handling.
+### Redirects
+Four permanent redirects in `next.config.ts` mapping old WordPress URLs to new routes:
+- `/kulturvandring-med-sjarmerende-treskoyte` -> `/seilturer`
+- `/kajakk-turer-og-ekspedisjoner` -> `/kajakkturer`
+- `/kurs/kajakkurs` -> `/kajakkturer`
+- `/menneskene` -> `/om-oss`
 
-**Authentication:** None. No auth system.
+### Security Headers
+`vercel.json` adds: `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`. Image paths get 1-year immutable cache.
 
-**SEO/Metadata:** Minimal. Only root layout has basic `metadata` export with `title` and `description`. No per-page metadata, no Open Graph tags, no structured data/schema markup. This is a critical gap given the project's SEO goals.
+### Analytics
+Vercel Analytics (`@vercel/analytics/next`) in root layout. Cookieless, no third-party tracking.
 
-**Internationalization:** Norwegian Bokmal (`lang="nb"`) set on `<html>` element. All content is in Norwegian.
+### Accessibility
+- `lang="nb"` on html element
+- Navbar has `aria-label` for mobile toggle
+- Contact form has proper `label`/`htmlFor`/`id` associations
+- No skip-to-content link
+- No ARIA landmarks beyond semantic HTML
 
-**Accessibility:** Minimal. Some `aria-label` attributes on carousel buttons and social links. No skip-to-content link. No focus management.
+### i18n
+Single-language site (Norwegian Bokmal). `lang="nb"` set in root layout. No i18n framework.
 
----
+### Logging
+Console logging only: `console.error` in API route, `console.log` for dev fallback. No structured logging or monitoring beyond Vercel Analytics.
 
-*Architecture analysis: 2026-03-31*
+### Remote Images
+`next.config.ts` allows remote images from `cdn.sanity.io` (prepared for future Sanity CMS integration, not currently used).

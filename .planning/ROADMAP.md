@@ -254,6 +254,16 @@ Plans:
 - [ ] 17-01-PLAN.md — Vercel-prosjekt oppsett, preview deploy, verifisering av ruter og redirects
 - [ ] 17-02-PLAN.md — DNS-cutover, SSL-verifisering, Core Web Vitals-sjekk
 
+### Phase 18: Fiks sikkerhet, UX og kodekvalitet fra code review
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 17
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 18 to break down)
+
 ---
 *Roadmap created: 2026-03-31*
 *Last updated: 2026-03-31 after reprioritizing deploy ahead of blog/CMS*
