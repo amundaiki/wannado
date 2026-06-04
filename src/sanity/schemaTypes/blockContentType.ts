@@ -1,4 +1,4 @@
-import {defineType, defineArrayMember} from 'sanity'
+import {defineType, defineArrayMember, defineField} from 'sanity'
 import {ImageIcon} from '@sanity/icons'
 
 /**
@@ -43,15 +43,24 @@ export const blockContentType = defineType({
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'URL',
             name: 'link',
+            title: 'Lenke',
             type: 'object',
             fields: [
-              {
-                title: 'URL',
+              defineField({
                 name: 'href',
-                type: 'url',
-              },
+                title: 'URL eller intern sti',
+                type: 'string',
+                description: 'Bruk intern sti som /seilturer, eller full URL med https://',
+                validation: (Rule) =>
+                  Rule.required().custom((value) => {
+                    if (!value) return true
+                    if (value.startsWith('/') || value.startsWith('https://') || value.startsWith('http://')) {
+                      return true
+                    }
+                    return 'Bruk intern sti som /seilturer, eller full URL med https://'
+                  }),
+              }),
             ],
           },
         ],

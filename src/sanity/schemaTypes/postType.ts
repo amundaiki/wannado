@@ -1,6 +1,33 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
+function portableTextWordCount(value: unknown) {
+  if (!Array.isArray(value)) return 0
+
+  const text = value
+    .map((block) => {
+      if (
+        !block ||
+        typeof block !== 'object' ||
+        !('children' in block) ||
+        !Array.isArray(block.children)
+      ) {
+        return ''
+      }
+
+      return block.children
+        .map((child: unknown) =>
+          child && typeof child === 'object' && 'text' in child && typeof child.text === 'string'
+            ? child.text
+            : '',
+        )
+        .join(' ')
+    })
+    .join(' ')
+
+  return text.match(/[A-Za-zÀ-ž0-9]+(?:[-’'][A-Za-zÀ-ž0-9]+)*/g)?.length ?? 0
+}
+
 export const postType = defineType({
   name: 'post',
   title: 'Blogginnlegg',
@@ -62,7 +89,21 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'blockContent',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required()
+          .custom((value) => {
+            const wordCount = portableTextWordCount(value)
+
+            if (wordCount >= 550) return true
+
+            return `Blogginnlegget har ${wordCount} ord. Sikt på minst 550 ord for bedre søkedekning.`
+          })
+          .warning(),
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
     }),
   ],
   preview: {

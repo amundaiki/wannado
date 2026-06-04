@@ -24,7 +24,7 @@ const components: PortableTextComponents = {
             />
           </div>
           {imageAlt && (
-            <figcaption className="mt-3 text-center text-sm text-brown-light font-inter">
+            <figcaption className="mt-3 text-center text-sm text-brown-mid font-inter">
               {imageAlt}
             </figcaption>
           )}
@@ -89,12 +89,14 @@ const components: PortableTextComponents = {
       if (!href) {
         return <span>{children}</span>;
       }
+      const isInternalLink = href.startsWith("/");
+
       return (
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-teal underline underline-offset-2 hover:text-brown transition-colors"
+          target={isInternalLink ? undefined : "_blank"}
+          rel={isInternalLink ? undefined : "noopener noreferrer"}
+          className="inline-flex min-h-11 items-center text-teal underline underline-offset-2 transition-colors hover:text-brown"
         >
           {children}
         </a>
