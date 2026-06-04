@@ -1,0 +1,2241 @@
+[
+  {
+    "_createdAt": "2026-04-02T15:31:20Z",
+    "_id": "492a382a-ed1f-48ed-962c-528504803eae",
+    "_rev": "o4MXyz27PxyQSJiGTWO8iX",
+    "_type": "post",
+    "_updatedAt": "2026-06-03T03:29:20Z",
+    "body": [
+      {
+        "_key": "6097e512e118",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2cf6f96e348b",
+            "_type": "span",
+            "marks": [],
+            "text": "Høsten gjør Sørlandet roligere"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "ce245882f3ad",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "87e017f2e109",
+            "_type": "span",
+            "marks": [],
+            "text": "Høsten på Sørlandet kan være undervurdert. Sommertrafikken roer seg, lyset blir lavere, og naturen rundt Raet nasjonalpark får tydeligere farger. For mange grupper er dette en av de fineste periodene for en roligere opplevelse ute."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "53edfa770622",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f33ad78c179a",
+            "_type": "span",
+            "marks": [],
+            "text": "Det betyr ikke at høsten bare er for erfarne friluftsfolk. Med riktig aktivitet, klær og værvurdering kan den passe for både private grupper, bedrifter, familier og gjester som vil oppleve Arendal på en annen måte enn midt i høysesongen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "bbfd22bff3b0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "95c7314ae004",
+            "_type": "span",
+            "marks": [],
+            "text": "Kajakk gir nærhet til naturen"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "60141a0f96c5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "823120ee8bad",
+            "_type": "span",
+            "marks": [],
+            "text": "I kajakk kommer du tett på vannflaten, svabergene og fuglelivet. Tempoet er rolig nok til å se detaljer, men aktivt nok til at kroppen er med. En guidet "
+          },
+          {
+            "_key": "31b8ee08c73d",
+            "_type": "span",
+            "marks": [
+              "kajakk-link"
+            ],
+            "text": "kajakktur i Arendal"
+          },
+          {
+            "_key": "56023959e617",
+            "_type": "span",
+            "marks": [],
+            "text": " passer spesielt godt når gruppen vil være ute, men samtidig ha trygge rammer rundt rute, utstyr og vær."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kajakk-link",
+            "_type": "link",
+            "href": "/kajakkturer"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "07ca268f540c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "412b60d8c06f",
+            "_type": "span",
+            "marks": [],
+            "text": "For nybegynnere er introduksjon og teknikk viktig. Da handler opplevelsen ikke bare om å komme seg fra A til B, men om å kjenne mestring. Hvis målet er mer læring, kan "
+          },
+          {
+            "_key": "fad259929344",
+            "_type": "span",
+            "marks": [
+              "kajakkurs-link"
+            ],
+            "text": "kajakkurs med våttkort"
+          },
+          {
+            "_key": "fd1c574c4494",
+            "_type": "span",
+            "marks": [],
+            "text": " være et bedre valg enn en ren tur."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kajakkurs-link",
+            "_type": "link",
+            "href": "/kurs/kajakkurs"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "101cb1ea0c0f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "824e561ae3de",
+            "_type": "span",
+            "marks": [],
+            "text": "Seiling passer når gruppen vil være sammen"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "1c23f8d544b2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1a4fd211d4e2",
+            "_type": "span",
+            "marks": [],
+            "text": "Seiling med Havsul gir en annen type høstopplevelse. Her kan deltakerne være ute uten at alle må padle selv. Det passer godt for grupper med ulikt aktivitetsnivå, eller når målet er sosialt samvær, gode samtaler og en roligere tur gjennom skjærgården. Se mer om "
+          },
+          {
+            "_key": "b06690edff4f",
+            "_type": "span",
+            "marks": [
+              "seiltur-link"
+            ],
+            "text": "seilturer med Havsul"
+          },
+          {
+            "_key": "47a8fcee98cf",
+            "_type": "span",
+            "marks": [],
+            "text": " hvis gruppen ønsker en lavterskel opplevelse på sjøen."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "seiltur-link",
+            "_type": "link",
+            "href": "/seilturer"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "c47ff67bbf35",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d5799fa597da",
+            "_type": "span",
+            "marks": [],
+            "text": "På høsten kan en seiltur føles ekstra stemningsfull. Luften er klarere, fargene langs land er tydeligere, og tempoet på sjøen er ofte roligere enn i sommerukene. For mange er dette en bedre ramme for samtaler enn en travel dag midt i feriesesongen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c6bf44fd7110",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "755ef0f9e217",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvordan velge mellom kajakk og seiling"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "419b6486c97c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "649db6805ae1",
+            "_type": "span",
+            "marks": [],
+            "text": "Valget handler først og fremst om hva gruppen vil sitte igjen med. Kajakk gir mer fysisk aktivitet, mer mestring og mer nærkontakt med naturen. Seiling gir mer fellesskap, lavere terskel og bedre rom for samtaler. Begge deler kan fungere godt ved Arendal, men de passer ulike behov."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "5e53b624aace",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c76d26f97e72",
+            "_type": "span",
+            "marks": [],
+            "text": "Velg kajakk når gruppen vil være aktiv og tett på vannet."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "decac35a4973",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a65ffda4d526",
+            "_type": "span",
+            "marks": [],
+            "text": "Velg kajakkurs når deltakerne vil lære teknikk og sikkerhet."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "3b4206dce03d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e2857a999e41",
+            "_type": "span",
+            "marks": [],
+            "text": "Velg seiltur når gruppen har ulik erfaring eller vil ha mer sosialt samvær."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a89de9c82bfe",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ce0af813ef17",
+            "_type": "span",
+            "marks": [],
+            "text": "Velg et tilpasset opplegg når bedriften har et tydelig mål med dagen."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0a0c5585db0d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "77cf05ba7070",
+            "_type": "span",
+            "marks": [],
+            "text": "Klær og forberedelser gjør stor forskjell"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "83b9a08eb1ec",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "fec7d099a2c5",
+            "_type": "span",
+            "marks": [],
+            "text": "Høstturer blir best når deltakerne er kledd for skiftende vær. Lag på lag, vindtette klær og sko som tåler fukt gjør opplevelsen bedre. Det handler ikke om å kle seg tungt, men om å kunne justere underveis hvis vind, temperatur eller nedbør endrer seg."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "ee9d0969711a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "82fed708c4e7",
+            "_type": "span",
+            "marks": [],
+            "text": "For kajakk er riktig bekledning og sikkerhetsutstyr ekstra viktig. For seiling handler det mer om komfort, vind og temperatur. Uansett aktivitet bør gruppen få tydelig beskjed om oppmøtested, varighet og hva de bør ta med."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "2d985be2be91",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a1ee8a14a621",
+            "_type": "span",
+            "marks": [],
+            "text": "Raet gjør opplevelsen større"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "04c4cc9a9e31",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1f97b2d06c9f",
+            "_type": "span",
+            "marks": [],
+            "text": "Raet nasjonalpark og kystlandskapet rundt Arendal gir opplevelsen en tydelig naturforankring. Det er ikke bare en aktivitet ute, men en måte å bli bedre kjent med landskapet på. Når turen legges hit eller i nærheten av området, får gjestene både bevegelse, utsikt og sterkere stedfølelse."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "2bfc57c0b3cc",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8a7cb102344b",
+            "_type": "span",
+            "marks": [],
+            "text": "Det er særlig verdifullt for reiselivsopplevelser på Sørlandet. Mange kan tilby aktivitet, men gode opplevelser handler også om sted, rytme og fortelling. Høsten gjør dette tydeligere fordi naturen tar mer plass og tempoet rundt er roligere."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d73df9a5c3f0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8e0a7aaa7ea0",
+            "_type": "span",
+            "marks": [],
+            "text": "Slik planlegger du en god høsttur"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "877c4fcd1f21",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8c885f875461",
+            "_type": "span",
+            "marks": [],
+            "text": "Start med gruppens erfaring, størrelse og ønsket intensitet. Tenk også gjennom om dere vil ha en aktiv tur, en rolig naturopplevelse eller en sosial dag med lav terskel. Høsten gir gode muligheter, men vær og lys gjør planleggingen viktigere enn midt på sommeren."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "46f4767eb1ad",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6bc440f440c5",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvis du vurderer høsttur for familie, vennegjeng eller bedrift, er det lurt å "
+          },
+          {
+            "_key": "d88db288e95e",
+            "_type": "span",
+            "marks": [
+              "kontakt-link"
+            ],
+            "text": "sende en forespørsel"
+          },
+          {
+            "_key": "bb231b974fd7",
+            "_type": "span",
+            "marks": [],
+            "text": " med dato, antall deltakere og ønsket type opplevelse. Da blir det enklere å velge mellom kajakk, kurs, seiling eller et mer tilpasset opplegg."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kontakt-link",
+            "_type": "link",
+            "href": "/kontakt"
+          }
+        ],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Høsten på Sørlandet gir roligere farvann, klarere farger og fine rammer for kajakk, seiling og naturopplevelser ved Raet nasjonalpark.",
+    "mainImage": {
+      "_type": "image",
+      "alt": "Kajakk og seiling i Raet nasjonalpark"
+    },
+    "publishedAt": "2026-03-22T10:00:00.000Z",
+    "seo": {
+      "_type": "seo",
+      "description": "Opplev høsten ved Raet nasjonalpark med kajakk, seiling og natur på Sørlandet. Tips til klær, trygghet og aktivitet for grupper.",
+      "noIndex": false,
+      "title": "Høst i Raet nasjonalpark med kajakk og seiling"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "host-i-raet-nasjonalpark-kajakk-seiling-og-natur"
+    },
+    "title": "Høst i Raet nasjonalpark: kajakk, seiling og natur"
+  },
+  {
+    "_createdAt": "2026-04-02T15:31:13Z",
+    "_id": "666142bc-56d3-4c64-9690-199062bdceb8",
+    "_rev": "o4MXyz27PxyQSJiGTWO8iX",
+    "_type": "post",
+    "_updatedAt": "2026-06-03T03:29:20Z",
+    "body": [
+      {
+        "_key": "b5007e9f83e1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "34652f446486",
+            "_type": "span",
+            "marks": [],
+            "text": "En seiltur med historie i skroget"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "f124120594f7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e94b10f5bd90",
+            "_type": "span",
+            "marks": [],
+            "text": "Havsul ble bygget i 1933 og bærer med seg et stykke norsk kysthistorie. Når du går om bord, merker du raskt at dette ikke er en anonym turbåt. Treverk, rigg, tauverk, lukten av sjø og tempoet om bord gjør opplevelsen roligere og mer nær. Det er en viktig grunn til at en "
+          },
+          {
+            "_key": "7ed506a42a95",
+            "_type": "span",
+            "marks": [
+              "seiltur-link"
+            ],
+            "text": "seiltur med Havsul"
+          },
+          {
+            "_key": "e0088a204c64",
+            "_type": "span",
+            "marks": [],
+            "text": " oppleves annerledes enn en vanlig båttur i skjærgården."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "seiltur-link",
+            "_type": "link",
+            "href": "/seilturer"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "4a30537b953d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b04f1ac54a7b",
+            "_type": "span",
+            "marks": [],
+            "text": "For mange gjester er selve fartøyet en stor del av opplevelsen. Havsul gir kontakt med en tid da sjøen var arbeidsplass, ferdselsåre og livsgrunnlag. Det gjør turen konkret. Du ser ikke bare kysthistorie på avstand, du står midt i den mens båten beveger seg gjennom landskapet."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1e7cafba205c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b56c519bdd37",
+            "_type": "span",
+            "marks": [],
+            "text": "Kystkultur du kan være med på"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "c06e3bb08619",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e171f5d03246",
+            "_type": "span",
+            "marks": [],
+            "text": "Kystkultur blir sterkest når den ikke bare fortelles, men oppleves. Ombord på Havsul handler historien om mer enn årstall. Den handler om håndverk, vedlikehold, sjømannskap, vær, ruter, havner og mennesker som har levd tett på kysten. Slik blir seilasen mer enn transport mellom fine steder."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "4786de3dbfda",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "5b58c98e420b",
+            "_type": "span",
+            "marks": [],
+            "text": "Det passer spesielt godt i Arendals skjærgård, der holmer, sund og uthavner gir naturlige stopp for historier. Når båten glir mellom land og sjø, blir det lettere å forstå hvorfor sjøen har formet både arbeid, handel, fritid og identitet på Sørlandet."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "70488ce7fff8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "73449a58c77f",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvorfor gamle fartøy skaper sterkere opplevelser"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "3a62ea65b07a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2c9af8e73ba5",
+            "_type": "span",
+            "marks": [],
+            "text": "Moderne båter kan være raske og effektive. Havsul gir noe annet: tid. Tempoet gjør at gjestene rekker å se detaljer, følge horisonten, høre vannet mot skroget og la samtalene oppstå naturlig. Det er ofte akkurat dette som gjør en reiselivsopplevelse minneverdig."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "574cdcb78ebe",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "31c7cfd82661",
+            "_type": "span",
+            "marks": [],
+            "text": "Et historisk fartøy gir også en tydeligere ramme for grupper. Familier får en historie å dele. Venner får en tur som føles mer personlig. Bedrifter får en sosial arena med mer karakter enn et standard arrangement. Kunder og gjester som besøker Sørlandet får et inntrykk som er lett å huske."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "33054a10775c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "07f202ff1290",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvem passer Havsul for?"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "0e9a28d4012b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d0ee3a51a0cb",
+            "_type": "span",
+            "marks": [],
+            "text": "Familier og vennegjenger som vil ha en rolig, sosial opplevelse på sjøen."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0943a67cb373",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "090433703746",
+            "_type": "span",
+            "marks": [],
+            "text": "Bedrifter som ønsker et arrangement med lokal identitet og lav terskel."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c278ef14098a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b0158672a33e",
+            "_type": "span",
+            "marks": [],
+            "text": "Besøkende som vil oppleve Arendal fra sjøen, ikke bare fra brygga."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b55ec33c2a09",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8f30daa35bb6",
+            "_type": "span",
+            "marks": [],
+            "text": "Grupper som liker historie, natur, håndverk og gode fortellinger."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b619dbbedec7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "53bedab5802c",
+            "_type": "span",
+            "marks": [],
+            "text": "Skjærgården blir en levende kulisse"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "6b413fd917b0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "66930d3adbf8",
+            "_type": "span",
+            "marks": [],
+            "text": "Arendals skjærgård har en egen rytme. Det er korte avstander mellom holmer, lune sund, åpne strekk og små steder som inviterer til fortelling. Fra land kan du se mye av dette, men fra dekk blir det annerledes. Du får følelsen av å bevege deg gjennom landskapet, ikke bare se på det."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a6c9e4c48899",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6090abb5188d",
+            "_type": "span",
+            "marks": [],
+            "text": "Det er også grunnen til at Havsul fungerer godt både som ren opplevelse og som ramme for markeringer. Turen kan være rolig og stemningsfull, eller den kan fylles med mer program, historier, servering og samtaler, avhengig av hvem som skal være med."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "7af7eaf22076",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2950131f4143",
+            "_type": "span",
+            "marks": [],
+            "text": "Slik får gruppen mest ut av turen"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "1f4f0bd0f780",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "94891b706216",
+            "_type": "span",
+            "marks": [],
+            "text": "Tenk gjennom hva turen skal være: en gave, en familiedag, en kundetur, en rolig sommeropplevelse eller en del av et bedriftsarrangement. Jo tydeligere formålet er, jo lettere er det å tilpasse varighet, rute, tempo og innhold."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b216679358b2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "60623e4ff688",
+            "_type": "span",
+            "marks": [],
+            "text": "For bedrifter kan Havsul kombineres med "
+          },
+          {
+            "_key": "633f5be1ca08",
+            "_type": "span",
+            "marks": [
+              "bedrift-link"
+            ],
+            "text": "bedriftsarrangement og teambuilding"
+          },
+          {
+            "_key": "b50592c670b4",
+            "_type": "span",
+            "marks": [],
+            "text": ". For private grupper holder det ofte å velge dato, antall personer og ønsket stemning. Hvis du er usikker på hva som passer, kan du "
+          },
+          {
+            "_key": "f8d7a19c0f38",
+            "_type": "span",
+            "marks": [
+              "kontakt-link"
+            ],
+            "text": "ta kontakt"
+          },
+          {
+            "_key": "e26202b9c416",
+            "_type": "span",
+            "marks": [],
+            "text": " og få et forslag til en tur som passer gruppen."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "bedrift-link",
+            "_type": "link",
+            "href": "/bedrift"
+          },
+          {
+            "_key": "kontakt-link",
+            "_type": "link",
+            "href": "/kontakt"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "75204248a1c5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "44d3fda07a54",
+            "_type": "span",
+            "marks": [],
+            "text": "Mer verdi for gjestene"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "acf6319fc515",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ee1591f73d50",
+            "_type": "span",
+            "marks": [],
+            "text": "Når en opplevelse har historie, blir den lettere å huske. Gjestene får mer enn bilder fra sjøen, de får en fortelling om fartøyet, stedet og menneskene som har brukt kysten før oss. Det gir turen tyngde uten at den blir tung."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "cdc796d6771a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b3a351560df3",
+            "_type": "span",
+            "marks": [],
+            "text": "For Wannado er dette viktig fordi reiseliv på Sørlandet bør kjennes lokalt. Havsul binder sammen skjærgård, håndverk, Arendal og sosial opplevelse på en måte som er vanskelig å kopiere. Det er derfor båten er mer enn transport, den er en del av produktet."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Listerskøyta Havsul fra 1933 gjør seilturen i Arendals skjærgård til en opplevelse med kysthistorie, håndverk, sjøliv og lokal forankring.",
+    "mainImage": {
+      "_type": "image",
+      "alt": "Historisk seilskøyte Havsul fra 1933"
+    },
+    "publishedAt": "2026-03-28T10:00:00.000Z",
+    "seo": {
+      "_type": "seo",
+      "description": "Les om Havsul, Listerskøyta fra 1933 som brukes til historiske seilturer i Arendals skjærgård med Wannado.",
+      "noIndex": false,
+      "title": "Listerskøyta Havsul fra 1933"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "havsuls-historie-en-reise-tilbake-til-1933"
+    },
+    "title": "Havsuls historie: en reise tilbake til 1933"
+  },
+  {
+    "_createdAt": "2026-04-02T15:31:05Z",
+    "_id": "80caf271-5251-4eed-bd7a-960ffd2e1556",
+    "_rev": "o4MXyz27PxyQSJiGTWITEm",
+    "_system": {
+      "base": {
+        "id": "80caf271-5251-4eed-bd7a-960ffd2e1556",
+        "rev": "HDlNiVeMvqybGjkmBc5pL0"
+      }
+    },
+    "_type": "post",
+    "_updatedAt": "2026-06-03T03:15:27Z",
+    "body": [
+      {
+        "_key": "fa2a4ea0377f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "545d6fe31333",
+            "_type": "span",
+            "marks": [],
+            "text": "Start med hvem som skal være med"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "eab6c5082e93",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1280a96896b5",
+            "_type": "span",
+            "marks": [],
+            "text": "Det enkleste valget er ikke alltid å begynne med aktiviteten. Begynn med menneskene som skal være med. En familie med barn, en vennegjeng, en ledergruppe og et firma som skal samle avdelingen har ofte helt ulike behov, selv om alle søker etter opplevelser i Arendal."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "5577aaa62bca",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9427bfeb2f13",
+            "_type": "span",
+            "marks": [],
+            "text": "Spør først: Vil dere ha ro, mestring, latter, faglig påfyll eller en tydelig gruppeopplevelse? Når svaret er klart, blir det lettere å velge mellom seiltur, kajakk, hesteopplevelse, foredrag, teambuilding eller gavekort."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "bd73d38ffacc",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "60492d85d40b",
+            "_type": "span",
+            "marks": [],
+            "text": "Wannado passer best når opplevelsen skal føles ekte og lokal. Utgangspunktet er Arendal, Kongshavn og skjærgården rundt, med natur, sjøliv og folk som kjenner området godt."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "85d21427179a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2339a61dbf68",
+            "_type": "span",
+            "marks": [],
+            "text": "Når seiltur passer best"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "491282c662ee",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a661cf96080c",
+            "_type": "span",
+            "marks": [],
+            "text": "En "
+          },
+          {
+            "_key": "76e9d25404fb",
+            "_type": "span",
+            "marks": [
+              "seiltur-link"
+            ],
+            "text": "seiltur med Listerskøyta Havsul"
+          },
+          {
+            "_key": "680cfe8b8452",
+            "_type": "span",
+            "marks": [],
+            "text": " passer godt når gruppen vil være sammen uten at alle må prestere fysisk. Båten gir en naturlig ramme for samtaler, utsikt, historie og god stemning. Den passer for familier, vennegjenger, besøkende på Sørlandet og bedrifter som vil ut av møterommet."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "seiltur-link",
+            "_type": "link",
+            "href": "/seilturer"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "ee7d68525dff",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2be29d507d7b",
+            "_type": "span",
+            "marks": [],
+            "text": "Seiltur er også et godt valg når gruppen har blandet alder eller ulikt aktivitetsnivå. Noen kan lene seg tilbake og nyte turen, mens andre kan være mer nysgjerrige på båt, kystkultur og navigasjon. For mange blir kombinasjonen av ro og opplevelse det som gjør dagen minneverdig."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "398e64d2fa1a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e14144ac1ec4",
+            "_type": "span",
+            "marks": [],
+            "text": "Velg seiltur hvis dere vil ha:"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "227b8bb2d1a1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ea2546fd0a59",
+            "_type": "span",
+            "marks": [],
+            "text": "en sosial aktivitet med lav terskel"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1788d6ff89be",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2641037f60c7",
+            "_type": "span",
+            "marks": [],
+            "text": "skjærgård, kysthistorie og god utsikt"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b12694750f11",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e02ba3a83d9c",
+            "_type": "span",
+            "marks": [],
+            "text": "en opplevelse som fungerer for mange typer grupper"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "faa092adc3c5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "46845ea1706d",
+            "_type": "span",
+            "marks": [],
+            "text": "Når kajakk er riktig valg"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "6d3258ef760a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f8711ff6b651",
+            "_type": "span",
+            "marks": [],
+            "text": "Kajakk passer for grupper som vil tett på naturen. I kajakk kommer du nærmere vannet, holmene og rytmen i landskapet enn i båt. Opplevelsen kan være rolig, lekende eller mer læringsorientert, avhengig av erfaring og vær. Se både "
+          },
+          {
+            "_key": "fdfb6346a089",
+            "_type": "span",
+            "marks": [
+              "kajakk-link"
+            ],
+            "text": "kajakkturer"
+          },
+          {
+            "_key": "e85f8f877551",
+            "_type": "span",
+            "marks": [],
+            "text": " og "
+          },
+          {
+            "_key": "219779af8ca2",
+            "_type": "span",
+            "marks": [
+              "kajakkurs-link"
+            ],
+            "text": "kajakkurs med våttkort"
+          },
+          {
+            "_key": "1a4dc26141cb",
+            "_type": "span",
+            "marks": [],
+            "text": " hvis dere vil lære mer enn bare å være med på tur."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kajakk-link",
+            "_type": "link",
+            "href": "/kajakkturer"
+          },
+          {
+            "_key": "kajakkurs-link",
+            "_type": "link",
+            "href": "/kurs/kajakkurs"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "d3ef3346071d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a5fc4bdc7e9c",
+            "_type": "span",
+            "marks": [],
+            "text": "For nybegynnere er kurs og guidet tur ofte tryggest. Da får dere hjelp med utstyr, rutevalg, teknikk og sikkerhet. For dem som vil lære mer, gir våttkort en konkret ferdighet i tillegg til selve opplevelsen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "25dad7e417a4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1018643f26a8",
+            "_type": "span",
+            "marks": [],
+            "text": "Når hest og natur gir mer mening"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "194d82317d79",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1518956a0609",
+            "_type": "span",
+            "marks": [
+              "hest-link"
+            ],
+            "text": "Hesteopplevelser"
+          },
+          {
+            "_key": "4bb830e76bbe",
+            "_type": "span",
+            "marks": [],
+            "text": " passer når målet er ro, trygghet, nærvær og samspill. Dette er ofte et godt valg for mindre grupper, familier eller team som vil jobbe med tillit og kommunikasjon på en litt annerledes måte."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "hest-link",
+            "_type": "link",
+            "href": "/opplevelser/hesteopplevelser"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "eabdd79defad",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ed4643af8b3a",
+            "_type": "span",
+            "marks": [],
+            "text": "Hest handler ikke bare om ridning. For mange er møtet med hesten, kroppsspråk, ro og mestring minst like viktig. Det gjør hesteopplevelser relevante både for private grupper og for bedrifter som ønsker en mykere, men fortsatt tydelig, aktivitet."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b737f9ce54b0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "aafdc3f6d168",
+            "_type": "span",
+            "marks": [],
+            "text": "Når bedriften trenger mer enn en hyggelig dag"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "8099570c3167",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "bf67842ae65b",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvis målet er samarbeid, kommunikasjon eller kulturbygging, bør dere se på "
+          },
+          {
+            "_key": "060da199a225",
+            "_type": "span",
+            "marks": [
+              "bedrift-link"
+            ],
+            "text": "teambuilding og bedriftsarrangement"
+          },
+          {
+            "_key": "f0e2821756d4",
+            "_type": "span",
+            "marks": [],
+            "text": ". Da handler ikke valget bare om aktivitet, men om hva gruppen skal sitte igjen med etterpå."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "bedrift-link",
+            "_type": "link",
+            "href": "/bedrift"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "2ee9cb964bda",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "77e79b2236eb",
+            "_type": "span",
+            "marks": [],
+            "text": "En god bedriftsdag kan kombinere sjø, natur og faglig innhold. Noen grupper trenger en uformell seiltur for å senke skuldrene. Andre trenger JTI, foredrag eller oppgaver som gjør samarbeid og kommunikasjon mer konkret. Det viktigste er at opplegget tilpasses gruppens størrelse, formål og energinivå."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "4694f101737b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "058790f8419b",
+            "_type": "span",
+            "marks": [],
+            "text": "Når gavekort er smartest"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "4c50ea8b542a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "90497599fb58",
+            "_type": "span",
+            "marks": [],
+            "text": "Et "
+          },
+          {
+            "_key": "033ebf5e8b24",
+            "_type": "span",
+            "marks": [
+              "gavekort-link"
+            ],
+            "text": "gavekort på opplevelse"
+          },
+          {
+            "_key": "4df0a3d8acc5",
+            "_type": "span",
+            "marks": [],
+            "text": " er ofte riktig når du ikke vet nøyaktig hvilken dato, aktivitet eller intensitet mottakeren vil ha. Da kan gaven fortsatt være personlig, men mottakeren får mer fleksibilitet."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "gavekort-link",
+            "_type": "link",
+            "href": "/gavekort"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "ee4d68ee587b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "5f1ed36ea0c5",
+            "_type": "span",
+            "marks": [],
+            "text": "Slik velger du raskt"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "bc9d331b2181",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "3269bb77dd06",
+            "_type": "span",
+            "marks": [],
+            "text": "Bruk denne enkle regelen: Velg seiltur når opplevelsen skal være sosial og tilgjengelig for mange. Velg kajakk når gruppen vil være aktiv og tett på sjøen. Velg hest når ro, mestring og samspill er viktigst. Velg teambuilding når bedriften har et tydelig mål med dagen. Velg gavekort når fleksibilitet er viktigere enn fast dato."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "f20e993a4263",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d69249f5390d",
+            "_type": "span",
+            "marks": [],
+            "text": "Er du fortsatt usikker, er det beste neste steget å "
+          },
+          {
+            "_key": "660296432330",
+            "_type": "span",
+            "marks": [
+              "kontakt-link"
+            ],
+            "text": "sende en forespørsel"
+          },
+          {
+            "_key": "574d2d483af5",
+            "_type": "span",
+            "marks": [],
+            "text": ". Fortell hvem dere er, omtrent hvor mange som skal være med, ønsket dato og hva dere ønsker at dagen skal føles som. Da blir det mye enklere å foreslå riktig opplevelse."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kontakt-link",
+            "_type": "link",
+            "href": "/kontakt"
+          }
+        ],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Usikker på om dere bør velge seiltur, kajakk, hesteridning eller teambuilding? Her er en praktisk guide til riktig Wannado-opplevelse i Arendal.",
+    "mainImage": {
+      "_type": "image",
+      "alt": "Havsul på sjøen"
+    },
+    "publishedAt": "2026-04-02T00:00:00.000Z",
+    "seo": {
+      "description": "Finn riktig opplevelse i Arendal med Wannado. Seiltur, kajakk, hesteridning, teambuilding og gavekort for grupper, bedrifter og familier.",
+      "noIndex": false,
+      "title": "Opplevelser i Arendal, guide fra Wannado"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "slik-velger-du-riktig-opplevelse-i-arendal"
+    },
+    "title": "Slik velger du riktig opplevelse i Arendal"
+  },
+  {
+    "_createdAt": "2026-04-02T15:31:09Z",
+    "_id": "8bae1fc5-70ee-40c0-ae0a-af82b1861c29",
+    "_rev": "o4MXyz27PxyQSJiGTWO8iX",
+    "_type": "post",
+    "_updatedAt": "2026-06-03T03:29:20Z",
+    "body": [
+      {
+        "_key": "e31ee0574286",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "81f1ef7fc0a7",
+            "_type": "span",
+            "marks": [],
+            "text": "Arendal blir annerledes fra sjøen"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "a9798c95a548",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ed4488a9fd30",
+            "_type": "span",
+            "marks": [],
+            "text": "Arendals skjærgård oppleves best fra sjøen. Fra land ser du holmer, båtliv og horisont på avstand. Ombord på Havsul blir du en del av landskapet, med salt luft, roligere tempo og utsikt til steder du ellers bare passerer. Derfor er en "
+          },
+          {
+            "_key": "f1ece1c1efc7",
+            "_type": "span",
+            "marks": [
+              "seiltur-link"
+            ],
+            "text": "seiltur i Arendals skjærgård"
+          },
+          {
+            "_key": "32496c1de149",
+            "_type": "span",
+            "marks": [],
+            "text": " en av de mest tilgjengelige måtene å gi gjester en ekte Sørlandsopplevelse på."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "seiltur-link",
+            "_type": "link",
+            "href": "/seilturer"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "b07054856c0c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c38ed2b5ac51",
+            "_type": "span",
+            "marks": [],
+            "text": "Havsul passer for deg som vil ha mer enn transport på vannet. Turen gir natur, kysthistorie, samtaler og god tid sammen. Det gjør den relevant både for familier, vennegjenger, kunder, ansatte og folk som besøker Arendal for første gang."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "7c3afd50c0bc",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e1dc969ac222",
+            "_type": "span",
+            "marks": [],
+            "text": "1. Du ser skjærgården fra riktig vinkel"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "9282a71785f9",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8cdecf454fb3",
+            "_type": "span",
+            "marks": [],
+            "text": "Skjærgården er ikke bare noe du ser på avstand. Den består av små sund, holmer, svaberg, båtliv og åpne strekk som gir en helt annen følelse når du er midt i det. Fra dekk får du oversikt, men også nærhet. Du ser hvordan byen, kysten og sjøen henger sammen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0dd404873f69",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f66a9eda033f",
+            "_type": "span",
+            "marks": [],
+            "text": "For gjester utenfra er dette ofte den raskeste måten å forstå Arendal på. For lokale kan det være en påminnelse om hvorfor området er spesielt. Det er lett å bli vant til utsikten fra land, men fra sjøen blir landskapet nytt igjen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9176f27308fa",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "87b80dfe1fe3",
+            "_type": "span",
+            "marks": [],
+            "text": "2. Havsul gir turen mer karakter"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "ac8234c96079",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1b3c43a05d53",
+            "_type": "span",
+            "marks": [],
+            "text": "Det er forskjell på å være om bord i en moderne turbåt og å seile med en historisk Listerskøyte. "
+          },
+          {
+            "_key": "0030dc255caf",
+            "_type": "span",
+            "marks": [
+              "havsul-history-link"
+            ],
+            "text": "Havsuls historie"
+          },
+          {
+            "_key": "67e33110d148",
+            "_type": "span",
+            "marks": [],
+            "text": " gir opplevelsen mer dybde. Treverk, rigg og tempo gjør at turen føles personlig, ikke standardisert."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "havsul-history-link",
+            "_type": "link",
+            "href": "/blogg/havsuls-historie-en-reise-tilbake-til-1933"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "a320c17ada15",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "95cacb15569c",
+            "_type": "span",
+            "marks": [],
+            "text": "Det er nettopp dette mange husker etterpå. Ikke bare at de var på sjøen, men at de var på en båt med sjel, lokal forankring og en tydelig historie. For reiseliv og bedriftsarrangement er slike detaljer viktige fordi de gjør opplevelsen lettere å snakke om og anbefale videre."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "ddc65edf4af4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "de6b4b38c272",
+            "_type": "span",
+            "marks": [],
+            "text": "3. Tempoet passer for mange typer grupper"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "4198e3a89e53",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f91e2eaae8e7",
+            "_type": "span",
+            "marks": [],
+            "text": "En god gruppeopplevelse må ikke være krevende for å være minneverdig. Havsul gir en lavterskel aktivitet der folk kan være sammen uten at alle må ha samme form, alder eller erfaring. Noen vil høre historier, noen vil ta bilder, noen vil prate, og noen vil bare se på sjøen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "24f6cc173461",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a1685e953915",
+            "_type": "span",
+            "marks": [],
+            "text": "Det gjør turen spesielt nyttig når gruppen er sammensatt. Familier kan ha både barn, voksne og eldre med. Bedrifter kan ha ansatte med ulikt aktivitetsnivå. Venner kan ønske en sosial opplevelse uten at dagen blir for planlagt."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0d8256b3088f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "3328d85bf39d",
+            "_type": "span",
+            "marks": [],
+            "text": "4. Turen kan brukes både privat og profesjonelt"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "045e198f8e35",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1d1c62235057",
+            "_type": "span",
+            "marks": [],
+            "text": "En seiltur passer like godt som privat opplevelse som del av et profesjonelt program. Den kan være en bursdagsgave, en sommeraktivitet, en kundetur eller en del av "
+          },
+          {
+            "_key": "c86e7b3af245",
+            "_type": "span",
+            "marks": [
+              "bedrift-link"
+            ],
+            "text": "teambuilding for bedrifter"
+          },
+          {
+            "_key": "263199298381",
+            "_type": "span",
+            "marks": [],
+            "text": ". Hvis mottakeren heller skal velge selv, kan et "
+          },
+          {
+            "_key": "585992753de6",
+            "_type": "span",
+            "marks": [
+              "gavekort-link"
+            ],
+            "text": "gavekort på opplevelse"
+          },
+          {
+            "_key": "9f9852ae8f72",
+            "_type": "span",
+            "marks": [],
+            "text": " være et godt alternativ."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "bedrift-link",
+            "_type": "link",
+            "href": "/bedrift"
+          },
+          {
+            "_key": "gavekort-link",
+            "_type": "link",
+            "href": "/gavekort"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "f5a79ea8dcf6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b99f25f25dea",
+            "_type": "span",
+            "marks": [],
+            "text": "Fleksibiliteten er viktig. Noen grupper ønsker en rolig tur med god tid og fine omgivelser. Andre ønsker servering, faglig innhold, historier eller en tydeligere ramme rundt dagen. Når utgangspunktet er godt, kan opplevelsen tilpasses uten å miste særpreg."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a31a8546a6f5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "104cb9b57e55",
+            "_type": "span",
+            "marks": [],
+            "text": "5. Det blir lettere å lage gode minner"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "3b17b06a4678",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "bdb80474bbc6",
+            "_type": "span",
+            "marks": [],
+            "text": "De beste opplevelsene har ofte noen få sterke ingredienser: et tydelig sted, en god ramme, noe å se på, noe å snakke om og nok tid til å være til stede. En tur med Havsul har alt dette. Skjærgården gir landskapet, båten gir karakter, og gruppen får rom til å dele opplevelsen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "dff767a069f2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "5e254f9525e9",
+            "_type": "span",
+            "marks": [],
+            "text": "For mange er det nettopp kombinasjonen av ro og innhold som gjør turen god. Den er enkel å være med på, men føles likevel spesiell. Det er verdifullt enten du planlegger en familiedag, en gave, en kundetur eller en sosial samling for kollegaer."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "75fbd61b53ff",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a12677fc9167",
+            "_type": "span",
+            "marks": [],
+            "text": "Slik planlegger du en god seiltur"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "32fe811bd2e1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "da0f39a7b505",
+            "_type": "span",
+            "marks": [],
+            "text": "Start med antall personer, ønsket dato og hvilken stemning dere vil ha. Skal turen være rolig og sosial, eller skal den være en del av et større program? Skal den passe for barn, kunder, ansatte eller gjester som ikke kjenner området? Slike svar gjør det enklere å finne riktig opplegg."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "2273a29c6348",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8755230ec4f8",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvis du er usikker, er det smart å "
+          },
+          {
+            "_key": "d53df5c17313",
+            "_type": "span",
+            "marks": [
+              "kontakt-link"
+            ],
+            "text": "sende en forespørsel"
+          },
+          {
+            "_key": "f2ea24b7a523",
+            "_type": "span",
+            "marks": [],
+            "text": " med hvem som skal være med, omtrent hvor mange dere er og hva dere ønsker å få ut av turen. Da blir det lettere å lage en seiltur i Arendals skjærgård som faktisk passer gruppen."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kontakt-link",
+            "_type": "link",
+            "href": "/kontakt"
+          }
+        ],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "Arendals skjærgård oppleves best fra sjøen. Her er fem gode grunner til at en tur med Havsul passer for familier, venner, gjester og bedrifter.",
+    "mainImage": {
+      "_type": "image",
+      "alt": "Listerskøyta Havsul i Arendals skjærgård"
+    },
+    "publishedAt": "2026-03-25T10:00:00.000Z",
+    "seo": {
+      "_type": "seo",
+      "description": "Fem grunner til å oppleve Arendals skjærgård fra sjøen med Listerskøyta Havsul. Natur, historie og sosial opplevelse i Arendal.",
+      "noIndex": false,
+      "title": "Seiltur i Arendals skjærgård med Havsul"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "5-grunner-til-a-oppleve-arendals-skjaergard-med-havsul"
+    },
+    "title": "5 grunner til å oppleve Arendals skjærgård med Havsul"
+  },
+  {
+    "_createdAt": "2026-04-02T15:31:17Z",
+    "_id": "c9fa9cfa-5bc0-4b1d-ac4d-808244a7c801",
+    "_rev": "o4MXyz27PxyQSJiGTWO8iX",
+    "_type": "post",
+    "_updatedAt": "2026-06-03T03:29:20Z",
+    "body": [
+      {
+        "_key": "9d8b91437937",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "fb70201b6008",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvorfor sjøen fungerer så godt for team"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "9ea56a14c3ce",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b11bb940d282",
+            "_type": "span",
+            "marks": [],
+            "text": "Når en gruppe går om bord på Havsul, endres tempoet med en gang. Mobilene blir mindre viktige, praten flyter lettere, og folk får en felles opplevelse som ikke ligner et møterom. Nettopp derfor fungerer en "
+          },
+          {
+            "_key": "809995019e85",
+            "_type": "span",
+            "marks": [
+              "seiltur-link"
+            ],
+            "text": "seiltur med Listerskøyta Havsul"
+          },
+          {
+            "_key": "640c8714e6c2",
+            "_type": "span",
+            "marks": [],
+            "text": " så godt for "
+          },
+          {
+            "_key": "d22a602bc095",
+            "_type": "span",
+            "marks": [
+              "bedrift-link"
+            ],
+            "text": "teambuilding og bedriftsarrangement"
+          },
+          {
+            "_key": "7547dafacea7",
+            "_type": "span",
+            "marks": [],
+            "text": " i Arendal."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "seiltur-link",
+            "_type": "link",
+            "href": "/seilturer"
+          },
+          {
+            "_key": "bedrift-link",
+            "_type": "link",
+            "href": "/bedrift"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "ad694ea81c0d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "631554b4f766",
+            "_type": "span",
+            "marks": [],
+            "text": "God teambuilding handler ikke bare om øvelser, konkurranser eller ferdige programmer. Ofte handler det om å skape en situasjon der folk kan se hverandre litt annerledes. På sjøen får alle samme ramme: vind, lukt av saltvann, bevegelsen i båten og utsikten mot skjærgården. Det gir en naturlig felles referanse som teamet kan snakke om lenge etter turen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d94d851458b4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "4a87e74acbbb",
+            "_type": "span",
+            "marks": [],
+            "text": "Alle deler samme opplevelse"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "abbdd979cbf6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c0fbe353b572",
+            "_type": "span",
+            "marks": [],
+            "text": "I en arbeidshverdag kan folk sitte i ulike roller, team, kontorer og møter. På en seiltur er alle på samme dekk. Det gjør terskelen lavere for å stille spørsmål, dele historier og bli kjent uten at det føles konstruert. Opplevelsen gir rom for både de utadvendte og de mer stille deltakerne."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d175784b5f28",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6901b0a5c294",
+            "_type": "span",
+            "marks": [],
+            "text": "For nye team kan turen fungere som en myk start. For etablerte team kan den gi et nødvendig avbrekk fra kalender, skjerm og vante mønstre. For ledergrupper kan det være en bedre ramme for refleksjon enn enda et langt møte rundt et bord."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9dca6be2986f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "7cdfd1bb8fff",
+            "_type": "span",
+            "marks": [],
+            "text": "Samtalene blir mer naturlige"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "d5ca22cfc301",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e0edd503f0f4",
+            "_type": "span",
+            "marks": [],
+            "text": "En seiltur gir mange små lommer for uformell samtale. Noen står ved rekka og ser mot land, andre spør om båten, historien eller ruta, og noen setter seg ned med kaffe og bare lytter. Det gjør at samtaler oppstår uten at noen må tvinge dem frem."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c72d2d342000",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9ee13bebbca9",
+            "_type": "span",
+            "marks": [],
+            "text": "Det er særlig nyttig for bedrifter som har fått nye ansatte, slått sammen avdelinger, startet et prosjekt eller trenger å styrke relasjoner etter en hektisk periode. Når folk får en god opplevelse sammen, blir det enklere å samarbeide når hverdagen begynner igjen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b34b10ff6438",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9d1e69a2456c",
+            "_type": "span",
+            "marks": [],
+            "text": "Slik kan turen brukes i et bedriftsopplegg"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "4208172a4ef1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cc614924a54d",
+            "_type": "span",
+            "marks": [],
+            "text": "Som sosial avslutning etter fagdag, workshop eller strategisamling."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "fa29c9c31f22",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "72727c940fcc",
+            "_type": "span",
+            "marks": [],
+            "text": "Som lavterskel aktivitet for ansatte, kunder eller samarbeidspartnere."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "bbf7ff123f84",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e8c53ee5c1bd",
+            "_type": "span",
+            "marks": [],
+            "text": "Som ramme rundt refleksjonsoppgaver om kommunikasjon, roller og samarbeid."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d668bb6bee01",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2df77d699923",
+            "_type": "span",
+            "marks": [],
+            "text": "Som del av en større firmadag med mat, foredrag eller oppgaver på land."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "45efa21a93c1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "7031d4ebf8c3",
+            "_type": "span",
+            "marks": [],
+            "text": "Trygge rammer gjør opplevelsen bedre"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "6d0dbcf5603c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "13fdb8bac29e",
+            "_type": "span",
+            "marks": [],
+            "text": "For bedrifter er forutsigbarhet viktig. Oppmøtested, varighet, klær, værvurdering og gruppestørrelse bør være avklart på forhånd. Da kan deltakerne møte opp med lave skuldre og fokusere på opplevelsen, ikke logistikken."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "87badba429b8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "66c39e9fcaf2",
+            "_type": "span",
+            "marks": [],
+            "text": "Havsul passer godt når gruppen har blandet alder, ulik fysisk form eller deltakere som ikke kjenner hverandre godt fra før. Det er sosialt, men ikke pressende. Det er aktivt nok til å føles som en opplevelse, men rolig nok til at samtalene får plass."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0526eef45a6b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ddccbfd4b3c6",
+            "_type": "span",
+            "marks": [],
+            "text": "Når dere vil ha mer faglig innhold"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "0212447753d2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "72d2319219a3",
+            "_type": "span",
+            "marks": [],
+            "text": "Hvis målet er mer enn en hyggelig dag, kan seilturen kombineres med et tydeligere opplegg på land. For eksempel kan en bedrift bruke "
+          },
+          {
+            "_key": "2e5da04dc8fc",
+            "_type": "span",
+            "marks": [
+              "jti-link"
+            ],
+            "text": "JTI og teamutvikling"
+          },
+          {
+            "_key": "e81fe37bfa24",
+            "_type": "span",
+            "marks": [],
+            "text": " for å koble opplevelsen til roller, kommunikasjon og hvordan gruppen faktisk jobber sammen."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "jti-link",
+            "_type": "link",
+            "href": "/foredrag/jti"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "b16bd0891868",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "a48be9a04063",
+            "_type": "span",
+            "marks": [],
+            "text": "Resultatet er ikke bare en fin båttur. Det er en felles historie teamet kan ta med seg tilbake til arbeidshverdagen. Når du vil planlegge en firmatur, er det beste neste steget å "
+          },
+          {
+            "_key": "cacd91dcf247",
+            "_type": "span",
+            "marks": [
+              "kontakt-link"
+            ],
+            "text": "sende en forespørsel"
+          },
+          {
+            "_key": "19b309409fe2",
+            "_type": "span",
+            "marks": [],
+            "text": " med antall personer, ønsket dato og hva dere vil at dagen skal gjøre for gruppen."
+          }
+        ],
+        "markDefs": [
+          {
+            "_key": "kontakt-link",
+            "_type": "link",
+            "href": "/kontakt"
+          }
+        ],
+        "style": "normal"
+      },
+      {
+        "_key": "9bd28637999a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "79cb74e42d02",
+            "_type": "span",
+            "marks": [],
+            "text": "Forankring etter turen"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "5305ccd47097",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "479b17de99b0",
+            "_type": "span",
+            "marks": [],
+            "text": "En god firmatur bør også få en kort oppfølging. Bruk gjerne ti minutter dagen etter til å spørre hva gruppen la merke til, hvilke samtaler som oppstod, og hva dere kan ta med videre. Da blir seilturen mer enn et avbrekk, den blir et felles punkt teamet kan bruke i arbeidshverdagen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "20d3361a1849",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "08ce628b3457",
+            "_type": "span",
+            "marks": [],
+            "text": "Det trenger ikke være komplisert. Tre spørsmål er ofte nok: Hva fungerte godt på turen? Hva lærte vi om hverandre? Hva vil vi gjøre mer av på jobb? Svarene gjør opplevelsen mer nyttig uten å ta bort den lette, sosiale følelsen."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "excerpt": "En seiltur med Havsul gir bedrifter i Arendal en rolig, sosial og praktisk ramme for samarbeid, fellesskap og bedre samtaler utenfor kontoret.",
+    "mainImage": {
+      "_type": "image",
+      "alt": "Gruppe om bord på Havsul under seiltur"
+    },
+    "publishedAt": "2026-04-01T10:00:00.000Z",
+    "seo": {
+      "_type": "seo",
+      "description": "Se hvorfor seiltur med Havsul fungerer som teambuilding for bedrifter i Arendal. Felles opplevelse, samarbeid og gode samtaler på sjøen.",
+      "noIndex": false,
+      "title": "Teambuilding på seiltur i Arendal"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "hvordan-en-seiltur-bygger-teamwork"
+    },
+    "title": "Hvordan en seiltur bygger teamwork"
+  }
+]
