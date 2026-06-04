@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  absoluteUrl,
+  createBreadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Bedriftsarrangement og Teambuilding | Wannado",
   description:
     "Teambuilding, bedriftsarrangement og faglig innhold med natur som arena. Kajakk, seiltur, JTI og foredrag. Skreddersydd for deres mål og kultur i Arendal og på Sørlandet.",
-  openGraph: {
-    title: "Bedriftsarrangement og Teambuilding | Wannado",
-    description:
-      "Teambuilding, bedriftsarrangement og faglig innhold med natur som arena. Kajakk, seiltur, JTI og foredrag. Skreddersydd for deres mål og kultur.",
-    images: ["/images/havsul.jpg"],
-  },
-};
+  path: "/bedrift",
+  image: "/images/havsul.jpg",
+  imageAlt: "Bedriftsarrangement med seiltur i Arendals skjærgård",
+});
 
 const benefits = [
   {
@@ -182,7 +184,7 @@ export default function BedriftPage() {
         provider: {
           "@type": "Organization",
           name: "Wannado",
-          url: "https://wannado.no",
+          url: absoluteUrl("/"),
           telephone: "+4799469957",
           email: "mail@wannado.no",
           address: {
@@ -207,7 +209,7 @@ export default function BedriftPage() {
         provider: {
           "@type": "Organization",
           name: "Wannado",
-          url: "https://wannado.no",
+          url: absoluteUrl("/"),
         },
         serviceType: "Personlighetsanalyse",
         category: "Faglig innhold",
@@ -217,10 +219,10 @@ export default function BedriftPage() {
 
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      <JsonLd
+        data={createBreadcrumbSchema([{ name: "Bedrift", path: "/bedrift" }])}
       />
+      <JsonLd data={serviceSchema} />
       <Navbar />
 
       {/* Hero */}
@@ -232,6 +234,7 @@ export default function BedriftPage() {
             fill
             className="object-cover"
             priority
+            loading="eager"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brown/70 via-brown/50 to-brown/80" />

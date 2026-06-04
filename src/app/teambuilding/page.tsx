@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import { createServicePageMetadata } from "@/lib/serviceMetadata";
+import { createBreadcrumbSchema } from "@/lib/seo";
+import { getServiceBySlug } from "@/lib/serviceContent";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   allProductsQuery,
@@ -10,17 +14,19 @@ import {
   type SanityProduct,
 } from "@/sanity/lib/content";
 
-export const metadata: Metadata = {
-  title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
-  description:
-    "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
-  openGraph: {
-    title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
-    description:
-      "Teambuilding i Arendal med 15 års erfaring. Utendørs utfordringer, mordmysterier, innendørs konkurranser og JTI. Fra kr 4 500.",
-    images: ["/images/scraped/teambuilding/Bungeerunning-7607.jpg"],
-  },
-};
+export function generateMetadata() {
+  return createServicePageMetadata({
+    slug: "teambuilding",
+    path: "/teambuilding",
+    fallback: {
+      title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
+      description:
+        "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
+      image: "/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg",
+      imageAlt: "Kollegaer hopper på stranden under teambuilding med Wannado",
+    },
+  });
+}
 
 const products = [
   {
@@ -111,13 +117,17 @@ const references = [
 ];
 
 export default async function TeambuildingPage() {
-  const { data: sanityProducts } = await sanityFetch({
-    query: allProductsQuery,
-    perspective: "published",
-  });
+  const [{ data: sanityProducts }, service] = await Promise.all([
+    sanityFetch({
+      query: allProductsQuery,
+      perspective: "published",
+    }),
+    getServiceBySlug("teambuilding"),
+  ]);
 
+  const cmsProducts = (sanityProducts as SanityProduct[] | null) ?? [];
   const productById = new Map<string, SanityProduct>(
-    sanityProducts.map((product: SanityProduct) => [product._id, product]),
+    cmsProducts.map((product) => [product._id, product]),
   );
 
   const productCards = products.map((product) => {
@@ -165,22 +175,79 @@ export default async function TeambuildingPage() {
 
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Bedrift", path: "/bedrift" },
+          { name: "Teambuilding", path: "/teambuilding" },
+        ])}
       />
+      <JsonLd data={productSchema} />
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 pb-20 bg-brown text-white text-center px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-space text-4xl md:text-6xl font-bold mb-6">
-            Teambuilding som skaper ekte samhold
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/80 leading-relaxed">
-            I over 15 år har Wannado skapt uforglemmelige opplevelser for
-            bedrifter på Sørlandet. Vi vet hva som fungerer.
-          </p>
+      <section className="relative min-h-[760px] md:min-h-[720px] flex items-center overflow-hidden text-white">
+        <Image
+          src="/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg"
+          alt="Kollegaer hopper på stranden under teambuilding med Wannado"
+          fill
+          priority
+          loading="eager"
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/75 via-brown/55 to-brown/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_25%,rgba(246,213,142,0.18),transparent_34%)]" />
+
+        <div className="relative z-10 w-full px-6 pt-28 pb-16 md:pt-32">
+          <div className="max-w-6xl mx-auto">
+            <div className="max-w-3xl">
+              <p className="font-inter text-sm font-semibold uppercase tracking-[0.35em] text-[#f6d58e] mb-5">
+                Teambuilding på Sørlandet
+              </p>
+              <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
+                Teambuilding som skaper ekte samhold
+              </h1>
+              <p className="font-inter text-lg md:text-xl text-white/88 leading-relaxed max-w-2xl">
+                Aktive gruppeopplevelser, lekne konkurranser og faglig innhold
+                som får kollegaer til å samarbeide bedre, ute i Arendal og langs
+                Sørlandskysten.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/kontakt?tjeneste=Teambuilding"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
+                >
+                  Send forespørsel
+                </Link>
+                <Link
+                  href="#opplevelser"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
+                >
+                  Se opplevelsene
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3 md:max-w-3xl">
+              {[
+                ["15+ år", "med bedriftsopplevelser"],
+                ["49+ kunder", "har valgt Wannado"],
+                ["Arendal", "skjærgård, strand og fagdag"],
+              ].map(([value, label]) => (
+                <div
+                  key={value}
+                  className="border border-white/22 bg-white/10 px-5 py-4 backdrop-blur-sm"
+                >
+                  <p className="font-space text-2xl font-bold text-white">
+                    {value}
+                  </p>
+                  <p className="mt-1 font-inter text-sm text-white/72">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -210,7 +277,7 @@ export default async function TeambuildingPage() {
       </section>
 
       {/* Products Grid */}
-      <section className="bg-warm-white py-16 md:py-20">
+      <section id="opplevelser" className="bg-warm-white py-16 md:py-20 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
@@ -251,7 +318,7 @@ export default async function TeambuildingPage() {
                     </span>
                   </div>
                   <Link
-                    href={product.href}
+                    href="/booking"
                     className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 self-start"
                   >
                     Bestill
@@ -275,6 +342,7 @@ export default async function TeambuildingPage() {
                 preload="metadata"
                 controls
                 poster="/images/tp-typeteori.jpg"
+                aria-label="Video med Tone Pernille om teambuilding"
               >
                 <source src="/videos/havsul-intervju-tone.mp4#t=2" type="video/mp4" />
               </video>
@@ -309,6 +377,8 @@ export default async function TeambuildingPage() {
           </div>
         </div>
       </section>
+
+      <ServiceCmsSection service={service} />
 
       {/* JTI Section */}
       <section className="py-16 md:py-20">
@@ -352,7 +422,7 @@ export default async function TeambuildingPage() {
               </div>
             </div>
             <Link
-              href="/kontakt?tjeneste=Foredrag%2FJTI"
+              href="/booking"
               className="inline-flex items-center justify-center bg-white text-teal font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
             >
               Bestill foredrag

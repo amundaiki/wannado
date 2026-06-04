@@ -1,56 +1,203 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CheckCircle2, Compass, MapPin, Waves } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import { createServicePageMetadata } from "@/lib/serviceMetadata";
+import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
+import { getServiceBySlug } from "@/lib/serviceContent";
 
-export const metadata: Metadata = {
-  title: "Kajakk- og kanoutleie Arendal | Wannado",
-  description:
-    "Lei kajakk eller kano fra Skarestrand i Kongshavn. Utforsk Arendals skjærgård på egenhånd. Kontakt Roar for bestilling.",
-  openGraph: {
-    title: "Kajakk- og kanoutleie Arendal | Wannado",
-    description:
-      "Lei kajakk eller kano fra Skarestrand i Kongshavn. Utforsk Arendals skjærgård på egenhånd. Kontakt Roar for bestilling.",
-    images: ["/images/utleie-bilde.jpg"],
+export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return createServicePageMetadata({
+    slug: "utleie",
+    path: "/utleie",
+    fallback: {
+      title: "Kajakk- og kanoutleie Arendal | Wannado",
+      description:
+        "Lei kajakk eller kano fra Skarestrand i Kongshavn. Utforsk Arendals skjærgård på egenhånd. Kontakt Roar for bestilling.",
+      image: "/images/utleie-bilde.jpg",
+      imageAlt: "Kajakker klare for utleie ved Skarestrand",
+    },
+  });
+}
+
+const rentalOptions = [
+  {
+    name: "Enkel kajakk",
+    price: "Fra kr 350,-",
+    note: "kr 350,- halv dag (3 t) / kr 450,- hel dag, inkludert åre og redningsvest",
+    schemaPrice: "350",
   },
-};
+  {
+    name: "Dobbel kajakk",
+    price: "Fra kr 400,-",
+    note: "kr 400,- halv dag (3 t) / kr 500,- hel dag, godt valg for to eller nybegynnere",
+    schemaPrice: "400",
+  },
+  {
+    name: "Kano",
+    price: "Ta kontakt for pris",
+    note: "rolig og familievennlig, ta kontakt med Roar for pris",
+    schemaPrice: null,
+  },
+] as const;
 
-export default function UtleiePage() {
+const heroStats = [
+  ["Skarestrand", "oppmøte ved sjøen"],
+  ["3 valg", "kajakk, dobbel og kano"],
+  ["Roar", "hjelper med riktig utstyr"],
+] as const;
+
+const practicalCards = [
+  {
+    icon: MapPin,
+    title: "Oppmøtested",
+    text: "Skarestrand, 4812 Kongshavn. Wannado holder til rett ved sjøkanten, med enkel tilgang til vannet og parkering i nærheten.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Hva er inkludert",
+    text: "Kajakk eller kano, padleårer og redningsvest. Alt utstyret du trenger for en trygg tur på sjøen er inkludert i leieprisen.",
+  },
+  {
+    icon: Compass,
+    title: "Tips for turen",
+    text: "Ta med klær etter vær, sko som tåler vann, solkrem og drikkevann. Sjekk værmeldingen før du legger ut.",
+  },
+] as const;
+
+const rentalServiceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${absoluteUrl("/utleie")}#service`,
+  name: "Kajakk- og kanoutleie i Arendal",
+  description:
+    "Lei kajakk eller kano fra Skarestrand i Kongshavn og utforsk Arendals skjærgård på egenhånd.",
+  provider: {
+    "@id": `${absoluteUrl("/")}#organization`,
+  },
+  areaServed: [
+    {
+      "@type": "AdministrativeArea",
+      name: "Arendal",
+    },
+    {
+      "@type": "Place",
+      name: "Kongshavn",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Sørlandet",
+    },
+  ],
+  serviceType: "Utstyrsutleie",
+  url: absoluteUrl("/utleie"),
+  offers: rentalOptions
+    .filter((option) => option.schemaPrice !== null)
+    .map((option) => ({
+      "@type": "Offer",
+      name: option.name,
+      price: option.schemaPrice,
+      priceCurrency: "NOK",
+      availability: "https://schema.org/InStock",
+      url: absoluteUrl("/kontakt?tjeneste=Utleie"),
+    })),
+} as const;
+
+export default async function UtleiePage() {
+  const service = await getServiceBySlug("utleie");
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Opplevelser", path: "/opplevelser" },
+          { name: "Utleie", path: "/utleie" },
+        ])}
+      />
+      <JsonLd data={rentalServiceJsonLd} />
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-end">
+      <section className="relative flex min-h-[760px] items-end overflow-hidden text-white md:min-h-[720px]">
         <Image
           src="/images/utleie-bilde.jpg"
           alt="Kajakker klar for utleie ved Skarestrand"
           fill
-          className="object-cover"
+          className="object-cover object-[54%_44%]"
           priority
+          loading="eager"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/30 to-transparent" />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 w-full">
-          <p className="font-inter text-sm font-medium text-sand uppercase tracking-[3px] mb-4">
-            Utstyrsutleie
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
-            Lei kajakk og kano
-            <br />
-            i Arendals skjærgård
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
-            Utforsk kysten på egenhånd med kajakk eller kano fra Skarestrand.
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/52 via-brown/34 to-brown/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(246,213,142,0.18),transparent_34%)]" />
+
+        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+            <div className="max-w-3xl">
+              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
+                Utstyrsutleie
+              </p>
+              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
+                Lei kajakk og kano i Arendals skjærgård
+              </h1>
+              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
+                Utforsk kysten på egenhånd med utstyr fra Skarestrand. Vi hjelper
+                deg med riktig valg, praktisk oppmøte og trygg start på turen.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/booking"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
+                >
+                  Bestill utleie
+                </Link>
+                <a
+                  href="tel:+4794826710"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
+                >
+                  Ring Roar
+                </a>
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
+                {heroStats.map(([value, label]) => (
+                  <div
+                    key={value}
+                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
+                  >
+                    <p className="font-space text-lg font-bold leading-tight text-white sm:text-2xl">
+                      {value}
+                    </p>
+                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden border border-white/18 bg-white/12 p-5 backdrop-blur-md md:p-6 lg:block">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/18 bg-white/12">
+                <Waves className="h-6 w-6 text-[#f6d58e]" />
+              </div>
+              <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-[#f6d58e]">
+                Før du legger ut
+              </p>
+              <p className="mt-4 font-inter text-sm leading-7 text-white/78">
+                Ta kontakt hvis du er usikker på vær, rute, erfaring eller
+                hvilken kajakk som passer. Utleie bør avklares på forhånd, slik
+                at riktig utstyr er klart.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Main Content + Pricing Card */}
       <section className="max-w-6xl mx-auto px-6 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-          {/* Left: Description */}
           <div className="lg:col-span-3 space-y-6">
             <h2 className="font-space text-3xl md:text-4xl font-bold text-brown leading-snug">
               Padle i ditt eget tempo
@@ -74,96 +221,48 @@ export default function UtleiePage() {
                 alt="Kajakker ved Skarestrand"
                 width={800}
                 height={533}
-                className="rounded-2xl"
+                className="w-full rounded-2xl object-cover shadow-sm"
               />
             </div>
           </div>
 
-          {/* Right: Pricing Card */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg border border-border p-8 sticky top-24">
               <h3 className="font-space text-2xl font-bold text-brown mb-6">
                 Utleiepriser
               </h3>
 
-              {/* Enkel kajakk */}
-              <div className="mb-6 pb-6 border-b border-border">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
-                  Enkel kajakk
-                </p>
-                <p className="font-space text-2xl font-bold text-brown">
-                  Fra kr 250,-
-                </p>
-                <p className="font-inter text-sm text-brown-mid mt-1">
-                  per time, inkludert utstyr
-                </p>
-              </div>
-
-              {/* Dobbel kajakk */}
-              <div className="mb-6 pb-6 border-b border-border">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
-                  Dobbel kajakk
-                </p>
-                <p className="font-space text-2xl font-bold text-brown">
-                  Fra kr 350,-
-                </p>
-                <p className="font-inter text-sm text-brown-mid mt-1">
-                  per time, inkludert utstyr
-                </p>
-              </div>
-
-              {/* Kano */}
-              <div className="mb-8">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
-                  Kano
-                </p>
-                <p className="font-space text-2xl font-bold text-brown">
-                  Fra kr 200,-
-                </p>
-                <p className="font-inter text-sm text-brown-mid mt-1">
-                  per time, inkludert utstyr
-                </p>
-              </div>
-
-              {/* Dobbel kajakk */}
-              <div className="mb-6 pb-6 border-b border-border">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
-                  Dobbel kajakk
-                </p>
-                <p className="font-space text-2xl font-bold text-brown">
-                  Fra kr 350,-
-                </p>
-                <p className="font-inter text-sm text-brown-mid mt-1">
-                  per time, inkludert utstyr
-                </p>
-              </div>
-
-              {/* Kano */}
-              <div className="mb-8">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
-                  Kano
-                </p>
-                <p className="font-space text-2xl font-bold text-brown">
-                  Fra kr 200,-
-                </p>
-                <p className="font-inter text-sm text-brown-mid mt-1">
-                  per time, inkludert utstyr
-                </p>
+              <div className="mb-8 divide-y divide-border">
+                {rentalOptions.map((option) => (
+                  <div key={option.name} className="py-5 first:pt-0">
+                    <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                      {option.name}
+                    </p>
+                    <p className="font-space text-2xl font-bold text-brown">
+                      {option.price}
+                    </p>
+                    <p className="font-inter text-sm text-brown-mid mt-1">
+                      {option.note}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               <Link
-                href="/kontakt?tjeneste=Utleie"
-                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
+                href="/utleie/kajakk-og-kano-utleie"
+                className="block min-h-12 w-full rounded-xl bg-brown px-6 py-4 text-center font-inter text-base font-semibold text-white transition-colors hover:bg-[#5a4838]"
               >
-                Bestill utleie
+                Se kajakk- og kanoutleie
               </Link>
               <p className="font-inter text-xs text-brown-muted text-center mt-3">
-                Vi svarer vanligvis innen 24 timer
+                Priser, oppmøte og praktisk info
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <ServiceCmsSection service={service} />
 
       {/* Praktisk informasjon */}
       <section className="bg-warm-white py-20 md:py-28">
@@ -176,89 +275,26 @@ export default function UtleiePage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {/* Oppmøtested */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
-                <svg
-                  className="w-6 h-6 text-teal"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-space text-lg font-bold text-brown mb-2">
-                Oppmøtested
-              </h3>
-              <p className="font-inter text-sm text-brown-mid leading-relaxed">
-                Skarestrand, 4812 Kongshavn. Wannado holder til rett ved
-                sjøkanten, med enkel tilgang til vannet og parkering i nærheten.
-              </p>
-            </div>
+            {practicalCards.map((card) => {
+              const Icon = card.icon;
 
-            {/* Hva er inkludert */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
-                <svg
-                  className="w-6 h-6 text-teal"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              return (
+                <div
+                  key={card.title}
+                  className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-space text-lg font-bold text-brown mb-2">
-                Hva er inkludert
-              </h3>
-              <p className="font-inter text-sm text-brown-mid leading-relaxed">
-                Kajakk eller kano, padleårer og redningsvest. Alt utstyret du
-                trenger for en trygg tur på sjøen er inkludert i leieprisen.
-              </p>
-            </div>
-
-            {/* Tips */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
-                <svg
-                  className="w-6 h-6 text-teal"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-space text-lg font-bold text-brown mb-2">
-                Tips for turen
-              </h3>
-              <p className="font-inter text-sm text-brown-mid leading-relaxed">
-                Ta med væregnede klær og sko som tåler vann. Sjekk værmelding
-                før du drar, og husk solkrem og drikkevann på varme dager.
-              </p>
-            </div>
+                  <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
+                    <Icon className="h-6 w-6 text-teal" strokeWidth={1.7} />
+                  </div>
+                  <h3 className="font-space text-lg font-bold text-brown mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="font-inter text-sm text-brown-mid leading-relaxed">
+                    {card.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -274,15 +310,15 @@ export default function UtleiePage() {
             med Roar for å reservere.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/kontakt?tjeneste=Utleie"
-                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
-              >
-                Bestill utleie
-              </Link>
+            <Link
+              href="/booking"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#f6d58e] px-8 py-4 font-inter text-base font-semibold text-brown transition-colors hover:bg-[#f3c977] sm:w-auto"
+            >
+              Bestill utleie
+            </Link>
             <a
               href="tel:+4794826710"
-              className="inline-block border-2 border-white/30 text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border-2 border-white/30 px-8 py-4 font-inter text-base font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto"
             >
               Ring Roar: +47 94 82 67 10
             </a>

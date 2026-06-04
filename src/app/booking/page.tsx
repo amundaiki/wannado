@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import CheckinBookingEmbed from "@/components/booking/CheckinBookingEmbed";
 import ContactForm from "@/components/ui/ContactForm";
+import {
+  absoluteUrl,
+  createBreadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Booking av opplevelser i Arendal | Wannado",
   description:
-    "Bestill seiltur, kajakktur, kajakkurs, teambuilding, foredrag eller gavekort hos Wannado. Send forespørsel og få svar innen 24 timer.",
-  openGraph: {
-    title: "Booking av opplevelser i Arendal | Wannado",
-    description:
-      "Bestill opplevelser med Wannado i Arendal. Seilturer, kajakk, teambuilding, foredrag og gavekort.",
-    images: ["/images/havsul.jpg"],
-  },
-};
+    "Bestill seiltur, kajakktur, kajakkurs, teambuilding, foredrag eller gavekort hos Wannado. Meld deg på aktuelle aktiviteter eller send forespørsel.",
+  path: "/booking",
+  image: "/images/havsul.jpg",
+  imageAlt: "Listerskøyta Havsul i Arendals skjærgård",
+});
 
 const bookingPaths = [
   {
@@ -26,7 +29,7 @@ const bookingPaths = [
     price: "Fra kr 350,- per person",
     href: "/seilturer",
     inquiryHref: "/kontakt?tjeneste=Seilturer",
-    image: "/images/havsul.jpg",
+    image: "/images/scraped/sailing/baat-fb-havsul.jpg",
     imageAlt: "Listerskøyta Havsul i Arendals skjærgård",
     badge: "Seiltur",
   },
@@ -79,8 +82,8 @@ const bookingPaths = [
     description:
       "Gi bort en opplevelse på vannet eller et opplegg tilpasset mottakeren og anledningen.",
     price: "Vi lager personlig gavekort",
-    href: "/kontakt?tjeneste=Annet",
-    inquiryHref: "/kontakt?tjeneste=Annet",
+    href: "/gavekort",
+    inquiryHref: "/gavekort#bestill-gavekort",
     image: "/images/P7270038.jpg",
     imageAlt: "Opplevelsesgave fra Wannado",
     badge: "Gavekort",
@@ -162,9 +165,42 @@ const faqItems = [
   },
 ] as const;
 
+const bookingJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: "Booking av opplevelser i Arendal",
+      url: absoluteUrl("/booking"),
+      description:
+        "Bestill seiltur, kajakktur, kajakkurs, teambuilding, foredrag eller gavekort hos Wannado.",
+      isPartOf: {
+        "@type": "WebSite",
+        name: "Wannado",
+        url: absoluteUrl("/"),
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
+};
+
 export default function BookingPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+      <JsonLd
+        data={createBreadcrumbSchema([{ name: "Booking", path: "/booking" }])}
+      />
+      <JsonLd data={bookingJsonLd} />
       <Navbar />
 
       <section className="relative isolate overflow-hidden bg-brown">
@@ -173,7 +209,9 @@ export default function BookingPage() {
             src="/images/havsul.jpg"
             alt="Listerskøyta Havsul på vei gjennom Arendals skjærgård"
             fill
-            priority
+            preload
+            fetchPriority="high"
+            loading="eager"
             sizes="100vw"
             className="object-cover"
           />
@@ -195,17 +233,17 @@ export default function BookingPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#booking-form"
+                href="#checkin-booking"
                 className="inline-flex items-center justify-center rounded-full bg-sand px-6 py-3 font-inter text-sm font-semibold text-brown transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                Se ledige aktiviteter
+              </a>
+              <a
+                href="#booking-form"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10"
               >
                 Send forespørsel
               </a>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10"
-              >
-                Snakk med oss direkte
-              </Link>
             </div>
           </div>
 
@@ -225,6 +263,27 @@ export default function BookingPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section
+        id="checkin-booking"
+        className="mx-auto max-w-6xl px-6 py-16 md:py-20"
+      >
+        <div className="mb-8 max-w-3xl">
+          <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
+            Påmelding
+          </p>
+          <h2 className="font-space text-3xl font-bold text-brown md:text-4xl">
+            Aktuelle aktiviteter fra bookingkalenderen
+          </h2>
+          <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
+            Faste kurs og åpne aktiviteter hentes fra Wannado sin Checkin-kalender.
+            For gavekort, bedrift, lukkede grupper og spesialtilpasninger bruker du
+            forespørselsskjemaet lenger ned.
+          </p>
+        </div>
+
+        <CheckinBookingEmbed />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
@@ -272,13 +331,13 @@ export default function BookingPage() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <Link
                     href={path.href}
-                    className="inline-flex items-center justify-center rounded-full border border-brown/10 px-4 py-2.5 font-inter text-sm font-semibold text-brown transition-colors duration-200 hover:bg-brown hover:text-white"
+                    className="inline-flex min-h-11 items-center justify-center rounded-full border border-brown/10 px-4 py-2.5 font-inter text-sm font-semibold text-brown transition-colors duration-200 hover:bg-brown hover:text-white"
                   >
                     Les mer
                   </Link>
                   <Link
                     href={path.inquiryHref}
-                    className="inline-flex items-center justify-center rounded-full bg-teal px-4 py-2.5 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0d6f6a]"
+                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-teal px-4 py-2.5 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0d6f6a]"
                   >
                     Send forespørsel
                   </Link>
@@ -394,7 +453,7 @@ export default function BookingPage() {
                 className="overflow-hidden rounded-[28px] border border-border bg-white shadow-sm"
               >
                 <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-[220px]">
+                  <div className="relative hidden min-h-[220px] md:block">
                     <Image
                       src={contact.image}
                       alt={contact.name}
@@ -413,13 +472,13 @@ export default function BookingPage() {
                     <div className="mt-6 space-y-3">
                       <a
                         href={contact.phoneHref}
-                        className="block font-inter text-sm font-semibold text-teal transition-colors duration-200 hover:text-brown"
+                        className="flex min-h-11 items-center font-inter text-sm font-semibold text-teal transition-colors duration-200 hover:text-brown"
                       >
                         {contact.phone}
                       </a>
                       <a
                         href={contact.emailHref}
-                        className="block font-inter text-sm font-semibold text-teal transition-colors duration-200 hover:text-brown"
+                        className="flex min-h-11 items-center font-inter text-sm font-semibold text-teal transition-colors duration-200 hover:text-brown"
                       >
                         {contact.email}
                       </a>

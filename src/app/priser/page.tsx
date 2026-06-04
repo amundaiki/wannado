@@ -1,13 +1,18 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { absoluteUrl, createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Priser | Wannado",
+export const metadata = createPageMetadata({
+  title: "Priser på seilturer, kajakk, kurs og teambuilding",
   description:
     "Se priser for kajakkturer, seilturer med Havsul, teambuilding, hesteopplevelser, foredrag og utleie hos Wannado i Arendal.",
-};
+  path: "/priser",
+  image: "/images/havsul.jpg",
+  imageAlt: "Priser for opplevelser med Wannado",
+});
 
 const pricingCategories = [
   {
@@ -88,37 +93,37 @@ const pricingCategories = [
     title: "Teambuilding",
     cards: [
       {
-        name: "Basispakke",
+        name: "Mysterieopplegg",
         price: "Fra 4 500 kr",
         priceNote: "",
         description:
-          "En kort og effektiv teambuilding-opplevelse som gir energi og samhold på bare noen timer.",
+          "Mord i Cicilia og andre korte mysterier der gruppen løser gåten sammen. Et intenst og morsomt innslag på samlingen.",
+        includes: ["Spilleder", "Rekvisitter", "Roller og oppgaver"],
+        cta: "Bestill teambuilding",
+        ctaHref: "/booking",
+        audience: "Cirka 1 til 1,5 time",
+      },
+      {
+        name: "Teambuilding-opplegg",
+        price: "Fra 16 500 kr",
+        priceNote: "eller 550 kr per person (fra 30 stk)",
+        description:
+          "360 Wannado, Heia dem som vinner, CLUEDO og BEDRAGER. Aktive opplegg som bygger samarbeid og latter på rundt to timer.",
         includes: ["Aktiviteter", "Guider", "Utstyr", "Refleksjon"],
         cta: "Bestill teambuilding",
         ctaHref: "/booking",
-        audience: "Inntil 20 deltakere",
+        audience: "Per person-pris fra 30 deltakere",
       },
       {
-        name: "Halvdagsopplegg",
-        price: "Fra 8 000 kr",
-        priceNote: "",
+        name: "Påfyll på Bjellandstrand Gård",
+        price: "1 950 kr",
+        priceNote: "per person",
         description:
-          "Et grundig halvdagsprogram med flere aktiviteter, god tid til refleksjon og teamutvikling.",
-        includes: ["Aktiviteter", "Guider", "Utstyr", "Refleksjon", "Pause med enkel servering"],
-        cta: "Bestill halvdag",
+          "Utendørs teambuilding på Bjellandstrand Gård med aktiviteter og et godt måltid. En komplett halvdag for gruppen.",
+        includes: ["Aktiviteter", "Guider", "Måltid"],
+        cta: "Bestill teambuilding",
         ctaHref: "/booking",
-        audience: "Inntil 25 deltakere",
-      },
-      {
-        name: "Heldagsopplegg",
-        price: "Fra 15 000 kr",
-        priceNote: "",
-        description:
-          "En komplett dag med teambuilding, naturopplevelser og måltider. Det ultimate opplegget for bedrifter.",
-        includes: ["Aktiviteter", "Guider", "Utstyr", "Refleksjon", "Måltider", "Transport"],
-        cta: "Bestill heldag",
-        ctaHref: "/booking",
-        audience: "Inntil 30 deltakere",
+        audience: "2 til 3 timer med måltid",
       },
     ],
   },
@@ -156,10 +161,10 @@ const pricingCategories = [
     cards: [
       {
         name: "JTI-foredrag",
-        price: "Skreddersys",
-        priceNote: "etter behov",
+        price: "Fra 6 000 kr",
+        priceNote: "JTI Light, cirka 1 time",
         description:
-          "Inspirerende foredrag om JTI (Jeg Tar Initiativ) og personlig utvikling, tilpasset din bedrift eller organisasjon.",
+          "Inspirerende foredrag om JTI (Jungian Type Index) og personlig utvikling, tilpasset din bedrift eller organisasjon.",
         includes: ["Tilpasset innhold", "Erfaren foredragsholder", "Interaktiv levering"],
         cta: "Be om tilbud",
         ctaHref: "/booking",
@@ -207,6 +212,61 @@ const pricingCategories = [
     ],
   },
 ];
+
+const pricingPrinciples = [
+  {
+    title: "Gruppestørrelse",
+    text: "Antall deltakere påvirker guider, utstyr, transport og hvor mange aktiviteter vi kan kjøre parallelt.",
+  },
+  {
+    title: "Varighet og innhold",
+    text: "En kort seilas, en halvdag med teambuilding og en fagdag med foredrag prises forskjellig.",
+  },
+  {
+    title: "Sesong og logistikk",
+    text: "Vær, tidspunkt, servering og oppmøtested kan påvirke endelig tilbud, særlig for bedriftsgrupper.",
+  },
+];
+
+function priceFromText(price: string) {
+  const match = price.match(/(\d[\d\s]*)/);
+  return match ? match[1].replace(/\s/g, "") : undefined;
+}
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": absoluteUrl("/priser#offer-catalog"),
+  name: "Priser og pakker hos Wannado",
+  description:
+    "Priser for seilturer, kajakkturer, kurs, teambuilding, foredrag og utleie hos Wannado.",
+  url: absoluteUrl("/priser"),
+  provider: {
+    "@id": absoluteUrl("/#organization"),
+  },
+  itemListElement: pricingCategories.map((category) => ({
+    "@type": "OfferCatalog",
+    name: category.title,
+    itemListElement: category.cards.map((card) => {
+      const price = priceFromText(card.price);
+
+      return {
+        "@type": "Offer",
+        name: card.name,
+        description: card.description,
+        url: absoluteUrl(card.ctaHref),
+        priceCurrency: "NOK",
+        ...(price ? { price } : {}),
+        itemOffered: {
+          "@type": "Service",
+          name: card.name,
+          description: card.description,
+          audience: card.audience,
+        },
+      };
+    }),
+  })),
+};
 
 function PricingCard({
   name,
@@ -284,27 +344,102 @@ function PricingCard({
 export default function PricingPage() {
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <JsonLd
+        data={createBreadcrumbSchema([{ name: "Priser", path: "/priser" }])}
+      />
+      <JsonLd data={pricingSchema} />
+      <Navbar variant="solid" />
 
       {/* Hero */}
-      <section className="bg-brown pt-32 pb-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Priser
-          </p>
-          <h1 className="mt-4 font-space text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            Priser og pakker
-          </h1>
+      <section className="relative flex min-h-[640px] items-end overflow-hidden text-white md:min-h-[600px]">
+        <Image
+          src="/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg"
+          alt="Gruppeaktivitet med Wannado under teambuilding på Sørlandet"
+          fill
+          priority
+          loading="eager"
+          className="object-cover object-[48%_50%]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/74 via-brown/58 to-brown/86" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_24%,rgba(246,213,142,0.18),transparent_34%)]" />
+
+        <div className="relative z-10 w-full px-6 pb-14 pt-32 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
+              Priser
+            </p>
+            <h1 className="mt-4 max-w-4xl font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
+              Priser og pakker for opplevelser i Arendal
+            </h1>
+            <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/86 md:text-xl">
+              Se fra-priser og typiske pakker. For grupper tilpasser vi
+              innhold, varighet og logistikk før vi gir et konkret tilbud.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/booking"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
+              >
+                Send forespørsel
+              </Link>
+              <Link
+                href="#prisoversikt"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
+              >
+                Se prisoversikt
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Intro */}
       <section className="bg-warm-white border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-10">
-          <p className="max-w-3xl font-inter text-lg leading-relaxed text-brown-mid">
-            Prisene varierer etter gruppestørrelse, varighet og sesong. Kontakt oss for et
-            uforpliktende tilbud.
-          </p>
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 md:py-16">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
+            <div>
+              <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-teal">
+                Slik prises det
+              </p>
+              <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
+                Fra-priser der det er fast, tilbud der opplegget må tilpasses
+              </h2>
+              <p className="mt-5 font-inter text-base leading-7 text-brown-mid">
+                Noen opplevelser kan bestilles direkte, mens bedriftsopplegg,
+                kurs og foredrag ofte skreddersys. Da gir vi et uforpliktende
+                tilbud før dere bestemmer dere.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {pricingPrinciples.map((principle) => (
+                <article
+                  key={principle.title}
+                  className="border border-border bg-white p-5 shadow-sm"
+                >
+                  <h3 className="font-space text-xl font-semibold text-brown">
+                    {principle.title}
+                  </h3>
+                  <p className="mt-3 font-inter text-sm leading-6 text-brown-mid">
+                    {principle.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-2">
+            {pricingCategories.map((category) => (
+              <a
+                key={category.id}
+                href={`#${category.id}`}
+                className="inline-flex min-h-11 items-center rounded-full border border-brown/12 bg-white px-4 font-inter text-sm font-medium text-brown-mid transition-colors hover:border-teal/40 hover:text-teal"
+              >
+                {category.title}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -312,16 +447,22 @@ export default function PricingPage() {
       {pricingCategories.map((category) => (
         <section
           key={category.id}
+          id={category.id}
           className="border-b border-border bg-cream"
         >
-          <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16">
-            <h2 className="mb-10 font-space text-3xl font-bold text-brown">
-              {category.title}
-            </h2>
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+            <div className="mb-10 max-w-3xl">
+              <p className="font-inter text-xs font-semibold uppercase tracking-[0.25em] text-teal">
+                Prisoversikt
+              </p>
+              <h2 className="mt-3 font-space text-3xl font-bold text-brown">
+                {category.title}
+              </h2>
+            </div>
             <div
               className={`grid gap-6 ${
                 category.cards.length === 1
-                  ? "grid-cols-1 max-w-lg"
+                  ? "grid-cols-1 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)]"
                   : category.cards.length === 2
                   ? "grid-cols-1 md:grid-cols-2"
                   : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
@@ -330,6 +471,33 @@ export default function PricingPage() {
               {category.cards.map((card) => (
                 <PricingCard key={card.name} {...card} />
               ))}
+              {category.cards.length === 1 ? (
+                <aside className="border border-border bg-warm-white p-6 shadow-sm lg:p-8">
+                  <p className="font-inter text-xs font-semibold uppercase tracking-[0.25em] text-teal">
+                    Få riktig pris
+                  </p>
+                  <h3 className="mt-3 font-space text-2xl font-semibold text-brown">
+                    Vi avklarer rammen før bestilling
+                  </h3>
+                  <p className="mt-4 font-inter text-sm leading-7 text-brown-mid">
+                    Fortell oss dato, antall deltakere og ønsket varighet. Da
+                    kan vi bekrefte om fra-prisen passer, eller foreslå et
+                    bedre opplegg for gruppen.
+                  </p>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                    {["Dato", "Antall", "Varighet"].map((item) => (
+                      <div
+                        key={item}
+                        className="border border-brown/10 bg-white px-4 py-3"
+                      >
+                        <p className="font-inter text-sm font-semibold text-brown">
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </aside>
+              ) : null}
             </div>
           </div>
         </section>

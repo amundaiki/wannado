@@ -1,23 +1,112 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, Compass, Phone, Sparkles } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  absoluteUrl,
+  createBreadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
+import { sanityFetch } from "@/sanity/lib/live";
+import { allServicesQuery, type SanityService } from "@/sanity/lib/content";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Opplevelser i Arendal - Seilturer, Kajakk og Teambuilding | Wannado",
   description:
     "Utforsk opplevelser i Arendals skjærgård med Wannado. Seilturer med Havsul, kajakkurs, teambuilding og inspirerende foredrag. Book din opplevelse i dag.",
-  openGraph: {
-    title:
-      "Opplevelser i Arendal - Seilturer, Kajakk og Teambuilding | Wannado",
+  path: "/opplevelser",
+  image: "/images/havsul.jpg",
+  imageAlt: "Opplevelser med Wannado i Arendals skjærgård",
+});
+
+const serviceFallbacks: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    image: string;
+    href: string;
+    alt: string;
+    badge: string;
+  }
+> = {
+  seilturer: {
+    title: "Seilturer",
     description:
-      "Utforsk opplevelser i Arendals skjærgård med Wannado. Seilturer, kajakkurs, teambuilding og foredrag.",
-    images: ["/images/havsul.jpg"],
+      "Seil med Listerskøyta Havsul fra 1933 og opplev Arendals maritime historie fra sjøsiden.",
+    image: "/images/baat-fb.jpg",
+    href: "/seilturer",
+    alt: "Listerskøyta Havsul under seil i Arendals skjærgård",
+    badge: "Sjø og historie",
+  },
+  kajakkturer: {
+    title: "Kajakkturer og kurs",
+    description:
+      "Padl i Arendals vakre skjærgård. Fra introduksjonskurs med våttkort til avanserte ekspedisjoner.",
+    image: "/images/kajakk-kurs-bilde.jpg",
+    href: "/kajakkturer",
+    alt: "Kajakkpadlere i skjærgården ved Arendal",
+    badge: "Kajakk",
+  },
+  skjaergardsafari: {
+    title: "Skjærgårdssafari",
+    description:
+      "Guidet kajakkopplevelse i Arendals skjærgård, med trygg veiledning og rute etter vær, vind og nivå.",
+    image: "/images/scraped/kayak/kajakktur-strandhotell-4015.jpg",
+    href: "/opplevelser/skjaergardsafari",
+    alt: "Guidet kajakktur i skjærgården ved Arendal",
+    badge: "Guidet tur",
+  },
+  teambuilding: {
+    title: "Teambuilding",
+    description:
+      "Opplevelser som styrker samarbeid. Aktiviteter, konkurranser og fagdager for bedrifter og grupper.",
+    image: "/images/scraped/teambuilding/Bungeerunning-7607.jpg",
+    href: "/teambuilding",
+    alt: "Teambuilding med Wannado i Arendal",
+    badge: "Bedrift",
+  },
+  foredrag: {
+    title: "Foredrag",
+    description:
+      "Inspirerende foredrag om personlighet, samarbeid og ekspedisjoner. Perfekt alene eller som del av en fagdag.",
+    image: "/images/gronland-kajakk-3.jpg",
+    href: "/foredrag",
+    alt: "Foredrag og inspirasjon med Wannado",
+    badge: "Fag og inspirasjon",
+  },
+  utleie: {
+    title: "Kajakk- og kanoutleie",
+    description:
+      "Lei kajakk eller kano fra Skarestrand og utforsk skjærgården på egen hånd.",
+    image: "/images/utleie-bilde.jpg",
+    href: "/utleie/kajakk-og-kano-utleie",
+    alt: "Kajakker klare for utleie ved Skarestrand",
+    badge: "Utleie",
+  },
+  gavekort: {
+    title: "Gavekort",
+    description:
+      "Gi bort en opplevelse på sjøen, i kajakk eller som skreddersydd Wannado-eventyr.",
+    image: "/images/havsul.jpg",
+    href: "/gavekort",
+    alt: "Gavekort på opplevelser med Wannado",
+    badge: "Gave",
+  },
+  hesteopplevelser: {
+    title: "Hesteopplevelser",
+    description:
+      "Mestringsbyggende opplevelser med islandshester, natur og trygg veiledning.",
+    image: "/images/scraped/horses/hesteopplevelser-bilde.jpg",
+    href: "/opplevelser/hesteopplevelser",
+    alt: "Ridetur på islandshest langs kysten på Sørlandet",
+    badge: "Hest",
   },
 };
 
-const categories = [
+const fallbackCategories = [
   {
     title: "Seilturer",
     description:
@@ -35,6 +124,14 @@ const categories = [
     alt: "Kajakkpadlere i skjærgården ved Arendal",
   },
   {
+    title: "Skjærgårdssafari",
+    description:
+      "Guidet kajakkopplevelse i Arendals skjærgård, med trygg rute og utstyr inkludert.",
+    image: "/images/scraped/kayak/kajakktur-strandhotell-4015.jpg",
+    href: "/opplevelser/skjaergardsafari",
+    alt: "Guidet kajakktur i skjærgården ved Arendal",
+  },
+  {
     title: "Teambuilding",
     description:
       "Opplevelser som styrker samarbeid. Aktiviteter, konkurranser og fagdager for bedrifter og grupper.",
@@ -50,47 +147,237 @@ const categories = [
     href: "/foredrag",
     alt: "Foredrag og inspirasjon med Wannado",
   },
+].map((item) => ({ ...item, badge: "Opplevelse" }));
+
+const preferredOrder = [
+  "seilturer",
+  "kajakkturer",
+  "skjaergardsafari",
+  "teambuilding",
+  "foredrag",
+  "utleie",
+  "gavekort",
+  "hesteopplevelser",
 ];
 
-export default function OpplevelserPage() {
+const supplementalServiceSlugs = ["skjaergardsafari"] as const;
+
+export const dynamic = "force-dynamic";
+
+type ServiceCard = {
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  alt: string;
+  badge: string;
+  slug: string;
+};
+
+function serviceHref(slug?: string | null) {
+  if (!slug) {
+    return "/kontakt";
+  }
+
+  return serviceFallbacks[slug]?.href || `/kontakt?tjeneste=${encodeURIComponent(slug)}`;
+}
+
+function createServiceCard(service: SanityService): ServiceCard {
+  const fallback = serviceFallbacks[service.slug || ""];
+
+  return {
+    title: service.title || fallback?.title || "Opplevelse",
+    description: service.summary || fallback?.description || "",
+    image: service.imageUrl || fallback?.image || "/images/havsul.jpg",
+    href: serviceHref(service.slug),
+    alt: service.imageAlt || fallback?.alt || service.title,
+    badge: fallback?.badge || service.category || "Opplevelse",
+    slug: service.slug || service._id,
+  };
+}
+
+function createFallbackServiceCard(slug: keyof typeof serviceFallbacks): ServiceCard {
+  const fallback = serviceFallbacks[slug];
+
+  return {
+    ...fallback,
+    slug,
+  };
+}
+
+function sortServiceCards(cards: ServiceCard[]) {
+  return cards.sort((a, b) => {
+    const aIndex = preferredOrder.indexOf(a.slug);
+    const bIndex = preferredOrder.indexOf(b.slug);
+    return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+  });
+}
+
+function createOpplevelserJsonLd(serviceCards: ServiceCard[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: "Opplevelser i Arendal",
+        url: absoluteUrl("/opplevelser"),
+        description:
+          "Seilturer, kajakkturer, kajakkurs, teambuilding, foredrag, utleie, gavekort og hesteopplevelser hos Wannado.",
+        isPartOf: {
+          "@type": "WebSite",
+          name: "Wannado",
+          url: absoluteUrl("/"),
+        },
+      },
+      {
+        "@type": "ItemList",
+        name: "Wannado opplevelser",
+        numberOfItems: serviceCards.length,
+        itemListElement: serviceCards.map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: absoluteUrl(service.href.startsWith("/") ? service.href : "/kontakt"),
+          name: service.title,
+          description: service.description,
+        })),
+      },
+    ],
+  };
+}
+
+export default async function OpplevelserPage() {
+  const { data: services } = await sanityFetch({
+    query: allServicesQuery,
+    perspective: "published",
+  });
+
+  const publishedServices = (services || []) as SanityService[];
+  const publishedCards = publishedServices.map(createServiceCard);
+  const supplementalCards = supplementalServiceSlugs.map(createFallbackServiceCard);
+  const serviceCards: ServiceCard[] =
+    publishedServices.length > 0
+      ? sortServiceCards([...publishedCards, ...supplementalCards])
+      : fallbackCategories.map((item) => ({ ...item, slug: item.href }));
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
-      <Navbar />
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Opplevelser", path: "/opplevelser" },
+        ])}
+      />
+      <JsonLd data={createOpplevelserJsonLd(serviceCards)} />
+      <Navbar variant="solid" />
 
       {/* Hero Header */}
-      <section className="pt-36 pb-16 md:pt-44 md:pb-20 bg-cream">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-medium text-teal uppercase tracking-[3px] mb-4">
-            Wannado opplevelser
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-brown leading-tight mb-6">
-            Velg din opplevelse
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-brown-mid max-w-2xl mx-auto leading-relaxed">
-            Fra historiske seilturer til adrenalinfylt kajakkpadling. Vi skaper
-            minner som varer, i Arendals vakreste omgivelser.
-          </p>
+      <section className="relative isolate overflow-hidden bg-brown text-white">
+        <Image
+          src="/images/scraped/sailing/baat-fb-havsul.jpg"
+          alt="Listerskøyta Havsul på sjøen med Wannado-opplevelser i Arendal"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[54%_42%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/58 via-brown/72 to-brown" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
+
+        <div className="relative mx-auto grid min-h-[780px] max-w-7xl gap-8 px-6 pb-16 pt-32 md:min-h-[720px] lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end lg:pt-40">
+          <div className="max-w-4xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/14 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+              <Compass className="h-4 w-4 text-sand" aria-hidden="true" />
+              Opplevelser i Arendal
+            </div>
+            <h1 className="font-space text-5xl font-bold leading-[0.98] md:text-7xl">
+              Finn turen som passer gruppen din
+            </h1>
+            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
+              Seil med Havsul, padle i skjærgården, samle kollegaer rundt
+              teambuilding eller gi bort en opplevelse som varer lenger enn
+              ting.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/booking"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-transform hover:-translate-y-0.5"
+              >
+                Start booking
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="#opplevelseskort"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18"
+              >
+                Se alle opplevelser
+              </Link>
+            </div>
+          </div>
+
+          <aside className="rounded-3xl border border-white/20 bg-white/14 p-5 shadow-2xl backdrop-blur">
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+              Rask veiviser
+            </p>
+            <div className="mt-5 grid gap-3">
+              {[
+                ["Privat tur", "Seiltur, kajakk eller gavekort"],
+                ["Bedrift", "Teambuilding, foredrag og fagdag"],
+                ["Kurs", "Våttkort, kajakk og hestekurs"],
+              ].map(([title, text]) => (
+                <div
+                  key={title}
+                  className="rounded-2xl border border-white/12 bg-white/10 p-4"
+                >
+                  <p className="font-space text-lg font-bold text-white">
+                    {title}
+                  </p>
+                  <p className="mt-1 font-inter text-sm leading-relaxed text-white/74">
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </section>
 
       {/* Category Grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {categories.map((cat) => (
+      <section
+        id="opplevelseskort"
+        className="mx-auto max-w-7xl px-6 py-16 md:py-24"
+      >
+        <div className="mb-10 max-w-3xl">
+          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
+            Velg opplevelse
+          </p>
+          <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            Fra rolig skjærgårdsdag til energisk gruppetur
+          </h2>
+          <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
+            Alle opplevelser kan tilpasses nivå, årstid og gruppe. Bruk kortene
+            for å finne riktig retning, eller send en åpen forespørsel.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {serviceCards.map((cat, index) => (
             <Link
-              key={cat.href}
+              key={cat.slug || cat.href}
               href={cat.href}
-              className="group relative rounded-2xl overflow-hidden h-[380px] md:h-[440px] block"
+              className="group relative block h-[360px] overflow-hidden rounded-2xl border border-white/10 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg md:h-[420px]"
             >
               <Image
                 src={cat.image}
                 alt={cat.alt}
                 fill
+                loading={index === 0 ? "eager" : undefined}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/20 to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                <p className="mb-3 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
+                  {cat.badge}
+                </p>
                 <h2 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
                   {cat.title}
                 </h2>
@@ -99,19 +386,7 @@ export default function OpplevelserPage() {
                 </p>
                 <span className="inline-flex items-center gap-2 font-inter text-sm font-semibold text-sand group-hover:gap-3 transition-all">
                   Utforsk
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </span>
               </div>
             </Link>
@@ -122,6 +397,7 @@ export default function OpplevelserPage() {
       {/* Bottom CTA */}
       <section className="bg-warm-white py-20 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
+          <Sparkles className="mx-auto mb-5 h-8 w-8 text-teal" aria-hidden="true" />
           <h2 className="font-space text-3xl md:text-4xl font-bold text-brown mb-4">
             Ikke sikker? Ring oss!
           </h2>
@@ -136,8 +412,9 @@ export default function OpplevelserPage() {
               </p>
               <a
                 href="tel:+4799469957"
-                className="font-space text-2xl font-bold text-brown hover:text-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 font-space text-2xl font-bold text-brown transition-colors hover:text-teal"
               >
+                <Phone className="h-5 w-5" aria-hidden="true" />
                 +47 99 46 99 57
               </a>
               <p className="font-inter text-sm text-brown-muted mt-1">
@@ -151,8 +428,9 @@ export default function OpplevelserPage() {
               </p>
               <a
                 href="tel:+4794826710"
-                className="font-space text-2xl font-bold text-brown hover:text-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 font-space text-2xl font-bold text-brown transition-colors hover:text-teal"
               >
+                <Phone className="h-5 w-5" aria-hidden="true" />
                 +47 94 82 67 10
               </a>
               <p className="font-inter text-sm text-brown-muted mt-1">
@@ -163,9 +441,10 @@ export default function OpplevelserPage() {
           <div className="mt-10">
             <Link
               href="/kontakt?tjeneste=Kajakktur"
-              className="inline-block bg-brown text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-8 py-4 font-inter text-base font-semibold text-white transition-colors hover:bg-[#5a4838]"
             >
               Gå til kontaktskjema
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
         </div>

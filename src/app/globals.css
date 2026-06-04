@@ -17,10 +17,6 @@
   --font-display: ui-serif, Georgia, Cambria, "Times New Roman", serif;
   --font-accent: ui-serif, Georgia, Cambria, "Times New Roman", serif;
 
-  --text-hero: clamp(2.25rem, 5vw + 1rem, 4.5rem);
-  --text-h2: clamp(1.5rem, 2vw + 0.75rem, 2.25rem);
-  --text-h3: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
-
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;

@@ -1,39 +1,111 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { mergeTeamProfiles } from "@/lib/data/team";
+import { sanityFetch } from "@/sanity/lib/live";
+import {
+  teamMembersQuery,
+  type SanityTeamMember,
+} from "@/sanity/lib/content";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Om oss - Menneskene bak Wannado | Opplevelser i Arendal",
   description:
     "Bli kjent med Tone Pernille Sivertsen og Roar Laugerud. Over 15 års erfaring med kajakk, seil, teambuilding og hesteopplevelser i Arendal og langs Sørlandskysten.",
-  openGraph: {
-    title: "Om oss - Menneskene bak Wannado",
-    description:
-      "Bli kjent med Tone Pernille og Roar. Over 15 års erfaring med opplevelser i Arendals skjærgård.",
-    images: ["/images/P7270038.jpg"],
-  },
-};
+  path: "/om-oss",
+  image: "/images/tone-pernille-havsul.jpg",
+  imageAlt: "Tone Pernille Sivertsen og Roar Laugerud på Havsul",
+});
 
-export default function OmOssPage() {
+async function getTeamProfiles() {
+  try {
+    const { data } = await sanityFetch({
+      query: teamMembersQuery,
+      perspective: "published",
+    });
+
+    return mergeTeamProfiles((data as SanityTeamMember[]) ?? []);
+  } catch {
+    return mergeTeamProfiles();
+  }
+}
+
+export default async function OmOssPage() {
+  const teamProfiles = await getTeamProfiles();
+
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
-      <Navbar />
+      <JsonLd
+        data={createBreadcrumbSchema([{ name: "Om oss", path: "/om-oss" }])}
+      />
+      <Navbar variant="solid" />
 
       {/* Hero Section */}
-      <section className="bg-brown pt-40 pb-20 text-center">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="font-inter text-sm font-medium text-sand uppercase tracking-[3px] mb-4">
-            OM WANNADO
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-            Menneskene bak opplevelsene
-          </h1>
-          <p className="font-inter text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Over 15 år med lidenskap for mestring, lek og naturkraft. Fra
-            Kongshavn i Arendal skaper vi opplevelser som setter spor.
-          </p>
+      <section className="relative flex min-h-[760px] items-end overflow-hidden text-white md:min-h-[700px]">
+        <Image
+          src="/images/tone-pernille-havsul.jpg"
+          alt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendals skjærgård"
+          fill
+          priority
+          loading="eager"
+          className="object-cover object-[52%_50%]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/72 via-brown/48 to-brown/88" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(246,213,142,0.2),transparent_34%)]" />
+
+        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
+                Om Wannado
+              </p>
+              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
+                Menneskene bak opplevelsene
+              </h1>
+              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
+                Over 15 år med lidenskap for mestring, lek og naturkraft. Fra
+                Kongshavn i Arendal skaper Tone Pernille, Roar og teamet
+                opplevelser som setter spor.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="#folkene"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
+                >
+                  Møt folkene
+                </Link>
+                <Link
+                  href="/kontakt"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
+                >
+                  Ta kontakt
+                </Link>
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
+                {[
+                  ["2005", "startet i Arendal"],
+                  ["15+ år", "med opplevelser"],
+                  ["6", "tjenesteområder"],
+                ].map(([value, label]) => (
+                  <div
+                    key={value}
+                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
+                  >
+                    <p className="font-space text-xl font-bold text-white sm:text-2xl">
+                      {value}
+                    </p>
+                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -69,143 +141,60 @@ export default function OmOssPage() {
       </section>
 
       {/* Team Profiles Section */}
-      <section className="bg-warm-white py-20 md:py-28">
+      <section id="folkene" className="bg-warm-white py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="font-space text-3xl md:text-4xl font-bold text-brown text-center mb-14">
             Folkene bak opplevelsene
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Tone Pernille Sivertsen */}
-            <div>
-              <div className="relative overflow-hidden rounded-xl aspect-[4/5]">
-                <Image
-                  src="/images/tp-typeteori.jpg"
-                  alt="Tone Pernille Sivertsen"
-                  width={600}
-                  height={750}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <h3 className="font-space text-2xl md:text-3xl font-semibold text-brown mt-6">
-                Tone Pernille Sivertsen
-              </h3>
-              <p className="font-inter text-sm font-medium text-teal uppercase tracking-wider mt-1">
-                Teambuilding, hesteopplevelser og coaching
-              </p>
-              <div className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mt-4 space-y-4">
-                <p>
-                  Tone Pernille Sivertsen har vært en sentral del av Wannado siden
-                  2005, hvor hun har kombinert sin lidenskap for energi,
-                  teambuilding og lek til å skape engasjerende opplevelser for
-                  deltakerne. Som sertifisert i Jungs TypeIndeks (JTI) og
-                  NLP-coach, har hun en dyp forståelse for menneskers ulikheter og
-                  hvordan bygge sterke team. Hun er kjent for sin evne til å
-                  motivere og engasjere mennesker på alle nivåer, og får deltakerne
-                  til å strekke seg lenger enn de trodde var mulig.
+            {teamProfiles.map((person) => (
+              <div key={person.id}>
+                <div className="relative overflow-hidden rounded-xl aspect-[4/5]">
+                  <Image
+                    src={person.img}
+                    alt={person.name}
+                    width={person.imgWidth}
+                    height={person.imgHeight}
+                    className="object-cover w-full h-full"
+                    style={{ objectPosition: person.imageObjectPosition }}
+                  />
+                </div>
+                <h3 className="font-space text-2xl md:text-3xl font-semibold text-brown mt-6">
+                  {person.name}
+                </h3>
+                <p className="font-inter text-sm font-medium text-teal uppercase tracking-wider mt-1">
+                  {person.responsibility}
                 </p>
-                <p>
-                  De siste årene har Tone Pernille også utvidet sin erfaring med
-                  hester, og har bygget opp en egen hesteflokk. Hun bruker sin
-                  kunnskap om islandshester og dyreassisterte intervensjoner til å
-                  formidle gleden av å oppleve naturen på en unik måte, fra
-                  hesteryggen. Hennes erfaring med både mennesker og dyr gir henne
-                  en unik evne til å bygge tillit og relasjoner.
+                <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mt-4">
+                  {person.bio}
                 </p>
+                <div className="mt-4 flex flex-wrap">
+                  {person.badges.map((badge) => (
+                    <span
+                      key={badge}
+                      className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-3 space-y-1">
+                  <a
+                    href={`mailto:${person.email}`}
+                    className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
+                  >
+                    {person.email}
+                  </a>
+                  <a
+                    href={`tel:${person.phone.replace(/\s/g, "")}`}
+                    className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
+                  >
+                    {person.phone}
+                  </a>
+                </div>
               </div>
-              <div className="mt-4 flex flex-wrap">
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  JTI-sertifisert
-                </span>
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  NLP Master Coach
-                </span>
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  Dyreassisterte intervensjoner
-                </span>
-              </div>
-              <div className="mt-3 space-y-1">
-                <a
-                  href="mailto:tp@wannado.no"
-                  className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
-                >
-                  tp@wannado.no
-                </a>
-                <a
-                  href="tel:+4799469957"
-                  className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
-                >
-                  +47 99 46 99 57
-                </a>
-              </div>
-            </div>
-
-            {/* Roar Laugerud */}
-            <div>
-              <div className="relative overflow-hidden rounded-xl aspect-[4/5]">
-                <Image
-                  src="/images/P7270038.jpg"
-                  alt="Roar Laugerud"
-                  width={600}
-                  height={750}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <h3 className="font-space text-2xl md:text-3xl font-semibold text-brown mt-6">
-                Roar Laugerud
-              </h3>
-              <p className="font-inter text-sm font-medium text-teal uppercase tracking-wider mt-1">
-                Kajakkinstruktør, skipper og fotograf
-              </p>
-              <div className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mt-4 space-y-4">
-                <p>
-                  Roar Laugerud er en erfaren padle- og ekspedisjonsentusiast som
-                  utstråler ro og trygghet. Med sin rolige og sindige tilnærming
-                  skaper han en trygg ramme for deltakerne, og gir dem den
-                  forståelsen de trenger for å begi seg ut på spennende og
-                  utfordrende opplevelser. Roar brenner for å formidle friluftsliv
-                  og naturens skjønnhet gjennom praktiske opplevelser, og hans mål
-                  er alltid å sette deltakerne i stand til å være på rett sted til
-                  rett tid, enten de er på kajakkurs eller på eventyr i naturen.
-                </p>
-                <p>
-                  Roar har oppnådd Veileder Hav-sertifikatet, som er det høyeste
-                  nivået på Padleforbundets utdanningsstige. I tillegg er han
-                  sertifisert på nest høyeste nivå på BCU (British Canoe Union),
-                  som regnes som en av verdens beste padleorganisasjoner. Han har
-                  også fritidsskippersertifikat, og gjennom tilleggskurs er han
-                  autorisert til å føre båter med inntil 12 passasjerer.
-                </p>
-              </div>
-              <div className="mt-4 flex flex-wrap">
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  Veileder Hav
-                </span>
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  BCU nest høyeste nivå
-                </span>
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  Fritidsskipper
-                </span>
-                <span className="inline-block bg-teal/10 text-teal font-inter text-xs font-semibold px-3 py-1.5 rounded-full mr-2 mb-2">
-                  Autorisert for 12 passasjerer
-                </span>
-              </div>
-              <div className="mt-3 space-y-1">
-                <a
-                  href="mailto:roar@wannado.no"
-                  className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
-                >
-                  roar@wannado.no
-                </a>
-                <a
-                  href="tel:+4794826710"
-                  className="block font-inter text-sm text-brown-muted hover:text-brown transition-colors"
-                >
-                  +47 94 82 67 10
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -229,6 +218,7 @@ export default function OmOssPage() {
                   playsInline
                   preload="metadata"
                   poster="/images/tp-typeteori.jpg"
+                  aria-label="Video med Tone Pernille om Wannado"
                   className="w-full h-full object-cover"
                 >
                   <source src="/videos/havsul-intervju-tone.mp4#t=2" type="video/mp4" />
@@ -247,6 +237,7 @@ export default function OmOssPage() {
                   playsInline
                   preload="metadata"
                   poster="/images/P7270038.jpg"
+                  aria-label="Video med Roar om livet på sjøen"
                   className="w-full h-full object-cover"
                 >
                   <source src="/videos/havsul-intervju-roar.mp4#t=2" type="video/mp4" />

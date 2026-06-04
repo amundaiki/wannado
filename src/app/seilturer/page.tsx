@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import { createServicePageMetadata } from "@/lib/serviceMetadata";
+import { createBreadcrumbSchema } from "@/lib/seo";
+import { getServiceBySlug } from "@/lib/serviceContent";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   formatNok,
@@ -10,17 +14,19 @@ import {
   type SanityProduct,
 } from "@/sanity/lib/content";
 
-export const metadata: Metadata = {
-  title: "Seilturer Arendal - Listerskøyta Havsul fra 1933 | Wannado",
-  description:
-    "Opplev en kulturvandring i Arendals skjærgård med den historiske Listerskøyta Havsul fra 1933. Historiefortelling, skipsbygging og uthavner. Fra kr 350,- per person.",
-  openGraph: {
-    title: "Seilturer Arendal - Listerskøyta Havsul fra 1933 | Wannado",
-    description:
-      "Opplev en kulturvandring i Arendals skjærgård med den historiske Listerskøyta Havsul fra 1933. Fra kr 350,- per person.",
-    images: ["/images/havsul.jpg"],
-  },
-};
+export function generateMetadata() {
+  return createServicePageMetadata({
+    slug: "seilturer",
+    path: "/seilturer",
+    fallback: {
+      title: "Seilturer Arendal - Listerskøyta Havsul fra 1933 | Wannado",
+      description:
+        "Opplev en kulturvandring i Arendals skjærgård med den historiske Listerskøyta Havsul fra 1933. Historiefortelling, skipsbygging og uthavner. Fra kr 350,- per person.",
+      image: "/images/havsul.jpg",
+      imageAlt: "Listerskøyta Havsul under seil ved Arendal",
+    },
+  });
+}
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -116,47 +122,53 @@ const fallbackProduct: SanityProduct = {
 export const dynamic = "force-dynamic";
 
 export default async function SeilturerPage() {
-  const { data: products } = await sanityFetch({
-    query: productsByIdsQuery,
-    params: { ids: [HAVSUL_PRODUCT_ID] },
-    perspective: "published",
-  });
+  const [{ data: products }, service] = await Promise.all([
+    sanityFetch({
+      query: productsByIdsQuery,
+      params: { ids: [HAVSUL_PRODUCT_ID] },
+      perspective: "published",
+    }),
+    getServiceBySlug("seilturer"),
+  ]);
 
-  const product = products[0] ?? fallbackProduct;
+  const sanityProducts = (products as SanityProduct[] | null) ?? [];
+  const product = sanityProducts[0] ?? fallbackProduct;
   const displayPrice = `Kr ${formatNok(product.price ?? 350)},-`;
+  const productJsonLd = {
+    ...jsonLd,
+    name: product.name,
+    description: product.descriptionText,
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Seiltur per person",
+        price: String(product.price ?? 350),
+        priceCurrency: "NOK",
+        eligibleQuantity: {
+          "@type": "QuantitativeValue",
+          maxValue: 12,
+          unitText: "personer",
+        },
+      },
+      {
+        "@type": "Offer",
+        name: "Charter Havsul",
+        price: "3500",
+        priceCurrency: "NOK",
+        unitText: "per time",
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            ...jsonLd,
-            name: product.name,
-            description: product.descriptionText,
-            offers: [
-              {
-                "@type": "Offer",
-                name: "Seiltur per person",
-                price: String(product.price ?? 350),
-                priceCurrency: "NOK",
-                eligibleQuantity: {
-                  "@type": "QuantitativeValue",
-                  maxValue: 12,
-                  unitText: "personer",
-                },
-              },
-              {
-                "@type": "Offer",
-                name: "Charter Havsul",
-                price: "3500",
-                priceCurrency: "NOK",
-                unitText: "per time",
-              },
-            ],
-          }),
-        }}
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Opplevelser", path: "/opplevelser" },
+          { name: "Seilturer", path: "/seilturer" },
+        ])}
       />
+      <JsonLd data={productJsonLd} />
       <Navbar />
 
       {/* Hero Section */}
@@ -177,6 +189,7 @@ export default async function SeilturerPage() {
           <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
             {product.name}
             <br />
+            <span className="sr-only"> </span>
             fra 1933
           </h1>
           <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
@@ -396,7 +409,7 @@ export default async function SeilturerPage() {
               </div>
 
               <Link
-                href="/kontakt?tjeneste=Seilturer"
+                href="/booking"
                 className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
               >
                 Bestill seiltur
@@ -484,6 +497,7 @@ export default async function SeilturerPage() {
                 preload="metadata"
                 controls
                 poster="/images/P7270038.jpg"
+                aria-label="Video med Roar om Havsul og seilturer"
               >
                 <source src="/videos/havsul-intervju-roar.mp4#t=2" type="video/mp4" />
               </video>
@@ -611,6 +625,8 @@ export default async function SeilturerPage() {
         </div>
       </section>
 
+      <ServiceCmsSection service={service} />
+
       {/* CTA Banner */}
       <section className="bg-brown py-20 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -623,7 +639,7 @@ export default async function SeilturerPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/kontakt?tjeneste=Seilturer"
+              href="/booking"
               className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
             >
               Bestill nå

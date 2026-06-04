@@ -1,22 +1,20 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import ContactForm from "@/components/ui/ContactForm";
+import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Kontakt Wannado - Bestill opplevelse eller tur | Wannado",
   description:
     "Ta kontakt med Wannado for å bestille teambuilding, kajakkturer, seilturer, foredrag eller andre opplevelser i Arendal. Vi svarer innen 24 timer.",
-  openGraph: {
-    title: "Kontakt Wannado - Bestill opplevelse eller tur",
-    description:
-      "Ta kontakt med Wannado for å bestille opplevelser i Arendal. Vi svarer innen 24 timer.",
-    images: ["/images/havsul.jpg"],
-  },
-};
+  path: "/kontakt",
+  image: "/images/havsul.jpg",
+  imageAlt: "Kontakt Wannado for opplevelser i Arendal",
+});
 
 const contacts = [
   {
@@ -30,7 +28,7 @@ const contacts = [
     emailHref: "mailto:tp@wannado.no",
     image: "/images/tp-typeteori.jpg",
     imageAlt: "Tone Pernille Sivertsen",
-    responseLabel: "Best for bedrifter og spesialopplegg",
+    responseLabel: "Passer best for bedrifter og spesialopplegg",
   },
   {
     name: "Roar Laugerud",
@@ -43,7 +41,7 @@ const contacts = [
     emailHref: "mailto:roar@wannado.no",
     image: "/images/roar-laugerud-havsul.jpg",
     imageAlt: "Roar Laugerud",
-    responseLabel: "Best for kajakk og seilturer",
+    responseLabel: "Passer best for kajakk og seilturer",
   },
 ] as const;
 
@@ -90,44 +88,92 @@ const practicalSteps = [
 export default function KontaktPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+      <JsonLd
+        data={createBreadcrumbSchema([{ name: "Kontakt", path: "/kontakt" }])}
+      />
       <Navbar />
 
-      <section className="pt-36 pb-14 md:pt-40 md:pb-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div>
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.24em] text-teal mb-4">
+      <section className="relative flex min-h-[780px] items-end overflow-hidden text-white md:min-h-[720px]">
+        <Image
+          src="/images/tone-pernille-havsul.jpg"
+          alt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendal"
+          fill
+          priority
+          loading="eager"
+          className="object-cover object-[52%_50%]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/76 via-brown/50 to-brown/88" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(246,213,142,0.2),transparent_34%)]" />
+
+        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-end">
+            <div className="max-w-3xl">
+              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
                 Kontakt Wannado
               </p>
-              <h1 className="font-space text-4xl md:text-6xl font-bold text-brown leading-tight mb-5">
+              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
                 Få raskt tak i riktig person
               </h1>
-              <p className="font-inter text-lg md:text-xl text-brown-mid leading-relaxed max-w-2xl">
-                Send en forespørsel, ring direkte eller gå videre til
-                booking-siden. Vi svarer normalt innen 24 timer og hjelper med
-                alt fra små turer til store bedriftsopplegg.
+              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
+                Send en forespørsel, ring direkte eller gå videre til booking.
+                Vi svarer normalt innen 24 timer og hjelper med alt fra små
+                turer til store bedriftsopplegg.
               </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="#kontakt-skjema"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
+                >
+                  Send forespørsel
+                </Link>
+                <Link
+                  href="/booking"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
+                >
+                  Åpne booking
+                </Link>
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
+                {[
+                  ["24 t", "normal svartid"],
+                  ["Tone", "bedrift og foredrag"],
+                  ["Roar", "kajakk og seil"],
+                ].map(([value, label]) => (
+                  <div
+                    key={value}
+                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
+                  >
+                    <p className="font-space text-xl font-bold text-white sm:text-2xl">
+                      {value}
+                    </p>
+                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="rounded-[28px] border border-border bg-white p-6 shadow-sm">
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.18em] text-teal mb-3">
+            <div className="border border-white/18 bg-white/12 p-5 backdrop-blur-md md:p-6">
+              <p className="mb-4 font-inter text-xs font-semibold uppercase tracking-[0.3em] text-[#f6d58e]">
                 Raskeste vei inn
               </p>
-              <div className="space-y-3">
+              <div className="grid gap-3">
                 {quickActions.map((action) =>
                   action.href.startsWith("/") ? (
                     <Link
                       key={action.title}
                       href={action.href}
-                      className="block rounded-2xl border border-border bg-warm-white px-4 py-4 transition-colors duration-200 hover:border-teal/40 hover:bg-teal/5"
+                      className="block border border-white/14 bg-white/10 px-4 py-4 transition-colors duration-200 hover:bg-white/16"
                     >
-                      <p className="font-space text-lg font-bold text-brown">
+                      <p className="font-space text-lg font-bold text-white">
                         {action.title}
                       </p>
-                      <p className="font-inter text-sm text-brown-mid mt-1">
+                      <p className="mt-1 font-inter text-sm leading-6 text-white/72">
                         {action.description}
                       </p>
-                      <p className="font-inter text-sm font-medium text-teal mt-2">
+                      <p className="mt-2 font-inter text-sm font-semibold text-[#f6d58e]">
                         {action.label}
                       </p>
                     </Link>
@@ -135,15 +181,15 @@ export default function KontaktPage() {
                     <a
                       key={action.title}
                       href={action.href}
-                      className="block rounded-2xl border border-border bg-warm-white px-4 py-4 transition-colors duration-200 hover:border-teal/40 hover:bg-teal/5"
+                      className="block border border-white/14 bg-white/10 px-4 py-4 transition-colors duration-200 hover:bg-white/16"
                     >
-                      <p className="font-space text-lg font-bold text-brown">
+                      <p className="font-space text-lg font-bold text-white">
                         {action.title}
                       </p>
-                      <p className="font-inter text-sm text-brown-mid mt-1">
+                      <p className="mt-1 font-inter text-sm leading-6 text-white/72">
                         {action.description}
                       </p>
-                      <p className="font-inter text-sm font-medium text-teal mt-2">
+                      <p className="mt-2 font-inter text-sm font-semibold text-[#f6d58e]">
                         {action.label}
                       </p>
                     </a>
@@ -155,38 +201,14 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-10">
-        <div className="max-w-6xl mx-auto grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl bg-brown px-6 py-5 text-white">
-            <p className="font-inter text-sm uppercase tracking-[0.2em] text-sand/80 mb-2">
-              Svartid
-            </p>
-            <p className="font-space text-2xl font-bold">Innen 24 timer</p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white px-6 py-5">
-            <p className="font-inter text-sm uppercase tracking-[0.2em] text-teal mb-2">
-              Best for grupper
-            </p>
-            <p className="font-space text-2xl font-bold text-brown">
-              Teambuilding og foredrag
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white px-6 py-5">
-            <p className="font-inter text-sm uppercase tracking-[0.2em] text-teal mb-2">
-              Best for turer
-            </p>
-            <p className="font-space text-2xl font-bold text-brown">
-              Kajakk, kano og seiltur
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="flex-grow pb-16 md:pb-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 md:gap-12 items-start">
             <div className="space-y-8">
-              <div className="rounded-[30px] bg-white p-6 md:p-8 shadow-sm border border-border">
+              <div
+                id="kontakt-skjema"
+                className="rounded-[30px] bg-white p-6 md:p-8 shadow-sm border border-border"
+              >
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-5">
                   <div>
                     <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-2">
@@ -198,7 +220,7 @@ export default function KontaktPage() {
                   </div>
                   <Link
                     href="/booking"
-                    className="font-inter text-sm font-medium text-teal hover:text-brown transition-colors duration-200"
+                    className="inline-flex min-h-11 items-center font-inter text-sm font-medium text-teal transition-colors duration-200 hover:text-brown"
                   >
                     Se bookingvalg
                   </Link>

@@ -1,17 +1,16 @@
-import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Personvern - Wannado",
   description:
     "Personvernerklæring for Wannado. Informasjon om hvordan vi behandler dine personopplysninger i henhold til GDPR.",
-  openGraph: {
-    title: "Personvern - Wannado",
-    description: "Personvernerklæring for Wannado.",
-    images: ["/images/baat-fb.jpg"],
-  },
-};
+  path: "/personvern",
+  image: "/images/baat-fb.jpg",
+  imageAlt: "Personvern hos Wannado",
+});
 
 const sections = [
   {
@@ -28,14 +27,17 @@ const sections = [
             E-post:{" "}
             <a
               href="mailto:mail@wannado.no"
-              className="text-teal hover:underline"
+              className="inline-flex min-h-11 items-center text-teal hover:underline"
             >
               mail@wannado.no
             </a>
           </li>
           <li>
             Telefon:{" "}
-            <a href="tel:+4799469957" className="text-teal hover:underline">
+            <a
+              href="tel:+4799469957"
+              className="inline-flex min-h-11 items-center text-teal hover:underline"
+            >
               +47 99 46 99 57
             </a>
           </li>
@@ -49,12 +51,12 @@ const sections = [
       <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
         <li>
           <strong>Kontaktskjema:</strong> Navn, e-post, telefon og melding.
-          Disse opplysningene oppgir du frivillig n&aring;r du sender oss en
+          Disse opplysningene oppgir du frivillig når du sender oss en
           henvendelse.
         </li>
         <li>
-          <strong>Nettstedsbes&oslash;k:</strong> Anonymisert
-          bes&oslash;ksstatistikk via Vercel Analytics. Ingen informasjonskapsler
+          <strong>Nettstedsbesøk:</strong> Anonymisert
+          besøksstatistikk via Vercel Analytics. Ingen informasjonskapsler
           (cookies), ingen personidentifiserbar informasjon.
         </li>
         <li>
@@ -65,7 +67,7 @@ const sections = [
     ),
   },
   {
-    title: "3. Form\u00e5l med behandlingen",
+    title: "3. Formål med behandlingen",
     content: (
       <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
         <li>
@@ -73,7 +75,7 @@ const sections = [
           opplevelser.
         </li>
         <li>
-          <strong>Bes&oslash;ksstatistikk:</strong> Forst&aring; hvordan
+          <strong>Besøksstatistikk:</strong> Forstå hvordan
           nettsiden brukes, slik at vi kan forbedre innholdet.
         </li>
       </ul>
@@ -85,10 +87,10 @@ const sections = [
       <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
         <li>
           <strong>Kontaktskjema:</strong> Samtykke (GDPR art. 6(1)(a)). Du
-          velger selv &aring; sende inn informasjonen.
+          velger selv å sende inn informasjonen.
         </li>
         <li>
-          <strong>Bes&oslash;ksstatistikk:</strong> Berettiget interesse (GDPR
+          <strong>Besøksstatistikk:</strong> Berettiget interesse (GDPR
           art. 6(1)(f)). Dataene er anonymiserte og kan ikke knyttes til
           enkeltpersoner.
         </li>
@@ -100,10 +102,10 @@ const sections = [
     content: (
       <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
         <li>
-          Kontaktskjemaforesp&oslash;rsler slettes etter 12 m&aring;neder.
+          Kontaktskjemaforespørsler slettes etter 12 måneder.
         </li>
         <li>
-          Bes&oslash;ksstatistikk er anonymisert og kan ikke knyttes til
+          Besøksstatistikk er anonymisert og kan ikke knyttes til
           enkeltpersoner.
         </li>
       </ul>
@@ -134,14 +136,14 @@ const sections = [
           </li>
         </ul>
         <p className="font-inter text-base text-brown-mid leading-relaxed mt-3">
-          Kontakt oss p&aring;{" "}
+          Kontakt oss på{" "}
           <a
             href="mailto:mail@wannado.no"
-            className="text-teal hover:underline"
+            className="inline-flex min-h-11 items-center text-teal hover:underline"
           >
             mail@wannado.no
           </a>{" "}
-          for &aring; ut&oslash;ve dine rettigheter.
+          for å utøve dine rettigheter.
         </p>
       </>
     ),
@@ -165,7 +167,7 @@ const sections = [
     title: "8. Endringer",
     content: (
       <p className="font-inter text-base text-brown-mid leading-relaxed">
-        Denne personvernerkl&aelig;ringen kan oppdateres ved behov. Sist
+        Denne personvernerklæringen kan oppdateres ved behov. Sist
         oppdatert: mars 2026.
       </p>
     ),
@@ -175,7 +177,12 @@ const sections = [
 export default function PersonvernPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
-      <Navbar />
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Personvern", path: "/personvern" },
+        ])}
+      />
+      <Navbar variant="solid" />
 
       {/* Hero */}
       <section className="pt-40 pb-20 bg-brown text-white text-center px-6">

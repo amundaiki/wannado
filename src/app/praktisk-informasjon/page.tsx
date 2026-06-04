@@ -1,25 +1,98 @@
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
+  Calendar,
+  CheckCircle2,
+  CreditCard,
   MapPin,
+  MessageCircle,
+  Phone,
+  Shield,
   Shirt,
   Users,
-  Calendar,
-  Shield,
-  CreditCard,
+  Waves,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  absoluteUrl,
+  createBreadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Praktisk informasjon - Wannado",
+export const metadata = createPageMetadata({
+  title: "Praktisk informasjon | Wannado",
   description:
     "Praktisk informasjon om Wannados arrangement. Oppmøtesteder, påkledning, utstyr, forsikring og betalingsvilkår.",
-  openGraph: {
-    title: "Praktisk informasjon - Wannado",
-    description: "Praktisk informasjon om Wannados arrangement og turer.",
-    images: ["/images/baat-fb.jpg"],
+  path: "/praktisk-informasjon",
+  image: "/images/scraped/landscape/20230910_125202-scaled.jpg",
+  imageAlt: "Praktisk informasjon om Wannado-opplevelser",
+});
+
+const heroStats = [
+  { value: "24 t", label: "svar på spørsmål" },
+  { value: "Hele året", label: "aktivitet ved riktig vær" },
+  { value: "Alt utstyr", label: "inkludert på kajakk" },
+];
+
+const quickChecklist = [
+  "Møt presis på avtalt sted",
+  "Kle deg etter vær og aktivitet",
+  "Gi beskjed om sykdom, skade eller medisinbehov",
+  "Sjekk forsikring ved turer og ekspedisjoner",
+];
+
+const practicalFaq = [
+  {
+    question: "Hvor møter jeg opp til kajakkurs og kajakktur?",
+    answer:
+      "Oppmøte for kajakkturer og kurs er på Skarestrand 11, 4812 Kongshavn. Det er god parkeringsmulighet ved oppmøtestedet.",
   },
+  {
+    question: "Hva bør jeg ha på meg på kajakkpadling?",
+    answer:
+      "På vår og høst anbefales ullundertøy eller lignende under tørrdrakt. Om sommeren holder det ofte med fritidstøy eller tights.",
+  },
+  {
+    question: "Er utstyr inkludert?",
+    answer:
+      "Ja, Wannado stiller med tørrdrakter, padleutstyr, redningsvester og kajakker når det er relevant for aktiviteten.",
+  },
+  {
+    question: "Hva skjer hvis været endrer seg?",
+    answer:
+      "Wannado tilpasser aktivitetene etter vær og sesong. Ved behov får du beskjed om endringer eller praktiske tilpasninger før oppmøte.",
+  },
+];
+
+const practicalInfoJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: "Praktisk informasjon",
+      url: absoluteUrl("/praktisk-informasjon"),
+      description:
+        "Oppmøtesteder, påkledning, utstyr, værtilpasning, sikkerhet, forsikring og betaling for Wannado-opplevelser.",
+      isPartOf: {
+        "@type": "WebSite",
+        name: "Wannado",
+        url: absoluteUrl("/"),
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: practicalFaq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
 };
 
 const cards = [
@@ -134,11 +207,11 @@ const cards = [
           til arrangør eller turleder.
         </li>
         <li>
-          Wannado har ansvarsforsikring hos Gjensidige som dekker det rettslige
-          erstatningsansvaret.
+          Spør oss gjerne om hvilke forsikrings- og ansvarsforhold som gjelder
+          for din aktivitet, så går vi gjennom det med deg.
         </li>
         <li>
-          Den enkelte gjest må selv sørge for reise- og ulykkesforsikring.
+          Den enkelte gjest bør selv sørge for reise- og ulykkesforsikring.
           Sjekk at den gjelder for aktiviteten du skal delta på.
         </li>
       </ul>
@@ -150,20 +223,16 @@ const cards = [
     content: (
       <ul className="space-y-3">
         <li>
-          <strong className="text-brown">Forhåndsbetaling</strong> på turer og
-          ekspedisjoner.
+          <strong className="text-brown">Forhåndsbetaling</strong> kan være
+          aktuelt på turer og ekspedisjoner.
         </li>
         <li>
-          Bookingen bekreftes når 10 % av totalbeløpet er betalt (ikke
-          refunderbart).
-        </li>
-        <li>Restbeløp forfaller 1 måned før avreise.</li>
-        <li>
-          Booking senere enn 1 måned før avreise: Hele beløpet betales ved
-          booking.
+          Avbestillingsvilkår og betalingsfrister avtales ved booking, og
+          varierer med hvilken opplevelse du velger.
         </li>
         <li>
-          Avbestilling senere enn 2 uker før avreise: Ingen refundering.
+          Ta kontakt før du booker, så går vi gjennom hva som gjelder for akkurat
+          din tur.
         </li>
         <li className="p-3 bg-teal/5 rounded-xl text-sm">
           <strong className="text-teal">Tips:</strong> Sjekk om forsikringen
@@ -177,66 +246,186 @@ const cards = [
 export default function PraktiskInformasjonPage() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
-      <Navbar />
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Praktisk informasjon", path: "/praktisk-informasjon" },
+        ])}
+      />
+      <JsonLd data={practicalInfoJsonLd} />
+      <Navbar variant="solid" />
 
       {/* Hero */}
-      <section className="pt-40 pb-20 bg-brown text-white text-center px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-space text-4xl md:text-6xl font-bold mb-4">
-            Praktisk informasjon
-          </h1>
-          <p className="font-inter text-lg text-white/80 leading-relaxed">
-            Alt du trenger å vite før du kommer forberedt til din opplevelse med
-            Wannado.
-          </p>
+      <section className="relative isolate overflow-hidden bg-brown text-white">
+        <Image
+          src="/images/scraped/landscape/20230910_125202-scaled.jpg"
+          alt="Havsul ved brygga i Arendal før en Wannado-opplevelse"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[48%_44%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/45 via-brown/72 to-brown" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-cream" />
+
+        <div className="relative mx-auto grid min-h-[82svh] max-w-7xl items-end gap-10 px-6 pb-12 pt-32 md:pb-16 lg:grid-cols-[minmax(0,1fr)_360px] lg:pt-40">
+          <div className="max-w-3xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+              <Waves className="h-4 w-4 text-sand" aria-hidden="true" />
+              Før du drar
+            </div>
+            <h1 className="font-space text-5xl font-bold leading-[0.98] md:text-7xl">
+              Praktisk informasjon
+            </h1>
+            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/88 md:text-xl">
+              Alt du trenger å vite om oppmøte, klær, utstyr, vær, sikkerhet og
+              betaling før opplevelsen med Wannado.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/booking"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
+              >
+                Se booking
+              </Link>
+              <Link
+                href="#praktisk-detaljer"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                Les detaljene
+              </Link>
+            </div>
+          </div>
+
+          <aside className="hidden rounded-2xl border border-white/20 bg-white/14 p-5 shadow-2xl backdrop-blur lg:block">
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+              Rask sjekk
+            </p>
+            <ul className="mt-5 space-y-3">
+              {quickChecklist.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 font-inter text-sm leading-relaxed text-white/86"
+                >
+                  <CheckCircle2
+                    className="mt-0.5 h-5 w-5 flex-none text-sand"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:col-span-2">
+            {heroStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl border border-white/18 bg-white/12 px-3 py-3 backdrop-blur sm:px-5 sm:py-4"
+              >
+                <p className="font-space text-lg font-bold leading-tight text-white sm:text-2xl">
+                  {stat.value}
+                </p>
+                <p className="mt-1 font-inter text-[0.58rem] font-semibold uppercase leading-snug tracking-[0.12em] text-white/72 sm:text-xs">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Content Cards */}
-      <section className="flex-grow max-w-4xl mx-auto px-6 py-16 md:py-20">
-        <div className="space-y-6">
-          {cards.map((card) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.title}
-                className="bg-white rounded-2xl p-8 md:p-10 border border-border"
-              >
-                <div className="w-10 h-10 rounded-xl bg-teal/10 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-teal" />
-                </div>
-                <h2 className="font-space text-xl font-bold text-brown mb-4">
-                  {card.title}
-                </h2>
-                <div className="font-inter text-base text-brown-mid leading-relaxed">
-                  {card.content}
-                </div>
+      <section
+        id="praktisk-detaljer"
+        className="flex-grow py-16 md:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
+              Greit å vite
+            </p>
+            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+              Finn riktig info før du møter opp
+            </h2>
+            <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid">
+              Har du valgt tur, kurs eller bedriftsopplegg, er dette siden du
+              bruker for å sjekke oppmøte, klær, utstyr og vilkår.
+            </p>
+            <div className="mt-6 rounded-2xl border border-border bg-white p-5 shadow-sm">
+              <p className="font-space text-xl font-bold text-brown">
+                Spør oss hvis noe er uklart
+              </p>
+              <div className="mt-4 grid gap-3">
+                <a
+                  href="tel:+4799469957"
+                  className="inline-flex min-h-11 items-center gap-3 rounded-full border border-border px-4 py-2 font-inter text-sm font-semibold text-brown transition-colors hover:bg-cream"
+                >
+                  <Phone className="h-4 w-4 text-teal" aria-hidden="true" />
+                  Ring Tone
+                </a>
+                <Link
+                  href="/kontakt"
+                  className="inline-flex min-h-11 items-center gap-3 rounded-full border border-border px-4 py-2 font-inter text-sm font-semibold text-brown transition-colors hover:bg-cream"
+                >
+                  <MessageCircle
+                    className="h-4 w-4 text-teal"
+                    aria-hidden="true"
+                  />
+                  Send melding
+                </Link>
               </div>
-            );
-          })}
+            </div>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            {cards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={card.title}
+                  className="rounded-2xl border border-border bg-white p-6 shadow-sm md:p-8"
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-teal/10">
+                    <Icon className="h-6 w-6 text-teal" aria-hidden="true" />
+                  </div>
+                  <h3 className="font-space text-xl font-bold text-brown mb-4">
+                    {card.title}
+                  </h3>
+                  <div className="font-inter text-base text-brown-mid leading-relaxed">
+                    {card.content}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-warm-white py-16 md:py-20">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="font-space text-2xl md:text-3xl font-bold text-brown mb-4">
-            Har du spørsmål?
-          </h2>
-          <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mb-8">
-            Ta gjerne kontakt med oss om du lurer på noe. Vi svarer innen 24
-            timer.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <section className="bg-brown py-16 text-white md:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-[1fr_auto]">
+          <div>
+            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-sand">
+              Fortsatt usikker?
+            </p>
+            <h2 className="mt-3 font-space text-3xl font-bold md:text-5xl">
+              Spør før du pakker sekken.
+            </h2>
+            <p className="mt-5 max-w-2xl font-inter text-lg leading-relaxed text-white/82">
+              Ta kontakt hvis du lurer på oppmøte, nivå, klær, vær eller
+              hvilken opplevelse som passer best.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-[#5a4838] transition-colors duration-200"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
             >
               Gå til kontaktskjema
             </Link>
             <a
               href="tel:+4799469957"
-              className="inline-flex items-center justify-center border border-border text-brown font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-white transition-colors duration-200"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-7 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Ring +47 99 46 99 57
             </a>

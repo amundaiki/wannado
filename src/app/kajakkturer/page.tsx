@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import { createServicePageMetadata } from "@/lib/serviceMetadata";
+import { createBreadcrumbSchema } from "@/lib/seo";
+import { getServiceBySlug } from "@/lib/serviceContent";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   allProductsQuery,
@@ -10,17 +14,19 @@ import {
   type SanityProduct,
 } from "@/sanity/lib/content";
 
-export const metadata: Metadata = {
-  title: "Kajakkurs og kajakkturer Arendal | Wannado",
-  description:
-    "Kajakkurs fra nybegynner til ekspedisjon i Arendals skjærgård. Våttkort, grunnkurs hav, rullekurs og guidede turer. Alt utstyr inkludert. Fra kr 1 250,-.",
-  openGraph: {
-    title: "Kajakkurs og kajakkturer Arendal | Wannado",
-    description:
-      "Kajakkurs fra nybegynner til ekspedisjon i Arendals skjærgård. Alt utstyr inkludert. Fra kr 1 250,-.",
-    images: ["/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"],
-  },
-};
+export function generateMetadata() {
+  return createServicePageMetadata({
+    slug: "kajakkturer",
+    path: "/kajakkturer",
+    fallback: {
+      title: "Kajakkurs og kajakkturer Arendal | Wannado",
+      description:
+        "Kajakkurs fra nybegynner til ekspedisjon i Arendals skjærgård. Våttkort, grunnkurs hav, rullekurs og guidede turer. Alt utstyr inkludert. Fra kr 1 250,-.",
+      image: "/images/scraped/kayak/kajakktur-strandhotell-4015.jpg",
+      imageAlt: "Kajakkpadling i skjærgården ved Arendal",
+    },
+  });
+}
 
 const courseMeta = [
   {
@@ -229,13 +235,17 @@ const tourSchema = {
 };
 
 export default async function KajakkturerPage() {
-  const { data: products } = await sanityFetch({
-    query: allProductsQuery,
-    perspective: "published",
-  });
+  const [{ data: products }, service] = await Promise.all([
+    sanityFetch({
+      query: allProductsQuery,
+      perspective: "published",
+    }),
+    getServiceBySlug("kajakkturer"),
+  ]);
 
+  const sanityProducts = (products as SanityProduct[] | null) ?? [];
   const productById = new Map<string, SanityProduct>(
-    products.map((product: SanityProduct) => [product._id, product]),
+    sanityProducts.map((product) => [product._id, product]),
   );
   const courses = courseMeta.map((course) => {
     const sanityCourse = productById.get(course.id);
@@ -253,14 +263,14 @@ export default async function KajakkturerPage() {
 
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Opplevelser", path: "/opplevelser" },
+          { name: "Kajakkturer", path: "/kajakkturer" },
+        ])}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourSchema) }}
-      />
+      <JsonLd data={courseSchema} />
+      <JsonLd data={tourSchema} />
       <Navbar />
 
       {/* Hero Section */}
@@ -281,6 +291,7 @@ export default async function KajakkturerPage() {
           <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
             Kajakkturer og kajakkurs
             <br />
+            <span className="sr-only"> </span>
             i Arendals skjærgård
           </h1>
           <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
@@ -316,9 +327,12 @@ export default async function KajakkturerPage() {
           <h2 className="font-space text-3xl md:text-4xl font-bold text-brown text-center mb-4">
             Kurs for alle nivåer
           </h2>
-          <p className="font-inter text-lg text-brown-mid text-center max-w-2xl mx-auto mb-14">
+          <p className="font-inter text-lg text-brown-mid text-center max-w-2xl mx-auto mb-3">
             Alt nødvendig utstyr er inkludert i prisen. Oppmøte på Skarestrand,
             4812 Kongshavn.
+          </p>
+          <p className="font-inter text-base font-semibold text-brown text-center max-w-2xl mx-auto mb-14">
+            Fra kr 1 250,- per person
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -383,13 +397,16 @@ export default async function KajakkturerPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Skjærgårdssafari */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-md transition-shadow">
+          <Link
+            href="/opplevelser/skjaergardsafari"
+            className="group block overflow-hidden rounded-2xl border border-border bg-white transition-shadow hover:shadow-md"
+          >
             <div className="relative h-56">
               <Image
                 src="/images/scraped/kayak/kajakktur-16510307442.jpg"
                 alt="Guidet kajakktur gjennom skjærgården med hvite sørlandshus"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brown/50 to-transparent" />
@@ -406,8 +423,11 @@ export default async function KajakkturerPage() {
                 som vil oppleve naturen uten kursformat. Vi tilpasser turen
                 etter gruppens nivå og ønsker.
               </p>
+              <span className="mt-5 inline-flex items-center font-inter text-sm font-semibold text-teal transition-colors group-hover:text-brown">
+                Se skjærgårdssafari
+              </span>
             </div>
-          </div>
+          </Link>
 
           {/* Fyr til fyr */}
           <div className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-md transition-shadow">
@@ -449,7 +469,7 @@ export default async function KajakkturerPage() {
                   alt="Roar Laugerud, kajakkguide og Veileder Hav"
                   width={96}
                   height={96}
-                  className="rounded-full object-cover"
+                  className="h-24 w-24 rounded-full object-cover"
                 />
               </div>
               <div>
@@ -516,6 +536,8 @@ export default async function KajakkturerPage() {
         </div>
       </section>
 
+      <ServiceCmsSection service={service} />
+
       {/* CTA Banner */}
       <section className="bg-brown py-20 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -528,7 +550,7 @@ export default async function KajakkturerPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/kontakt?tjeneste=Kajakktur"
+              href="/booking"
               className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
             >
               Bestill kurs eller tur
