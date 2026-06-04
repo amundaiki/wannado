@@ -5,9 +5,23 @@ const footerLinks = [
   { label: "Opplevelser", href: "/opplevelser" },
   { label: "Seilturer med Havsul", href: "/seilturer" },
   { label: "Kajakkurs og turer", href: "/kajakkturer" },
+  { label: "Våttkort og kajakkurs", href: "/kurs/kajakkurs" },
+  { label: "JTI-kurs", href: "/kurs/jti" },
+  { label: "Skjærgårdssafari", href: "/opplevelser/skjaergardsafari" },
+  { label: "Kajakk- og kanoutleie", href: "/utleie/kajakk-og-kano-utleie" },
+  { label: "Hestekurs", href: "/kurs/hestekurs" },
   { label: "Teambuilding", href: "/teambuilding" },
+  { label: "Hesteopplevelser", href: "/opplevelser/hesteopplevelser" },
   { label: "Foredrag", href: "/foredrag" },
+  { label: "JTI-foredrag", href: "/foredrag/jti" },
+  {
+    label: "Grønlandsforedrag",
+    href: "/foredrag/kajakkekspedisjon-ost-gronland",
+  },
   { label: "Referanser", href: "/referanser" },
+  { label: "Priser", href: "/priser" },
+  { label: "Praktisk informasjon", href: "/praktisk-informasjon" },
+  { label: "Ofte stilte spørsmål", href: "/faq" },
 ];
 
 const socialLinks = [
@@ -55,13 +69,14 @@ export default function Footer() {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="mb-16 grid grid-cols-1 gap-12 text-white md:grid-cols-4 md:gap-8 lg:gap-16">
           <div className="md:col-span-1">
-            <Link href="/" className="inline-flex items-center">
+            <Link href="/" aria-label="Gå til forsiden" className="inline-flex min-h-11 items-center">
               <Image
                 src="/images/wannado-logo.svg"
                 alt="Wannado"
                 width={128}
                 height={42}
-                className="h-10 w-auto brightness-0 invert"
+                className="brightness-0 invert"
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
             <p className="mt-6 max-w-[260px] font-inter text-sm leading-relaxed text-white/65">
@@ -72,22 +87,22 @@ export default function Footer() {
               href="https://www.tripadvisor.com/Attraction_Review-g190486-d6645173-Reviews-Wannado-Arendal_Aust_Agder_Southern_Norway.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-inter text-sm text-white/85 transition-colors hover:border-sand/50 hover:text-sand"
+              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-inter text-sm text-white/85 transition-colors hover:border-sand/50 hover:text-sand"
             >
               Les anmeldelser på TripAdvisor
             </a>
           </div>
 
           <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/40">
+            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
               Utforsk
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-1 md:space-y-4">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-inter text-[14px] text-white/80 transition-colors hover:text-sand"
+                    className="inline-flex min-h-11 items-center font-inter text-[14px] text-white/80 transition-colors hover:text-sand"
                   >
                     {link.label}
                   </Link>
@@ -97,30 +112,30 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/40">
+            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
               Kontakt
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               <li className="font-inter text-[14px] text-white/80">
-                <span className="block text-white/50 text-[12px] mb-1">E-post</span>
-                <a href="mailto:mail@wannado.no" className="transition-colors hover:text-sand">
+                <span className="block text-white/60 text-[12px] mb-1">E-post</span>
+                <a href="mailto:mail@wannado.no" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
                   mail@wannado.no
                 </a>
               </li>
               <li className="font-inter text-[14px] text-white/80 mt-4">
-                <span className="block text-white/50 text-[12px] mb-1">Tone P. Sivertsen</span>
-                <a href="tel:+4799469957" className="transition-colors hover:text-sand">
+                <span className="block text-white/60 text-[12px] mb-1">Tone P. Sivertsen</span>
+                <a href="tel:+4799469957" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
                   +47 99 46 99 57
                 </a>
               </li>
               <li className="font-inter text-[14px] text-white/80 mt-4">
-                <span className="block text-white/50 text-[12px] mb-1">Roar Laugerud</span>
-                <a href="tel:+4794826710" className="transition-colors hover:text-sand">
+                <span className="block text-white/60 text-[12px] mb-1">Roar Laugerud</span>
+                <a href="tel:+4794826710" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
                   +47 94 82 67 10
                 </a>
               </li>
               <li className="pt-2 font-inter text-[14px] text-white/80">
-                <span className="mb-1 block text-[12px] text-white/50">Postadresse</span>
+                <span className="mb-1 block text-[12px] text-white/60">Postadresse</span>
                 Skarestrand 11
                 <br />
                 4812 Kongshavn
@@ -129,7 +144,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/40">
+            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
               Følg Wannado
             </h4>
             <div className="flex flex-wrap gap-3">
@@ -152,7 +167,7 @@ export default function Footer() {
             <div className="mt-8">
               <Link
                 href="/booking"
-                className="inline-flex items-center justify-center rounded-md border border-white/20 px-6 py-2.5 text-[13px] font-medium transition-colors hover:bg-white hover:text-brown"
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/20 px-6 py-2.5 text-[13px] font-medium transition-colors hover:bg-white hover:text-brown"
               >
                 Send en forespørsel
               </Link>
@@ -161,19 +176,19 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="font-inter text-[12px] text-white/40">
+          <p className="font-inter text-[12px] text-white/60">
             &copy; {new Date().getFullYear()} Wannado. Alle rettigheter reservert.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
             <Link
               href="/personvern"
-              className="font-inter text-[12px] text-white/40 transition-colors hover:text-white"
+              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
             >
               Personvern
             </Link>
             <Link
               href="/referanser"
-              className="font-inter text-[12px] text-white/40 transition-colors hover:text-white"
+              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
             >
               Referanser
             </Link>

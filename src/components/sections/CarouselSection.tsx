@@ -6,7 +6,19 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const CAROUSEL_DATA = [
+export type CarouselItem = {
+  badge: string;
+  title: string;
+  desc: string;
+  price: string;
+  img: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  href: string;
+};
+
+const CAROUSEL_DATA: CarouselItem[] = [
   {
     badge: "Seilturer",
     title: "Listerskøyta Havsul fra 1933",
@@ -49,8 +61,19 @@ const CAROUSEL_DATA = [
   },
 ];
 
-export default function CarouselSection() {
+type CarouselSectionProps = {
+  eyebrow?: string | null;
+  title?: string | null;
+  items?: CarouselItem[] | null;
+};
+
+export default function CarouselSection({
+  eyebrow = "Destinasjon Arendal",
+  title = "Hva er din lek?",
+  items,
+}: CarouselSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const carouselItems = items && items.length >= 3 ? items : CAROUSEL_DATA;
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -68,32 +91,32 @@ export default function CarouselSection() {
     <section id="opplevelser" className="bg-cream py-16 md:py-24 overflow-hidden">
       <div className="max-w-[1320px] mx-auto px-4 md:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="font-inter text-xs font-medium uppercase tracking-[4px] text-brown-muted mb-3">
-            Destinasjon Arendal
+            {eyebrow}
           </div>
           <h2 className="font-space font-semibold text-3xl md:text-5xl text-brown mb-10">
-            Hva er din lek?
+            {title}
           </h2>
         </motion.div>
 
         <div className="relative group">
           <button
             onClick={scrollLeft}
-            className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border bg-card-bg items-center justify-center z-10 shadow-sm hover:shadow-md hover:border-brown-light transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Previous"
+            className="absolute -left-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-all hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
+            aria-label="Forrige opplevelse"
           >
             <ChevronLeft className="w-4 h-4 text-brown" />
           </button>
           
           <button
             onClick={scrollRight}
-            className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border bg-card-bg items-center justify-center z-10 shadow-sm hover:shadow-md hover:border-brown-light transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Next"
+            className="absolute -right-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-all hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
+            aria-label="Neste opplevelse"
           >
             <ChevronRight className="w-4 h-4 text-brown" />
           </button>
@@ -103,17 +126,21 @@ export default function CarouselSection() {
             className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-2 -mx-4 px-4 md:mx-0 md:px-0"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {CAROUSEL_DATA.map((item, i) => (
+            {carouselItems.map((item, i) => (
               <Link key={i} href={item.href} className="flex-none w-[80%] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] snap-start">
                 <motion.div
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.65, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   className="bg-card-bg rounded-xl border border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 overflow-hidden h-full"
                 >
                   <div className="relative aspect-[3/2] overflow-hidden">
                     <Image
                       src={item.img}
-                      alt={item.title}
-                      width={item.width}
-                      height={item.height}
+                      alt={item.alt || item.title}
+                      width={item.width || 1200}
+                      height={item.height || 800}
                       sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
@@ -146,7 +173,7 @@ export default function CarouselSection() {
         <div className="text-right mt-4 md:mt-8">
           <Link
             href="/opplevelser"
-            className="font-inter text-sm font-medium text-brown hover:text-teal transition-colors"
+            className="inline-flex min-h-11 items-center font-inter text-sm font-medium text-brown transition-colors hover:text-teal"
           >
             Se alle våre turer &rarr;
           </Link>

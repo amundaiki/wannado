@@ -2,21 +2,31 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { COMPANIES } from "@/lib/data/references";
 import {
-  COMPANIES,
-  TESTIMONIALS,
-  TRIPADVISOR_FEEDBACK,
-} from "@/lib/data/references";
+  fallbackPublicTestimonials,
+  fallbackTripadvisorFeedback,
+  type PublicTestimonial,
+  type PublicTripadvisorFeedback,
+} from "@/lib/data/testimonials";
 
-export default function TestimonialsSection() {
+type TestimonialsSectionProps = {
+  testimonials?: PublicTestimonial[];
+  tripadvisorFeedback?: PublicTripadvisorFeedback[];
+};
+
+export default function TestimonialsSection({
+  testimonials = fallbackPublicTestimonials,
+  tripadvisorFeedback = fallbackTripadvisorFeedback,
+}: TestimonialsSectionProps) {
   return (
-    <section className="bg-card-bg py-16 md:py-28">
+    <section id="referanser" className="bg-card-bg py-16 md:py-28">
       <div className="mx-auto max-w-[1200px] px-6">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-3xl text-center"
         >
           <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
@@ -32,13 +42,13 @@ export default function TestimonialsSection() {
         </motion.div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {TESTIMONIALS.map((quote, index) => (
+          {testimonials.map((quote, index) => (
             <motion.article
-              key={`${quote.author}-${quote.company}`}
-              initial={{ opacity: 0, y: 24 }}
+              key={quote.id}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: index * 0.08, ease: "easeOut" }}
+              transition={{ duration: 0.65, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-[28px] border border-border bg-white p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
             >
               <div className="flex items-center gap-1 text-sand">
@@ -54,7 +64,7 @@ export default function TestimonialsSection() {
                   </svg>
                 ))}
               </div>
-              <p className="mt-6 font-space text-xl leading-9 text-brown md:text-[28px]">
+              <p className="mt-6 font-inter text-base leading-7 text-brown-mid md:text-lg md:leading-8">
                 <span aria-hidden="true">&ldquo;</span>
                 {quote.quote}
                 <span aria-hidden="true">&rdquo;</span>
@@ -71,13 +81,13 @@ export default function TestimonialsSection() {
             </motion.article>
           ))}
 
-          {TRIPADVISOR_FEEDBACK.map((feedback) => (
+          {tripadvisorFeedback.map((feedback) => (
             <motion.article
-              key={`${feedback.source}-${feedback.title}`}
-              initial={{ opacity: 0, y: 24 }}
+              key={feedback.id}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
+              transition={{ duration: 0.65, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-[28px] border border-sand/30 bg-[linear-gradient(180deg,#fffaf2_0%,#fff_100%)] p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
             >
               <div className="flex items-center justify-between gap-3">
@@ -88,7 +98,7 @@ export default function TestimonialsSection() {
                   {feedback.rating}
                 </span>
               </div>
-              <p className="mt-6 font-space text-xl leading-9 text-brown md:text-[28px]">
+              <p className="mt-6 font-inter text-base leading-7 text-brown-mid md:text-lg md:leading-8">
                 <span aria-hidden="true">&ldquo;</span>
                 {feedback.title}
                 <span aria-hidden="true">&rdquo;</span>
@@ -109,10 +119,10 @@ export default function TestimonialsSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-14 rounded-[28px] border border-border/80 bg-cream px-6 py-8 md:px-8"
         >
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

@@ -11,6 +11,9 @@ const serviceOptions = [
   "Kajakkurs",
   "Teambuilding",
   "Foredrag/JTI",
+  "Grønlandsforedrag",
+  "Gavekort",
+  "Hesteopplevelser",
   "Annet",
 ];
 
@@ -55,6 +58,10 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
         return !validateEmail(value) ? "Ugyldig e-postadresse" : undefined;
       case "phone":
         return !validatePhone(value) ? "Ugyldig telefonnummer" : undefined;
+      case "service":
+        return !serviceOptions.includes(value)
+          ? "Velg en tjeneste"
+          : undefined;
       case "message":
         return value.trim().length < 10 ? "Melding må være minst 10 tegn" : undefined;
       default:
@@ -81,17 +88,19 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       phone: formData.get("phone"),
       service: formData.get("service"),
       message: formData.get("message"),
+      company: formData.get("company"),
     };
 
     const newErrors: FieldErrors = {};
-    (data.name as string) && (newErrors.name = validateField("name", data.name as string));
-    (data.email as string) && (newErrors.email = validateField("email", data.email as string));
-    (data.phone as string) && (newErrors.phone = validateField("phone", data.phone as string));
-    (data.message as string) && (newErrors.message = validateField("message", data.message as string));
+    newErrors.name = validateField("name", String(data.name || ""));
+    newErrors.email = validateField("email", String(data.email || ""));
+    newErrors.phone = validateField("phone", String(data.phone || ""));
+    newErrors.service = validateField("service", String(data.service || ""));
+    newErrors.message = validateField("message", String(data.message || ""));
 
     if (Object.values(newErrors).some(Boolean)) {
       setErrors(newErrors);
-      setTouched({ name: true, email: true, phone: true, message: true });
+      setTouched({ name: true, email: true, phone: true, service: true, message: true });
       setStatus("error");
       return;
     }
@@ -133,6 +142,14 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       className="bg-cream rounded-2xl p-6 md:p-8 space-y-5"
       noValidate
     >
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
       <div>
         <label
           htmlFor="contact-name"
@@ -149,7 +166,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "contact-name-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-body text-sm text-brown placeholder:text-brown-light focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
           placeholder="Ditt fulle navn"
         />
         {errors.name && touched.name && (
@@ -175,7 +192,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-body text-sm text-brown placeholder:text-brown-light focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
           placeholder="din@epost.no"
         />
         {errors.email && touched.email && (
@@ -199,7 +216,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           aria-invalid={!!errors.phone}
           aria-describedby={errors.phone ? "contact-phone-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-body text-sm text-brown placeholder:text-brown-light focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
           placeholder="+47 XXX XX XXX"
         />
         {errors.phone && touched.phone && (
@@ -221,8 +238,11 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           name="service"
           required
           aria-required="true"
+          aria-invalid={!!errors.service}
+          aria-describedby={errors.service ? "contact-service-error" : undefined}
+          onBlur={handleBlur}
           defaultValue={initialService}
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-body text-sm text-brown focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
         >
           <option value="" disabled>
             Velg tjeneste
@@ -233,6 +253,11 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
             </option>
           ))}
         </select>
+        {errors.service && touched.service && (
+          <p id="contact-service-error" role="alert" className="mt-1 text-xs text-red-600">
+            {errors.service}
+          </p>
+        )}
       </div>
 
       <div>
@@ -251,7 +276,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           aria-describedby={errors.message ? "contact-message-error" : undefined}
           onBlur={handleBlur}
           rows={5}
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 font-body text-sm text-brown placeholder:text-brown-light focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors resize-y"
+          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors resize-y"
           placeholder="Fortell oss hva du er interessert i, antall deltakere, ønsket dato..."
         />
         {errors.message && touched.message && (
@@ -264,7 +289,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       {status === "error" && !Object.values(errors).some(Boolean) && (
         <p role="alert" className="font-body text-sm text-red-600">
           Noe gikk galt. Ring oss på{" "}
-          <a href="tel:+4799469957" className="underline">
+          <a href="tel:+4799469957" className="inline-flex min-h-11 items-center underline">
             +47 99 46 99 57
           </a>
           .
@@ -274,7 +299,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       <button
         type="submit"
         disabled={status === "pending"}
-        className="w-full bg-brown text-white font-body font-medium text-sm py-3 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
+        className="min-h-11 w-full bg-brown text-white font-body font-medium text-sm py-3 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
       >
         {status === "pending" ? "Sender..." : "Send forespørsel"}
       </button>

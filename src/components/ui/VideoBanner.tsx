@@ -55,6 +55,7 @@ export default function VideoBanner({
         playsInline
         preload="auto"
         poster={resolvedPoster}
+        aria-hidden="true"
         onLoadedData={() => setIsVideoReady(true)}
         onCanPlay={() => setIsVideoReady(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${

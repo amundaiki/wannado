@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface ServiceCardProps {
@@ -32,10 +33,12 @@ export default function ServiceCard({
     >
       {image && (
         <div className="relative aspect-[16/10] overflow-hidden">
-          <img
+          <Image
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
           />
           {badge && (
             <span className="absolute top-3 left-3 bg-teal text-white text-xs font-inter font-semibold px-3 py-1 rounded-full">

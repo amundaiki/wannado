@@ -11,10 +11,10 @@ export default function FeatureSection() {
           
           {/* Images */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -36 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
             <Image
@@ -38,10 +38,10 @@ export default function FeatureSection() {
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 36 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
             className="mt-16 md:mt-0"
           >
             <div className="w-[1px] h-8 bg-border mb-4"></div>
@@ -72,7 +72,7 @@ export default function FeatureSection() {
             </ul>
             <a
               href="/teambuilding"
-              className="inline-block mt-10 font-inter text-base font-medium text-brown hover:text-teal hover:underline transition-colors"
+              className="mt-10 inline-flex min-h-11 items-center rounded-full border border-brown/12 px-5 font-inter text-base font-medium text-brown transition-colors hover:border-teal/40 hover:text-teal"
             >
               Les mer om teambuilding &rarr;
             </a>

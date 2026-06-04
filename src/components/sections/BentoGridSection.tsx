@@ -44,7 +44,7 @@ const BENTO_DATA = [
 
 export default function BentoGridSection() {
   return (
-    <section id="opplevelser" className="bg-warm-white py-16 md:py-24">
+    <section id="flere-opplevelser" className="bg-warm-white py-16 md:py-24">
       <div className="max-w-[1320px] mx-auto px-4 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[minmax(300px,40vh)_minmax(250px,30vh)] gap-2 group/grid">
           
@@ -55,10 +55,10 @@ export default function BentoGridSection() {
             aria-label={BENTO_DATA[0].title}
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
               <Image
@@ -89,10 +89,10 @@ export default function BentoGridSection() {
             aria-label={BENTO_DATA[1].title}
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
               <Image
@@ -125,10 +125,10 @@ export default function BentoGridSection() {
               aria-label={item.title}
             >
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                transition={{ duration: 0.65, delay: 0.16 + idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0"
               >
                 <Image

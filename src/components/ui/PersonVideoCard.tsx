@@ -76,7 +76,7 @@ export default function PersonVideoCard({
   return (
     <motion.div
       ref={containerRef}
-      initial={{ opacity: 0, y: 30 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8 }}
@@ -90,6 +90,7 @@ export default function PersonVideoCard({
             controls
             preload="auto"
             poster={img}
+            aria-label={videoLabel}
             className="w-full h-full object-cover"
             style={{ objectPosition: videoObjectPosition }}
             onLoadedMetadata={(e) => {
@@ -152,7 +153,7 @@ export default function PersonVideoCard({
         </p>
         <a
           href={`mailto:${email}`}
-          className="inline-block mt-4 font-inter text-[13px] md:text-[15px] text-brown-muted hover:text-brown border-b border-transparent hover:border-brown transition-colors"
+          className="mt-4 inline-flex min-h-11 items-center border-b border-transparent font-inter text-[13px] text-brown-muted transition-colors hover:border-brown hover:text-brown md:text-[15px]"
         >
           {email}
         </a>

@@ -8,6 +8,7 @@ export default function WaterDividerSection() {
         muted
         loop
         playsInline
+        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source
