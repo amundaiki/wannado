@@ -150,11 +150,6 @@ function generateReadme(posts) {
     return '# Facebook-scraping\n\nIngen poster funnet.\n';
   }
 
-  // Sorter etter dato (nyeste først)
-  const sorted = [...posts].sort(
-    (a, b) => new Date(b.date || b.time || 0) - new Date(a.date || a.time || 0)
-  );
-
   // Statistikk
   const totalLikes = posts.reduce(
     (sum, p) => sum + (p.likes || p.reactions?.like || 0),
