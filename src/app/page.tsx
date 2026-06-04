@@ -24,9 +24,9 @@ import {
 } from "@/sanity/lib/content";
 
 const homeFallback = {
-  title: "Wannado - Opplevelser i Arendals skjærgård",
+  title: "Wannado - Aktiviteter og opplevelser i Arendal og Sørlandet",
   description:
-    "Seilturer med Listerskøyta Havsul, kajakkurs, kajakkturer, teambuilding og foredrag i Arendal og på Sørlandet.",
+    "Aktiviteter og opplevelser i Arendal og på Sørlandet: seilturer med Listerskøyta Havsul, kajakkturer og kurs, hesteopplevelser, teambuilding og foredrag.",
   image: "/images/baat-fb.jpg",
   imageAlt: "Listerskøyta Havsul under seil i Arendals skjærgård",
 };

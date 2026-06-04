@@ -13,9 +13,9 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { allServicesQuery, type SanityService } from "@/sanity/lib/content";
 
 export const metadata = createPageMetadata({
-  title: "Opplevelser i Arendal - Seilturer, Kajakk og Teambuilding | Wannado",
+  title: "Aktiviteter og opplevelser i Arendal | Wannado",
   description:
-    "Utforsk opplevelser i Arendals skjærgård med Wannado. Seilturer med Havsul, kajakkurs, teambuilding og inspirerende foredrag. Book din opplevelse i dag.",
+    "Aktiviteter i Arendal for hele gruppen: seilturer med Havsul, kajakkturer og kurs, teambuilding og foredrag i Arendals skjærgård. Book opplevelsen din i dag.",
   path: "/opplevelser",
   image: "/images/havsul.jpg",
   imageAlt: "Opplevelser med Wannado i Arendals skjærgård",
@@ -289,12 +289,13 @@ export default async function OpplevelserPage() {
               Opplevelser i Arendal
             </div>
             <h1 className="font-space text-5xl font-bold leading-[0.98] md:text-7xl">
-              Finn turen som passer gruppen din
+              Aktiviteter og opplevelser i Arendal
             </h1>
             <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              Seil med Havsul, padle i skjærgården, samle kollegaer rundt
-              teambuilding eller gi bort en opplevelse som varer lenger enn
-              ting.
+              Finn turen som passer gruppen din. Seil med Havsul, padle i
+              skjærgården, samle kollegaer rundt teambuilding eller gi bort en
+              opplevelse som varer lenger enn ting. Alt sammen i Arendals
+              skjærgård på Sørlandet.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
