@@ -356,6 +356,25 @@ export default async function OpplevelserPage() {
             Alle opplevelser kan tilpasses nivå, årstid og gruppe. Bruk kortene
             for å finne riktig retning, eller send en åpen forespørsel.
           </p>
+          <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
+            På sjøen seiler du med Listerskøyta Havsul fra 1933 og opplever
+            Arendals maritime historie fra vannet. I kajakken padler du i den
+            skjermede skjærgården, enten du tar introduksjonskurs med våttkort,
+            blir med på en guidet skjærgårdssafari eller satser på en lengre
+            ekspedisjon. For bedrifter og grupper setter vi sammen teambuilding
+            og fagdager som styrker samarbeid, og vi holder inspirerende foredrag
+            om personlighet og ekspedisjonsliv. Vil du utforske på egen hånd,
+            leier du kajakk eller kano fra Skarestrand. Hesteopplevelsene med
+            islandshester bygger mestring i rolige rammer, og et gavekort lar deg
+            gi bort en opplevelse i stedet for en ting.
+          </p>
+          <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
+            Felles for alt vi gjør er trygge rammer, lokal kjennskap til
+            farvannet og guider med høy kompetanse. Vi tilpasser ruten etter vær
+            og sesong, så du kan oppleve Sørlandskysten på en måte som passer
+            akkurat din gruppe. Er du usikker på hva som passer best, ringer du
+            oss gjerne for en uforpliktende prat.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -378,9 +397,9 @@ export default async function OpplevelserPage() {
                 <p className="mb-3 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
                   {cat.badge}
                 </p>
-                <h2 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
+                <h3 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
                   {cat.title}
-                </h2>
+                </h3>
                 <p className="font-inter text-sm md:text-base text-white/80 leading-relaxed max-w-sm mb-4">
                   {cat.description}
                 </p>

@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Personvern - Wannado",
+  title: "Personvern og personvernerklæring | Wannado",
   description:
-    "Personvernerklæring for Wannado. Informasjon om hvordan vi behandler dine personopplysninger i henhold til GDPR.",
+    "Personvernerklæring for Wannado. Les hvordan vi behandler personopplysninger fra kontaktskjema og besøk, og hvilke rettigheter du har etter GDPR.",
   path: "/personvern",
   image: "/images/baat-fb.jpg",
   imageAlt: "Personvern hos Wannado",
@@ -100,28 +100,58 @@ const sections = [
   {
     title: "5. Lagring og sletting",
     content: (
-      <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
-        <li>
-          Kontaktskjemaforespørsler slettes etter 12 måneder.
-        </li>
-        <li>
-          Besøksstatistikk er anonymisert og kan ikke knyttes til
-          enkeltpersoner.
-        </li>
-      </ul>
+      <>
+        <p className="font-inter text-base text-brown-mid leading-relaxed mb-3">
+          Vi lagrer personopplysninger ikke lenger enn det som er nødvendig for
+          formålet de ble samlet inn for. Når lagringstiden er passert, slettes
+          opplysningene på en sikker måte.
+        </p>
+        <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-3">
+          <li>
+            Kontaktskjemaforespørsler slettes senest 12 måneder etter siste
+            kontakt, med mindre henvendelsen leder til en avtale vi er pålagt å
+            dokumentere, for eksempel av regnskapsmessige hensyn.
+          </li>
+          <li>
+            Opplysninger knyttet til booking og betaling oppbevares så lenge
+            bokføringsloven krever, deretter slettes de.
+          </li>
+          <li>
+            Besøksstatistikk er anonymisert og kan ikke knyttes til
+            enkeltpersoner, og lagres kun i aggregert form.
+          </li>
+        </ul>
+      </>
     ),
   },
   {
     title: "6. Dine rettigheter",
     content: (
       <>
+        <h3 className="font-space text-lg font-semibold text-brown mb-3">
+          Dette kan du kreve
+        </h3>
         <p className="font-inter text-base text-brown-mid leading-relaxed mb-3">
-          Som registrert har du rett til:
+          Som registrert har du etter personvernforordningen flere rettigheter
+          overfor oss:
         </p>
         <ul className="font-inter text-base text-brown-mid leading-relaxed space-y-2 list-disc list-inside">
-          <li>Innsyn i egne opplysninger</li>
-          <li>Retting av feilaktige opplysninger</li>
-          <li>Sletting av opplysninger</li>
+          <li>
+            Innsyn i hvilke opplysninger vi har lagret om deg, og hvorfor.
+          </li>
+          <li>Retting av feilaktige eller ufullstendige opplysninger.</li>
+          <li>
+            Sletting av opplysninger når de ikke lenger er nødvendige, eller når
+            du trekker tilbake samtykket ditt.
+          </li>
+          <li>
+            Begrensning av behandlingen og rett til å protestere mot behandling
+            som bygger på berettiget interesse.
+          </li>
+          <li>
+            Dataportabilitet, det vil si å få utlevert opplysningene du har gitt
+            oss i et maskinlesbart format.
+          </li>
           <li>
             Klage til Datatilsynet (
             <a
@@ -132,18 +162,23 @@ const sections = [
             >
               datatilsynet.no
             </a>
-            )
+            ) dersom du mener vi behandler opplysningene dine i strid med
+            regelverket.
           </li>
         </ul>
-        <p className="font-inter text-base text-brown-mid leading-relaxed mt-3">
-          Kontakt oss på{" "}
+        <h3 className="font-space text-lg font-semibold text-brown mt-6 mb-3">
+          Slik tar du kontakt
+        </h3>
+        <p className="font-inter text-base text-brown-mid leading-relaxed">
+          For å utøve rettighetene dine, sender du en henvendelse til{" "}
           <a
             href="mailto:mail@wannado.no"
             className="inline-flex min-h-11 items-center text-teal hover:underline"
           >
             mail@wannado.no
-          </a>{" "}
-          for å utøve dine rettigheter.
+          </a>
+          . Vi svarer normalt innen 30 dager. Du trenger ikke begrunne hvorfor
+          du ønsker innsyn, og det er kostnadsfritt å be om det.
         </p>
       </>
     ),

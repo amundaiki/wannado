@@ -12,7 +12,7 @@ import {
 export const metadata = createPageMetadata({
   title: "Bedriftsarrangement og Teambuilding | Wannado",
   description:
-    "Teambuilding, bedriftsarrangement og faglig innhold med natur som arena. Kajakk, seiltur, JTI og foredrag. Skreddersydd for deres mål og kultur i Arendal og på Sørlandet.",
+    "Teambuilding og bedriftsarrangement i Arendal med natur som arena. Kajakk, seiltur med Havsul, JTI og foredrag, skreddersydd for deres mål og kultur.",
   path: "/bedrift",
   image: "/images/havsul.jpg",
   imageAlt: "Bedriftsarrangement med seiltur i Arendals skjærgård",

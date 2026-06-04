@@ -150,10 +150,9 @@ export default function GiftCardForm() {
       <input
         type="text"
         name="company"
-        tabIndex={-1}
+        aria-label="Bedrift (valgfritt)"
         autoComplete="off"
         className="hidden"
-        aria-hidden="true"
       />
       <div>
         <label

@@ -32,7 +32,7 @@ export function generateMetadata() {
     path: pagePath,
     fallback: {
       title:
-        "JTI foredrag Arendal - teamdynamikk og personlighetsanalyse | Wannado",
+        "JTI foredrag Arendal - teamdynamikk og samarbeid | Wannado",
       description:
         "JTI foredrag og workshop for bedrifter, ledergrupper og team. Forstå personlighetstyper, samarbeid og kommunikasjon med Tone Pernille Sivertsen.",
       image: heroImage,

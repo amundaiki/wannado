@@ -9,7 +9,7 @@ import { allPostsQuery, excerpt, type SanityPost } from "@/sanity/lib/content";
 import { blogPostImage, blogPostImageAlt } from "@/lib/data/blogPosts";
 
 export const metadata = createPageMetadata({
-  title: "Blogg om kajakk, seilturer og opplevelser i Arendal",
+  title: "Blogg om kajakk og opplevelser i Arendal",
   description:
     "Les tips, historier og lokale råd om kajakk, seilturer, teambuilding og opplevelser i Arendals skjærgård.",
   path: "/blogg",
@@ -107,6 +107,9 @@ export default async function BloggPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
+        <h2 className="font-space text-2xl md:text-3xl font-bold text-brown mb-8 md:mb-10">
+          Siste artikler
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {blogPosts.map((post) => (
             <article
@@ -126,9 +129,9 @@ export default async function BloggPage() {
                 <p className="font-inter text-xs font-semibold uppercase tracking-[2px] text-teal mb-3">
                   {formatDate(post.publishedAt)}
                 </p>
-                <h2 className="font-space text-2xl md:text-3xl font-bold text-brown mb-4">
+                <h3 className="font-space text-2xl md:text-3xl font-bold text-brown mb-4">
                   {post.title}
-                </h2>
+                </h3>
                 <p className="font-inter text-brown-mid leading-relaxed mb-6">
                   {post.excerpt}
                 </p>

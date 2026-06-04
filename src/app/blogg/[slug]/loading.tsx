@@ -9,7 +9,7 @@ function ShimmerBar({ className }: { className: string }) {
 
 export default function BlogPostLoading() {
   return (
-    <main
+    <div
       className="min-h-screen bg-cream"
       role="status"
       aria-live="polite"
@@ -36,6 +36,6 @@ export default function BlogPostLoading() {
       </div>
 
       <span className="sr-only">Artikkelen laster, vennligst vent.</span>
-    </main>
+    </div>
   );
 }

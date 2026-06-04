@@ -181,6 +181,12 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
             <Link
+              href="/om-oss"
+              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
+            >
+              Om oss
+            </Link>
+            <Link
               href="/personvern"
               className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
             >

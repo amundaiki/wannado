@@ -13,8 +13,8 @@ export const dynamic = "force-dynamic";
 
 const pagePath = "/utleie/kajakk-og-kano-utleie";
 
-export function generateMetadata() {
-  return createServicePageMetadata({
+export async function generateMetadata() {
+  const metadata = await createServicePageMetadata({
     slug: "utleie",
     path: pagePath,
     fallback: {
@@ -25,6 +25,13 @@ export function generateMetadata() {
       imageAlt: "Kajakker klare for utleie ved Skarestrand i Kongshavn",
     },
   });
+
+  // Detaljsiden deler innhold og CMS-metadata med oversiktssiden /utleie.
+  // Kanoniserer hit for å unngå duplikat title/description i indeksen.
+  return {
+    ...metadata,
+    alternates: { canonical: "/utleie" },
+  };
 }
 
 const rentalOptions = [

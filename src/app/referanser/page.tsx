@@ -16,7 +16,7 @@ import {
 export const metadata = createPageMetadata({
   title: "Referanser - Bedrifter og kunder | Wannado",
   description:
-    "Over 30 bedrifter har valgt Wannado for teambuilding og opplevelser. Les hva kundene sier om oss.",
+    "Over 30 bedrifter, kommuner og grupper har valgt Wannado for teambuilding og opplevelser i Arendal. Les kundesitater og se vurderingen på TripAdvisor.",
   path: "/referanser",
   image: "/images/tp-typeteori.jpg",
   imageAlt: "Referanser fra Wannado-kunder",

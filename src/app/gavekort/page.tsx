@@ -81,16 +81,16 @@ const giftCardJsonLd = {
         "Gavekort på seiltur, kajakktur, teambuilding, foredrag og skreddersydde opplevelser på Sørlandet.",
     },
     {
-      "@type": "Product",
+      "@type": "Service",
       name: "Gavekort fra Wannado",
+      serviceType: "Opplevelsesgave",
       description:
         "Personlig gavekort på opplevelser med Wannado i Arendal og på Sørlandet.",
-      brand: {
+      provider: {
         "@type": "Organization",
         name: "Wannado",
         url: absoluteUrl("/"),
       },
-      category: "Opplevelsesgave",
       image: absoluteUrl("/images/scraped/sailing/baat-fb-havsul.jpg"),
       offers: {
         "@type": "Offer",

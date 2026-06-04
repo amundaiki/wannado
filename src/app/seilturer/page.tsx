@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
-import { createBreadcrumbSchema } from "@/lib/seo";
+import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
@@ -27,6 +27,17 @@ export function generateMetadata() {
     },
   });
 }
+
+const videoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Roar forteller om Havsul og seilturer",
+  description:
+    "Roar i Wannado forteller om den historiske Listerskøyta Havsul og seilturene i Arendals skjærgård.",
+  thumbnailUrl: absoluteUrl("/images/P7270038.jpg"),
+  uploadDate: "2026-04-01",
+  contentUrl: absoluteUrl("/videos/havsul-intervju-roar.mp4"),
+} as const;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -169,6 +180,7 @@ export default async function SeilturerPage() {
         ])}
       />
       <JsonLd data={productJsonLd} />
+      <JsonLd data={videoJsonLd} />
       <Navbar />
 
       {/* Hero Section */}

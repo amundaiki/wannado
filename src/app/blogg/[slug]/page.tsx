@@ -192,12 +192,15 @@ export default async function PostPage({ params }: PostPageProps) {
               <div>
                 {post.authorName && (
                   <p className="font-inter font-semibold text-brown text-sm">
-                    {post.authorName}
+                    <span rel="author">Av {post.authorName}</span>
                   </p>
                 )}
                 {post.publishedAt && (
                   <p className="font-inter text-brown-mid text-sm">
-                    {formatDate(post.publishedAt)}
+                    Publisert{" "}
+                    <time dateTime={post.publishedAt}>
+                      {formatDate(post.publishedAt)}
+                    </time>
                   </p>
                 )}
               </div>

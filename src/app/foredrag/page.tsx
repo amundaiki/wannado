@@ -41,87 +41,54 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-    "@type": "Event",
-    name: "JTI Foredrag: Jungiansk Type Index",
-    description:
-      "Inspirerende foredrag om personlighet og samarbeid basert på C.G. Jungs preferanseteorier. JTI kartlegger hvordan vi mennesker er forskjellige.",
-    url: absoluteUrl("/foredrag/jti"),
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
-    location: {
-      "@type": "Place",
-      name: "Avtalt sted",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Arendal",
-        addressRegion: "Agder",
-        addressCountry: "NO",
+      "@type": "Service",
+      name: "JTI Foredrag: Jungiansk Type Index",
+      serviceType: "Foredrag og teamanalyse",
+      description:
+        "Inspirerende foredrag om personlighet og samarbeid basert på C.G. Jungs preferanseteorier. JTI kartlegger hvordan vi mennesker er forskjellige.",
+      url: absoluteUrl("/foredrag/jti"),
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Arendal" },
+        { "@type": "AdministrativeArea", name: "Agder" },
+        { "@type": "Country", name: "Norge" },
+      ],
+      provider: {
+        "@type": "Organization",
+        name: "Wannado",
+        url: absoluteUrl("/"),
       },
-    },
-    organizer: {
-      "@type": "Organization",
-      name: "Wannado",
-      url: absoluteUrl("/"),
-    },
-    performer: {
-      "@type": "Person",
-      name: "Tone Pernille Sivertsen",
-    },
-    offers: [
-      {
+      offers: {
         "@type": "Offer",
-        name: "Foredrag (45 min)",
-        price: "6000",
+        url: absoluteUrl("/kontakt?tjeneste=Foredrag/JTI"),
         priceCurrency: "NOK",
-        url: absoluteUrl("/kontakt"),
         availability: "https://schema.org/InStock",
       },
-      {
+      image: absoluteUrl("/images/tp-typeteori.jpg"),
+    },
+    {
+      "@type": "Service",
+      name: "Grønlandsekspedisjonen: Kajakkekspedisjon til Øst-Grønland",
+      serviceType: "Ekspedisjonsforedrag",
+      description:
+        "Roar deler opplevelsen fra sin kajakkekspedisjon til Øst-Grønland gjennom fantastiske bilder og video fra et av verdens mest spektakulære landskap.",
+      url: absoluteUrl("/foredrag/kajakkekspedisjon-ost-gronland"),
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Agder" },
+        { "@type": "Country", name: "Norge" },
+      ],
+      provider: {
+        "@type": "Organization",
+        name: "Wannado",
+        url: absoluteUrl("/"),
+      },
+      offers: {
         "@type": "Offer",
-        name: "Full teamanalyse (hel dag)",
-        price: "1000",
+        url: absoluteUrl("/kontakt?tjeneste=Grønlandsforedrag"),
         priceCurrency: "NOK",
-        url: absoluteUrl("/kontakt"),
         availability: "https://schema.org/InStock",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "1000",
-          priceCurrency: "NOK",
-          unitText: "per person",
-        },
       },
-    ],
-    image: absoluteUrl("/images/tp-typeteori.jpg"),
-  },
-  {
-    "@type": "Event",
-    name: "Grønlandsekspedisjonen: Kajakkekspedisjon til Øst-Grønland",
-    description:
-      "Roar deler opplevelsen fra sin kajakkekspedisjon til Øst-Grønland gjennom fantastiske bilder og video fra et av verdens mest spektakulære landskap.",
-    url: absoluteUrl("/foredrag/kajakkekspedisjon-ost-gronland"),
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
-    location: {
-      "@type": "Place",
-      name: "Avtalt sted",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Arendal",
-        addressRegion: "Agder",
-        addressCountry: "NO",
-      },
+      image: absoluteUrl("/images/scraped/landscape/kimmiut-gronland-1920.jpg"),
     },
-    organizer: {
-      "@type": "Organization",
-      name: "Wannado",
-      url: absoluteUrl("/"),
-    },
-    performer: {
-      "@type": "Person",
-      name: "Roar Laugerud",
-    },
-    image: absoluteUrl("/images/scraped/landscape/kimmiut-gronland-1920.jpg"),
-  },
   ],
 };
 

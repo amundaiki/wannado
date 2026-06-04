@@ -3,7 +3,11 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import {
+  absoluteUrl,
+  createBreadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 import { mergeTeamProfiles } from "@/lib/data/team";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
@@ -12,9 +16,9 @@ import {
 } from "@/sanity/lib/content";
 
 export const metadata = createPageMetadata({
-  title: "Om oss - Menneskene bak Wannado | Opplevelser i Arendal",
+  title: "Om oss - menneskene bak opplevelsene",
   description:
-    "Bli kjent med Tone Pernille Sivertsen og Roar Laugerud. Over 15 års erfaring med kajakk, seil, teambuilding og hesteopplevelser i Arendal og langs Sørlandskysten.",
+    "Bli kjent med Tone Pernille Sivertsen og Roar Laugerud. Over 15 års erfaring med kajakk, seil, teambuilding og hesteopplevelser i Arendal og på Sørlandet.",
   path: "/om-oss",
   image: "/images/tone-pernille-havsul.jpg",
   imageAlt: "Tone Pernille Sivertsen og Roar Laugerud på Havsul",
@@ -33,6 +37,30 @@ async function getTeamProfiles() {
   }
 }
 
+const interviewVideoSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VideoObject",
+      name: "Tone Pernille om Wannado",
+      description:
+        "Tone Pernille Sivertsen forteller om Wannado, opplevelsene og lidenskapen for mestring og lek på Sørlandet.",
+      thumbnailUrl: absoluteUrl("/images/tp-typeteori.jpg"),
+      contentUrl: absoluteUrl("/videos/havsul-intervju-tone.mp4"),
+      uploadDate: "2026-06-04",
+    },
+    {
+      "@type": "VideoObject",
+      name: "Roar om livet på sjøen",
+      description:
+        "Roar Laugerud forteller om livet på sjøen, Listerskøyta Havsul og kajakkopplevelsene i Arendals skjærgård.",
+      thumbnailUrl: absoluteUrl("/images/P7270038.jpg"),
+      contentUrl: absoluteUrl("/videos/havsul-intervju-roar.mp4"),
+      uploadDate: "2026-06-04",
+    },
+  ],
+};
+
 export default async function OmOssPage() {
   const teamProfiles = await getTeamProfiles();
 
@@ -41,6 +69,7 @@ export default async function OmOssPage() {
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Om oss", path: "/om-oss" }])}
       />
+      <JsonLd data={interviewVideoSchema} />
       <Navbar variant="solid" />
 
       {/* Hero Section */}

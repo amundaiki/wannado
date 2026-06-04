@@ -19,7 +19,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Kurs og opplæring | Wannado",
+  title: "Kurs i kajakk, ridning og JTI i Arendal | Wannado",
   description:
     "Lær kajakk, ridning og personlighetsutvikling med erfarne instruktører i Arendal. Våttkortkurs, avansert kajakk, hestekurs og JTI-kurs på Sørlandet.",
   path: "/kurs",

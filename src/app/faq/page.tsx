@@ -36,6 +36,39 @@ const answerPaths = [
   },
 ] as const;
 
+const goodToKnow = [
+  {
+    question: "Hvor er oppmøtestedet?",
+    answer:
+      "Kajakkturer og kurs har oppmøte ved Skarestrand 11, 4812 Kongshavn, der det er god parkering rett ved stranda. Seilturer med Listerskøyta Havsul starter fra Pollen i Arendal sentrum. For teambuilding og bedriftsopplegg avtaler vi oppmøtested i god tid før arrangementet, og dere får detaljert beskjed i bookingbekreftelsen.",
+  },
+  {
+    question: "Hva skjer ved dårlig vær?",
+    answer:
+      "Vi følger værmeldingen tett og legger sikkerheten først. Blir forholdene for krevende, flytter vi turen til en ny dato eller finner et trygt alternativ i skjermet farvann. Dere får alltid beskjed i god tid, og ingen blir sendt ut i forhold vi vurderer som utrygge. Mange aktiviteter går fint hele året fordi vi har tørrdrakter og tilpasser ruten.",
+  },
+  {
+    question: "Hvordan fungerer avbestilling?",
+    answer:
+      "Avbestillingsvilkår og betalingsfrister avtales ved booking og varierer med hvilken opplevelse du velger. På enkelte turer og ekspedisjoner kan forhåndsbetaling være aktuelt. Ta kontakt før du booker, så går vi gjennom hva som gjelder for akkurat din tur. Avlyser vi turen på grunn av vær, tilbyr vi ny dato eller refusjon.",
+  },
+  {
+    question: "Hva bør jeg ha med?",
+    answer:
+      "På kajakktur stiller vi med kajakk, åre, vest og tørrdrakt når det trengs. Du bør ha med klesskift, vannflaske og solkrem om sommeren, samt klær som tåler å bli våte. På seiltur anbefaler vi vindtett ytterlag og klær etter været. Vi sier alltid fra på forhånd hvis en aktivitet krever noe spesielt utstyr.",
+  },
+  {
+    question: "Finnes det aldersgrenser?",
+    answer:
+      "Mange av opplevelsene passer for både barn, ungdom og voksne, men noen aktiviteter har nedre aldersgrense av sikkerhetshensyn. Vi tilpasser alltid nivå og opplegg etter gruppen. Er dere usikre på om turen passer for de yngste eller eldste i følget, ta kontakt så finner vi en løsning som er trygg for alle.",
+  },
+  {
+    question: "Hvor trygt er det?",
+    answer:
+      "Sikkerhet har høyeste prioritet. Roar er Veileder Hav, det høyeste nivået i Norges Padleforbund, og godkjent for inntil tolv passasjerer. Vi bruker godkjent utstyr, gjennomgår sikkerheten før hver tur og tilpasser ruten etter vær, vind og deltakernes nivå. Du deltar på eget ansvar, og vi anbefaler at hver gjest selv sørger for reise- og ulykkesforsikring.",
+  },
+] as const;
+
 function toFaqItems(items: SanityFaqItem[]): FaqItem[] {
   return items
     .map((item, index) => ({
@@ -159,6 +192,35 @@ export default async function FAQPage() {
       </section>
 
       <FaqClient categories={faqCategories} />
+
+      <section className="bg-warm-white py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
+            Greit å vite
+          </p>
+          <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
+            Det folk lurer mest på før de drar
+          </h2>
+          <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid">
+            Her samler vi de praktiske svarene om oppmøte, vær, avbestilling,
+            utstyr, aldersgrenser og sikkerhet. Lurer du på noe som ikke står
+            her, er du alltid velkommen til å ta kontakt med oss.
+          </p>
+
+          <div className="mt-10 space-y-8">
+            {goodToKnow.map((item) => (
+              <div key={item.question}>
+                <h3 className="font-space text-xl font-bold text-brown">
+                  {item.question}
+                </h3>
+                <p className="mt-3 font-inter text-base leading-relaxed text-brown-mid">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="pb-16 md:pb-20">
         <div className="mx-auto max-w-3xl px-6">

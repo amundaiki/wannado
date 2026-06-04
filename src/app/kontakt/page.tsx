@@ -312,9 +312,13 @@ export default function KontaktPage() {
                       </a>
                       <a
                         href={contact.emailHref}
+                        aria-label={`Send e-post til ${contact.email}`}
                         className="rounded-2xl border border-border bg-warm-white px-4 py-4 text-brown transition-colors duration-200 hover:border-teal/40 hover:bg-teal/5"
                       >
-                        <span className="block font-inter text-xs uppercase tracking-[0.18em] text-brown-muted mb-1">
+                        <span
+                          aria-hidden="true"
+                          className="block font-inter text-xs uppercase tracking-[0.18em] text-brown-muted mb-1"
+                        >
                           Send e-post
                         </span>
                         <span className="font-inter text-sm font-medium text-teal break-all">

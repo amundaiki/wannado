@@ -10,7 +10,7 @@ import PeopleSection from "@/components/sections/PeopleSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import VideoBanner from "@/components/ui/VideoBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { createPageMetadata } from "@/lib/seo";
+import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { mergeTeamProfiles } from "@/lib/data/team";
 import { splitTestimonials } from "@/lib/data/testimonials";
 import { sanityFetch } from "@/sanity/lib/live";
@@ -120,6 +120,17 @@ const homeJsonLd = {
   ],
 };
 
+const homeVideoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Seiltur med Listerskøyta Havsul i Arendals skjærgård",
+  description:
+    "Klipp fra en seiltur med den restaurerte Listerskøyta Havsul forbi fyr og holmer i Arendals skjærgård.",
+  thumbnailUrl: absoluteUrl("/images/scraped/landscape/homborsund-fyr.jpg"),
+  uploadDate: "2026-03-31",
+  contentUrl: absoluteUrl("/videos/havsul-clip-05-fyrtarn.mp4"),
+};
+
 async function getTeamProfiles() {
   try {
     const { data } = await sanityFetch({
@@ -168,6 +179,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd data={homeJsonLd} />
+      <JsonLd data={homeVideoJsonLd} />
       <Navbar />
       <HeroSection
         heading={homePage?.hero?.heading}

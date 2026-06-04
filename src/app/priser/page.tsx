@@ -343,7 +343,7 @@ function PricingCard({
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Priser", path: "/priser" }])}
       />
@@ -531,6 +531,6 @@ export default function PricingPage() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
-import { createBreadcrumbSchema } from "@/lib/seo";
+import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
@@ -21,12 +21,23 @@ export function generateMetadata() {
     fallback: {
       title: "Teambuilding Arendal - Opplevelser for bedrifter | Wannado",
       description:
-        "Teambuilding i Arendal med 15 års erfaring. Velg mellom utendørs utfordringer, mordmysterier, innendørs konkurranser og personlighetsanalyse. Fra kr 4 500. Kontakt oss i dag!",
+        "Teambuilding i Arendal med 15 års erfaring. Velg utendørs utfordringer, mordmysterier, JTI og personlighetsanalyse. Skreddersydd for deres mål.",
       image: "/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg",
       imageAlt: "Kollegaer hopper på stranden under teambuilding med Wannado",
     },
   });
 }
+
+const videoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Tone Pernille forteller om teambuilding",
+  description:
+    "Tone Pernille i Wannado forteller om teambuilding og bedriftsarrangement i Arendal og på Sørlandet.",
+  thumbnailUrl: absoluteUrl("/images/tp-typeteori.jpg"),
+  uploadDate: "2026-04-01",
+  contentUrl: absoluteUrl("/videos/havsul-intervju-tone.mp4"),
+} as const;
 
 const products = [
   {
@@ -182,6 +193,7 @@ export default async function TeambuildingPage() {
         ])}
       />
       <JsonLd data={productSchema} />
+      <JsonLd data={videoJsonLd} />
       <Navbar />
 
       {/* Hero */}

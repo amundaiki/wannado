@@ -137,30 +137,35 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         </div>
       </motion.nav>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-brown/30 backdrop-blur-sm z-40 md:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
+      {/*
+        Mobil-meny er alltid montert i DOM-en slik at aria-controls="mobil-meny"
+        fra hamburger-knappen alltid peker på et eksisterende element. Når menyen
+        er lukket markeres wrapperen med aria-hidden og fjernes fra tab-rekkefølgen
+        via inert, mens AnimatePresence styrer inn- og ut-animasjonen av panelet.
+      */}
+      <div id="mobil-meny" aria-hidden={!mobileOpen} inert={!mobileOpen}>
+        <AnimatePresence>
+          {mobileOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-brown/30 backdrop-blur-sm z-40 md:hidden"
+                onClick={() => setMobileOpen(false)}
+              />
 
-            {/* Drawer */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-              id="mobil-meny"
-              className="fixed top-16 right-0 bottom-0 w-[280px] bg-cream z-40 md:hidden shadow-2xl border-l border-border"
-            >
-              <div className="flex flex-col h-full pt-6 pb-8 px-6">
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                className="fixed top-16 right-0 bottom-0 w-[280px] bg-cream z-40 md:hidden shadow-2xl border-l border-border"
+              >
+                <div className="flex flex-col h-full pt-6 pb-8 px-6">
                 <ul className="flex flex-col gap-1 flex-1">
                   {navLinks.map((link, idx) => (
                     <motion.li
@@ -202,8 +207,9 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
               </div>
             </motion.div>
           </>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 }
