@@ -1,7 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowRight,
   BookOpenCheck,
   CalendarCheck,
   CheckCircle2,
@@ -12,6 +9,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/sections/PageHero";
 import Button from "@/components/ui/Button";
+import ServiceRow from "@/components/ui/ServiceRow";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   absoluteUrl,
@@ -34,44 +32,32 @@ const courses = [
     description:
       "Lær kajakk fra grunnen av med erfarne instruktører. Få våttkort og bli trygg på vannet.",
     image: "/images/kajakk-kurs-bilde.jpg",
-    badge: "Populært",
-    badgeColor: "bg-teal",
     price: "Fra 1 490 kr",
     href: "/kurs/kajakkurs",
-    detail: "Grunnkurs, teknikk og trygg padling langs skjærgården.",
   },
   {
     title: "Avanserte kajakkurs",
     description:
       "For deg som allerede padler og vil ta steget videre. Rulle, surfing og ekspedisjonsteknikk.",
     image: "/images/gronland-kajakk-3.jpg",
-    badge: "Videregående",
-    badgeColor: "bg-brown",
     price: "Fra 1 990 kr",
     href: "/kurs/kajakkurs#kurs",
-    detail: "For deg som vil mestre mer krevende forhold og turplanlegging.",
   },
   {
     title: "Hestekurs",
     description:
       "Bli kjent med islandshestene våre og lær grunnleggende rideteknikk i vakker natur.",
-    image: "/images/20230910_125202-1280x960.jpg",
-    badge: "Natur",
-    badgeColor: "bg-brown-mid",
+    image: "/images/scraped/horses/hesteopplevelser-bilde.jpg",
     price: "Fra 1 290 kr",
     href: "/kurs/hestekurs",
-    detail: "Rolig læring, nærhet til dyrene og praktisk mestring ute.",
   },
   {
     title: "Jungs Typeindeks (JTI)",
     description:
       "Forstå deg selv og andre bedre med Jungs Typeindeks. Perfekt for team og ledere.",
     image: "/images/tp-typeteori.jpg",
-    badge: "Bedrift",
-    badgeColor: "bg-teal",
     price: "Ta kontakt for pris",
     href: "/kurs/jti",
-    detail: "Et konkret verktøy for samarbeid, ledelse og bedre kommunikasjon.",
   },
 ];
 
@@ -117,7 +103,6 @@ const courseSchema = courses.map((course, index) => ({
   inLanguage: "nb-NO",
   offers: {
     "@type": "Offer",
-    category: course.badge,
     availability: "https://schema.org/InStock",
   },
 }));
@@ -188,54 +173,20 @@ export default function KursPage() {
               Kurs som bygger trygghet, mestring og gode opplevelser
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ul className="divide-y divide-border border-y border-border">
             {courses.map((course, index) => (
-              <Link
+              <ServiceRow
                 key={course.title}
+                title={course.title}
+                text={course.description}
+                price={course.price}
+                image={course.image}
+                imageAlt={course.title}
                 href={course.href}
-                className="group overflow-hidden rounded-card border border-border bg-white transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
-              >
-                <div className="relative h-56 w-full overflow-hidden">
-                  <Image
-                    src={course.image}
-                    alt={course.title}
-                    fill
-                    priority={index < 4}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className={`inline-block font-inter text-xs font-semibold text-white px-3 py-1.5 rounded-full ${course.badgeColor}`}>
-                      {course.badge}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-space text-2xl font-bold text-brown mb-3 group-hover:text-teal transition-colors">
-                    {course.title}
-                  </h3>
-                  <p className="font-inter text-brown-mid leading-relaxed mb-4">
-                    {course.description}
-                  </p>
-                  <p className="mb-5 font-inter text-sm font-medium leading-relaxed text-brown/78">
-                    {course.detail}
-                  </p>
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <span className="font-inter text-sm font-semibold text-brown">
-                      {course.price}
-                    </span>
-                    <span className="inline-flex items-center gap-2 font-inter text-sm font-semibold text-teal">
-                      Les mer
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                </div>
-              </Link>
+                priority={index < 4}
+              />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

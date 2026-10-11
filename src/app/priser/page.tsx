@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl, createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -268,79 +269,6 @@ const pricingSchema = {
   })),
 };
 
-function PricingCard({
-  name,
-  price,
-  priceNote,
-  description,
-  includes,
-  cta,
-  ctaHref,
-  audience,
-}: {
-  name: string;
-  price: string;
-  priceNote: string;
-  description: string;
-  includes: string[];
-  cta: string;
-  ctaHref: string;
-  audience: string;
-}) {
-  return (
-    <div className="bg-white rounded-card border border-border p-6 lg:p-8 flex flex-col">
-      <div className="mb-4">
-        <p className="font-inter text-xs font-semibold text-teal">
-          {audience}
-        </p>
-        <h3 className="mt-2 font-space text-xl font-semibold text-brown">{name}</h3>
-      </div>
-
-      <div className="mb-4">
-        <div className="flex items-baseline gap-2">
-          <span className="font-space text-3xl font-bold text-brown">{price}</span>
-          {priceNote && (
-            <span className="font-inter text-sm text-brown-muted">{priceNote}</span>
-          )}
-        </div>
-      </div>
-
-      <p className="font-inter text-sm leading-relaxed text-brown-mid mb-6">
-        {description}
-      </p>
-
-      <div className="mb-6 flex-1">
-        <p className="font-inter text-xs font-semibold text-brown-muted mb-3">
-          Inkluderer
-        </p>
-        <ul className="space-y-2">
-          {includes.map((item) => (
-            <li key={item} className="flex items-start gap-2 font-inter text-sm text-brown-mid">
-              <svg
-                className="mt-0.5 h-4 w-4 shrink-0 text-teal"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <Link
-        href={ctaHref}
-        className="inline-flex items-center justify-center rounded-xl bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
-      >
-        {cta}
-      </Link>
-    </div>
-  );
-}
-
 export default function PricingPage() {
   return (
     <main id="innhold" className="min-h-screen">
@@ -362,137 +290,114 @@ export default function PricingPage() {
       />
 
       {/* Intro */}
-      <section id="prisoversikt" className="scroll-mt-20 bg-warm-white border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 md:py-16">
+      <section id="prisoversikt" className="scroll-mt-20 border-b border-border bg-warm-white">
+        <div className="mx-auto max-w-6xl px-6 py-14 lg:px-10 md:py-20">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
             <div>
-              <p className="font-inter text-xs font-semibold text-teal">
-                Slik prises det
-              </p>
-              <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
+              <h2 className="font-display text-3xl font-bold text-brown md:text-4xl">
                 Fra-priser der det er fast, tilbud der opplegget må tilpasses
               </h2>
-              <p className="mt-5 font-inter text-base leading-7 text-brown-mid">
+              <p className="mt-5 text-base leading-7 text-brown-mid">
                 Noen opplevelser kan bestilles direkte, mens bedriftsopplegg,
                 kurs og foredrag ofte skreddersys. Da gir vi et uforpliktende
-                tilbud før dere bestemmer dere.
+                tilbud før dere bestemmer dere. Oppgi dato, antall deltakere og
+                ønsket varighet, så bekrefter vi om fra-prisen passer.
               </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <dl className="grid gap-x-8 gap-y-6 md:grid-cols-3">
               {pricingPrinciples.map((principle) => (
-                <article
-                  key={principle.title}
-                  className="border border-border bg-white p-5"
-                >
-                  <h3 className="font-space text-xl font-semibold text-brown">
+                <div key={principle.title} className="border-t border-border pt-4">
+                  <dt className="font-display text-lg font-bold text-brown">
                     {principle.title}
-                  </h3>
-                  <p className="mt-3 font-inter text-sm leading-6 text-brown-mid">
+                  </dt>
+                  <dd className="mt-2 text-sm leading-6 text-brown-mid">
                     {principle.text}
-                  </p>
-                </article>
+                  </dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-2">
+          <nav aria-label="Kategorier" className="mt-10 flex flex-wrap gap-x-6 gap-y-1">
             {pricingCategories.map((category) => (
               <a
                 key={category.id}
                 href={`#${category.id}`}
-                className="inline-flex min-h-11 items-center rounded-full border border-brown/12 bg-white px-4 font-inter text-sm font-medium text-brown-mid transition-colors hover:border-teal/40 hover:text-teal"
+                className="inline-flex min-h-11 items-center font-semibold text-teal underline-offset-4 hover:underline"
               >
                 {category.title}
               </a>
             ))}
-          </div>
+          </nav>
         </div>
       </section>
 
-      {/* Pricing sections */}
-      {pricingCategories.map((category) => (
-        <section
-          key={category.id}
-          id={category.id}
-          className="border-b border-border bg-cream"
-        >
-          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <div className="mb-10 max-w-3xl">
-              <p className="font-inter text-xs font-semibold text-teal">
-                Prisoversikt
-              </p>
-              <h2 className="mt-3 font-space text-3xl font-bold text-brown">
+      {/* Prisliste: kategori til venstre, rader til høyre */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl divide-y divide-border px-6 lg:px-10">
+          {pricingCategories.map((category) => (
+            <div
+              key={category.id}
+              id={category.id}
+              className="grid scroll-mt-20 gap-6 py-12 md:py-16 lg:grid-cols-[240px_1fr] lg:gap-14"
+            >
+              <h2 className="font-display text-2xl font-bold text-brown lg:sticky lg:top-24 lg:self-start">
                 {category.title}
               </h2>
-            </div>
-            <div
-              className={`grid gap-6 ${
-                category.cards.length === 1
-                  ? "grid-cols-1 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)]"
-                  : category.cards.length === 2
-                  ? "grid-cols-1 md:grid-cols-2"
-                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-              }`}
-            >
-              {category.cards.map((card) => (
-                <PricingCard key={card.name} {...card} />
-              ))}
-              {category.cards.length === 1 ? (
-                <aside className="border border-border bg-warm-white p-6 lg:p-8">
-                  <p className="font-inter text-xs font-semibold text-teal">
-                    Få riktig pris
-                  </p>
-                  <h3 className="mt-3 font-space text-2xl font-semibold text-brown">
-                    Vi avklarer rammen før bestilling
-                  </h3>
-                  <p className="mt-4 font-inter text-sm leading-7 text-brown-mid">
-                    Fortell oss dato, antall deltakere og ønsket varighet. Da
-                    kan vi bekrefte om fra-prisen passer, eller foreslå et
-                    bedre opplegg for gruppen.
-                  </p>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                    {["Dato", "Antall", "Varighet"].map((item) => (
-                      <div
-                        key={item}
-                        className="border border-brown/10 bg-white px-4 py-3"
+              <ul className="space-y-9">
+                {category.cards.map((card) => (
+                  <li
+                    key={card.name}
+                    className="grid gap-x-8 gap-y-2 sm:grid-cols-[1fr_auto]"
+                  >
+                    <div>
+                      <h3 className="font-display text-xl font-bold text-brown">
+                        {card.name}
+                      </h3>
+                      <p className="mt-1 max-w-xl text-brown-mid">{card.description}</p>
+                      <p className="mt-2 max-w-xl text-sm text-brown-muted">
+                        {card.audience}. Inkluderer: {card.includes.join(", ").toLowerCase()}.
+                      </p>
+                      <Link
+                        href={card.ctaHref}
+                        className="mt-3 inline-flex min-h-11 items-center font-semibold text-teal underline-offset-4 hover:underline"
                       >
-                        <p className="font-inter text-sm font-semibold text-brown">
-                          {item}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </aside>
-              ) : null}
+                        {card.cta}
+                      </Link>
+                    </div>
+                    <div className="sm:text-right">
+                      <p className="font-display text-xl font-bold text-brown">
+                        {card.price}
+                      </p>
+                      {card.priceNote && (
+                        <p className="text-sm text-brown-muted">{card.priceNote}</p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </section>
-      ))}
+          ))}
+        </div>
+      </section>
 
       {/* CTA section */}
       <section className="bg-brown">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 text-center">
-          <h2 className="font-space text-3xl font-bold text-white md:text-4xl">
-            Usikker på hva du trenger?
+        <div className="mx-auto max-w-6xl px-6 py-20 lg:px-10">
+          <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
+            Usikker på hva dere trenger?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl font-inter text-lg leading-relaxed text-white/70">
-            Vi hjelper deg med å finne den perfekte opplevelsen for deg og ditt selskap.
-            Ta kontakt, så setter vi sammen et tilbud som passer dere.
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/85">
+            Ta kontakt, så setter vi sammen et tilbud som passer gruppen.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/booking"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-3.5 font-inter text-sm font-semibold text-brown transition-colors hover:bg-sand"
-            >
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Button href="/booking" variant="sand">
               Send en forespørsel
-            </Link>
-            <a
-              href="tel:+4799469957"
-              className="inline-flex items-center justify-center rounded-xl border-2 border-white/30 px-8 py-3.5 font-inter text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
-            >
-              Ring oss: +47 99 46 99 57
-            </a>
+            </Button>
+            <Button href="tel:+4799469957" variant="outline-light">
+              Ring +47 99 46 99 57
+            </Button>
           </div>
         </div>
       </section>

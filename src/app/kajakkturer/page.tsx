@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import PageHero from "@/components/sections/PageHero";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import Button from "@/components/ui/Button";
+import ServiceRow from "@/components/ui/ServiceRow";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -39,7 +39,6 @@ const courseMeta = [
     privatePrice: "Kr 1 500,- (2-4 pers)",
     description:
       "Perfekt start for nybegynnere. Lær grunnleggende padleteknikk, sikkerhet og selvberging. Du får våttkort etter bestått kurs.",
-    highlight: true,
     image: "/images/scraped/kayak/pusnes-introkurs-4613.jpg",
     imageAlt: "Nybegynner padler kajakk i rolig vann ved Arendal",
   },
@@ -259,7 +258,6 @@ export default async function KajakkturerPage() {
       price: `Kr ${formatNok(priceValue)},-`,
       image: sanityCourse?.imageUrl || course.image,
       imageAlt: sanityCourse?.imageAlt || course.imageAlt,
-      highlight: course.highlight,
     };
   });
 
@@ -319,54 +317,23 @@ export default async function KajakkturerPage() {
             Fra kr 1 250,- per person
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="divide-y divide-border border-y border-border">
             {courses.map((course) => (
-              <div
+              <ServiceRow
                 key={course.name}
-                className={`bg-white rounded-card overflow-hidden border hover:shadow-md transition-shadow ${
-                  course.highlight
-                    ? "border-teal/40 ring-1 ring-teal/20"
-                    : "border-border"
-                }`}
-              >
-                <div className="relative h-40">
-                  <Image
-                    src={course.image}
-                    alt={course.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="p-8">
-                  {course.highlight && (
-                    <span className="inline-block font-inter text-xs font-semibold text-teal mb-3">
-                      Mest populært
-                    </span>
-                  )}
-                  <h3 className="font-space text-xl font-bold text-brown mb-2">
-                    {course.name}
-                  </h3>
-                  <div className="flex items-baseline gap-3 mb-4">
-                    <span className="font-space text-2xl font-bold text-brown">
-                      {course.price}
-                    </span>
-                    <span className="font-inter text-sm text-brown-muted">
-                      / {course.duration}
-                    </span>
-                  </div>
-                  {course.privatePrice && (
-                    <p className="font-inter text-sm text-brown-muted mb-3">
-                      Privatundervisning: {course.privatePrice}
-                    </p>
-                  )}
-                  <p className="font-inter text-sm text-brown-mid leading-relaxed">
-                    {course.description}
-                  </p>
-                </div>
-              </div>
+                title={course.name}
+                text={
+                  course.privatePrice
+                    ? `${course.description} Privatundervisning: ${course.privatePrice}`
+                    : course.description
+                }
+                price={`${course.price} / ${course.duration}`}
+                image={course.image}
+                imageAlt={course.imageAlt}
+                href="/kontakt?tjeneste=Kajakkurs"
+              />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -379,67 +346,24 @@ export default async function KajakkturerPage() {
           Ikke kurs, men rene opplevelsesturer i skjærgården med erfaren guide.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Skjærgårdssafari */}
-          <Link
+        <ul className="divide-y divide-border border-y border-border">
+          <ServiceRow
+            title="Skjærgårdssafari"
+            text="En guidet tur gjennom Arendals vakre skjærgård. Perfekt for deg som vil oppleve naturen uten kursformat. Vi tilpasser turen etter gruppens nivå og ønsker."
+            price="Kr 1 350,- per person"
+            image="/images/scraped/kayak/kajakktur-16510307442.jpg"
+            imageAlt="Guidet kajakktur gjennom skjærgården med hvite sørlandshus"
             href="/opplevelser/skjaergardsafari"
-            className="group block overflow-hidden rounded-card border border-border bg-white transition-shadow hover:shadow-md"
-          >
-            <div className="relative h-56">
-              <Image
-                src="/images/scraped/kayak/kajakktur-16510307442.jpg"
-                alt="Guidet kajakktur gjennom skjærgården med hvite sørlandshus"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown/50 to-transparent" />
-            </div>
-            <div className="p-8">
-              <h3 className="font-space text-2xl font-bold text-brown mb-2">
-                Skjærgårdssafari
-              </h3>
-              <p className="font-inter text-sm text-brown-muted mb-4">
-                Kr 1 350,- per person
-              </p>
-              <p className="font-inter text-brown-mid leading-relaxed">
-                En guidet tur gjennom Arendals vakre skjærgård. Perfekt for deg
-                som vil oppleve naturen uten kursformat. Vi tilpasser turen
-                etter gruppens nivå og ønsker.
-              </p>
-              <span className="mt-5 inline-flex items-center font-inter text-sm font-semibold text-teal transition-colors group-hover:text-brown">
-                Se skjærgårdssafari
-              </span>
-            </div>
-          </Link>
-
-          {/* Fyr til fyr */}
-          <div className="bg-white rounded-card overflow-hidden border border-border hover:shadow-md transition-shadow">
-            <div className="relative h-56">
-              <Image
-                src="/images/scraped/kayak/kajakktur-fyr-oslofjorden-3995.jpg"
-                alt="Kajakkpadler på vei mot fyrtårn langs kysten"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown/50 to-transparent" />
-            </div>
-            <div className="p-8">
-              <h3 className="font-space text-2xl font-bold text-brown mb-2">
-                Fyr til fyr
-              </h3>
-              <p className="font-inter text-sm text-brown-muted mb-4">
-                Kontakt oss for pris
-              </p>
-              <p className="font-inter text-brown-mid leading-relaxed">
-                Padle mellom de historiske fyrene langs kysten. En lengre tur for
-                deg med noe erfaring som ønsker en skikkelig opplevelse i
-                Sørlandets fineste farvann.
-              </p>
-            </div>
-          </div>
-        </div>
+          />
+          <ServiceRow
+            title="Fyr til fyr"
+            text="Padle mellom de historiske fyrene langs kysten. En lengre tur for deg med noe erfaring som ønsker en skikkelig opplevelse i Sørlandets fineste farvann."
+            price="Kontakt oss for pris"
+            image="/images/scraped/kayak/kajakktur-fyr-oslofjorden-3995.jpg"
+            imageAlt="Kajakkpadler på vei mot fyrtårn langs kysten"
+            href="/kontakt?tjeneste=Kajakktur"
+          />
+        </ul>
       </section>
 
       {/* Guide Profile: Roar */}

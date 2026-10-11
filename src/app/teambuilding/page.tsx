@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -6,6 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import PageHero from "@/components/sections/PageHero";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import Button from "@/components/ui/Button";
+import ServiceRow from "@/components/ui/ServiceRow";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -238,43 +238,19 @@ export default async function TeambuildingPage() {
               Meny og priser
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <ul className="divide-y divide-border border-y border-border">
             {productCards.map((product) => (
-              <div
+              <ServiceRow
                 key={product.name}
-                className="bg-white rounded-card border border-border flex flex-col hover:shadow-md transition-shadow duration-300 overflow-hidden"
-              >
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="p-6 md:p-8 flex flex-col flex-1">
-                  <h3 className="font-space font-bold text-xl text-brown mb-3">
-                    {product.name}
-                  </h3>
-                  <p className="font-inter text-sm md:text-base text-brown-mid leading-relaxed mb-4 flex-1">
-                    {product.description}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3 mb-5">
-                    <span className="font-space font-bold text-teal text-lg">
-                      {product.price}
-                    </span>
-                    <span className="font-inter text-xs text-brown-muted">
-                      {product.duration}
-                    </span>
-                  </div>
-                  <Button href="/booking" variant="primary" className="self-start">
-                    Bestill
-                  </Button>
-                </div>
-              </div>
+                title={product.name}
+                text={`${product.description} Varighet: ${product.duration}.`}
+                price={product.price}
+                image={product.image}
+                imageAlt={product.alt}
+                href="/booking"
+              />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

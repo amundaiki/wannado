@@ -1,11 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import PageHero from "@/components/sections/PageHero";
 import Button from "@/components/ui/Button";
+import ServiceRow from "@/components/ui/ServiceRow";
 import {
   absoluteUrl,
   createBreadcrumbSchema,
@@ -31,7 +30,6 @@ const serviceFallbacks: Record<
     image: string;
     href: string;
     alt: string;
-    badge: string;
   }
 > = {
   seilturer: {
@@ -41,7 +39,6 @@ const serviceFallbacks: Record<
     image: "/images/baat-fb.jpg",
     href: "/seilturer",
     alt: "Listerskøyta Havsul under seil i Arendals skjærgård",
-    badge: "Sjø og historie",
   },
   kajakkturer: {
     title: "Kajakkturer og kurs",
@@ -50,7 +47,6 @@ const serviceFallbacks: Record<
     image: "/images/kajakk-kurs-bilde.jpg",
     href: "/kajakkturer",
     alt: "Kajakkpadlere i skjærgården ved Arendal",
-    badge: "Kajakk",
   },
   skjaergardsafari: {
     title: "Skjærgårdssafari",
@@ -59,7 +55,6 @@ const serviceFallbacks: Record<
     image: "/images/scraped/kayak/kajakktur-strandhotell-4015.jpg",
     href: "/opplevelser/skjaergardsafari",
     alt: "Guidet kajakktur i skjærgården ved Arendal",
-    badge: "Guidet tur",
   },
   teambuilding: {
     title: "Teambuilding",
@@ -68,7 +63,6 @@ const serviceFallbacks: Record<
     image: "/images/scraped/teambuilding/Bungeerunning-7607.jpg",
     href: "/teambuilding",
     alt: "Teambuilding med Wannado i Arendal",
-    badge: "Bedrift",
   },
   foredrag: {
     title: "Foredrag",
@@ -77,7 +71,6 @@ const serviceFallbacks: Record<
     image: "/images/gronland-kajakk-3.jpg",
     href: "/foredrag",
     alt: "Foredrag og inspirasjon med Wannado",
-    badge: "Fag og inspirasjon",
   },
   utleie: {
     title: "Kajakk- og kanoutleie",
@@ -86,7 +79,6 @@ const serviceFallbacks: Record<
     image: "/images/utleie-bilde.jpg",
     href: "/utleie/kajakk-og-kano-utleie",
     alt: "Kajakker klare for utleie ved Skarestrand",
-    badge: "Utleie",
   },
   gavekort: {
     title: "Gavekort",
@@ -95,7 +87,6 @@ const serviceFallbacks: Record<
     image: "/images/havsul.jpg",
     href: "/gavekort",
     alt: "Gavekort på opplevelser med Wannado",
-    badge: "Gave",
   },
   hesteopplevelser: {
     title: "Hesteopplevelser",
@@ -104,7 +95,6 @@ const serviceFallbacks: Record<
     image: "/images/scraped/horses/hesteopplevelser-bilde.jpg",
     href: "/opplevelser/hesteopplevelser",
     alt: "Ridetur på islandshest langs kysten på Sørlandet",
-    badge: "Hest",
   },
 };
 
@@ -149,7 +139,7 @@ const fallbackCategories = [
     href: "/foredrag",
     alt: "Foredrag og inspirasjon med Wannado",
   },
-].map((item) => ({ ...item, badge: "Opplevelse" }));
+];
 
 const preferredOrder = [
   "seilturer",
@@ -172,7 +162,6 @@ type ServiceCard = {
   image: string;
   href: string;
   alt: string;
-  badge: string;
   slug: string;
 };
 
@@ -193,7 +182,6 @@ function createServiceCard(service: SanityService): ServiceCard {
     image: service.imageUrl || fallback?.image || "/images/havsul.jpg",
     href: serviceHref(service.slug),
     alt: service.imageAlt || fallback?.alt || service.title,
-    badge: fallback?.badge || service.category || "Opplevelse",
     slug: service.slug || service._id,
   };
 }
@@ -342,40 +330,19 @@ export default async function OpplevelserPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="divide-y divide-border border-y border-border">
           {serviceCards.map((cat, index) => (
-            <Link
+            <ServiceRow
               key={cat.slug || cat.href}
+              title={cat.title}
+              text={cat.description}
+              image={cat.image}
+              imageAlt={cat.alt}
               href={cat.href}
-              className="group relative block h-[360px] overflow-hidden rounded-card border border-white/10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg md:h-[420px]"
-            >
-              <Image
-                src={cat.image}
-                alt={cat.alt}
-                fill
-                loading={index === 0 ? "eager" : undefined}
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown/90 via-brown/70 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-                <p className="mb-3 font-inter text-xs font-semibold text-sand">
-                  {cat.badge}
-                </p>
-                <h3 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
-                  {cat.title}
-                </h3>
-                <p className="font-inter text-sm md:text-base text-white leading-relaxed max-w-sm mb-4">
-                  {cat.description}
-                </p>
-                <span className="inline-flex items-center gap-2 font-inter text-sm font-semibold text-sand group-hover:gap-3 transition-colors">
-                  Utforsk
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </span>
-              </div>
-            </Link>
+              priority={index === 0}
+            />
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Bottom CTA */}

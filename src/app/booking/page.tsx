@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import CheckinBookingEmbed from "@/components/booking/CheckinBookingEmbed";
 import PageHero from "@/components/sections/PageHero";
-import Button from "@/components/ui/Button";
+import ServiceRow from "@/components/ui/ServiceRow";
 import ContactForm from "@/components/ui/ContactForm";
 import {
   absoluteUrl,
@@ -33,8 +33,6 @@ const bookingPaths = [
     inquiryHref: "/kontakt?tjeneste=Seilturer",
     image: "/images/scraped/sailing/baat-fb-havsul.jpg",
     imageAlt: "Listerskøyta Havsul i Arendals skjærgård",
-    badge: "Seiltur",
-    cta: "Se seiltur",
   },
   {
     title: "Kajakkturer",
@@ -43,10 +41,8 @@ const bookingPaths = [
     price: "Pris etter tur og gruppe",
     href: "/kajakkturer",
     inquiryHref: "/kontakt?tjeneste=Kajakktur",
-    image: "/images/roar-laugerud-havsul.jpg",
-    imageAlt: "Roar Laugerud klar for aktivitet ved sjøkanten",
-    badge: "Kajakk",
-    cta: "Se kajakkturer",
+    image: "/images/scraped/kayak/kajakktur-strandhotell-4015.jpg",
+    imageAlt: "Kajakkpadlere i skjærgården utenfor Arendal",
   },
   {
     title: "Kajakkurs",
@@ -57,8 +53,6 @@ const bookingPaths = [
     inquiryHref: "/kontakt?tjeneste=Kajakkurs",
     image: "/images/kajakk-kurs-bilde.jpg",
     imageAlt: "Kajakkurs med Wannado",
-    badge: "Kurs",
-    cta: "Se kajakkurs",
   },
   {
     title: "Teambuilding",
@@ -67,10 +61,8 @@ const bookingPaths = [
     price: "Fra kr 4 500,-",
     href: "/teambuilding",
     inquiryHref: "/kontakt?tjeneste=Teambuilding",
-    image: "/images/tp-typeteori.jpg",
-    imageAlt: "Tone Pernille Sivertsen under foredrag eller teambuilding",
-    badge: "Bedrift",
-    cta: "Se teambuilding",
+    image: "/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg",
+    imageAlt: "To personer fyller bøtte på stranden under teambuilding",
   },
   {
     title: "Foredrag og JTI",
@@ -81,8 +73,6 @@ const bookingPaths = [
     inquiryHref: "/kontakt?tjeneste=Foredrag/JTI",
     image: "/images/tp-typeteori.jpg",
     imageAlt: "Tone Pernille Sivertsen holder foredrag",
-    badge: "Foredrag",
-    cta: "Se foredrag",
   },
   {
     title: "Gavekort",
@@ -93,8 +83,6 @@ const bookingPaths = [
     inquiryHref: "/gavekort#bestill-gavekort",
     image: "/images/P7270038.jpg",
     imageAlt: "Opplevelsesgave fra Wannado",
-    badge: "Gavekort",
-    cta: "Se gavekort",
   },
 ] as const;
 
@@ -259,49 +247,33 @@ export default function BookingPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="divide-y divide-border border-y border-border">
           {bookingPaths.map((path) => (
-            <article
+            <ServiceRow
               key={path.title}
-              className="overflow-hidden rounded-card border border-border bg-white transition-shadow duration-200 hover:shadow-md"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={path.image}
-                  alt={path.imageAlt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  className="object-cover"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-inter text-xs font-semibold text-brown">
-                  {path.badge}
-                </span>
-              </div>
-              <div className="p-6">
-                <h3 className="font-space text-2xl font-bold text-brown">
-                  {path.title}
-                </h3>
-                <p className="mt-3 font-inter text-sm leading-relaxed text-brown-mid">
-                  {path.description}
-                </p>
-                <p className="mt-4 font-space text-lg font-bold text-teal">
-                  {path.price}
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <Button href={path.inquiryHref} variant="primary">
-                    {path.href === "/gavekort" ? "Bestill gavekort" : "Send forespørsel"}
-                  </Button>
-                  <Link
-                    href={path.href}
-                    className="inline-flex min-h-11 items-center font-body text-base font-semibold text-teal underline underline-offset-4 hover:text-brown"
-                  >
-                    {path.cta}
-                  </Link>
-                </div>
-              </div>
-            </article>
+              title={path.title}
+              text={path.description}
+              price={path.price}
+              image={path.image}
+              imageAlt={path.imageAlt}
+              href={path.href}
+            />
           ))}
-        </div>
+        </ul>
+        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-1">
+          {bookingPaths.map((path) => (
+            <li key={path.title}>
+              <Link
+                href={path.inquiryHref}
+                className="inline-flex min-h-11 items-center font-body text-base font-semibold text-teal underline underline-offset-4 hover:text-brown"
+              >
+                {path.href === "/gavekort"
+                  ? "Bestill gavekort"
+                  : `Send forespørsel: ${path.title}`}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="bg-warm-white py-16 md:py-20">
