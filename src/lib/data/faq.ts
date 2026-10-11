@@ -56,7 +56,7 @@ export const FALLBACK_FAQ_ITEMS: FaqItem[] = [
   {
     question: "Hvordan booker jeg en opplevelse?",
     answer:
-      "Du kan sende en forespørsel via booking-siden vår, ringe oss direkte eller bruke kontaktskjemaet. Vi svarer normalt innen 24 timer.",
+      "Du kan sende en forespørsel via booking-siden vår, ringe oss direkte eller bruke kontaktskjemaet. Vi svarer så fort vi kan.",
     category: "booking",
     order: 40,
   },

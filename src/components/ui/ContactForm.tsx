@@ -180,7 +180,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           Takk for din henvendelse!
         </p>
         <p className="font-body text-brown-mid">
-          Vi svarer deg innen 24 timer.
+          Vi svarer deg så fort vi kan.
         </p>
       </div>
     );

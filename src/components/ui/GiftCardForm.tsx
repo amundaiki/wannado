@@ -173,7 +173,7 @@ export default function GiftCardForm() {
           Takk for din gavekort-bestilling!
         </p>
         <p className="font-inter text-brown-mid">
-          Vi tar kontakt med deg innen 24 timer for å avtale detaljer.
+          Vi tar kontakt med deg for å avtale detaljer.
         </p>
       </div>
     );
