@@ -97,8 +97,8 @@ export default function Footer() {
               />
             </Link>
             <p className="mt-5 max-w-[300px] font-body text-[15px] leading-relaxed text-white/75">
-              Lekne og grensesprengende naturopplevelser på Sørlandet, med Havsul,
-              kajakk, teambuilding og foredrag for folk som vil oppleve mer sammen.
+              Seilturer med Havsul, kajakk, teambuilding og foredrag fra Skarestrand
+              i Kongshavn.
             </p>
             <a
               href="https://www.tripadvisor.com/Attraction_Review-g190486-d6645173-Reviews-Wannado-Arendal_Aust_Agder_Southern_Norway.html"

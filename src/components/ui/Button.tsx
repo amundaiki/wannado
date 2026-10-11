@@ -8,7 +8,7 @@ import type { ReactNode } from "react";
 */
 const variants = {
   primary: "bg-brown text-white hover:bg-brown-hover",
-  sand: "bg-sand text-brown hover:bg-[#f6c97a]",
+  sand: "bg-sand text-brown hover:bg-sand-hover",
   outline: "border-2 border-brown text-brown hover:bg-brown hover:text-white",
   "outline-light": "border-2 border-white/70 text-white hover:bg-white hover:text-brown",
 } as const;

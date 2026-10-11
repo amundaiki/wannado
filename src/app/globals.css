@@ -9,10 +9,12 @@
   --color-brown-hover: var(--brown-hover);
   --color-teal: var(--teal);
   --color-sand: var(--sand);
+  --color-sand-hover: var(--sand-hover);
   --color-cream: var(--cream);
   --color-warm-white: var(--warm-white);
   --color-border: var(--border);
   --color-card-bg: var(--card-bg);
+  --color-white: #fffdf9;
 
   --radius-control: 0.75rem;
   --radius-card: 1rem;
@@ -50,10 +52,11 @@
   --brown-hover: #5a4838;
   --teal: #226868;
   --sand: #fdd79a;
+  --sand-hover: #f6c97a;
   --cream: #faf8f4;
   --warm-white: #f5f2ed;
   --border: #e4ddd3;
-  --card-bg: #ffffff;
+  --card-bg: #fffdf9;
 }
 
 body {
