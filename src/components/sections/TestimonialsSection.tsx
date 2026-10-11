@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import Button from "@/components/ui/Button";
 import { COMPANIES } from "@/lib/data/references";
 import {
   fallbackPublicTestimonials,
@@ -29,10 +29,7 @@ export default function TestimonialsSection({
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-3xl text-center"
         >
-          <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
-            Referanser
-          </span>
-          <h2 className="mt-4 font-space text-3xl font-semibold text-brown md:text-5xl">
+          <h2 className="font-space text-3xl font-semibold text-brown md:text-5xl">
             Ekte tilbakemeldinger fra folk som har vært ute med oss
           </h2>
           <p className="mx-auto mt-5 max-w-2xl font-inter text-base leading-7 text-brown-mid md:text-lg">
@@ -49,7 +46,7 @@ export default function TestimonialsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.65, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-[28px] border border-border bg-white p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
+              className="rounded-card border border-border bg-white p-8 md:p-10"
             >
               <div className="flex items-center gap-1 text-sand">
                 {Array.from({ length: 5 }).map((_, starIndex) => (
@@ -88,15 +85,17 @@ export default function TestimonialsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.65, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-[28px] border border-sand/30 bg-[linear-gradient(180deg,#fffaf2_0%,#fff_100%)] p-8 shadow-[0_20px_60px_rgba(63,47,36,0.08)] md:p-10"
+              className="rounded-card border border-border bg-[linear-gradient(180deg,#fffaf2_0%,#fff_100%)] p-8 md:p-10"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
                   {feedback.source}
                 </span>
-                <span className="rounded-full bg-sand/15 px-3 py-1 font-inter text-[11px] font-semibold text-brown">
-                  {feedback.rating}
-                </span>
+                {feedback.rating && (
+                  <span className="rounded-full bg-sand/15 px-3 py-1 font-inter text-[11px] font-semibold text-brown">
+                    {feedback.rating}
+                  </span>
+                )}
               </div>
               <p className="mt-6 font-inter text-base leading-7 text-brown-mid md:text-lg md:leading-8">
                 <span aria-hidden="true">&ldquo;</span>
@@ -123,7 +122,7 @@ export default function TestimonialsSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-14 rounded-[28px] border border-border/80 bg-cream px-6 py-8 md:px-8"
+          className="mt-14 rounded-card border border-border/80 bg-cream px-6 py-8 md:px-8"
         >
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -135,12 +134,9 @@ export default function TestimonialsSection({
                 teambuilding, læring og opplevelser i mange år.
               </p>
             </div>
-            <Link
-              href="/referanser"
-              className="inline-flex items-center justify-center rounded-full border border-brown/15 px-5 py-3 font-inter text-sm font-medium text-brown transition-colors hover:border-teal/40 hover:text-teal"
-            >
+            <Button href="/referanser" variant="outline">
               Se flere referanser
-            </Link>
+            </Button>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">

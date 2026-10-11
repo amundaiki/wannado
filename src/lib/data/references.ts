@@ -57,7 +57,6 @@ export const TRIPADVISOR_FEEDBACK = [
     summary:
       "En gjest beskrev opplevelsen som et godt lagopplegg med rolleforståelse, sikkerhetsbrief og lagoppgaver som fungerte svært bra for gruppen.",
     source: "TripAdvisor",
-    rating: "4.5/5",
     year: 2017,
   },
 ] as const;

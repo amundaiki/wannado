@@ -14,7 +14,7 @@ export type PublicTripadvisorFeedback = {
   title: string;
   summary: string;
   source: string;
-  rating: string;
+  rating?: string;
   year?: number;
 };
 
@@ -34,7 +34,6 @@ export const fallbackTripadvisorFeedback: PublicTripadvisorFeedback[] =
     title: feedback.title,
     summary: feedback.summary,
     source: feedback.source,
-    rating: feedback.rating,
     year: feedback.year,
   }));
 
@@ -56,7 +55,7 @@ export function splitTestimonials(items: SanityTestimonial[] = []) {
       title: item.quote,
       summary: item.context || "",
       source: item.company || "TripAdvisor",
-      rating: item.rating || "Anmeldelse",
+      rating: item.rating || undefined,
       year: item.year || undefined,
     }));
 

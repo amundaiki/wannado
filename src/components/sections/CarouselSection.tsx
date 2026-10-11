@@ -107,7 +107,7 @@ export default function CarouselSection({
         <div className="relative group">
           <button
             onClick={scrollLeft}
-            className="absolute -left-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-all hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
+            className="absolute -left-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-[opacity,border-color,box-shadow] hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
             aria-label="Forrige opplevelse"
           >
             <ChevronLeft className="w-4 h-4 text-brown" />
@@ -115,7 +115,7 @@ export default function CarouselSection({
           
           <button
             onClick={scrollRight}
-            className="absolute -right-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-all hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
+            className="absolute -right-5 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card-bg opacity-0 shadow-sm transition-[opacity,border-color,box-shadow] hover:border-brown-light hover:shadow-md group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:flex"
             aria-label="Neste opplevelse"
           >
             <ChevronRight className="w-4 h-4 text-brown" />
@@ -133,7 +133,7 @@ export default function CarouselSection({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.65, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-card-bg rounded-xl border border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 overflow-hidden h-full"
+                  className="bg-card-bg rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden h-full"
                 >
                   <div className="relative aspect-[3/2] overflow-hidden">
                     <Image

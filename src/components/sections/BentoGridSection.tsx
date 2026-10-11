@@ -51,7 +51,7 @@ export default function BentoGridSection() {
           {/* Top Left (Large) */}
           <Link
             href={BENTO_DATA[0].href}
-            className="md:col-span-2 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[300px] md:h-auto block"
+            className="md:col-span-2 relative rounded-lg overflow-hidden cursor-pointer group/card transition-colors duration-400 h-[300px] md:h-auto block"
             aria-label={BENTO_DATA[0].title}
           >
             <motion.div
@@ -68,7 +68,7 @@ export default function BentoGridSection() {
                 sizes="(max-width: 768px) 100vw, 66vw"
                 className="object-cover transition-transform duration-700 group-hover/card:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/85 via-transparent to-transparent opacity-80" />
 
               <div className="absolute bottom-6 left-6 z-10 transition-transform duration-300 group-hover/card:translate-x-2">
                 <h3 className="font-space text-2xl md:text-3xl font-semibold text-white">
@@ -78,14 +78,14 @@ export default function BentoGridSection() {
                   {BENTO_DATA[0].price}
                 </p>
               </div>
-              <div className="absolute inset-0 bg-brown-dark/10 backdrop-blur-[2px] opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
+              <div className="absolute inset-0 bg-brown-dark/10 opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
             </motion.div>
           </Link>
 
           {/* Top Right */}
           <Link
             href={BENTO_DATA[1].href}
-            className="md:col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[300px] md:h-auto block"
+            className="md:col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-colors duration-400 h-[300px] md:h-auto block"
             aria-label={BENTO_DATA[1].title}
           >
             <motion.div
@@ -102,7 +102,7 @@ export default function BentoGridSection() {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover/card:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/85 via-transparent to-transparent opacity-80" />
               
               <div className="absolute bottom-5 left-5 z-10 transition-transform duration-300 group-hover/card:translate-x-2">
                 <h3 className="font-space text-xl md:text-2xl font-semibold text-white">
@@ -112,7 +112,7 @@ export default function BentoGridSection() {
                   {BENTO_DATA[1].price}
                 </p>
               </div>
-              <div className="absolute inset-0 bg-brown-dark/10 backdrop-blur-[2px] opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
+              <div className="absolute inset-0 bg-brown-dark/10 opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
             </motion.div>
           </Link>
 
@@ -121,7 +121,7 @@ export default function BentoGridSection() {
             <Link
               key={idx}
               href={item.href}
-              className="col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-all duration-400 h-[250px] md:h-auto block"
+              className="col-span-1 relative rounded-lg overflow-hidden cursor-pointer group/card transition-colors duration-400 h-[250px] md:h-auto block"
               aria-label={item.title}
             >
               <motion.div
@@ -138,7 +138,7 @@ export default function BentoGridSection() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover/card:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/60 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/85 via-transparent to-transparent opacity-80" />
                 
                 <div className="absolute bottom-5 left-5 z-10 transition-transform duration-300 group-hover/card:translate-x-2">
                   <h3 className="font-space text-lg md:text-xl font-semibold text-white">
@@ -148,7 +148,7 @@ export default function BentoGridSection() {
                     {item.price}
                   </p>
                 </div>
-                <div className="absolute inset-0 bg-brown-dark/10 backdrop-blur-[2px] opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
+                <div className="absolute inset-0 bg-brown-dark/10 opacity-0 group-hover/grid:opacity-100 group-hover/card:!opacity-0 transition-opacity duration-400" />
               </motion.div>
             </Link>
           ))}

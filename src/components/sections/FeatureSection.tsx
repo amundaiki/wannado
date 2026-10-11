@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Button from "@/components/ui/Button";
 
 export default function FeatureSection() {
   return (
@@ -32,7 +33,7 @@ export default function FeatureSection() {
               width={2250}
               height={1500}
               sizes="(max-width: 768px) 60vw, 30vw"
-              className="absolute -bottom-10 -right-6 md:-right-12 w-[60%] md:w-[55%] aspect-video object-cover rounded-lg border-4 border-card-bg shadow-xl"
+              className="absolute -bottom-10 -right-6 md:-right-12 w-[60%] md:w-[55%] aspect-video object-cover rounded-lg border border-border"
             />
           </motion.div>
 
@@ -45,10 +46,7 @@ export default function FeatureSection() {
             className="mt-16 md:mt-0"
           >
             <div className="w-[1px] h-8 bg-border mb-4"></div>
-            <div className="font-inter text-[11px] font-medium uppercase tracking-[3px] text-teal">
-              For Bedrifter
-            </div>
-            <h2 className="font-space text-3xl md:text-5xl font-bold text-brown leading-[1.15] mt-3">
+            <h2 className="font-space text-3xl md:text-5xl font-bold text-brown leading-[1.15]">
               Teambuilding som bygger tillit og samhold.
             </h2>
             <p className="font-inter text-base md:text-lg text-brown-mid leading-[1.8] mt-6">
@@ -70,12 +68,11 @@ export default function FeatureSection() {
                 Mulighet for faglig påfyll med foredrag og JTI
               </li>
             </ul>
-            <a
-              href="/teambuilding"
-              className="mt-10 inline-flex min-h-11 items-center rounded-full border border-brown/12 px-5 font-inter text-base font-medium text-brown transition-colors hover:border-teal/40 hover:text-teal"
-            >
-              Les mer om teambuilding &rarr;
-            </a>
+            <div className="mt-10">
+              <Button href="/teambuilding" variant="outline">
+                Les mer om teambuilding &rarr;
+              </Button>
+            </div>
           </motion.div>
 
         </div>
