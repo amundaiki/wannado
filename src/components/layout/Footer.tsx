@@ -1,28 +1,50 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Camera } from "lucide-react";
 
-const footerLinks = [
-  { label: "Opplevelser", href: "/opplevelser" },
-  { label: "Seilturer med Havsul", href: "/seilturer" },
-  { label: "Kajakkurs og turer", href: "/kajakkturer" },
-  { label: "Våttkort og kajakkurs", href: "/kurs/kajakkurs" },
-  { label: "JTI-kurs", href: "/kurs/jti" },
-  { label: "Skjærgårdssafari", href: "/opplevelser/skjaergardsafari" },
-  { label: "Kajakk- og kanoutleie", href: "/utleie/kajakk-og-kano-utleie" },
-  { label: "Hestekurs", href: "/kurs/hestekurs" },
-  { label: "Teambuilding", href: "/teambuilding" },
-  { label: "Hesteopplevelser", href: "/opplevelser/hesteopplevelser" },
-  { label: "Foredrag", href: "/foredrag" },
-  { label: "JTI-foredrag", href: "/foredrag/jti" },
+const linkGroups = [
   {
-    label: "Grønlandsforedrag",
-    href: "/foredrag/kajakkekspedisjon-ost-gronland",
+    title: "Opplevelser",
+    links: [
+      { label: "Alle opplevelser", href: "/opplevelser" },
+      { label: "Seilturer med Havsul", href: "/seilturer" },
+      { label: "Kajakkturer", href: "/kajakkturer" },
+      { label: "Skjærgårdssafari", href: "/opplevelser/skjaergardsafari" },
+      { label: "Hesteopplevelser", href: "/opplevelser/hesteopplevelser" },
+      { label: "Kajakk- og kanoutleie", href: "/utleie/kajakk-og-kano-utleie" },
+      { label: "Teambuilding", href: "/teambuilding" },
+    ],
   },
-  { label: "Referanser", href: "/referanser" },
-  { label: "Priser", href: "/priser" },
-  { label: "Praktisk informasjon", href: "/praktisk-informasjon" },
-  { label: "Ofte stilte spørsmål", href: "/faq" },
+  {
+    title: "Kurs og foredrag",
+    links: [
+      { label: "Våttkort og kajakkurs", href: "/kurs/kajakkurs" },
+      { label: "Hestekurs", href: "/kurs/hestekurs" },
+      { label: "JTI-kurs", href: "/kurs/jti" },
+      { label: "Foredrag", href: "/foredrag" },
+      { label: "JTI-foredrag", href: "/foredrag/jti" },
+      {
+        label: "Grønlandsforedrag",
+        href: "/foredrag/kajakkekspedisjon-ost-gronland",
+      },
+    ],
+  },
+  {
+    title: "Info",
+    links: [
+      { label: "Priser", href: "/priser" },
+      { label: "Praktisk informasjon", href: "/praktisk-informasjon" },
+      { label: "Ofte stilte spørsmål", href: "/faq" },
+      { label: "Referanser", href: "/referanser" },
+      { label: "Om oss", href: "/om-oss" },
+    ],
+  },
 ];
+
+const headingClass =
+  "mb-4 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-white/70";
+const linkClass =
+  "inline-flex min-h-11 items-center font-body text-[15px] text-white/85 transition-colors hover:text-sand";
 
 const socialLinks = [
   {
@@ -55,31 +77,26 @@ const socialLinks = [
   {
     label: "Flickr",
     href: "https://www.flickr.com/photos/roarfoto",
-    icon: (
-      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5.5 8.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm13 0a3.5 3.5 0 110 7 3.5 3.5 0 010-7z" />
-      </svg>
-    ),
+    icon: <Camera className="h-4 w-4" aria-hidden="true" />,
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-brown-muted/20 bg-brown pt-20 pb-10">
+    <footer className="border-t border-brown-muted/20 bg-brown pt-16 pb-6">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-        <div className="mb-16 grid grid-cols-1 gap-12 text-white md:grid-cols-4 md:gap-8 lg:gap-16">
-          <div className="md:col-span-1">
+        <div className="mb-12 grid grid-cols-2 gap-x-6 gap-y-10 text-white lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] lg:gap-x-10">
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" aria-label="Gå til forsiden" className="inline-flex min-h-11 items-center">
               <Image
                 src="/images/wannado-logo.svg"
                 alt="Wannado"
-                width={128}
-                height={42}
-                className="brightness-0 invert"
-                style={{ width: "auto", height: "auto" }}
+                width={151}
+                height={32}
+                className="h-8 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="mt-6 max-w-[260px] font-inter text-sm leading-relaxed text-white/65">
+            <p className="mt-5 max-w-[300px] font-body text-[15px] leading-relaxed text-white/75">
               Lekne og grensesprengende naturopplevelser på Sørlandet, med Havsul,
               kajakk, teambuilding og foredrag for folk som vil oppleve mer sammen.
             </p>
@@ -87,118 +104,89 @@ export default function Footer() {
               href="https://www.tripadvisor.com/Attraction_Review-g190486-d6645173-Reviews-Wannado-Arendal_Aust_Agder_Southern_Norway.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-inter text-sm text-white/85 transition-colors hover:border-sand/50 hover:text-sand"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-4 py-2 font-body text-[15px] text-white/90 transition-colors hover:border-sand/60 hover:text-sand"
             >
               Les anmeldelser på TripAdvisor
             </a>
-          </div>
-
-          <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
-              Utforsk
-            </h4>
-            <ul className="space-y-1 md:space-y-4">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-11 items-center font-inter text-[14px] text-white/80 transition-colors hover:text-sand"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
-              Kontakt
-            </h4>
-            <ul className="space-y-3 md:space-y-4">
-              <li className="font-inter text-[14px] text-white/80">
-                <span className="block text-white/60 text-[12px] mb-1">E-post</span>
-                <a href="mailto:mail@wannado.no" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
-                  mail@wannado.no
-                </a>
-              </li>
-              <li className="font-inter text-[14px] text-white/80 mt-4">
-                <span className="block text-white/60 text-[12px] mb-1">Tone P. Sivertsen</span>
-                <a href="tel:+4799469957" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
-                  +47 99 46 99 57
-                </a>
-              </li>
-              <li className="font-inter text-[14px] text-white/80 mt-4">
-                <span className="block text-white/60 text-[12px] mb-1">Roar Laugerud</span>
-                <a href="tel:+4794826710" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
-                  +47 94 82 67 10
-                </a>
-              </li>
-              <li className="pt-2 font-inter text-[14px] text-white/80">
-                <span className="mb-1 block text-[12px] text-white/60">Postadresse</span>
-                Skarestrand 11
-                <br />
-                4812 Kongshavn
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[2px] text-white/60">
-              Følg Wannado
-            </h4>
-            <div className="flex flex-wrap gap-3">
+            <h3 className="sr-only">Følg Wannado</h3>
+            <div className="mt-5 flex flex-wrap gap-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-white/80 transition-all hover:bg-sand hover:text-brown"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/85 transition-colors hover:bg-sand hover:text-brown"
                   aria-label={link.label}
                 >
                   {link.icon}
                 </a>
               ))}
             </div>
-            <p className="mt-6 max-w-[240px] font-inter text-sm leading-relaxed text-white/60">
-              Følg med på turer, kurs og glimt fra Havsul, skjærgården og livet ute.
-            </p>
-            <div className="mt-8">
-              <Link
-                href="/booking"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/20 px-6 py-2.5 text-[13px] font-medium transition-colors hover:bg-white hover:text-brown"
-              >
-                Send en forespørsel
-              </Link>
-            </div>
+          </div>
+
+          {linkGroups.map((group) => (
+            <nav key={group.title} aria-label={group.title}>
+              <h3 className={headingClass}>{group.title}</h3>
+              <ul>
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={linkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+
+          <div>
+            <h3 className={headingClass}>Kontakt</h3>
+            <ul className="space-y-3 font-body text-[15px] text-white/85">
+              <li>
+                <span className="block text-[13px] text-white/70">E-post</span>
+                <a href="mailto:mail@wannado.no" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
+                  mail@wannado.no
+                </a>
+              </li>
+              <li>
+                <span className="block text-[13px] text-white/70">Tone P. Sivertsen</span>
+                <a href="tel:+4799469957" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
+                  +47 99 46 99 57
+                </a>
+              </li>
+              <li>
+                <span className="block text-[13px] text-white/70">Roar Laugerud</span>
+                <a href="tel:+4794826710" className="inline-flex min-h-11 items-center transition-colors hover:text-sand">
+                  +47 94 82 67 10
+                </a>
+              </li>
+              <li>
+                <span className="block text-[13px] text-white/70">Postadresse</span>
+                Skarestrand 11
+                <br />
+                4812 Kongshavn
+              </li>
+            </ul>
+            <Link
+              href="/booking"
+              className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md border border-white/30 px-5 py-2.5 font-body text-[15px] font-medium text-white transition-colors hover:bg-white hover:text-brown"
+            >
+              Send en forespørsel
+            </Link>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="font-inter text-[12px] text-white/60">
+        <div className="flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 md:flex-row">
+          <p className="font-body text-[13px] text-white/70">
             &copy; {new Date().getFullYear()} Wannado. Alle rettigheter reservert.
           </p>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
-            <Link
-              href="/om-oss"
-              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
-            >
-              Om oss
-            </Link>
-            <Link
-              href="/personvern"
-              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
-            >
-              Personvern
-            </Link>
-            <Link
-              href="/referanser"
-              className="inline-flex min-h-11 items-center font-inter text-[12px] text-white/60 transition-colors hover:text-white"
-            >
-              Referanser
-            </Link>
-          </div>
+          <Link
+            href="/personvern"
+            className="inline-flex min-h-11 items-center px-2 font-body text-[13px] text-white/70 transition-colors hover:text-white"
+          >
+            Personvern
+          </Link>
         </div>
       </div>
     </footer>
