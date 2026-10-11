@@ -14,6 +14,9 @@
   --color-border: var(--border);
   --color-card-bg: var(--card-bg);
 
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
