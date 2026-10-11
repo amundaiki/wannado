@@ -104,7 +104,7 @@ export default async function FAQPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd data={createBreadcrumbSchema([{ name: "FAQ", path: "/faq" }])} />
       <JsonLd data={faqJsonLd} />
 

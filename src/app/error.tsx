@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex items-center">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex items-center">
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
         <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-4">
           Noe gikk galt
@@ -32,7 +32,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brown px-7 py-3 font-inter text-sm font-medium text-white transition-colors hover:bg-[#5a4838]"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brown px-7 py-3 font-inter text-sm font-medium text-white transition-colors hover:bg-brown-hover"
           >
             Prøv igjen
           </button>

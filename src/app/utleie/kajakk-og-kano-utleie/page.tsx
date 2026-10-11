@@ -170,7 +170,7 @@ export default async function KajakkOgKanoUtleiePage() {
   const service = await getServiceBySlug("utleie");
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Opplevelser", path: "/opplevelser" },
@@ -309,7 +309,7 @@ export default async function KajakkOgKanoUtleiePage() {
           </div>
           <Link
             href="/kontakt?tjeneste=Utleie"
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-brown px-6 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#5a4838]"
+            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-brown px-6 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
           >
             Reserver utstyr
           </Link>

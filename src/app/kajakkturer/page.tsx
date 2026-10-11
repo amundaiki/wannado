@@ -262,7 +262,7 @@ export default async function KajakkturerPage() {
   });
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Opplevelser", path: "/opplevelser" },

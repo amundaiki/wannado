@@ -27,7 +27,7 @@ const sections = [
             E-post:{" "}
             <a
               href="mailto:mail@wannado.no"
-              className="inline-flex min-h-11 items-center text-teal hover:underline"
+              className="text-teal underline underline-offset-2 hover:text-brown"
             >
               mail@wannado.no
             </a>
@@ -36,7 +36,7 @@ const sections = [
             Telefon:{" "}
             <a
               href="tel:+4799469957"
-              className="inline-flex min-h-11 items-center text-teal hover:underline"
+              className="text-teal underline underline-offset-2 hover:text-brown"
             >
               +47 99 46 99 57
             </a>
@@ -158,7 +158,7 @@ const sections = [
               href="https://www.datatilsynet.no"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal hover:underline"
+              className="text-teal underline underline-offset-2 hover:text-brown"
             >
               datatilsynet.no
             </a>
@@ -173,7 +173,7 @@ const sections = [
           For å utøve rettighetene dine, sender du en henvendelse til{" "}
           <a
             href="mailto:mail@wannado.no"
-            className="inline-flex min-h-11 items-center text-teal hover:underline"
+            className="text-teal underline underline-offset-2 hover:text-brown"
           >
             mail@wannado.no
           </a>
@@ -211,7 +211,7 @@ const sections = [
 
 export default function PersonvernPage() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Personvern", path: "/personvern" },

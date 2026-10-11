@@ -72,7 +72,7 @@ export default function HeroSection({
       <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(42,31,24,0.58)_0%,rgba(42,31,24,0.2)_26%,rgba(72,56,43,0.18)_48%,rgba(42,31,24,0.9)_100%)]" />
 
       {/* Content */}
-      <div className="absolute inset-x-0 bottom-[10vh] z-20 box-border w-full max-w-none px-6 md:bottom-[140px] md:left-[80px] md:right-auto md:max-w-[900px] md:px-0">
+      <div className="absolute inset-x-0 bottom-[10vh] z-20 box-border w-full max-w-none px-6 md:bottom-[140px] md:left-[80px] md:right-[80px] md:max-w-[900px] md:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export default function HeroSection({
             {heading}
           </h1>
           <div
-            className="relative mt-3 h-[1.2em] overflow-hidden font-dm text-[2.25rem] font-bold italic leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl"
+            className="relative mt-3 h-[1.2em] overflow-hidden font-dm text-[2.25rem] font-bold text-sand leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl"
             aria-hidden="true"
           >
             <AnimatePresence mode="popLayout">

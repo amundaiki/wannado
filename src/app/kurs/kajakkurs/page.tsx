@@ -239,7 +239,7 @@ export default async function KajakkursPage() {
   });
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Kurs", path: "/kurs" },
@@ -342,7 +342,7 @@ export default async function KajakkursPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="tel:+4794826710"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#5a4838]"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
                 Ring Roar

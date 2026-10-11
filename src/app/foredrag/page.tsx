@@ -190,7 +190,7 @@ export default async function ForedragPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Foredrag", path: "/foredrag" },
@@ -384,7 +384,7 @@ export default async function ForedragPage() {
                       </div>
                       <Link
                         href={talk.href}
-                        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brown px-4 py-3 text-center font-inter text-sm font-semibold leading-tight text-white transition-colors hover:bg-[#5a4838] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown sm:w-auto"
+                        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brown px-4 py-3 text-center font-inter text-sm font-semibold leading-tight text-white transition-colors hover:bg-brown-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown sm:w-auto"
                       >
                         {talk.cta}
                         <ArrowRight className="h-4 w-4" aria-hidden="true" />

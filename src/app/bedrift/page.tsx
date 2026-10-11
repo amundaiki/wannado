@@ -218,7 +218,7 @@ export default function BedriftPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Bedrift", path: "/bedrift" }])}
       />
@@ -387,7 +387,7 @@ export default function BedriftPage() {
                     className={`inline-flex items-center justify-center font-inter font-medium text-sm py-3 px-6 rounded-xl transition-colors duration-200 ${
                       pkg.highlighted
                         ? "bg-white text-brown hover:bg-cream"
-                        : "bg-brown text-white hover:bg-[#5a4838]"
+                        : "bg-brown text-white hover:bg-brown-hover"
                     }`}
                   >
                     {pkg.cta}

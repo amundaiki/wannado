@@ -168,7 +168,7 @@ export default async function GreenlandTalkPage() {
     "Roar tok med seg kajakken til Øst-Grønland. I dette foredraget deler han opplevelsen gjennom bilder og video fra en ekspedisjon i et av verdens mest spektakulære landskap.";
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Foredrag", path: "/foredrag" },
@@ -370,7 +370,7 @@ export default async function GreenlandTalkPage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/kontakt?tjeneste=Grønlandsforedrag"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-bold text-white transition-colors hover:bg-[#5a4838] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-bold text-white transition-colors hover:bg-brown-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
               >
                 Send forespørsel
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />

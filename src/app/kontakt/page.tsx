@@ -87,7 +87,7 @@ const practicalSteps = [
 
 export default function KontaktPage() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Kontakt", path: "/kontakt" }])}
       />
@@ -301,7 +301,7 @@ export default function KontaktPage() {
                     <div className="grid gap-3 sm:grid-cols-2">
                       <a
                         href={contact.phoneHref}
-                        className="rounded-2xl bg-brown px-4 py-4 text-white transition-colors duration-200 hover:bg-[#5a4838]"
+                        className="rounded-2xl bg-brown px-4 py-4 text-white transition-colors duration-200 hover:bg-brown-hover"
                       >
                         <span className="block font-inter text-xs uppercase tracking-[0.18em] text-sand/75 mb-1">
                           Ring direkte
@@ -393,7 +393,7 @@ export default function KontaktPage() {
                 </p>
                 <Link
                   href="/booking"
-                  className="inline-flex rounded-full bg-brown px-5 py-3 font-inter text-sm font-medium text-white transition-colors duration-200 hover:bg-[#5a4838]"
+                  className="inline-flex rounded-full bg-brown px-5 py-3 font-inter text-sm font-medium text-white transition-colors duration-200 hover:bg-brown-hover"
                 >
                   Gå til booking
                 </Link>

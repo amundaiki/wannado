@@ -172,7 +172,7 @@ export default async function SeilturerPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Opplevelser", path: "/opplevelser" },
@@ -422,7 +422,7 @@ export default async function SeilturerPage() {
 
               <Link
                 href="/booking"
-                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-[#5a4838] transition-colors"
+                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-brown-hover transition-colors"
               >
                 Bestill seiltur
               </Link>

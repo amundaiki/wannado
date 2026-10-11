@@ -245,7 +245,7 @@ const cards = [
 
 export default function PraktiskInformasjonPage() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Praktisk informasjon", path: "/praktisk-informasjon" },

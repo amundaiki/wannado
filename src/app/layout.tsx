@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { MotionProvider } from "@/components/ui/MotionProvider";
 import { defaultOgImage, organizationSchema, siteName, siteUrl } from "@/lib/seo";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const figtree = Figtree({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-figtree",
+  display: "swap",
+});
 
 const enableVercelAnalytics =
   process.env.NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS === "true" ||
@@ -43,9 +56,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nb" className="scroll-smooth" data-scroll-behavior="smooth">
+    <html
+      lang="nb"
+      className={`scroll-smooth ${bricolage.variable} ${figtree.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body className="antialiased text-brown bg-cream">
-        {/* We can manage load animation by adding a simple script or just make it visible initially. For Next.js, opacity-100 is simpler unless we strictly port the JS logic.  Let's make it visible by default here by removing opacity-0. */}
+        <a href="#innhold" className="skip-link">
+          Hopp til innhold
+        </a>
         <JsonLd data={organizationSchema} />
         <MotionProvider>{children}</MotionProvider>
         {enableVercelAnalytics && <Analytics />}

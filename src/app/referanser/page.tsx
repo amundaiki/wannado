@@ -40,7 +40,7 @@ export default async function ReferanserPage() {
   const featuredTestimonial = testimonials[0];
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Referanser", path: "/referanser" },

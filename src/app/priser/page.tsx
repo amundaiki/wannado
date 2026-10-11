@@ -333,7 +333,7 @@ function PricingCard({
 
       <Link
         href={ctaHref}
-        className="inline-flex items-center justify-center rounded-xl bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#5a4838]"
+        className="inline-flex items-center justify-center rounded-xl bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
       >
         {cta}
       </Link>
@@ -343,7 +343,7 @@ function PricingCard({
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen">
+    <main id="innhold" className="min-h-screen">
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Priser", path: "/priser" }])}
       />

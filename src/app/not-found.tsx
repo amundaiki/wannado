@@ -11,7 +11,7 @@ const popularLinks = [
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <Navbar variant="solid" />
 
       <section className="flex-1 flex items-center pt-36 pb-20 md:pt-44 md:pb-28">
@@ -31,7 +31,7 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
               href="/"
-              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brown px-7 py-3 font-inter text-sm font-medium text-white transition-colors hover:bg-[#5a4838]"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brown px-7 py-3 font-inter text-sm font-medium text-white transition-colors hover:bg-brown-hover"
             >
               Til forsiden
             </Link>

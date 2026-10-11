@@ -185,7 +185,7 @@ export default async function TeambuildingPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Bedrift", path: "/bedrift" },
@@ -331,7 +331,7 @@ export default async function TeambuildingPage() {
                   </div>
                   <Link
                     href="/booking"
-                    className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 self-start"
+                    className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-brown-hover transition-colors duration-200 self-start"
                   >
                     Bestill
                   </Link>

@@ -260,7 +260,7 @@ export default async function OpplevelserPage() {
       : fallbackCategories.map((item) => ({ ...item, slug: item.href }));
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Opplevelser", path: "/opplevelser" },
@@ -461,7 +461,7 @@ export default async function OpplevelserPage() {
           <div className="mt-10">
             <Link
               href="/kontakt?tjeneste=Kajakktur"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-8 py-4 font-inter text-base font-semibold text-white transition-colors hover:bg-[#5a4838]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-8 py-4 font-inter text-base font-semibold text-white transition-colors hover:bg-brown-hover"
             >
               Gå til kontaktskjema
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

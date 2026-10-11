@@ -84,7 +84,7 @@ export default async function BloggPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown">
       <JsonLd
         data={createBreadcrumbSchema([{ name: "Blogg", path: "/blogg" }])}
       />
@@ -137,7 +137,7 @@ export default async function BloggPage() {
                 </p>
                 <Link
                   href={`/blogg/${post.slug}`}
-                  className="inline-flex items-center justify-center rounded-lg bg-brown px-6 py-3 font-inter text-sm font-medium text-white hover:bg-[#5a4838] transition-colors"
+                  className="inline-flex items-center justify-center rounded-lg bg-brown px-6 py-3 font-inter text-sm font-medium text-white hover:bg-brown-hover transition-colors"
                 >
                   Les mer
                 </Link>

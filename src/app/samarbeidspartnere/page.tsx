@@ -106,7 +106,7 @@ function PartnerSection({ title, partners }: { title: string; partners: typeof o
 
 export default function SamarbeidspartnerePage() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
+    <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex flex-col">
       <JsonLd
         data={createBreadcrumbSchema([
           { name: "Samarbeidspartnere", path: "/samarbeidspartnere" },
@@ -247,7 +247,7 @@ export default function SamarbeidspartnerePage() {
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-brown text-white font-inter font-semibold text-sm px-8 py-3.5 rounded-xl hover:bg-[#5a4838] transition-colors"
+            className="inline-block bg-brown text-white font-inter font-semibold text-sm px-8 py-3.5 rounded-xl hover:bg-brown-hover transition-colors"
           >
             Ta kontakt
           </Link>

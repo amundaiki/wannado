@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function BlogPostNotFound() {
   return (
-    <main className="min-h-screen bg-cream">
+    <main id="innhold" className="min-h-screen bg-cream">
       <Navbar />
 
       <section className="pt-36 pb-20">
