@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 
 type FormStatus = "idle" | "pending" | "success" | "error";
@@ -16,6 +16,28 @@ const serviceOptions = [
   "Hesteopplevelser",
   "Annet",
 ];
+
+// Lenker som peker på verdier utenfor listen over, mappet til gyldig tjeneste
+// (API-et godtar bare verdiene i serviceOptions). Note forhåndsutfyller meldingen
+// slik at konteksten ikke går tapt.
+const serviceAliases: Record<string, { service: string; note?: string }> = {
+  utleie: { service: "Annet", note: "Gjelder utleie av kajakk og kano." },
+  foredrag: { service: "Foredrag/JTI" },
+  basispakke: { service: "Teambuilding", note: "Gjelder bedriftspakken Basispakke." },
+  "komplett dag": { service: "Teambuilding", note: "Gjelder bedriftspakken Komplett dag." },
+  premium: { service: "Teambuilding", note: "Gjelder bedriftspakken Premium." },
+};
+
+const fieldOrder = ["name", "email", "phone", "service", "message"] as const;
+
+const inputBase =
+  "w-full rounded-lg border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors";
+
+function inputClass(hasError: boolean): string {
+  return `${inputBase} ${hasError ? "border-red-600" : "border-border"}`;
+}
+
+const errorTextClass = "mt-1 font-body text-sm text-red-700";
 
 interface FieldErrors {
   name?: string;
@@ -35,11 +57,27 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const searchParams = useSearchParams();
   const serviceParam = defaultService || searchParams.get("tjeneste") || "";
-  const matchedService =
-    serviceOptions.find(
-      (opt) => opt.toLowerCase() === serviceParam.toLowerCase()
-    ) || "";
-  const initialService = matchedService;
+  const normalizedParam = serviceParam.trim().toLowerCase();
+  const alias = serviceAliases[normalizedParam];
+  const initialService =
+    serviceOptions.find((opt) => opt.toLowerCase() === normalizedParam) ||
+    alias?.service ||
+    "";
+  const initialMessage = alias?.note || "";
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    const el = successRef.current;
+    if (!el) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+    el.focus({ preventScroll: true });
+  }, [status]);
+
+  function showError(name: keyof FieldErrors): string | undefined {
+    return touched[name] ? errors[name] : undefined;
+  }
 
   function validateEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -102,8 +140,14 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       setErrors(newErrors);
       setTouched({ name: true, email: true, phone: true, service: true, message: true });
       setStatus("error");
+      const firstInvalid = fieldOrder.find((key) => newErrors[key]);
+      if (firstInvalid) {
+        (form.elements.namedItem(firstInvalid) as HTMLElement | null)?.focus();
+      }
       return;
     }
+
+    setErrors({});
 
     try {
       const response = await fetch("/api/contact", {
@@ -125,7 +169,13 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
 
   if (status === "success") {
     return (
-      <div className="bg-cream rounded-2xl p-8 text-center" role="status" aria-live="polite">
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        className="bg-cream rounded-2xl p-8 text-center focus:outline-none"
+        role="status"
+        aria-live="polite"
+      >
         <p className="font-display font-bold text-xl text-brown mb-2">
           Takk for din henvendelse!
         </p>
@@ -161,16 +211,17 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           id="contact-name"
           name="name"
           type="text"
+          autoComplete="name"
           required
           aria-required="true"
-          aria-invalid={!!errors.name}
-          aria-describedby={errors.name ? "contact-name-error" : undefined}
+          aria-invalid={!!showError("name")}
+          aria-describedby={showError("name") ? "contact-name-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("name"))}
           placeholder="Ditt fulle navn"
         />
-        {errors.name && touched.name && (
-          <p id="contact-name-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("name") && (
+          <p id="contact-name-error" role="alert" className={errorTextClass}>
             {errors.name}
           </p>
         )}
@@ -187,16 +238,19 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           id="contact-email"
           name="email"
           type="email"
+          inputMode="email"
+          autoComplete="email"
+          spellCheck={false}
           required
           aria-required="true"
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "contact-email-error" : undefined}
+          aria-invalid={!!showError("email")}
+          aria-describedby={showError("email") ? "contact-email-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("email"))}
           placeholder="din@epost.no"
         />
-        {errors.email && touched.email && (
-          <p id="contact-email-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("email") && (
+          <p id="contact-email-error" role="alert" className={errorTextClass}>
             {errors.email}
           </p>
         )}
@@ -213,14 +267,16 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           id="contact-phone"
           name="phone"
           type="tel"
-          aria-invalid={!!errors.phone}
-          aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+          inputMode="tel"
+          autoComplete="tel"
+          aria-invalid={!!showError("phone")}
+          aria-describedby={showError("phone") ? "contact-phone-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("phone"))}
           placeholder="+47 XXX XX XXX"
         />
-        {errors.phone && touched.phone && (
-          <p id="contact-phone-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("phone") && (
+          <p id="contact-phone-error" role="alert" className={errorTextClass}>
             {errors.phone}
           </p>
         )}
@@ -238,11 +294,11 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           name="service"
           required
           aria-required="true"
-          aria-invalid={!!errors.service}
-          aria-describedby={errors.service ? "contact-service-error" : undefined}
+          aria-invalid={!!showError("service")}
+          aria-describedby={showError("service") ? "contact-service-error" : undefined}
           onBlur={handleBlur}
           defaultValue={initialService}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("service"))}
         >
           <option value="" disabled>
             Velg tjeneste
@@ -253,8 +309,8 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
             </option>
           ))}
         </select>
-        {errors.service && touched.service && (
-          <p id="contact-service-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("service") && (
+          <p id="contact-service-error" role="alert" className={errorTextClass}>
             {errors.service}
           </p>
         )}
@@ -272,28 +328,32 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
           name="message"
           required
           aria-required="true"
-          aria-invalid={!!errors.message}
-          aria-describedby={errors.message ? "contact-message-error" : undefined}
+          aria-invalid={!!showError("message")}
+          aria-describedby={showError("message") ? "contact-message-error" : undefined}
           onBlur={handleBlur}
           rows={5}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-body text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors resize-y"
+          defaultValue={initialMessage}
+          className={`${inputClass(!!showError("message"))} resize-y`}
           placeholder="Fortell oss hva du er interessert i, antall deltakere, ønsket dato..."
         />
-        {errors.message && touched.message && (
-          <p id="contact-message-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("message") && (
+          <p id="contact-message-error" role="alert" className={errorTextClass}>
             {errors.message}
           </p>
         )}
       </div>
 
       {status === "error" && !Object.values(errors).some(Boolean) && (
-        <p role="alert" className="font-body text-sm text-red-600">
-          Noe gikk galt. Ring oss på{" "}
-          <a href="tel:+4799469957" className="inline-flex min-h-11 items-center underline">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-600 bg-white px-4 py-3 font-body text-sm text-red-700 text-pretty"
+        >
+          Noe gikk galt, og meldingen ble ikke sendt. Ring oss på{" "}
+          <a href="tel:+4799469957" className="inline-flex min-h-11 items-center whitespace-nowrap underline">
             +47 99 46 99 57
           </a>
           .
-        </p>
+        </div>
       )}
 
       <button

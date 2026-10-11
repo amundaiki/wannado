@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 type FormStatus = "idle" | "pending" | "success" | "error";
 
@@ -11,6 +11,17 @@ const giftCardTypes = [
   "Foredrag",
   "Valgfri opplevelse",
 ];
+
+const fieldOrder = ["name", "email", "phone", "giftCardType", "recipientName"] as const;
+
+const inputBase =
+  "w-full rounded-lg border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors";
+
+function inputClass(hasError: boolean): string {
+  return `${inputBase} ${hasError ? "border-red-600" : "border-border"}`;
+}
+
+const errorTextClass = "mt-1 font-inter text-sm text-red-700";
 
 interface FieldErrors {
   name?: string;
@@ -24,6 +35,21 @@ export default function GiftCardForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    const el = successRef.current;
+    if (!el) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+    el.focus({ preventScroll: true });
+  }, [status]);
+
+  function showError(name: keyof FieldErrors): string | undefined {
+    return touched[name] ? errors[name] : undefined;
+  }
 
   function validateEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -107,8 +133,14 @@ export default function GiftCardForm() {
         recipientName: true,
       });
       setStatus("error");
+      const firstInvalid = fieldOrder.find((key) => newErrors[key]);
+      if (firstInvalid) {
+        (form.elements.namedItem(firstInvalid) as HTMLElement | null)?.focus();
+      }
       return;
     }
+
+    setErrors({});
 
     try {
       const response = await fetch("/api/contact", {
@@ -130,7 +162,13 @@ export default function GiftCardForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-cream rounded-2xl p-8 text-center" role="status" aria-live="polite">
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        className="bg-cream rounded-2xl p-8 text-center focus:outline-none"
+        role="status"
+        aria-live="polite"
+      >
         <p className="font-space font-bold text-xl text-brown mb-2">
           Takk for din gavekort-bestilling!
         </p>
@@ -165,16 +203,17 @@ export default function GiftCardForm() {
           id="gc-name"
           name="name"
           type="text"
+          autoComplete="name"
           required
           aria-required="true"
-          aria-invalid={!!errors.name}
-          aria-describedby={errors.name ? "gc-name-error" : undefined}
+          aria-invalid={!!showError("name")}
+          aria-describedby={showError("name") ? "gc-name-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("name"))}
           placeholder="Ditt fulle navn"
         />
-        {errors.name && touched.name && (
-          <p id="gc-name-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("name") && (
+          <p id="gc-name-error" role="alert" className={errorTextClass}>
             {errors.name}
           </p>
         )}
@@ -192,16 +231,19 @@ export default function GiftCardForm() {
             id="gc-email"
             name="email"
             type="email"
+            inputMode="email"
+            autoComplete="email"
+            spellCheck={false}
             required
             aria-required="true"
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "gc-email-error" : undefined}
+            aria-invalid={!!showError("email")}
+            aria-describedby={showError("email") ? "gc-email-error" : undefined}
             onBlur={handleBlur}
-            className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+            className={inputClass(!!showError("email"))}
             placeholder="din@epost.no"
           />
-          {errors.email && touched.email && (
-            <p id="gc-email-error" role="alert" className="mt-1 text-xs text-red-600">
+          {showError("email") && (
+            <p id="gc-email-error" role="alert" className={errorTextClass}>
               {errors.email}
             </p>
           )}
@@ -218,14 +260,16 @@ export default function GiftCardForm() {
             id="gc-phone"
             name="phone"
             type="tel"
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "gc-phone-error" : undefined}
+            inputMode="tel"
+            autoComplete="tel"
+            aria-invalid={!!showError("phone")}
+            aria-describedby={showError("phone") ? "gc-phone-error" : undefined}
             onBlur={handleBlur}
-            className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+            className={inputClass(!!showError("phone"))}
             placeholder="+47 XXX XX XXX"
           />
-          {errors.phone && touched.phone && (
-            <p id="gc-phone-error" role="alert" className="mt-1 text-xs text-red-600">
+          {showError("phone") && (
+            <p id="gc-phone-error" role="alert" className={errorTextClass}>
               {errors.phone}
             </p>
           )}
@@ -242,15 +286,16 @@ export default function GiftCardForm() {
         <select
           id="gc-type"
           name="giftCardType"
+          defaultValue=""
           required
           aria-required="true"
-          aria-invalid={!!errors.giftCardType}
-          aria-describedby={errors.giftCardType ? "gc-type-error" : undefined}
+          aria-invalid={!!showError("giftCardType")}
+          aria-describedby={showError("giftCardType") ? "gc-type-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("giftCardType"))}
         >
           <option value="" disabled>
-            Velg type
+            Velg opplevelse
           </option>
           {giftCardTypes.map((option) => (
             <option key={option} value={option}>
@@ -258,8 +303,8 @@ export default function GiftCardForm() {
             </option>
           ))}
         </select>
-        {errors.giftCardType && touched.giftCardType && (
-          <p id="gc-type-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("giftCardType") && (
+          <p id="gc-type-error" role="alert" className={errorTextClass}>
             {errors.giftCardType}
           </p>
         )}
@@ -276,7 +321,7 @@ export default function GiftCardForm() {
           id="gc-amount"
           name="amount"
           rows={2}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors resize-y"
+          className={`${inputClass(false)} resize-y`}
           placeholder="F.eks. 1000 kr, eller beskriv ønsket opplevelse..."
         />
       </div>
@@ -292,16 +337,17 @@ export default function GiftCardForm() {
           id="gc-recipient"
           name="recipientName"
           type="text"
+          autoComplete="off"
           required
           aria-required="true"
-          aria-invalid={!!errors.recipientName}
-          aria-describedby={errors.recipientName ? "gc-recipient-error" : undefined}
+          aria-invalid={!!showError("recipientName")}
+          aria-describedby={showError("recipientName") ? "gc-recipient-error" : undefined}
           onBlur={handleBlur}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors"
+          className={inputClass(!!showError("recipientName"))}
           placeholder="Hvem skal gavekortet til?"
         />
-        {errors.recipientName && touched.recipientName && (
-          <p id="gc-recipient-error" role="alert" className="mt-1 text-xs text-red-600">
+        {showError("recipientName") && (
+          <p id="gc-recipient-error" role="alert" className={errorTextClass}>
             {errors.recipientName}
           </p>
         )}
@@ -318,19 +364,22 @@ export default function GiftCardForm() {
           id="gc-message"
           name="message"
           rows={3}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 font-inter text-sm text-brown placeholder:text-brown-mid focus:outline-none focus:ring-2 focus:ring-teal/40 focus:border-teal transition-colors resize-y"
+          className={`${inputClass(false)} resize-y`}
           placeholder="En personlig hilsen som skal stå på gavekortet..."
         />
       </div>
 
       {status === "error" && !Object.values(errors).some(Boolean) && (
-        <p role="alert" className="font-inter text-sm text-red-600">
-          Noe gikk galt. Ring oss på{" "}
-          <a href="tel:+4799469957" className="inline-flex min-h-11 items-center underline">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-600 bg-white px-4 py-3 font-inter text-sm text-red-700 text-pretty"
+        >
+          Noe gikk galt, og bestillingen ble ikke sendt. Ring oss på{" "}
+          <a href="tel:+4799469957" className="inline-flex min-h-11 items-center whitespace-nowrap underline">
             +47 99 46 99 57
           </a>
           .
-        </p>
+        </div>
       )}
 
       <button
