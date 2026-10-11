@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -10,6 +9,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
@@ -91,12 +92,6 @@ const jsonLd = {
     },
   ],
 };
-
-const heroStats = [
-  { value: "45 min", label: "kort foredrag" },
-  { value: "1 dag", label: "teamanalyse" },
-  { value: "2", label: "tydelige tema" },
-];
 
 const audiences = [
   {
@@ -197,97 +192,28 @@ export default async function ForedragPage() {
         ])}
       />
       <JsonLd data={jsonLd} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src="/images/scraped/landscape/kimmiut-gronland-1920.jpg"
-          alt="Øst-Grønland med fjell, is og vann"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-45 lg:hidden"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/58 via-brown/82 to-brown lg:hidden" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-cream" />
-        <div className="mx-auto grid min-h-[820px] max-w-7xl items-center gap-10 px-6 pb-12 pt-28 sm:min-h-[760px] md:pb-16 lg:min-h-[760px] lg:grid-cols-[0.95fr_1.05fr] lg:pt-28">
-          <div className="relative z-[1] max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
-              <UsersRound className="h-4 w-4 text-sand" aria-hidden="true" />
-              Foredrag og kurs
-            </div>
-            <h1 className="font-space text-5xl font-bold leading-[0.98] text-white md:text-7xl">
-              Foredrag som sitter igjen
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              Gi teamet ny innsikt gjennom JTI, personlighet og samarbeid, eller
-              la Roar ta salen med til Øst-Grønland gjennom bilder, video og
-              erfaringer fra kajakkekspedisjon.
+      <PageHero
+        image="/images/scraped/landscape/kimmiut-gronland-1920.jpg"
+        imageAlt="Øst-Grønland med fjell, is og vann"
+        eyebrow="Foredrag og kurs"
+        title="Foredrag som sitter igjen"
+        intro="Gi teamet ny innsikt gjennom JTI, personlighet og samarbeid, eller la Roar ta salen med til Øst-Grønland gjennom bilder, video og erfaringer fra kajakkekspedisjon."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Foredrag" }}
+        secondary={{ label: "Se foredragene", href: "#foredragene" }}
+        facts={[["45 min", "kort foredrag"]]}
+        aside={
+          <>
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+              To innganger
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Foredrag"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-              >
-                Send forespørsel
-              </Link>
-              <Link
-                href="#foredragene"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Se foredragene
-              </Link>
-            </div>
-            <div className="mt-10 grid gap-3 sm:grid-cols-3">
-              {heroStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-2xl border border-white/16 bg-white/10 px-5 py-4 backdrop-blur"
-                >
-                  <p className="font-space text-2xl font-bold text-white">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 font-inter text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative z-[1] hidden min-h-[500px] lg:block">
-            <div className="absolute right-0 top-0 h-[330px] w-[58%] overflow-hidden rounded-2xl border border-white/18 shadow-2xl">
-              <Image
-                src="/images/tp-typeteori.jpg"
-                alt="Tone Pernille Sivertsen holder foredrag om JTI"
-                fill
-                priority
-                sizes="420px"
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute bottom-0 left-0 h-[330px] w-[62%] overflow-hidden rounded-2xl border border-white/18 shadow-2xl">
-              <Image
-                src="/images/scraped/landscape/kimmiut-gronland-1920.jpg"
-                alt="Øst-Grønland med fjell, is og vann"
-                fill
-                priority
-                sizes="460px"
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute bottom-16 right-8 w-72 rounded-2xl border border-white/18 bg-white/14 p-5 shadow-2xl backdrop-blur">
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
-                To innganger
-              </p>
-              <p className="mt-2 font-space text-xl font-bold text-white">
-                Samarbeid i rommet, natur på lerretet.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p className="mt-3 font-space text-xl font-bold text-brown">
+              Samarbeid i rommet, natur på lerretet.
+            </p>
+          </>
+        }
+      />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
@@ -315,10 +241,7 @@ export default async function ForedragPage() {
       <section id="foredragene" className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
-              Velg foredrag
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               To tydelige tema, begge med historier folk husker
             </h2>
           </div>
@@ -382,13 +305,14 @@ export default async function ForedragPage() {
                           Kontakt: {talk.contact}
                         </p>
                       </div>
-                      <Link
+                      <Button
                         href={talk.href}
-                        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brown px-4 py-3 text-center font-inter text-sm font-semibold leading-tight text-white transition-colors hover:bg-brown-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown sm:w-auto"
+                        variant="primary"
+                        className="w-full gap-2 sm:w-auto"
                       >
                         {talk.cta}
                         <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </Link>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -416,18 +340,12 @@ export default async function ForedragPage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-            <Link
-              href="/kontakt?tjeneste=Foredrag/JTI"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-            >
+            <Button href="/kontakt?tjeneste=Foredrag/JTI" variant="sand">
               Send forespørsel
-            </Link>
-            <Link
-              href="/teambuilding"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-7 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
+            </Button>
+            <Button href="/teambuilding" variant="outline-light">
               Se teambuilding-meny
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

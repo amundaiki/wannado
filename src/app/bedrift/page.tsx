@@ -3,6 +3,8 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import {
   absoluteUrl,
   createBreadcrumbSchema,
@@ -20,39 +22,18 @@ export const metadata = createPageMetadata({
 
 const benefits = [
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
     title: "15+ års erfaring",
     description: "Over 15 år med bedriftsarrangementer på Sørlandet. Vi vet hva som skaper engasjement og samhold.",
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-      </svg>
-    ),
     title: "Unik kombinasjon",
     description: "Kajakk, seiltur med Havsul og faglig innhold i én og samme opplevelse. Alt fra én leverandør.",
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
     title: "Skreddersyr etter deres mål",
     description: "Vi tilpasser opplegget etter gruppens størrelse, målsettinger og kultur. Ingen standardpakker.",
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-      </svg>
-    ),
     title: "Trygt og profesjonelt",
     description: "Sertifiserte guider, godkjent utstyr og grundig risikovurdering. Dere kan slappe av og nyte opplevelsen.",
   },
@@ -61,8 +42,6 @@ const benefits = [
 const packages = [
   {
     name: "Basispakke",
-    price: "4 500",
-    priceLabel: "Fra kr",
     description: "Perfekt for mindre grupper som vil oppleve noe utenom det vanlige. Halvdag med kajakk eller seiltur, erfarne guider og alt utstyr inkludert.",
     features: [
       "Halvdag (3-4 timer)",
@@ -71,14 +50,12 @@ const packages = [
       "Alt utstyr inkludert",
       "Trygghetsbriefing",
     ],
-    cta: "Ta kontakt",
+    cta: "Send forespørsel",
     href: "/kontakt?tjeneste=Basispakke",
     highlighted: false,
   },
   {
     name: "Komplett dag",
-    price: "8 000",
-    priceLabel: "Fra kr",
     description: "En heldagsopplevelse som kombinerer aktivitet med faglig innhold. JTI-workshop, lunch og refleksjon for et sterkere team.",
     features: [
       "Heldag (6-8 timer)",
@@ -88,24 +65,20 @@ const packages = [
       "Refleksjon og oppsummering",
       "Oppfølging etter arrangement",
     ],
-    cta: "Se detaljer",
+    cta: "Send forespørsel",
     href: "/kontakt?tjeneste=Komplett dag",
     highlighted: true,
   },
   {
     name: "Premium opplevelse",
-    price: "15 000",
-    priceLabel: "Fra kr",
-    description: "Den komplette bedriftsopplevelsen. Alt inkludert: transport, catering, fotograf og etterspill. Vi tar oss av alt.",
+    description: "Den komplette bedriftsopplevelsen. Alt inkludert: transport, catering og etterspill. Vi tar oss av alt.",
     features: [
       "Hel dag eller flere dager",
       "Valgfrie aktiviteter",
-      "JTI-analyse med rapport",
       "Transport og catering",
-      "Profesjonell fotograf",
       "Etterspill og oppfølging",
     ],
-    cta: "Ta kontakt",
+    cta: "Send forespørsel",
     href: "/kontakt?tjeneste=Premium",
     highlighted: false,
   },
@@ -225,54 +198,20 @@ export default function BedriftPage() {
       <JsonLd data={serviceSchema} />
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/havsul.jpg"
-            alt="Seiltur med Havsul i Arendals skjærgård"
-            fill
-            className="object-cover"
-            priority
-            loading="eager"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-brown/70 via-brown/50 to-brown/80" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white py-32">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-6">
-            For bedrifter
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Bygg et sterkere team på sjøen
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/85 leading-relaxed mb-10 max-w-2xl mx-auto">
-            Teambuilding, bedriftsarrangement og faglig innhold med natur som arena. Skreddersydd for deres mål og kultur.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#pakker"
-              className="inline-flex items-center justify-center bg-white text-brown font-inter font-semibold text-sm py-3.5 px-8 rounded-xl hover:bg-cream transition-colors duration-200"
-            >
-              Se pakker
-            </a>
-            <Link
-              href="/kontakt"
-              className="inline-flex items-center justify-center bg-teal text-white font-inter font-semibold text-sm py-3.5 px-8 rounded-xl hover:bg-[#006b75] transition-colors duration-200"
-            >
-              Ta kontakt
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/havsul.jpg"
+        imageAlt="Seiltur med Havsul i Arendals skjærgård"
+        eyebrow="For bedrifter"
+        title="Bygg et sterkere team på sjøen"
+        intro="Teambuilding, bedriftsarrangement og faglig innhold med natur som arena. Skreddersydd for deres mål og kultur."
+        primary={{ label: "Se pakker", href: "#pakker" }}
+        secondary={{ label: "Send forespørsel", href: "/kontakt" }}
+      />
 
       {/* Hvorfor velge Wannado */}
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-              Hvorfor oss
-            </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-brown">
               Hvorfor velge Wannado
             </h2>
@@ -283,9 +222,6 @@ export default function BedriftPage() {
                 key={benefit.title}
                 className="bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-teal/10 text-teal flex items-center justify-center mb-5">
-                  {benefit.icon}
-                </div>
                 <h3 className="font-space font-bold text-lg text-brown mb-3">
                   {benefit.title}
                 </h3>
@@ -302,9 +238,6 @@ export default function BedriftPage() {
       <section id="pakker" className="bg-warm-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-              Våre pakker
-            </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-brown">
               Velg deres opplevelse
             </h2>
@@ -331,25 +264,6 @@ export default function BedriftPage() {
                   <h3 className="font-space font-bold text-xl mb-2">
                     {pkg.name}
                   </h3>
-                  <div className="mb-4">
-                    <span className="font-inter text-xs text-brown-muted">
-                      {pkg.priceLabel}
-                    </span>
-                    <span
-                      className={`font-space font-bold text-3xl ml-2 ${
-                        pkg.highlighted ? "text-sand" : "text-teal"
-                      }`}
-                    >
-                      {pkg.price}
-                    </span>
-                    <span
-                      className={`font-inter text-sm ml-1 ${
-                        pkg.highlighted ? "text-white/60" : "text-brown-muted"
-                      }`}
-                    >
-                      ,-
-                    </span>
-                  </div>
                   <p
                     className={`font-inter text-sm leading-relaxed mb-6 ${
                       pkg.highlighted ? "text-white/80" : "text-brown-mid"
@@ -382,16 +296,12 @@ export default function BedriftPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link
+                  <Button
                     href={pkg.href}
-                    className={`inline-flex items-center justify-center font-inter font-medium text-sm py-3 px-6 rounded-xl transition-colors duration-200 ${
-                      pkg.highlighted
-                        ? "bg-white text-brown hover:bg-cream"
-                        : "bg-brown text-white hover:bg-brown-hover"
-                    }`}
+                    variant={pkg.highlighted ? "sand" : "primary"}
                   >
                     {pkg.cta}
-                  </Link>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -403,9 +313,6 @@ export default function BedriftPage() {
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-              Aktiviteter
-            </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-brown">
               Hva vi tilbyr
             </h2>
@@ -417,14 +324,14 @@ export default function BedriftPage() {
             {activities.map((activity) => (
               <div
                 key={activity.title}
-                className="group bg-white rounded-2xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
               >
                 <div className="relative h-52 w-full overflow-hidden">
                   <Image
                     src={activity.image}
                     alt={activity.alt}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
@@ -439,7 +346,7 @@ export default function BedriftPage() {
                     href="/kontakt"
                     className="font-inter text-sm font-medium text-teal hover:text-brown transition-colors inline-flex items-center gap-1"
                   >
-                    Les mer
+                    Send forespørsel
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -455,9 +362,6 @@ export default function BedriftPage() {
       <section className="bg-warm-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-              Prosess
-            </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-brown">
               Slik fungerer det
             </h2>
@@ -486,14 +390,11 @@ export default function BedriftPage() {
       {/* Referanser */}
       <section className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-            Referanser
-          </p>
           <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-6">
             Bedrifter som har valgt oss
           </h2>
           <p className="font-inter text-base text-brown-mid leading-relaxed mb-10 max-w-2xl mx-auto">
-            Over 49 bedrifter har valgt Wannado for sine arrangementer. Blant våre kunder finner du alt fra store konserner til lokale bedrifter.
+            Blant våre kunder finner du alt fra store konserner til lokale bedrifter.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
             {references.map((company) => (
@@ -507,12 +408,9 @@ export default function BedriftPage() {
               </div>
             ))}
           </div>
-          <Link
-            href="/referanser"
-            className="inline-flex items-center justify-center bg-teal text-white font-inter font-semibold text-sm py-3.5 px-8 rounded-xl hover:bg-[#006b75] transition-colors duration-200"
-          >
+          <Button href="/referanser" variant="primary">
             Se alle referanser
-          </Link>
+          </Button>
         </div>
       </section>
 
@@ -521,9 +419,6 @@ export default function BedriftPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
-                Kontaktperson
-              </p>
               <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-4">
                 Tone Pernille Sivertsen
               </h2>
@@ -586,18 +481,12 @@ export default function BedriftPage() {
               Kontakt oss for et skreddersydd opplegg. Vi tilpasser aktivitetene etter antall deltakere, tid og ønsker.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center bg-white text-brown font-inter font-semibold text-sm py-3.5 px-8 rounded-xl hover:bg-cream transition-colors duration-200"
-              >
+              <Button href="/kontakt" variant="sand">
                 Send forespørsel
-              </Link>
-              <a
-                href="tel:+4799469957"
-                className="inline-flex items-center justify-center border border-white/30 text-white font-inter font-medium text-sm py-3.5 px-8 rounded-xl hover:bg-white/10 transition-colors duration-200"
-              >
-                Ring oss
-              </a>
+              </Button>
+              <Button href="tel:+4799469957" variant="outline-light">
+                Ring Tone Pernille
+              </Button>
             </div>
           </div>
         </div>

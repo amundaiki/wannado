@@ -3,7 +3,9 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import Button from "@/components/ui/Button";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -196,79 +198,19 @@ export default async function TeambuildingPage() {
       <JsonLd data={videoJsonLd} />
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative min-h-[760px] md:min-h-[720px] flex items-center overflow-hidden text-white">
-        <Image
-          src="/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg"
-          alt="Kollegaer hopper på stranden under teambuilding med Wannado"
-          fill
-          priority
-          loading="eager"
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/75 via-brown/55 to-brown/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_25%,rgba(246,213,142,0.18),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pt-28 pb-16 md:pt-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="max-w-3xl">
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.35em] text-[#f6d58e] mb-5">
-                Teambuilding på Sørlandet
-              </p>
-              <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
-                Teambuilding som skaper ekte samhold
-              </h1>
-              <p className="font-inter text-lg md:text-xl text-white/88 leading-relaxed max-w-2xl">
-                Aktive gruppeopplevelser, lekne konkurranser og faglig innhold
-                som får kollegaer til å samarbeide bedre, ute i Arendal og langs
-                Sørlandskysten.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/kontakt?tjeneste=Teambuilding"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Send forespørsel
-                </Link>
-                <Link
-                  href="#opplevelser"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Se opplevelsene
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3 md:max-w-3xl">
-              {[
-                ["15+ år", "med bedriftsopplevelser"],
-                ["49+ kunder", "har valgt Wannado"],
-                ["Arendal", "skjærgård, strand og fagdag"],
-              ].map(([value, label]) => (
-                <div
-                  key={value}
-                  className="border border-white/22 bg-white/10 px-5 py-4 backdrop-blur-sm"
-                >
-                  <p className="font-space text-2xl font-bold text-white">
-                    {value}
-                  </p>
-                  <p className="mt-1 font-inter text-sm text-white/72">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/teambuilding/Personale-pa-Strand-Hotell-2830.jpg"
+        imageAlt="Kollegaer hopper på stranden under teambuilding med Wannado"
+        eyebrow="Teambuilding på Sørlandet"
+        title="Teambuilding som skaper ekte samhold"
+        intro="Aktive gruppeopplevelser, lekne konkurranser og faglig innhold som får kollegaer til å samarbeide bedre, ute i Arendal og langs Sørlandskysten."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Teambuilding" }}
+        secondary={{ label: "Se opplevelsene", href: "#opplevelser" }}
+      />
 
       {/* Intro */}
       <section className="max-w-4xl mx-auto px-6 py-16 md:py-20">
         <div className="text-center mb-4">
-          <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
-            Gruppearrangementer
-          </p>
           <h2 className="font-space font-bold text-3xl md:text-4xl text-brown mb-6">
             Vi er lidenskapelig opptatt av å leke med voksne!
           </h2>
@@ -292,9 +234,6 @@ export default async function TeambuildingPage() {
       <section id="opplevelser" className="bg-warm-white py-16 md:py-20 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
-              Våre opplevelser
-            </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-brown">
               Meny og priser
             </h2>
@@ -329,12 +268,9 @@ export default async function TeambuildingPage() {
                       {product.duration}
                     </span>
                   </div>
-                  <Link
-                    href="/booking"
-                    className="inline-flex items-center justify-center bg-brown text-white font-inter font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-brown-hover transition-colors duration-200 self-start"
-                  >
+                  <Button href="/booking" variant="primary" className="self-start">
                     Bestill
-                  </Link>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -360,9 +296,6 @@ export default async function TeambuildingPage() {
               </video>
             </div>
             <div>
-              <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
-                Møt fasilitatoren
-              </p>
               <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-4">
                 Tone Pernille Sivertsen
               </h2>
@@ -396,9 +329,6 @@ export default async function TeambuildingPage() {
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-teal rounded-2xl p-8 md:p-12 text-white">
-            <p className="font-inter text-sm font-semibold uppercase tracking-widest text-white/70 mb-3">
-              Kombiner med foredrag
-            </p>
             <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
               JTI Light: Vi koser oss med forskjellighet
             </h2>
@@ -417,28 +347,25 @@ export default async function TeambuildingPage() {
             </p>
             <div className="flex flex-wrap gap-6 mb-8">
               <div>
-                <p className="font-inter text-sm text-white/60 mb-1">
+                <p className="font-inter text-sm text-white/85 mb-1">
                   Foredrag
                 </p>
                 <p className="font-space font-bold text-xl">Fra kr 6 000,-</p>
-                <p className="font-inter text-sm text-white/70">Ca 1 time</p>
+                <p className="font-inter text-sm text-white/85">Ca 1 time</p>
               </div>
               <div>
-                <p className="font-inter text-sm text-white/60 mb-1">
+                <p className="font-inter text-sm text-white/85 mb-1">
                   Full teamanalyse
                 </p>
                 <p className="font-space font-bold text-xl">
                   Kr 1 000,- pr person
                 </p>
-                <p className="font-inter text-sm text-white/70">Ca 3 timer</p>
+                <p className="font-inter text-sm text-white/85">Ca 3 timer</p>
               </div>
             </div>
-            <Link
-              href="/booking"
-              className="inline-flex items-center justify-center bg-white text-teal font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
-            >
+            <Button href="/booking" variant="sand">
               Bestill foredrag
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -446,9 +373,6 @@ export default async function TeambuildingPage() {
       {/* References */}
       <section className="bg-warm-white py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
-            Referanser
-          </p>
           <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-10">
             Blant våre kunder
           </h2>
@@ -465,7 +389,7 @@ export default async function TeambuildingPage() {
             ))}
           </div>
           <p className="font-inter text-sm text-brown-muted mt-8 text-center">
-            Totalt har over 49 bedrifter valgt Wannado for sine arrangementer.{" "}
+            Se hvem som har vært med oss.{" "}
             <Link
               href="/referanser"
               className="text-teal hover:text-brown underline transition-colors"
@@ -488,18 +412,12 @@ export default async function TeambuildingPage() {
               etter antall deltakere, tid og ønsker.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/kontakt?tjeneste=Teambuilding"
-                className="inline-flex items-center justify-center bg-white text-brown font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-cream transition-colors duration-200"
-              >
+              <Button href="/kontakt?tjeneste=Teambuilding" variant="sand">
                 Send forespørsel
-              </Link>
-              <a
-                href="tel:+4799469957"
-                className="inline-flex items-center justify-center border border-white/30 text-white font-inter font-medium text-sm py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-200"
-              >
-                Ring Tone Pernille: +47 99 46 99 57
-              </a>
+              </Button>
+              <Button href="tel:+4799469957" variant="outline-light">
+                Ring Tone Pernille
+              </Button>
             </div>
           </div>
         </div>

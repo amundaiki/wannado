@@ -11,7 +11,7 @@ import { createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Kontakt Wannado - Bestill opplevelse eller tur | Wannado",
   description:
-    "Ta kontakt med Wannado for å bestille teambuilding, kajakkturer, seilturer, foredrag eller andre opplevelser i Arendal. Vi svarer innen 24 timer.",
+    "Ta kontakt med Wannado for å bestille teambuilding, kajakkturer, seilturer, foredrag eller andre opplevelser i Arendal. Vi svarer så fort vi kan.",
   path: "/kontakt",
   image: "/images/havsul.jpg",
   imageAlt: "Kontakt Wannado for opplevelser i Arendal",
@@ -82,7 +82,7 @@ const quickActions = [
 
 const practicalSteps = [
   "Fortell hva dere vil oppleve, hvor mange dere er og ønsket dato.",
-  "Vi svarer normalt innen 24 timer med forslag, pris eller videre oppfølging.",
+  "Vi svarer så fort vi kan med forslag, pris eller videre oppfølging.",
   "Ved grupper og spesialopplegg finjusterer vi opplegg, sted og tidsplan sammen.",
 ] as const;
 
@@ -100,11 +100,10 @@ export default function KontaktPage() {
         imagePosition="52% 50%"
         eyebrow="Kontakt Wannado"
         title="Få raskt tak i riktig person"
-        intro="Send en forespørsel, ring direkte eller gå videre til booking. Vi svarer normalt innen 24 timer og hjelper med alt fra små turer til store bedriftsopplegg."
+        intro="Send en forespørsel, ring direkte eller gå videre til booking. Vi svarer så fort vi kan og hjelper med alt fra små turer til store bedriftsopplegg."
         primary={{ label: "Send forespørsel", href: "#kontakt-skjema" }}
         secondary={{ label: "Åpne booking", href: "/booking" }}
         facts={[
-          ["24 t", "normal svartid"],
           ["Tone", "bedrift og foredrag"],
           ["Roar", "kajakk og seil"],
         ]}

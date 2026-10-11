@@ -1,18 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   HeartHandshake,
   Leaf,
   MapPin,
-  Phone,
   ShieldCheck,
   Sparkles,
   UsersRound,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
@@ -161,61 +160,26 @@ export default function HestekursPage() {
       <JsonLd data={jsonLd} />
       <Navbar variant="solid" />
 
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src={heroImage}
-          alt="Hestekurs med islandshester ved kysten på Sørlandet"
-          fill
-          preload
-          fetchPriority="high"
-          loading="eager"
-          sizes="100vw"
-          className="object-cover object-[55%_42%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/42 via-brown/68 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[88svh] max-w-7xl items-end gap-8 px-6 pb-14 pt-32 md:min-h-[760px] md:pb-18 lg:grid-cols-[minmax(0,1fr)_390px] lg:pt-40">
-          <div className="max-w-3xl">
-            <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
-              Hestekurs i Arendal
-            </p>
-            <h1 className="font-space text-4xl font-bold leading-[0.98] text-white md:text-6xl lg:text-7xl">
-              Lær hest med ro og trygghet
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/88 md:text-xl">
-              Vi bruker islandshestene våre til praktisk læring om stell,
-              kroppsspråk, ridning og samspill. Det blir nært, gøy og veldig
-              konkret, rett og slett.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Hesteopplevelser"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand active:scale-[0.98]"
-              >
-                Be om kursforslag
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="tel:+4799469957"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Ring Tone Pernille
-              </a>
-            </div>
-          </div>
-
-          <aside className="hidden border border-white/18 bg-white/12 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-md lg:block">
+      <PageHero
+        image={heroImage}
+        imageAlt="Hestekurs med islandshester ved kysten på Sørlandet"
+        imagePosition="55% 42%"
+        eyebrow="Hestekurs i Arendal"
+        title="Lær hest med ro og trygghet"
+        intro="Vi bruker islandshestene våre til praktisk læring om stell, kroppsspråk, ridning og samspill. Det blir nært, gøy og veldig konkret, rett og slett."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Hesteopplevelser" }}
+        secondary={{ label: "Ring Tone Pernille", href: "tel:+4799469957" }}
+        aside={
+          <>
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sand text-brown">
                 <Sparkles className="h-6 w-6" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
                   Kurs etter nivå
                 </p>
-                <p className="font-space text-2xl font-bold text-white">
+                <p className="font-space text-2xl font-bold text-brown">
                   Fra bakken til salen
                 </p>
               </div>
@@ -226,19 +190,19 @@ export default function HestekursPage() {
                 ["Islandshest", "rolig og stødig læring"],
                 ["Etter avtale", "for grupper og bedrifter"],
               ].map(([value, label]) => (
-                <div key={value} className="border-t border-white/16 pt-4">
-                  <p className="font-space text-2xl font-bold text-white">
+                <div key={value} className="border-t border-border pt-4">
+                  <p className="font-space text-2xl font-bold text-brown">
                     {value}
                   </p>
-                  <p className="mt-1 font-inter text-sm text-white/72">
+                  <p className="mt-1 font-inter text-sm text-brown-mid">
                     {label}
                   </p>
                 </div>
               ))}
             </div>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
@@ -288,7 +252,7 @@ export default function HestekursPage() {
               return (
                 <article
                   key={step.title}
-                  className="border border-brown-muted/15 bg-cream p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 md:p-8"
+                  className="border border-brown-muted/15 bg-cream p-6 shadow-sm md:p-8"
                 >
                   <Icon
                     className="h-8 w-8 text-teal"
@@ -335,7 +299,7 @@ export default function HestekursPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 border border-white/12 bg-white/10 p-5">
+          <div className="mt-8 border border-white/12 bg-brown-mid p-5 text-white">
             <div className="flex items-start gap-3">
               <MapPin className="mt-1 h-5 w-5 text-sand" aria-hidden="true" />
               <p className="font-inter text-sm leading-relaxed text-white/78">
@@ -378,18 +342,12 @@ export default function HestekursPage() {
           </div>
 
           <div className="mt-12 flex flex-col gap-3 border-t border-white/12 pt-10 sm:flex-row">
-            <Link
-              href="/kontakt?tjeneste=Hesteopplevelser"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f]"
-            >
-              Be om kursforslag
-            </Link>
-            <Link
-              href="/opplevelser/hesteopplevelser"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-7 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
+            <Button href="/kontakt?tjeneste=Hesteopplevelser" variant="sand">
+              Send forespørsel
+            </Button>
+            <Button href="/opplevelser/hesteopplevelser" variant="outline-light">
               Se hesteopplevelser
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

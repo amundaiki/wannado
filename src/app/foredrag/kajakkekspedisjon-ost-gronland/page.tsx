@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   Binoculars,
@@ -12,6 +11,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
@@ -84,8 +85,7 @@ const faqItems = [
   },
   {
     question: "Hva koster foredraget?",
-    answer:
-      "Pris avtales etter sted, varighet og opplegg. Send oss ønsket dato, gruppe og ramme, så kommer vi med et konkret forslag.",
+    answer: "Prisen står i oversikten øverst på siden.",
   },
 ];
 
@@ -176,89 +176,54 @@ export default async function GreenlandTalkPage() {
         ])}
       />
       <JsonLd data={createJsonLd(priceText)} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src={heroImage}
-          alt="Øst-Grønland med fjell, is og vann"
-          fill
-          preload
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover object-[55%_45%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/42 via-brown/70 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[820px] max-w-7xl items-end gap-10 px-6 pb-16 pt-32 lg:grid-cols-[minmax(0,1fr)_390px] lg:pb-20">
-          <div className="max-w-4xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-sand">
-              Ekspedisjonsforedrag
-            </p>
-            <h1 className="mt-5 max-w-4xl font-space text-5xl font-bold leading-[0.98] md:text-7xl">
-              Kajakk, isfjell og stillhet på Øst-Grønland
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              Roar tar publikum med inn i en kajakkekspedisjon der naturen er
-              større enn planen. Et foredrag om forberedelse, mot, risiko og
-              opplevelser som setter seg i kroppen.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Grønlandsforedrag"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-              >
-                Send forespørsel
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#opplegg"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Se innholdet
-              </Link>
-            </div>
-          </div>
-
-          <aside className="rounded-2xl border border-white/18 bg-white/14 p-6 shadow-2xl backdrop-blur">
-            <Binoculars className="h-8 w-8 text-sand" aria-hidden="true" />
-            <p className="mt-5 font-space text-2xl font-bold text-white">
+      <PageHero
+        image={heroImage}
+        imageAlt="Øst-Grønland med fjell, is og vann"
+        imagePosition="55% 45%"
+        eyebrow="Ekspedisjonsforedrag"
+        title="Kajakk, isfjell og stillhet på Øst-Grønland"
+        intro="Roar tar publikum med inn i en kajakkekspedisjon der naturen er større enn planen. Et foredrag om forberedelse, mot, risiko og opplevelser som setter seg i kroppen."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Grønlandsforedrag" }}
+        secondary={{ label: "Se innholdet", href: "#opplegg" }}
+        asideOnMobile
+        aside={
+          <>
+            <Binoculars className="h-8 w-8 text-teal" aria-hidden="true" />
+            <p className="mt-5 font-space text-2xl font-bold text-brown">
               {priceText}
             </p>
-            <p className="mt-3 font-inter text-sm leading-relaxed text-white/76">
+            <p className="mt-3 font-inter text-sm leading-relaxed text-brown-mid">
               Foredraget tilpasses publikum, sted og ønsket vinkel. Bilder og
               video er en sentral del av opplevelsen.
             </p>
-            <dl className="mt-6 grid gap-4 border-t border-white/15 pt-5">
+            <dl className="mt-6 grid gap-4 border-t border-border pt-5">
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-sand">
+                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
                   Forteller
                 </dt>
-                <dd className="mt-1 font-inter text-sm text-white/82">
+                <dd className="mt-1 font-inter text-sm text-brown">
                   Roar Laugerud
                 </dd>
               </div>
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-sand">
+                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
                   Passer for
                 </dt>
-                <dd className="mt-1 font-inter text-sm text-white/82">
+                <dd className="mt-1 font-inter text-sm text-brown">
                   Bedrifter, skoler og foreninger
                 </dd>
               </div>
             </dl>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              En historie fra kanten av kartet
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
               Natur, valg og små marginer
             </h2>
             <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -285,10 +250,7 @@ export default async function GreenlandTalkPage() {
       <section id="opplegg" className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 max-w-3xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Slik kan det brukes
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Fra ren inspirasjon til fagdag
             </h2>
             <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -342,10 +304,7 @@ export default async function GreenlandTalkPage() {
           </div>
 
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Roar Laugerud
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Guiden som vet hva forberedelse betyr
             </h2>
             <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -368,20 +327,18 @@ export default async function GreenlandTalkPage() {
               ))}
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <Button
                 href="/kontakt?tjeneste=Grønlandsforedrag"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-bold text-white transition-colors hover:bg-brown-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
+                variant="primary"
+                className="gap-2"
               >
                 Send forespørsel
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="tel:+4794826710"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 font-inter text-sm font-semibold text-brown transition-colors hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
-              >
+              </Button>
+              <Button href="tel:+4794826710" variant="outline" className="gap-2">
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                +47 94 82 67 10
-              </a>
+                Ring Roar Laugerud
+              </Button>
             </div>
           </div>
         </div>
@@ -390,10 +347,7 @@ export default async function GreenlandTalkPage() {
       <section className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="mb-8 text-center">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Praktisk
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Ofte spurt om foredraget
             </h2>
           </div>
@@ -425,13 +379,10 @@ export default async function GreenlandTalkPage() {
               Send ønsket dato, sted og publikum, så svarer Roar med forslag.
             </h2>
           </div>
-          <Link
-            href="/kontakt?tjeneste=Grønlandsforedrag"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-          >
+          <Button href="/kontakt?tjeneste=Grønlandsforedrag" variant="sand" className="gap-2">
             Send forespørsel
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          </Button>
         </div>
       </section>
 

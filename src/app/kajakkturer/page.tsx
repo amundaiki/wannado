@@ -3,7 +3,9 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import Button from "@/components/ui/Button";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -273,33 +275,15 @@ export default async function KajakkturerPage() {
       <JsonLd data={tourSchema} />
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-end">
-        <Image
-          src="/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"
-          alt="Gruppe kajakkpadlere vinker fra vannet med norsk kystby i bakgrunnen"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/30 to-transparent" />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 w-full">
-          <p className="font-inter text-sm font-medium text-sand uppercase tracking-[3px] mb-4">
-            Kurs og opplevelser
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
-            Kajakkturer og kajakkurs
-            <br />
-            <span className="sr-only"> </span>
-            i Arendals skjærgård
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
-            Fra ditt første padletak til ekspedisjon på Grønland. Vi tar deg med
-            hele veien.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"
+        imageAlt="Gruppe kajakkpadlere vinker fra vannet med norsk kystby i bakgrunnen"
+        eyebrow="Kurs og opplevelser"
+        title="Kajakkturer og kajakkurs i Arendals skjærgård"
+        intro="Fra ditt første padletak til ekspedisjon på Grønland. Vi tar deg med hele veien."
+        primary={{ label: "Finn dato", href: "/booking" }}
+        secondary={{ label: "Ring Roar", href: "tel:+4794826710" }}
+      />
 
       {/* Intro Section */}
       <section className="max-w-4xl mx-auto px-6 py-20 md:py-28">
@@ -544,23 +528,17 @@ export default async function KajakkturerPage() {
           <h2 className="font-space text-3xl md:text-5xl font-bold text-white mb-4">
             Klar til å padle?
           </h2>
-          <p className="font-inter text-lg text-white/70 max-w-xl mx-auto mb-10">
+          <p className="font-inter text-lg text-white/85 max-w-xl mx-auto mb-10">
             Enten du er nybegynner eller erfaren padler, har vi et kurs eller en
             tur som passer for deg. Ta kontakt i dag.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/booking"
-              className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
-            >
+            <Button href="/booking" variant="sand">
               Bestill kurs eller tur
-            </Link>
-            <a
-              href="tel:+4794826710"
-              className="inline-block border-2 border-white/30 text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
-            >
-              Ring Roar: +47 94 82 67 10
-            </a>
+            </Button>
+            <Button href="tel:+4794826710" variant="outline-light">
+              Ring Roar
+            </Button>
           </div>
         </div>
       </section>

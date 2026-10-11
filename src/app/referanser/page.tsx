@@ -59,7 +59,6 @@ export default async function ReferanserPage() {
         secondary={{ label: "Les sitater", href: "#tilbakemeldinger" }}
         facts={[
           ["30+", "navngitte kunder"],
-          ["4.5/5", "TripAdvisor"],
           ["15+ år", "grupper"],
         ]}
         aside={
@@ -201,9 +200,11 @@ export default async function ReferanserPage() {
                   <span className="font-inter text-xs font-semibold uppercase tracking-widest text-teal">
                     {feedback.source}
                   </span>
-                  <span className="rounded-full bg-sand/15 px-3 py-1 font-inter text-xs font-semibold text-brown">
-                    {feedback.rating}
-                  </span>
+                  {feedback.rating && (
+                    <span className="rounded-full bg-sand/15 px-3 py-1 font-inter text-xs font-semibold text-brown">
+                      {feedback.rating}
+                    </span>
+                  )}
                 </div>
                 <h3 className="mt-4 font-space text-xl font-semibold text-brown">
                   {feedback.title}

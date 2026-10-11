@@ -257,7 +257,6 @@ export default function PraktiskInformasjonPage() {
         primary={{ label: "Se booking", href: "/booking" }}
         secondary={{ label: "Les detaljene", href: "#praktisk-detaljer" }}
         facts={[
-          ["24 t", "svar på spørsmål"],
           ["Hele året", "aktivitet ved riktig vær"],
           ["Alt utstyr", "inkludert på kajakk"],
         ]}

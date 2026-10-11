@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import CheckinBookingEmbed from "@/components/booking/CheckinBookingEmbed";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import ContactForm from "@/components/ui/ContactForm";
 import {
   absoluteUrl,
@@ -32,6 +34,7 @@ const bookingPaths = [
     image: "/images/scraped/sailing/baat-fb-havsul.jpg",
     imageAlt: "Listerskøyta Havsul i Arendals skjærgård",
     badge: "Seiltur",
+    cta: "Se seiltur",
   },
   {
     title: "Kajakkturer",
@@ -43,6 +46,7 @@ const bookingPaths = [
     image: "/images/roar-laugerud-havsul.jpg",
     imageAlt: "Roar Laugerud klar for aktivitet ved sjøkanten",
     badge: "Kajakk",
+    cta: "Se kajakkturer",
   },
   {
     title: "Kajakkurs",
@@ -54,6 +58,7 @@ const bookingPaths = [
     image: "/images/kajakk-kurs-bilde.jpg",
     imageAlt: "Kajakkurs med Wannado",
     badge: "Kurs",
+    cta: "Se kajakkurs",
   },
   {
     title: "Teambuilding",
@@ -65,6 +70,7 @@ const bookingPaths = [
     image: "/images/tp-typeteori.jpg",
     imageAlt: "Tone Pernille Sivertsen under foredrag eller teambuilding",
     badge: "Bedrift",
+    cta: "Se teambuilding",
   },
   {
     title: "Foredrag og JTI",
@@ -76,6 +82,7 @@ const bookingPaths = [
     image: "/images/tp-typeteori.jpg",
     imageAlt: "Tone Pernille Sivertsen holder foredrag",
     badge: "Foredrag",
+    cta: "Se foredrag",
   },
   {
     title: "Gavekort",
@@ -87,6 +94,7 @@ const bookingPaths = [
     image: "/images/P7270038.jpg",
     imageAlt: "Opplevelsesgave fra Wannado",
     badge: "Gavekort",
+    cta: "Se gavekort",
   },
 ] as const;
 
@@ -104,7 +112,7 @@ const bookingSteps = [
   {
     title: "Få forslag og pris",
     description:
-      "Vi svarer normalt innen 24 timer med tilgjengelighet, pris og forslag til gjennomføring.",
+      "Vi svarer så fort vi kan med tilgjengelighet, pris og forslag til gjennomføring.",
   },
 ];
 
@@ -130,11 +138,6 @@ const contacts = [
 ] as const;
 
 const practicalNotes = [
-  {
-    title: "Svar innen 24 timer",
-    description:
-      "Vi svarer som regel samme dag på hverdager, og senest innen ett døgn.",
-  },
   {
     title: "Skreddersys etter gruppe",
     description:
@@ -203,76 +206,35 @@ export default function BookingPage() {
       <JsonLd data={bookingJsonLd} />
       <Navbar />
 
-      <section className="relative isolate overflow-hidden bg-brown">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/havsul.jpg"
-            alt="Listerskøyta Havsul på vei gjennom Arendals skjærgård"
-            fill
-            preload
-            fetchPriority="high"
-            loading="eager"
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(54,43,34,0.92),rgba(54,43,34,0.72)_45%,rgba(54,43,34,0.45))]" />
-        </div>
-
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-6 pb-16 pt-40 md:pb-24 lg:flex-row lg:items-end">
-          <div className="max-w-3xl">
-            <p className="mb-4 font-inter text-sm font-semibold uppercase tracking-[0.3em] text-sand">
-              Booking og forespørsler
-            </p>
-            <h1 className="font-space text-4xl font-bold leading-tight text-white md:text-6xl">
-              Bestill en opplevelse som faktisk passer gruppen din
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/82 md:text-xl">
-              Seilturer, kajakk, kurs, teambuilding, foredrag og gavekort.
-              Send en forespørsel med dato og antall, så svarer vi med forslag,
-              pris og neste steg.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#checkin-booking"
-                className="inline-flex items-center justify-center rounded-full bg-sand px-6 py-3 font-inter text-sm font-semibold text-brown transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                Se ledige aktiviteter
-              </a>
-              <a
-                href="#booking-form"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/10"
-              >
-                Send forespørsel
-              </a>
-            </div>
-          </div>
-
-          <div className="grid gap-4 rounded-[28px] border border-white/15 bg-white/10 p-5 backdrop-blur-sm sm:grid-cols-3 lg:min-w-[360px] lg:grid-cols-1">
+      <PageHero
+        image="/images/havsul.jpg"
+        imageAlt="Listerskøyta Havsul på vei gjennom Arendals skjærgård"
+        eyebrow="Booking og forespørsler"
+        title="Bestill en opplevelse som faktisk passer gruppen din"
+        intro="Seilturer, kajakk, kurs, teambuilding, foredrag og gavekort. Send en forespørsel med dato og antall, så svarer vi med forslag, pris og neste steg."
+        primary={{ label: "Se ledige aktiviteter", href: "#checkin-booking" }}
+        secondary={{ label: "Send forespørsel", href: "#booking-form" }}
+        aside={
+          <ul className="space-y-5">
             {practicalNotes.map((note) => (
-              <div
-                key={note.title}
-                className="rounded-2xl border border-white/10 bg-white/8 p-4"
-              >
-                <p className="font-space text-lg font-bold text-white">
+              <li key={note.title}>
+                <p className="font-space text-lg font-bold text-brown">
                   {note.title}
                 </p>
-                <p className="mt-2 font-inter text-sm leading-relaxed text-white/75">
+                <p className="mt-1 font-inter text-sm leading-relaxed text-brown-mid">
                   {note.description}
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ul>
+        }
+      />
 
       <section
         id="checkin-booking"
         className="mx-auto max-w-6xl px-6 py-16 md:py-20"
       >
         <div className="mb-8 max-w-3xl">
-          <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Påmelding
-          </p>
           <h2 className="font-space text-3xl font-bold text-brown md:text-4xl">
             Aktuelle aktiviteter fra bookingkalenderen
           </h2>
@@ -288,9 +250,6 @@ export default function BookingPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-10 max-w-3xl">
-          <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Raske innganger
-          </p>
           <h2 className="font-space text-3xl font-bold text-brown md:text-4xl">
             Velg det du vil booke
           </h2>
@@ -304,7 +263,7 @@ export default function BookingPage() {
           {bookingPaths.map((path) => (
             <article
               key={path.title}
-              className="overflow-hidden rounded-[28px] border border-border bg-white shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-md"
+              className="overflow-hidden rounded-[28px] border border-border bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
@@ -328,18 +287,15 @@ export default function BookingPage() {
                 <p className="mt-4 font-space text-lg font-bold text-teal">
                   {path.price}
                 </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <Button href={path.inquiryHref} variant="primary">
+                    {path.href === "/gavekort" ? "Bestill gavekort" : "Send forespørsel"}
+                  </Button>
                   <Link
                     href={path.href}
-                    className="inline-flex min-h-11 items-center justify-center rounded-full border border-brown/10 px-4 py-2.5 font-inter text-sm font-semibold text-brown transition-colors duration-200 hover:bg-brown hover:text-white"
+                    className="inline-flex min-h-11 items-center font-body text-base font-semibold text-teal underline underline-offset-4 hover:text-brown"
                   >
-                    Les mer
-                  </Link>
-                  <Link
-                    href={path.inquiryHref}
-                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-teal px-4 py-2.5 font-inter text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0d6f6a]"
-                  >
-                    Send forespørsel
+                    {path.cta}
                   </Link>
                 </div>
               </div>
@@ -351,9 +307,6 @@ export default function BookingPage() {
       <section className="bg-warm-white py-16 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
-            <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-              Slik booker du
-            </p>
             <h2 className="font-space text-3xl font-bold text-brown md:text-4xl">
               Enkelt for deg, presist for oss
             </h2>
@@ -380,22 +333,13 @@ export default function BookingPage() {
           </div>
 
           <div className="rounded-[28px] border border-brown/10 bg-brown p-8 text-white shadow-sm">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-sand">
-              Praktisk
-            </p>
-            <h3 className="mt-3 font-space text-2xl font-bold">
+            <h3 className="font-space text-2xl font-bold">
               Hva bør du sende inn?
             </h3>
-            <ul className="mt-6 space-y-4">
-              <li className="rounded-2xl border border-white/10 bg-white/10 p-4 font-inter text-sm leading-relaxed text-white/80">
-                Ønsket opplevelse eller type arrangement
-              </li>
-              <li className="rounded-2xl border border-white/10 bg-white/10 p-4 font-inter text-sm leading-relaxed text-white/80">
-                Antall personer og ønsket dato eller tidsrom
-              </li>
-              <li className="rounded-2xl border border-white/10 bg-white/10 p-4 font-inter text-sm leading-relaxed text-white/80">
-                Eventuelle hensyn rundt fysisk nivå, erfaring eller logistikk
-              </li>
+            <ul className="mt-6 list-disc space-y-3 pl-5 font-inter text-sm leading-relaxed text-white/80">
+              <li>Ønsket opplevelse eller type arrangement</li>
+              <li>Antall personer og ønsket dato eller tidsrom</li>
+              <li>Eventuelle hensyn rundt fysisk nivå, erfaring eller logistikk</li>
             </ul>
             <p className="mt-6 font-inter text-sm leading-relaxed text-white/72">
               Jo mer konkret forespørselen er, desto raskere kan vi gi et
@@ -411,9 +355,6 @@ export default function BookingPage() {
       >
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="rounded-[32px] border border-border bg-white p-6 shadow-sm md:p-8">
-            <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-              Send forespørsel
-            </p>
             <h2 className="font-space text-3xl font-bold text-brown">
               Fortell oss hva du ser for deg
             </h2>
@@ -435,10 +376,7 @@ export default function BookingPage() {
 
           <div className="space-y-6">
             <div className="rounded-[32px] border border-border bg-white p-6 shadow-sm md:p-8">
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-                Direktekontakt
-              </p>
-              <h2 className="mt-3 font-space text-3xl font-bold text-brown">
+              <h2 className="font-space text-3xl font-bold text-brown">
                 Ring eller send e-post hvis det haster
               </h2>
               <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid">
@@ -474,7 +412,7 @@ export default function BookingPage() {
                         href={contact.phoneHref}
                         className="flex min-h-11 items-center font-inter text-sm font-semibold text-teal transition-colors duration-200 hover:text-brown"
                       >
-                        {contact.phone}
+                        Ring {contact.name} på {contact.phone}
                       </a>
                       <a
                         href={contact.emailHref}
@@ -505,9 +443,6 @@ export default function BookingPage() {
       <section className="bg-warm-white py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-6">
           <div className="max-w-3xl">
-            <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-              Ofte spurt
-            </p>
             <h2 className="font-space text-3xl font-bold text-brown md:text-4xl">
               Praktiske svar for booking
             </h2>

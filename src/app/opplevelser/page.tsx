@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Compass, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, Phone, Sparkles } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import {
   absoluteUrl,
   createBreadcrumbSchema,
@@ -269,53 +271,18 @@ export default async function OpplevelserPage() {
       <JsonLd data={createOpplevelserJsonLd(serviceCards)} />
       <Navbar variant="solid" />
 
-      {/* Hero Header */}
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src="/images/scraped/sailing/baat-fb-havsul.jpg"
-          alt="Listerskøyta Havsul på sjøen med Wannado-opplevelser i Arendal"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[54%_42%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/58 via-brown/72 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[780px] max-w-7xl gap-8 px-6 pb-16 pt-32 md:min-h-[720px] lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end lg:pt-40">
-          <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/14 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
-              <Compass className="h-4 w-4 text-sand" aria-hidden="true" />
-              Opplevelser i Arendal
-            </div>
-            <h1 className="font-space text-5xl font-bold leading-[0.98] md:text-7xl">
-              Aktiviteter og opplevelser i Arendal
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              Finn turen som passer gruppen din. Seil med Havsul, padle i
-              skjærgården, samle kollegaer rundt teambuilding eller gi bort en
-              opplevelse som varer lenger enn ting. Alt sammen i Arendals
-              skjærgård på Sørlandet.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/booking"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-transform hover:-translate-y-0.5"
-              >
-                Start booking
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#opplevelseskort"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18"
-              >
-                Se alle opplevelser
-              </Link>
-            </div>
-          </div>
-
-          <aside className="rounded-3xl border border-white/20 bg-white/14 p-5 shadow-2xl backdrop-blur">
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+      <PageHero
+        image="/images/scraped/sailing/baat-fb-havsul.jpg"
+        imageAlt="Listerskøyta Havsul på sjøen med Wannado-opplevelser i Arendal"
+        imagePosition="54% 42%"
+        eyebrow="Opplevelser i Arendal"
+        title="Aktiviteter og opplevelser i Arendal"
+        intro="Finn turen som passer gruppen din. Seil med Havsul, padle i skjærgården, samle kollegaer rundt teambuilding eller gi bort en opplevelse som varer lenger enn ting. Alt sammen i Arendals skjærgård på Sørlandet."
+        primary={{ label: "Bestill opplevelse", href: "/booking" }}
+        secondary={{ label: "Se alle opplevelser", href: "#opplevelseskort" }}
+        aside={
+          <>
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
               Rask veiviser
             </p>
             <div className="mt-5 grid gap-3">
@@ -326,20 +293,20 @@ export default async function OpplevelserPage() {
               ].map(([title, text]) => (
                 <div
                   key={title}
-                  className="rounded-2xl border border-white/12 bg-white/10 p-4"
+                  className="rounded-2xl border border-border bg-white p-4"
                 >
-                  <p className="font-space text-lg font-bold text-white">
+                  <p className="font-space text-lg font-bold text-brown">
                     {title}
                   </p>
-                  <p className="mt-1 font-inter text-sm leading-relaxed text-white/74">
+                  <p className="mt-1 font-inter text-sm leading-relaxed text-brown-mid">
                     {text}
                   </p>
                 </div>
               ))}
             </div>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* Category Grid */}
       <section
@@ -347,10 +314,7 @@ export default async function OpplevelserPage() {
         className="mx-auto max-w-7xl px-6 py-16 md:py-24"
       >
         <div className="mb-10 max-w-3xl">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Velg opplevelse
-          </p>
-          <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+          <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
             Fra rolig skjærgårdsdag til energisk gruppetur
           </h2>
           <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -393,7 +357,7 @@ export default async function OpplevelserPage() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brown/90 via-brown/70 to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
                 <p className="mb-3 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
                   {cat.badge}
@@ -401,10 +365,10 @@ export default async function OpplevelserPage() {
                 <h3 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
                   {cat.title}
                 </h3>
-                <p className="font-inter text-sm md:text-base text-white/80 leading-relaxed max-w-sm mb-4">
+                <p className="font-inter text-sm md:text-base text-white leading-relaxed max-w-sm mb-4">
                   {cat.description}
                 </p>
-                <span className="inline-flex items-center gap-2 font-inter text-sm font-semibold text-sand group-hover:gap-3 transition-all">
+                <span className="inline-flex items-center gap-2 font-inter text-sm font-semibold text-sand group-hover:gap-3 transition-colors">
                   Utforsk
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </span>
@@ -459,13 +423,10 @@ export default async function OpplevelserPage() {
             </div>
           </div>
           <div className="mt-10">
-            <Link
-              href="/kontakt?tjeneste=Kajakktur"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-8 py-4 font-inter text-base font-semibold text-white transition-colors hover:bg-brown-hover"
-            >
-              Gå til kontaktskjema
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            <Button href="/kontakt?tjeneste=Kajakktur" variant="primary">
+              Send forespørsel
+              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </Button>
           </div>
         </div>
       </section>

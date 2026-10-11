@@ -16,7 +16,6 @@ import { createBreadcrumbSchema } from "@/lib/seo";
 export const dynamic = "force-dynamic";
 
 const faqHeroStats = [
-  ["24 t", "normal svartid"],
   ["5", "temaer samlet"],
   ["2005", "lokal erfaring"],
 ] as const;
@@ -185,7 +184,7 @@ export default async function FAQPage() {
               Vi hjelper deg gjerne
             </h2>
             <p className="mx-auto mb-6 max-w-lg font-inter text-base leading-relaxed text-white/70">
-              Ta kontakt med oss direkte, så finner vi ut av det sammen. Vi svarer normalt innen 24 timer.
+              Ta kontakt med oss direkte, så finner vi ut av det sammen. Vi svarer så fort vi kan.
             </p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
               <Link

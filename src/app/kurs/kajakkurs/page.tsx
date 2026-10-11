@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
@@ -12,6 +11,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
@@ -251,59 +252,26 @@ export default async function KajakkursPage() {
       <JsonLd data={faqSchema} />
       <Navbar variant="solid" />
 
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src="/images/scraped/kayak/pusnes-introkurs-4613.jpg"
-          alt="Kajakkurs i rolig vann ved Arendal"
-          fill
-          preload
-          fetchPriority="high"
-          loading="eager"
-          sizes="100vw"
-          className="object-cover object-[48%_44%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/36 via-brown/64 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[88svh] max-w-7xl items-end gap-8 px-6 pb-14 pt-32 md:min-h-[760px] md:pb-18 lg:grid-cols-[minmax(0,1fr)_380px] lg:pt-40">
-          <div className="max-w-3xl">
-            <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.24em] text-sand md:text-sm">
-              Kajakkurs i Arendal
-            </p>
-            <h1 className="font-space text-4xl font-bold leading-[0.98] text-white md:text-6xl lg:text-7xl">
-              Ta våttkort i skjærgården
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/88 md:text-xl">
-              Vi eeeelsker å lære bort kajakk på Sørlandet. Du får trygg
-              opplæring, alt utstyr inkludert og en deilig kursdag innaskjærs,
-              rett og slett.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/booking"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-              >
-                Finn kursdato
-              </Link>
-              <Link
-                href="/kontakt?tjeneste=Kajakkurs"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-7 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Be om forslag
-              </Link>
-            </div>
-          </div>
-
-          <aside className="hidden border border-white/18 bg-white/12 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-md lg:block">
+      <PageHero
+        image="/images/scraped/kayak/pusnes-introkurs-4613.jpg"
+        imageAlt="Kajakkurs i rolig vann ved Arendal"
+        imagePosition="48% 44%"
+        eyebrow="Kajakkurs i Arendal"
+        title="Ta våttkort i skjærgården"
+        intro="Vi eeeelsker å lære bort kajakk på Sørlandet. Du får trygg opplæring, alt utstyr inkludert og en deilig kursdag innaskjærs, rett og slett."
+        primary={{ label: "Bestill kurs", href: "/booking" }}
+        secondary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Kajakkurs" }}
+        aside={
+          <>
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sand text-brown">
                 <Waves className="h-6 w-6" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
                   Fra nybegynner
                 </p>
-                <p className="font-space text-2xl font-bold text-white">
+                <p className="font-space text-2xl font-bold text-brown">
                   Til trygg padler
                 </p>
               </div>
@@ -314,19 +282,19 @@ export default async function KajakkursPage() {
                 ["16 timer", "grunnkurs hav"],
                 ["Alt utstyr", "inkludert"],
               ].map(([value, label]) => (
-                <div key={value} className="border-t border-white/16 pt-4">
-                  <p className="font-space text-2xl font-bold text-white">
+                <div key={value} className="border-t border-border pt-4">
+                  <p className="font-space text-2xl font-bold text-brown">
                     {value}
                   </p>
-                  <p className="mt-1 font-inter text-sm text-white/72">
+                  <p className="mt-1 font-inter text-sm text-brown-mid">
                     {label}
                   </p>
                 </div>
               ))}
             </div>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
@@ -340,20 +308,14 @@ export default async function KajakkursPage() {
               underveis og sørger for at du får mestring på kjøpet.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="tel:+4794826710"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
-              >
+              <Button href="tel:+4794826710" className="gap-2">
                 <Phone className="h-4 w-4" aria-hidden="true" />
                 Ring Roar
-              </a>
-              <Link
-                href="#kurs"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-brown/20 px-6 py-3 font-inter text-sm font-semibold text-brown transition-colors hover:bg-white"
-              >
+              </Button>
+              <Button href="#kurs" variant="outline" className="gap-2">
                 Se kursene
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+              </Button>
             </div>
           </div>
 
@@ -393,7 +355,7 @@ export default async function KajakkursPage() {
             {courses.map((course) => (
               <article
                 key={course.id}
-                className="group grid overflow-hidden border border-border bg-white shadow-sm transition-transform duration-300 hover:-translate-y-1 md:grid-cols-[0.92fr_1.08fr]"
+                className="grid overflow-hidden border border-border bg-white shadow-sm md:grid-cols-[0.92fr_1.08fr]"
               >
                 <div className="relative min-h-[240px] overflow-hidden">
                   <Image
@@ -401,7 +363,7 @@ export default async function KajakkursPage() {
                     alt={course.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 45vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover"
                   />
                 </div>
                 <div className="flex min-h-[300px] flex-col p-6">
@@ -425,12 +387,7 @@ export default async function KajakkursPage() {
                     {course.outcome}
                   </p>
                   <div className="mt-auto pt-6">
-                    <Link
-                      href="/booking"
-                      className="inline-flex min-h-11 items-center justify-center rounded-full bg-teal px-5 py-2.5 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#356c74]"
-                    >
-                      Finn dato
-                    </Link>
+                    <Button href="/booking">Bestill kurs</Button>
                   </div>
                 </div>
               </article>
@@ -520,18 +477,12 @@ export default async function KajakkursPage() {
           </div>
 
           <div className="mt-12 flex flex-col gap-3 border-t border-white/12 pt-10 sm:flex-row">
-            <Link
-              href="/booking"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f]"
-            >
-              Finn kursdato
-            </Link>
-            <Link
-              href="/kontakt?tjeneste=Kajakkurs"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-7 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Be om forslag og pris
-            </Link>
+            <Button href="/booking" variant="sand">
+              Bestill kurs
+            </Button>
+            <Button href="/kontakt?tjeneste=Kajakkurs" variant="outline-light">
+              Send forespørsel
+            </Button>
           </div>
         </div>
       </section>

@@ -1,18 +1,18 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
   HeartHandshake,
   Leaf,
   MapPin,
-  Phone,
   ShieldCheck,
   UsersRound,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
@@ -183,80 +183,42 @@ export default async function HesteopplevelserPage() {
       <JsonLd data={jsonLd} />
       <Navbar variant="solid" />
 
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src={heroImage}
-          alt="Ridetur på islandshest langs kysten på Sørlandet"
-          fill
-          preload
-          fetchPriority="high"
-          loading="eager"
-          sizes="100vw"
-          className="object-cover object-[55%_42%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/50 via-brown/72 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[820px] max-w-7xl items-end gap-8 px-6 pb-16 pt-32 md:min-h-[760px] lg:grid-cols-[minmax(0,1fr)_390px] lg:pb-20 lg:pt-40">
-          <div className="max-w-4xl">
-            <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
-              Ridetur og mestring med hest
-            </p>
-            <h1 className="font-space text-5xl font-bold leading-[0.98] text-white md:text-7xl">
-              Ridetur med trygge islandshester
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              Bli med ut i naturen sammen med hestene våre. Vi lager rolige,
-              gøye og mestringsbyggende opplevelser for fine folk som vil prøve
-              noe annerledes på Sørlandet.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Hesteopplevelser"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand active:scale-[0.98]"
-              >
-                Be om forslag og pris
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="tel:+4799469957"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Ring Tone Pernille
-              </a>
-            </div>
-          </div>
-
-          <aside className="rounded-3xl border border-white/18 bg-white/14 p-5 shadow-2xl backdrop-blur">
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+      <PageHero
+        image={heroImage}
+        imageAlt="Ridetur på islandshest langs kysten på Sørlandet"
+        imagePosition="55% 42%"
+        eyebrow="Ridetur og mestring med hest"
+        title="Ridetur med trygge islandshester"
+        intro="Bli med ut i naturen sammen med hestene våre. Vi lager rolige, gøye og mestringsbyggende opplevelser for fine folk som vil prøve noe annerledes på Sørlandet."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Hesteopplevelser" }}
+        secondary={{ label: "Ring Tone Pernille", href: "tel:+4799469957" }}
+        aside={
+          <>
+            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
               Kort fortalt
             </p>
             <div className="mt-5 grid gap-3">
               {quickFacts.map((fact) => (
                 <div
                   key={fact.label}
-                  className="rounded-2xl border border-white/12 bg-white/10 p-4"
+                  className="rounded-2xl border border-border bg-white p-4"
                 >
-                  <p className="font-inter text-xs font-semibold uppercase tracking-[0.14em] text-white/58">
+                  <p className="font-inter text-xs font-semibold uppercase tracking-[0.14em] text-brown-muted">
                     {fact.label}
                   </p>
-                  <p className="mt-1 font-space text-xl font-bold text-white">
+                  <p className="mt-1 font-space text-xl font-bold text-brown">
                     {fact.value}
                   </p>
                 </div>
               ))}
             </div>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Hva dere får
-          </p>
-          <h2 className="mt-3 font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
+          <h2 className="font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
             Hest gjør samarbeid, ro og mestring helt konkret
           </h2>
         </div>
@@ -284,10 +246,7 @@ export default async function HesteopplevelserPage() {
       <section className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 max-w-3xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-              Slik legger vi det opp
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Rolig ramme, tydelig veiledning og rom for å prøve
             </h2>
           </div>
@@ -296,7 +255,7 @@ export default async function HesteopplevelserPage() {
             {experienceSteps.map((step) => (
               <article
                 key={step.title}
-                className="rounded-2xl border border-brown-muted/15 bg-cream p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 md:p-8"
+                className="rounded-2xl border border-brown-muted/15 bg-cream p-6 shadow-sm md:p-8"
               >
                 <step.icon
                   className="h-8 w-8 text-teal"
@@ -344,7 +303,7 @@ export default async function HesteopplevelserPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 rounded-2xl border border-white/12 bg-white/10 p-5">
+          <div className="mt-8 rounded-2xl bg-brown-mid p-5">
             <div className="flex items-start gap-3">
               <MapPin className="mt-1 h-5 w-5 text-sand" aria-hidden="true" />
               <p className="font-inter text-sm leading-relaxed text-white/78">
@@ -358,10 +317,7 @@ export default async function HesteopplevelserPage() {
 
       <section className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal">
-            Vanlige spørsmål
-          </p>
-          <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+          <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
             Før du blir med til hestene
           </h2>
           <div className="mt-10 divide-y divide-brown-muted/18 rounded-3xl border border-brown-muted/18 bg-cream">
@@ -383,10 +339,7 @@ export default async function HesteopplevelserPage() {
         <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl bg-brown">
           <div className="grid lg:grid-cols-[1fr_0.82fr]">
             <div className="p-8 text-white md:p-12">
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-sand">
-                Klar for hest?
-              </p>
-              <h2 className="mt-3 font-space text-3xl font-bold leading-tight md:text-5xl">
+              <h2 className="font-space text-3xl font-bold leading-tight md:text-5xl">
                 Send oss litt om gruppen, så lager vi et forslag
               </h2>
               <p className="mt-5 max-w-2xl font-inter text-base leading-relaxed text-white/78 md:text-lg">
@@ -395,19 +348,13 @@ export default async function HesteopplevelserPage() {
                 uforpliktende.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/kontakt?tjeneste=Hesteopplevelser"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
-                >
-                  Be om forslag og pris
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/priser#hest"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 px-6 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10 active:scale-[0.98]"
-                >
+                <Button href="/kontakt?tjeneste=Hesteopplevelser" variant="sand">
+                  Send forespørsel
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Button>
+                <Button href="/priser#hest" variant="outline-light">
                   Se prisnivå
-                </Link>
+                </Button>
               </div>
             </div>
             <div className="relative hidden min-h-[280px] lg:block lg:min-h-full">

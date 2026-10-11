@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -12,6 +11,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
@@ -197,89 +198,54 @@ export default async function JtiForedragPage() {
         ])}
       />
       <JsonLd data={createJsonLd(priceText)} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src={heroImage}
-          alt="Tone Pernille Sivertsen holder foredrag om JTI"
-          fill
-          preload
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover object-[52%_30%] opacity-46"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/50 via-brown/78 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[820px] max-w-7xl items-end gap-10 px-6 pb-16 pt-32 lg:grid-cols-[minmax(0,1fr)_420px] lg:pb-20">
-          <div className="max-w-4xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-sand">
-              JTI foredrag og workshop
-            </p>
-            <h1 className="mt-5 max-w-4xl font-space text-5xl font-bold leading-[0.98] md:text-7xl">
-              Forstå teamet før dere prøver å endre det
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/86 md:text-xl">
-              JTI gjør personlighet og samarbeid praktisk. Tone Pernille gir
-              teamet et språk for ulikheter, kommunikasjon og de små
-              friksjonene som ofte avgjør hvordan hverdagen fungerer.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Foredrag/JTI"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-              >
-                Send JTI-forespørsel
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#opplegg"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Se opplegg
-              </Link>
-            </div>
-          </div>
-
-          <aside className="rounded-2xl border border-white/18 bg-white/14 p-6 shadow-2xl backdrop-blur">
-            <BookOpenCheck className="h-8 w-8 text-sand" aria-hidden="true" />
-            <p className="mt-5 font-space text-2xl font-bold text-white">
+      <PageHero
+        image={heroImage}
+        imageAlt="Tone Pernille Sivertsen holder foredrag om JTI"
+        imagePosition="52% 30%"
+        eyebrow="JTI foredrag og workshop"
+        title="Forstå teamet før dere prøver å endre det"
+        intro="JTI gjør personlighet og samarbeid praktisk. Tone Pernille gir teamet et språk for ulikheter, kommunikasjon og de små friksjonene som ofte avgjør hvordan hverdagen fungerer."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Foredrag/JTI" }}
+        secondary={{ label: "Se opplegg", href: "#opplegg" }}
+        asideOnMobile
+        aside={
+          <>
+            <BookOpenCheck className="h-8 w-8 text-teal" aria-hidden="true" />
+            <p className="mt-5 font-space text-2xl font-bold text-brown">
               {priceText}
             </p>
-            <p className="mt-3 font-inter text-sm leading-relaxed text-white/76">
+            <p className="mt-3 font-inter text-sm leading-relaxed text-brown-mid">
               Kort foredrag, workshop eller hel teamanalyse. Innhold og varighet
               tilpasses gruppen.
             </p>
-            <dl className="mt-6 grid gap-4 border-t border-white/15 pt-5">
+            <dl className="mt-6 grid gap-4 border-t border-border pt-5">
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-sand">
+                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
                   Passer for
                 </dt>
-                <dd className="mt-1 font-inter text-sm text-white/82">
+                <dd className="mt-1 font-inter text-sm text-brown">
                   Bedrifter, ledergrupper og team
                 </dd>
               </div>
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-sand">
+                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
                   Kontakt
                 </dt>
-                <dd className="mt-1 font-inter text-sm text-white/82">
+                <dd className="mt-1 font-inter text-sm text-brown">
                   Tone Pernille Sivertsen
                 </dd>
               </div>
             </dl>
-          </aside>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Teamdynamikk i praksis
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold leading-tight text-brown md:text-5xl">
               Mindre synsing, mer felles språk
             </h2>
             <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -306,10 +272,7 @@ export default async function JtiForedragPage() {
       <section id="opplegg" className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 max-w-3xl">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Velg nivå
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Fra kort inspirasjon til hel teamdag
             </h2>
             <p className="mt-5 font-inter text-base leading-relaxed text-brown-mid md:text-lg">
@@ -381,27 +344,26 @@ export default async function JtiForedragPage() {
               ))}
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <Button
                 href="/kontakt?tjeneste=Foredrag/JTI"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brown px-6 py-3 font-inter text-sm font-bold text-white transition-colors hover:bg-brown-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
+                variant="primary"
+                className="gap-2"
               >
-                Snakk med Tone
+                Send forespørsel
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
+              </Button>
+              <Button
                 href="tel:+4799469957"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 font-inter text-sm font-semibold text-brown transition-colors hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
+                variant="outline"
+                className="gap-2"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                +47 99 46 99 57
-              </a>
-              <Link
-                href="/kurs/jti"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 font-inter text-sm font-semibold text-brown transition-colors hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brown"
-              >
+                Ring Tone Pernille
+              </Button>
+              <Button href="/kurs/jti" variant="outline" className="gap-2">
                 Se JTI-kurs
                 <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -410,10 +372,7 @@ export default async function JtiForedragPage() {
       <section className="bg-warm-white py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="mb-8 text-center">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-teal">
-              Praktisk
-            </p>
-            <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
+            <h2 className="font-space text-3xl font-bold text-brown md:text-5xl">
               Ofte spurt om JTI
             </h2>
           </div>
@@ -445,13 +404,10 @@ export default async function JtiForedragPage() {
               Fortell litt om gruppen, så foreslår vi riktig JTI-opplegg.
             </h2>
           </div>
-          <Link
-            href="/kontakt?tjeneste=Foredrag/JTI"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-7 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-          >
+          <Button href="/kontakt?tjeneste=Foredrag/JTI" variant="sand" className="gap-2">
             Send forespørsel
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          </Button>
         </div>
       </section>
 

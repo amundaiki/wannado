@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
+import Button from "@/components/ui/Button";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -92,28 +93,24 @@ const jsonLd = {
 
 const galleryImages = [
   {
-    src: "/images/scraped/sailing/P7300114.jpg",
-    alt: "Gjester nyter seilasen ombord i Havsul i Arendals skjærgård",
+    src: "/images/20230910_125202-1280x960.jpg",
+    alt: "Listerskøyta Havsul ved kai i Arendal sentrum",
   },
   {
-    src: "/images/scraped/sailing/P9010367.jpg",
-    alt: "Havsul seiler forbi Merdø med gjester ombord",
+    src: "/images/roar-laugerud-havsul.jpg",
+    alt: "Roar Laugerud ombord på Havsul",
   },
   {
-    src: "/images/scraped/sailing/hav-1-2.jpg",
-    alt: "Listerskøyta Havsul med seil oppe langs Sørlandskysten",
+    src: "/images/havsul-poster.jpg",
+    alt: "Havsul sett fra luften med jolle på slep",
   },
   {
-    src: "/images/scraped/sailing/hav-2-2.jpg",
-    alt: "Havsul på sjøen med Arendals skjærgård i bakgrunnen",
+    src: "/images/tone-pernille-havsul.jpg",
+    alt: "Tone Pernille og en gjest i redningsvest ombord på Havsul",
   },
   {
-    src: "/images/scraped/sailing/hav-4-2.jpg",
-    alt: "Seiltur med Havsul i solnedgang ved Arendal",
-  },
-  {
-    src: "/images/scraped/sailing/hav-7-2.jpg",
-    alt: "Historisk seilas med Listerskøyta Havsul utenfor Arendal",
+    src: "/images/baat-fb.jpg",
+    alt: "Havsul med seil oppe og norsk flagg",
   },
 ];
 
@@ -183,32 +180,15 @@ export default async function SeilturerPage() {
       <JsonLd data={videoJsonLd} />
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-end">
-        <Image
-          src={product.imageUrl || "/images/havsul.jpg"}
-          alt={product.imageAlt || "Listerskøyta Havsul seiler i Arendals skjærgård"}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-brown/30 to-transparent" />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 w-full">
-          <p className="font-inter text-sm font-medium text-sand uppercase tracking-[3px] mb-4">
-            Seiltur i skjærgården
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
-            {product.name}
-            <br />
-            <span className="sr-only"> </span>
-            fra 1933
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
-            {product.descriptionText}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        image={product.imageUrl || "/images/havsul.jpg"}
+        imageAlt={product.imageAlt || "Listerskøyta Havsul seiler i Arendals skjærgård"}
+        eyebrow="Seiltur i skjærgården"
+        title={`${product.name} fra 1933`}
+        intro={product.descriptionText ?? undefined}
+        primary={{ label: "Bestill seiltur", href: "/booking" }}
+        secondary={{ label: "Ring Tone Pernille", href: "tel:+4799469957" }}
+      />
 
       {/* Main Content + Pricing Card */}
       <section className="max-w-6xl mx-auto px-6 py-20 md:py-28">
@@ -420,14 +400,11 @@ export default async function SeilturerPage() {
                 </p>
               </div>
 
-              <Link
-                href="/booking"
-                className="block w-full text-center bg-brown text-white font-inter font-semibold text-base py-4 rounded-xl hover:bg-brown-hover transition-colors"
-              >
+              <Button href="/booking" variant="primary" className="w-full">
                 Bestill seiltur
-              </Link>
+              </Button>
               <p className="font-inter text-xs text-brown-muted text-center mt-3">
-                Vi svarer vanligvis innen 24 timer
+                Vi svarer så fort vi kan
               </p>
             </div>
           </div>
@@ -447,7 +424,7 @@ export default async function SeilturerPage() {
             {galleryImages.map((image, idx) => (
               <div
                 key={image.src}
-                className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
+                className={`relative overflow-hidden rounded-2xl group ${
                   idx === 0 ? "sm:col-span-2 aspect-[2/1]" : "aspect-[3/2]"
                 }`}
               >
@@ -457,7 +434,7 @@ export default async function SeilturerPage() {
                   width={idx === 0 ? 1200 : 600}
                   height={idx === 0 ? 600 : 400}
                   sizes={idx === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover w-full h-full"
                 />
                 <div className="absolute inset-0 bg-brown/0 group-hover:bg-brown/10 transition-colors duration-300" />
               </div>
@@ -471,16 +448,13 @@ export default async function SeilturerPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
-              <p className="font-inter text-sm font-semibold uppercase tracking-widest text-teal mb-3">
-                Møt skipperen
-              </p>
               <h2 className="font-space font-bold text-2xl md:text-3xl text-brown mb-4">
                 Roar Laugerud
               </h2>
               <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mb-4">
                 Roar er mannen ved roret. Med Veileder Hav-sertifikat, fritidsskipper og
-                BCU nest høyeste nivå bak seg, er han en av Norges mest erfarne
-                padleinstruktører og skippere. Hans rolige tilstedeværelse og levende
+                BCU nest høyeste nivå bak seg, leder han både padleturer og
+                seilturer. Hans rolige tilstedeværelse og levende
                 historiefortelling gjør hver seiltur unik.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -645,23 +619,17 @@ export default async function SeilturerPage() {
           <h2 className="font-space text-3xl md:text-5xl font-bold text-white mb-4">
             Klar for et eventyr på havet?
           </h2>
-          <p className="font-inter text-lg text-white/70 max-w-xl mx-auto mb-10">
+          <p className="font-inter text-lg text-white/85 max-w-xl mx-auto mb-10">
             Book en seiltur med Havsul og opplev Arendals skjærgård fra sjøsiden.
             Vi skreddersyr turen etter deres ønsker.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/booking"
-              className="inline-block bg-sand text-brown font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-[#f5cc7a] transition-colors"
-            >
-              Bestill nå
-            </Link>
-            <a
-              href="tel:+4799469957"
-              className="inline-block border-2 border-white/30 text-white font-inter font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
-            >
-              Ring +47 99 46 99 57
-            </a>
+            <Button href="/booking" variant="sand">
+              Bestill seiltur
+            </Button>
+            <Button href="tel:+4799469957" variant="outline-light">
+              Ring Tone Pernille
+            </Button>
           </div>
         </div>
       </section>

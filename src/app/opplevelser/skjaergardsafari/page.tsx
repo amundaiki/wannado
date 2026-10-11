@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Binoculars, CheckCircle2, Compass, LifeBuoy, MapPin, Waves } from "lucide-react";
+import { Binoculars, CheckCircle2, Compass, LifeBuoy, MapPin, Waves } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import PageHero from "@/components/sections/PageHero";
+import Button from "@/components/ui/Button";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
 import { absoluteUrl, createBreadcrumbSchema } from "@/lib/seo";
 
@@ -24,12 +25,6 @@ export function generateMetadata() {
     },
   });
 }
-
-const highlights = [
-  ["Guidet tur", "lokalkjent veileder"],
-  ["Alle nivåer", "tilpasses gruppen"],
-  ["Utstyr med", "kajakk, åre og vest"],
-] as const;
 
 const includedItems = [
   "Kajakk, åre og redningsvest",
@@ -171,65 +166,17 @@ export default function SkjaergardsafariPage() {
       <JsonLd data={faqJsonLd} />
       <Navbar />
 
-      <section className="relative min-h-[760px] overflow-hidden bg-brown text-white md:min-h-[720px]">
-        <Image
-          src="/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"
-          alt="Guidet kajakktur i skjærgården ved Arendal"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[50%_48%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/58 via-brown/45 to-brown/92" />
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-brown to-transparent" />
-
-        <div className="relative z-10 mx-auto flex min-h-[760px] max-w-6xl flex-col justify-end px-6 pb-12 pt-28 md:min-h-[720px] md:pb-16">
-          <div className="max-w-4xl">
-            <Link
-              href="/opplevelser"
-              className="mb-6 inline-flex min-h-11 items-center font-inter text-sm font-semibold text-[#f6d58e] transition-colors hover:text-white"
-            >
-              Opplevelser i Arendal
-            </Link>
-            <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-              Skjærgårdssafari i kajakk
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-              Bli med en lokalkjent guide ut i Arendals skjærgård. Vi holder
-              tempoet trygt, velger rute etter forholdene og lar naturen gjøre
-              mesteparten av jobben.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/kontakt?tjeneste=Kajakktur"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-              >
-                Spør om skjærgårdssafari
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/kajakkturer"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-              >
-                Se kajakkturer og kurs
-              </Link>
-            </div>
-            <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
-              {highlights.map(([value, label]) => (
-                <div key={value} className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4">
-                  <p className="font-space text-lg font-bold leading-tight text-white sm:text-2xl">
-                    {value}
-                  </p>
-                  <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/kayak/kajakktur-strandhotell-4015.jpg"
+        imageAlt="Guidet kajakktur i skjærgården ved Arendal"
+        imagePosition="50% 48%"
+        eyebrow="Opplevelser i Arendal"
+        title="Skjærgårdssafari i kajakk"
+        intro="Bli med en lokalkjent guide ut i Arendals skjærgård. Vi holder tempoet trygt, velger rute etter forholdene og lar naturen gjøre mesteparten av jobben."
+        primary={{ label: "Send forespørsel", href: "/kontakt?tjeneste=Kajakktur" }}
+        secondary={{ label: "Se kajakkturer og kurs", href: "/kajakkturer" }}
+        facts={[["Utstyr med", "kajakk, åre og vest"]]}
+      />
 
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-16">
         <div>
@@ -284,12 +231,9 @@ export default function SkjaergardsafariPage() {
               );
             })}
           </div>
-          <Link
-            href="/kontakt?tjeneste=Kajakktur"
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-brown px-6 font-inter text-sm font-semibold text-white transition-colors hover:bg-brown-hover"
-          >
+          <Button href="/kontakt?tjeneste=Kajakktur" variant="primary" className="mt-6 w-full">
             Send forespørsel
-          </Link>
+          </Button>
         </aside>
       </section>
 
@@ -368,18 +312,12 @@ export default function SkjaergardsafariPage() {
             med forslag til trygg og fin skjærgårdssafari.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/kontakt?tjeneste=Kajakktur"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#f6d58e] px-8 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977] sm:w-auto"
-            >
-              Spør om tur
-            </Link>
-            <a
-              href="tel:+4794826710"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-white/35 px-8 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto"
-            >
-              Ring +47 94 82 67 10
-            </a>
+            <Button href="/kontakt?tjeneste=Kajakktur" variant="sand" className="w-full sm:w-auto">
+              Send forespørsel
+            </Button>
+            <Button href="tel:+4794826710" variant="outline-light" className="w-full sm:w-auto">
+              Ring Roar Laugerud
+            </Button>
           </div>
         </div>
       </section>
