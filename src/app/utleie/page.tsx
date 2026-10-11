@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, Compass, MapPin, Waves } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { createServicePageMetadata } from "@/lib/serviceMetadata";
@@ -44,12 +45,6 @@ const rentalOptions = [
     note: "rolig og familievennlig, ta kontakt med Roar for pris",
     schemaPrice: null,
   },
-] as const;
-
-const heroStats = [
-  ["Skarestrand", "oppmøte ved sjøen"],
-  ["3 valg", "kajakk, dobbel og kano"],
-  ["Roar", "hjelper med riktig utstyr"],
 ] as const;
 
 const practicalCards = [
@@ -122,79 +117,36 @@ export default async function UtleiePage() {
       <JsonLd data={rentalServiceJsonLd} />
       <Navbar />
 
-      <section className="relative flex min-h-[760px] items-end overflow-hidden text-white md:min-h-[720px]">
-        <Image
-          src="/images/utleie-bilde.jpg"
-          alt="Kajakker klar for utleie ved Skarestrand"
-          fill
-          className="object-cover object-[54%_44%]"
-          priority
-          loading="eager"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/52 via-brown/34 to-brown/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(246,213,142,0.18),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
-            <div className="max-w-3xl">
-              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
-                Utstyrsutleie
-              </p>
-              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-                Lei kajakk og kano i Arendals skjærgård
-              </h1>
-              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-                Utforsk kysten på egenhånd med utstyr fra Skarestrand. Vi hjelper
-                deg med riktig valg, praktisk oppmøte og trygg start på turen.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/booking"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Bestill utleie
-                </Link>
-                <a
-                  href="tel:+4794826710"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Ring Roar
-                </a>
-              </div>
-              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
-                {heroStats.map(([value, label]) => (
-                  <div
-                    key={value}
-                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
-                  >
-                    <p className="font-space text-lg font-bold leading-tight text-white sm:text-2xl">
-                      {value}
-                    </p>
-                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
+      <PageHero
+        image="/images/utleie-bilde.jpg"
+        imageAlt="Kajakker klar for utleie ved Skarestrand"
+        imagePosition="54% 44%"
+        eyebrow="Utstyrsutleie"
+        title="Lei kajakk og kano i Arendals skjærgård"
+        intro="Utforsk kysten på egenhånd med utstyr fra Skarestrand. Vi hjelper deg med riktig valg, praktisk oppmøte og trygg start på turen."
+        primary={{ label: "Bestill utleie", href: "/booking" }}
+        secondary={{ label: "Ring Roar", href: "tel:+4794826710" }}
+        facts={[
+          ["Skarestrand", "oppmøte ved sjøen"],
+          ["3 valg", "kajakk, dobbel og kano"],
+          ["Roar", "hjelper med riktig utstyr"],
+        ]}
+        aside={
+          <>
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10">
+              <Waves className="h-6 w-6 text-teal" aria-hidden="true" />
             </div>
-
-            <div className="hidden border border-white/18 bg-white/12 p-5 backdrop-blur-md md:p-6 lg:block">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/18 bg-white/12">
-                <Waves className="h-6 w-6 text-[#f6d58e]" />
-              </div>
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-[#f6d58e]">
-                Før du legger ut
-              </p>
-              <p className="mt-4 font-inter text-sm leading-7 text-white/78">
-                Ta kontakt hvis du er usikker på vær, rute, erfaring eller
-                hvilken kajakk som passer. Utleie bør avklares på forhånd, slik
-                at riktig utstyr er klart.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-brown">
+              Før du legger ut
+            </p>
+            <p className="mt-4 font-body text-sm leading-7 text-brown">
+              Ta kontakt hvis du er usikker på vær, rute, erfaring eller hvilken
+              kajakk som passer. Utleie bør avklares på forhånd, slik at riktig
+              utstyr er klart.
+            </p>
+          </>
+        }
+      />
 
       <section className="max-w-6xl mx-auto px-6 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">

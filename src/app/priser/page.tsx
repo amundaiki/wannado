@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl, createBreadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -348,54 +348,21 @@ export default function PricingPage() {
         data={createBreadcrumbSchema([{ name: "Priser", path: "/priser" }])}
       />
       <JsonLd data={pricingSchema} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      {/* Hero */}
-      <section className="relative flex min-h-[640px] items-end overflow-hidden text-white md:min-h-[600px]">
-        <Image
-          src="/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg"
-          alt="Gruppeaktivitet med Wannado under teambuilding på Sørlandet"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[48%_50%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/74 via-brown/58 to-brown/86" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_24%,rgba(246,213,142,0.18),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pb-14 pt-32 lg:px-10">
-          <div className="mx-auto max-w-7xl">
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
-              Priser
-            </p>
-            <h1 className="mt-4 max-w-4xl font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-              Priser og pakker for opplevelser i Arendal
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/86 md:text-xl">
-              Se fra-priser og typiske pakker. For grupper tilpasser vi
-              innhold, varighet og logistikk før vi gir et konkret tilbud.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/booking"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-              >
-                Send forespørsel
-              </Link>
-              <Link
-                href="#prisoversikt"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-              >
-                Se prisoversikt
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/teambuilding/Volum-liter-pa-Strand-Hotell-8538.jpg"
+        imageAlt="Gruppeaktivitet med Wannado under teambuilding på Sørlandet"
+        imagePosition="48% 50%"
+        eyebrow="Priser"
+        title="Priser og pakker for opplevelser i Arendal"
+        intro="Se fra-priser og typiske pakker. For grupper tilpasser vi innhold, varighet og logistikk før vi gir et konkret tilbud."
+        primary={{ label: "Send forespørsel", href: "/booking" }}
+        secondary={{ label: "Se prisoversikt", href: "#prisoversikt" }}
+      />
 
       {/* Intro */}
-      <section className="bg-warm-white border-b border-border">
+      <section id="prisoversikt" className="scroll-mt-20 bg-warm-white border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 md:py-16">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
             <div>

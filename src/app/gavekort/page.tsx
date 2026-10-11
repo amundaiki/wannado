@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
+import PageHero from "@/components/sections/PageHero";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
@@ -115,45 +116,15 @@ export default async function GavekortPage() {
       <JsonLd data={giftCardJsonLd} />
       <Navbar />
 
-      <section className="relative min-h-[720px] md:min-h-[680px] flex items-center overflow-hidden px-6 text-white">
-        <Image
-          src="/images/scraped/sailing/baat-fb-havsul.jpg"
-          alt="Havsul på sjøen, en opplevelse som kan gis som gavekort"
-          fill
-          priority
-          loading="eager"
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/70 via-brown/55 to-brown/82" />
-        <div className="relative z-10 max-w-5xl mx-auto pt-28 pb-16 text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.32em] text-[#f6d58e] mb-5">
-            Gi bort en opplevelse
-          </p>
-          <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.98] mb-6">
-            Gavekort fra Wannado
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-white/86 leading-relaxed max-w-2xl mx-auto">
-            Gi bort seiltur, kajakk, teambuilding eller en skreddersydd dag på
-            Sørlandet. Vi lager personlige gavekort tilpasset mottakeren og
-            anledningen.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="#bestill-gavekort"
-              className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-            >
-              Bestill gavekort
-            </Link>
-            <Link
-              href="/booking"
-              className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-            >
-              Se opplevelser
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/sailing/baat-fb-havsul.jpg"
+        imageAlt="Havsul på sjøen, en opplevelse som kan gis som gavekort"
+        eyebrow="Gi bort en opplevelse"
+        title="Gavekort fra Wannado"
+        intro="Gi bort seiltur, kajakk, teambuilding eller en skreddersydd dag på Sørlandet. Vi lager personlige gavekort tilpasset mottakeren og anledningen."
+        primary={{ label: "Bestill gavekort", href: "#bestill-gavekort" }}
+        secondary={{ label: "Se opplevelser", href: "/booking" }}
+      />
 
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">

@@ -18,6 +18,8 @@ type PageHeroProps = {
   facts?: ReadonlyArray<readonly [value: string, label: string]>;
   /** Valgfritt kort til høyre på lg og opp, på solid flate (ikke glass). */
   aside?: ReactNode;
+  /** Vis aside også under lg (stables under teksten). Bruk bare når innholdet er viktig, som en pris. */
+  asideOnMobile?: boolean;
 };
 
 /*
@@ -36,6 +38,7 @@ export default function PageHero({
   secondary,
   facts,
   aside,
+  asideOnMobile = false,
 }: PageHeroProps) {
   return (
     <section className="relative flex min-h-[600px] items-end overflow-hidden text-white md:min-h-[640px]">
@@ -48,7 +51,7 @@ export default function PageHero({
         className="object-cover"
         style={{ objectPosition: imagePosition }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-brown-dark/70 via-brown/35 to-brown-dark/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brown-dark/70 via-brown/55 to-brown-dark/90" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-12 pt-32 md:pb-16 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
@@ -95,7 +98,7 @@ export default function PageHero({
           </div>
 
           {aside && (
-            <div className="hidden rounded-card bg-cream p-6 text-brown shadow-[0_1px_2px_rgba(42,31,24,0.2),0_12px_32px_rgba(42,31,24,0.25)] lg:block">
+            <div className={`${asideOnMobile ? "" : "hidden lg:block"} rounded-card bg-cream p-6 text-brown shadow-[0_1px_2px_rgba(42,31,24,0.2),0_12px_32px_rgba(42,31,24,0.25)]`}>
               {aside}
             </div>
           )}

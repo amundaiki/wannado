@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   Calendar,
@@ -10,9 +9,9 @@ import {
   Shield,
   Shirt,
   Users,
-  Waves,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import PageHero from "@/components/sections/PageHero";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -29,12 +28,6 @@ export const metadata = createPageMetadata({
   image: "/images/scraped/landscape/20230910_125202-scaled.jpg",
   imageAlt: "Praktisk informasjon om Wannado-opplevelser",
 });
-
-const heroStats = [
-  { value: "24 t", label: "svar på spørsmål" },
-  { value: "Hele året", label: "aktivitet ved riktig vær" },
-  { value: "Alt utstyr", label: "inkludert på kajakk" },
-];
 
 const quickChecklist = [
   "Møt presis på avtalt sted",
@@ -252,87 +245,44 @@ export default function PraktiskInformasjonPage() {
         ])}
       />
       <JsonLd data={practicalInfoJsonLd} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-brown text-white">
-        <Image
-          src="/images/scraped/landscape/20230910_125202-scaled.jpg"
-          alt="Havsul ved brygga i Arendal før en Wannado-opplevelse"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[48%_44%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/45 via-brown/72 to-brown" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-cream" />
-
-        <div className="relative mx-auto grid min-h-[82svh] max-w-7xl items-end gap-10 px-6 pb-12 pt-32 md:pb-16 lg:grid-cols-[minmax(0,1fr)_360px] lg:pt-40">
-          <div className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 font-inter text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
-              <Waves className="h-4 w-4 text-sand" aria-hidden="true" />
-              Før du drar
-            </div>
-            <h1 className="font-space text-5xl font-bold leading-[0.98] md:text-7xl">
-              Praktisk informasjon
-            </h1>
-            <p className="mt-6 max-w-2xl font-inter text-lg leading-relaxed text-white/88 md:text-xl">
-              Alt du trenger å vite om oppmøte, klær, utstyr, vær, sikkerhet og
-              betaling før opplevelsen med Wannado.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/booking"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-sand px-6 py-3 font-inter text-sm font-bold text-brown transition-colors hover:bg-[#f4c96f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sand"
-              >
-                Se booking
-              </Link>
-              <Link
-                href="#praktisk-detaljer"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 bg-white/10 px-6 py-3 font-inter text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Les detaljene
-              </Link>
-            </div>
-          </div>
-
-          <aside className="hidden rounded-2xl border border-white/20 bg-white/14 p-5 shadow-2xl backdrop-blur lg:block">
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand">
+      <PageHero
+        image="/images/scraped/landscape/20230910_125202-scaled.jpg"
+        imageAlt="Havsul ved brygga i Arendal før en Wannado-opplevelse"
+        imagePosition="48% 44%"
+        eyebrow="Før du drar"
+        title="Praktisk informasjon"
+        intro="Alt du trenger å vite om oppmøte, klær, utstyr, vær, sikkerhet og betaling før opplevelsen med Wannado."
+        primary={{ label: "Se booking", href: "/booking" }}
+        secondary={{ label: "Les detaljene", href: "#praktisk-detaljer" }}
+        facts={[
+          ["24 t", "svar på spørsmål"],
+          ["Hele året", "aktivitet ved riktig vær"],
+          ["Alt utstyr", "inkludert på kajakk"],
+        ]}
+        aside={
+          <>
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
               Rask sjekk
             </p>
             <ul className="mt-5 space-y-3">
               {quickChecklist.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 font-inter text-sm leading-relaxed text-white/86"
+                  className="flex gap-3 font-body text-sm leading-relaxed text-brown"
                 >
                   <CheckCircle2
-                    className="mt-0.5 h-5 w-5 flex-none text-sand"
+                    className="mt-0.5 h-5 w-5 flex-none text-teal"
                     aria-hidden="true"
                   />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </aside>
-
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:col-span-2">
-            {heroStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-white/18 bg-white/12 px-3 py-3 backdrop-blur sm:px-5 sm:py-4"
-              >
-                <p className="font-space text-lg font-bold leading-tight text-white sm:text-2xl">
-                  {stat.value}
-                </p>
-                <p className="mt-1 font-inter text-[0.58rem] font-semibold uppercase leading-snug tracking-[0.12em] text-white/72 sm:text-xs">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* Content Cards */}
       <section

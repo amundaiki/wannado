@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import PageHero from "@/components/sections/PageHero";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import Image from "next/image";
@@ -114,68 +115,17 @@ export default function SamarbeidspartnerePage() {
       />
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative flex min-h-[760px] items-end overflow-hidden text-white md:min-h-[700px]">
-        <Image
-          src="/images/scraped/landscape/20230910_125202-scaled.jpg"
-          alt="Havsul ved kai i Arendal sentrum"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[52%_50%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/72 via-brown/45 to-brown/88" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_22%,rgba(246,213,142,0.18),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-end">
-            <div className="max-w-3xl">
-              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
-                Samarbeid
-              </p>
-              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-                Lokale partnere som gjør opplevelsene større
-              </h1>
-              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-                Når gjester, bedrifter og grupper kommer til Sørlandet, kobler
-                vi aktivitetene våre med lokale aktører innen natur,
-                overnatting, utstyr og vertskap.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#partneroversikt"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Se partnerne
-                </a>
-                <Link
-                  href="/kontakt"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Snakk om samarbeid
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2 lg:grid-cols-1">
-              {partnerStats.map(([value, label]) => (
-                <div
-                  key={value}
-                  className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
-                >
-                  <p className="font-space text-xl font-bold text-white sm:text-2xl">
-                    {value}
-                  </p>
-                  <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/scraped/landscape/20230910_125202-scaled.jpg"
+        imageAlt="Havsul ved kai i Arendal sentrum"
+        imagePosition="52% 50%"
+        eyebrow="Samarbeid"
+        title="Lokale partnere som gjør opplevelsene større"
+        intro="Når gjester, bedrifter og grupper kommer til Sørlandet, kobler vi aktivitetene våre med lokale aktører innen natur, overnatting, utstyr og vertskap."
+        primary={{ label: "Se partnerne", href: "#partneroversikt" }}
+        secondary={{ label: "Snakk om samarbeid", href: "/kontakt" }}
+        facts={partnerStats}
+      />
 
       {/* Intro */}
       <section className="bg-warm-white">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Anchor, CheckCircle2, Clock3, LifeBuoy, MapPin, Waves } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServiceCmsSection } from "@/components/services/ServiceCmsSection";
 import { getServiceBySlug } from "@/lib/serviceContent";
@@ -182,77 +183,41 @@ export default async function KajakkOgKanoUtleiePage() {
       <JsonLd data={faqJsonLd} />
       <Navbar />
 
-      <section className="relative min-h-[760px] overflow-hidden bg-brown text-white md:min-h-[720px]">
-        <Image
-          src="/images/utleie-bilde.jpg"
-          alt="Kajakker klare for utleie ved Skarestrand i Kongshavn"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[55%_42%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/50 via-brown/35 to-brown/92" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-brown to-transparent" />
-
-        <div className="relative z-10 mx-auto flex min-h-[760px] max-w-6xl flex-col justify-end px-6 pb-12 pt-28 md:min-h-[720px] md:pb-16">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
-            <div className="max-w-3xl">
-              <Link
-                href="/utleie"
-                className="mb-6 inline-flex min-h-11 items-center font-inter text-sm font-semibold text-[#f6d58e] transition-colors hover:text-white"
-              >
-                Utleie hos Wannado
-              </Link>
-              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-                Lei kajakk og kano fra Skarestrand
-              </h1>
-              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-                Start turen rett ved sjøen i Kongshavn og utforsk Arendals
-                skjærgård i ditt eget tempo. Vi hjelper deg med riktig utstyr,
-                trygg oppstart og en rute som passer forholdene.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/kontakt?tjeneste=Utleie"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Spør om utleie
-                </Link>
-                <a
-                  href="tel:+4794826710"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Ring Roar
-                </a>
+      <PageHero
+        image="/images/utleie-bilde.jpg"
+        imageAlt="Kajakker klare for utleie ved Skarestrand i Kongshavn"
+        imagePosition="55% 42%"
+        eyebrow="Utleie hos Wannado"
+        title="Lei kajakk og kano fra Skarestrand"
+        intro="Start turen rett ved sjøen i Kongshavn og utforsk Arendals skjærgård i ditt eget tempo. Vi hjelper deg med riktig utstyr, trygg oppstart og en rute som passer forholdene."
+        primary={{ label: "Spør om utleie", href: "/kontakt?tjeneste=Utleie" }}
+        secondary={{ label: "Ring Roar", href: "tel:+4794826710" }}
+        asideOnMobile
+        aside={
+          <>
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-brown">
+              Fra
+            </p>
+            <p className="mt-3 font-display text-4xl font-bold text-brown">
+              kr 350,-
+            </p>
+            <p className="mt-2 font-body text-sm leading-6 text-brown">
+              Enkel kajakk halv dag (3 t). Hel dag fra kr 450,-. Redningsvest og
+              åre er inkludert.
+            </p>
+            <dl className="mt-6 grid grid-cols-2 gap-3 border-t border-brown/15 pt-4">
+              <div>
+                <dt className="font-display text-xl font-bold text-brown">Skarestrand</dt>
+                <dd className="mt-1 font-body text-xs text-brown">oppmøte</dd>
               </div>
-            </div>
-
-            <div className="border border-white/18 bg-white/12 p-5 backdrop-blur-md md:p-6">
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-[#f6d58e]">
-                Fra
-              </p>
-              <p className="mt-3 font-space text-4xl font-bold text-white">
-                kr 350,-
-              </p>
-              <p className="mt-2 font-inter text-sm leading-6 text-white/72">
-                Enkel kajakk halv dag (3 t). Hel dag fra kr 450,-. Redningsvest
-                og åre er inkludert.
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                <div className="border border-white/14 bg-white/10 p-3">
-                  <p className="font-space text-xl font-bold">Skarestrand</p>
-                  <p className="mt-1 font-inter text-xs text-white/68">oppmøte</p>
-                </div>
-                <div className="border border-white/14 bg-white/10 p-3">
-                  <p className="font-space text-xl font-bold">3 valg</p>
-                  <p className="mt-1 font-inter text-xs text-white/68">utstyr</p>
-                </div>
+              <div>
+                <dt className="font-display text-xl font-bold text-brown">3 valg</dt>
+                <dd className="mt-1 font-body text-xs text-brown">utstyr</dd>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </dl>
+          </>
+        }
+      />
 
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
         <div>

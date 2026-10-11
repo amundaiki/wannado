@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
+import PageHero from "@/components/sections/PageHero";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
@@ -70,73 +71,23 @@ export default async function OmOssPage() {
         data={createBreadcrumbSchema([{ name: "Om oss", path: "/om-oss" }])}
       />
       <JsonLd data={interviewVideoSchema} />
-      <Navbar variant="solid" />
+      <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative flex min-h-[760px] items-end overflow-hidden text-white md:min-h-[700px]">
-        <Image
-          src="/images/tone-pernille-havsul.jpg"
-          alt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendals skjærgård"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[52%_50%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/72 via-brown/48 to-brown/88" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(246,213,142,0.2),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
-                Om Wannado
-              </p>
-              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-                Menneskene bak opplevelsene
-              </h1>
-              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-                Over 15 år med lidenskap for mestring, lek og naturkraft. Fra
-                Kongshavn i Arendal skaper Tone Pernille, Roar og teamet
-                opplevelser som setter spor.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="#folkene"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Møt folkene
-                </Link>
-                <Link
-                  href="/kontakt"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Ta kontakt
-                </Link>
-              </div>
-              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
-                {[
-                  ["2005", "startet i Arendal"],
-                  ["15+ år", "med opplevelser"],
-                  ["6", "tjenesteområder"],
-                ].map(([value, label]) => (
-                  <div
-                    key={value}
-                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
-                  >
-                    <p className="font-space text-xl font-bold text-white sm:text-2xl">
-                      {value}
-                    </p>
-                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="/images/tone-pernille-havsul.jpg"
+        imageAlt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendals skjærgård"
+        imagePosition="52% 50%"
+        eyebrow="Om Wannado"
+        title="Menneskene bak opplevelsene"
+        intro="Over 15 år med lidenskap for mestring, lek og naturkraft. Fra Kongshavn i Arendal skaper Tone Pernille, Roar og teamet opplevelser som setter spor."
+        primary={{ label: "Møt folkene", href: "#folkene" }}
+        secondary={{ label: "Ta kontakt", href: "/kontakt" }}
+        facts={[
+          ["2005", "startet i Arendal"],
+          ["15+ år", "med opplevelser"],
+          ["6", "tjenesteområder"],
+        ]}
+      />
 
       {/* Company Story Section */}
       <section className="bg-cream py-20 md:py-28">

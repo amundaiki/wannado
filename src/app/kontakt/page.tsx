@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
+import PageHero from "@/components/sections/PageHero";
 import Footer from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import ContactForm from "@/components/ui/ContactForm";
@@ -93,113 +94,56 @@ export default function KontaktPage() {
       />
       <Navbar />
 
-      <section className="relative flex min-h-[780px] items-end overflow-hidden text-white md:min-h-[720px]">
-        <Image
-          src="/images/tone-pernille-havsul.jpg"
-          alt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendal"
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-[52%_50%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/76 via-brown/50 to-brown/88" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(246,213,142,0.2),transparent_34%)]" />
-
-        <div className="relative z-10 w-full px-6 pb-12 pt-32 md:pb-16 md:pt-36">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-end">
-            <div className="max-w-3xl">
-              <p className="mb-5 font-inter text-xs font-semibold uppercase tracking-[0.35em] text-[#f6d58e] md:text-sm">
-                Kontakt Wannado
-              </p>
-              <h1 className="font-space text-4xl font-bold leading-[0.98] md:text-6xl lg:text-7xl">
-                Få raskt tak i riktig person
-              </h1>
-              <p className="mt-6 max-w-2xl font-inter text-lg leading-8 text-white/88 md:text-xl">
-                Send en forespørsel, ring direkte eller gå videre til booking.
-                Vi svarer normalt innen 24 timer og hjelper med alt fra små
-                turer til store bedriftsopplegg.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="#kontakt-skjema"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f6d58e] px-7 font-inter text-sm font-semibold text-brown transition-colors hover:bg-[#f3c977]"
-                >
-                  Send forespørsel
-                </Link>
-                <Link
-                  href="/booking"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/55 px-7 font-inter text-sm font-semibold text-white transition-colors hover:bg-white/12"
-                >
-                  Åpne booking
-                </Link>
-              </div>
-              <div className="mt-8 grid grid-cols-3 gap-2 sm:mt-10 sm:gap-3 md:max-w-3xl">
-                {[
-                  ["24 t", "normal svartid"],
-                  ["Tone", "bedrift og foredrag"],
-                  ["Roar", "kajakk og seil"],
-                ].map(([value, label]) => (
-                  <div
-                    key={value}
-                    className="border border-white/22 bg-white/10 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-4"
-                  >
-                    <p className="font-space text-xl font-bold text-white sm:text-2xl">
-                      {value}
+      <PageHero
+        image="/images/tone-pernille-havsul.jpg"
+        imageAlt="Tone Pernille Sivertsen og Roar Laugerud på Havsul i Arendal"
+        imagePosition="52% 50%"
+        eyebrow="Kontakt Wannado"
+        title="Få raskt tak i riktig person"
+        intro="Send en forespørsel, ring direkte eller gå videre til booking. Vi svarer normalt innen 24 timer og hjelper med alt fra små turer til store bedriftsopplegg."
+        primary={{ label: "Send forespørsel", href: "#kontakt-skjema" }}
+        secondary={{ label: "Åpne booking", href: "/booking" }}
+        facts={[
+          ["24 t", "normal svartid"],
+          ["Tone", "bedrift og foredrag"],
+          ["Roar", "kajakk og seil"],
+        ]}
+        aside={
+          <>
+            <p className="mb-4 font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
+              Raskeste vei inn
+            </p>
+            <div className="grid gap-3">
+              {quickActions.map((action) => {
+                const content = (
+                  <>
+                    <p className="font-display text-lg font-bold text-brown">
+                      {action.title}
                     </p>
-                    <p className="mt-1 font-inter text-[11px] leading-4 text-white/72 sm:text-sm">
-                      {label}
+                    <p className="mt-1 font-body text-sm leading-6 text-brown-mid">
+                      {action.description}
                     </p>
-                  </div>
-                ))}
-              </div>
+                    <p className="mt-2 font-body text-sm font-semibold text-teal">
+                      {action.label}
+                    </p>
+                  </>
+                );
+                const classes =
+                  "block rounded-control border border-border bg-white px-4 py-4 transition-colors duration-200 hover:border-teal/40";
+                return action.href.startsWith("/") ? (
+                  <Link key={action.title} href={action.href} className={classes}>
+                    {content}
+                  </Link>
+                ) : (
+                  <a key={action.title} href={action.href} className={classes}>
+                    {content}
+                  </a>
+                );
+              })}
             </div>
-
-            <div className="border border-white/18 bg-white/12 p-5 backdrop-blur-md md:p-6">
-              <p className="mb-4 font-inter text-xs font-semibold uppercase tracking-[0.3em] text-[#f6d58e]">
-                Raskeste vei inn
-              </p>
-              <div className="grid gap-3">
-                {quickActions.map((action) =>
-                  action.href.startsWith("/") ? (
-                    <Link
-                      key={action.title}
-                      href={action.href}
-                      className="block border border-white/14 bg-white/10 px-4 py-4 transition-colors duration-200 hover:bg-white/16"
-                    >
-                      <p className="font-space text-lg font-bold text-white">
-                        {action.title}
-                      </p>
-                      <p className="mt-1 font-inter text-sm leading-6 text-white/72">
-                        {action.description}
-                      </p>
-                      <p className="mt-2 font-inter text-sm font-semibold text-[#f6d58e]">
-                        {action.label}
-                      </p>
-                    </Link>
-                  ) : (
-                    <a
-                      key={action.title}
-                      href={action.href}
-                      className="block border border-white/14 bg-white/10 px-4 py-4 transition-colors duration-200 hover:bg-white/16"
-                    >
-                      <p className="font-space text-lg font-bold text-white">
-                        {action.title}
-                      </p>
-                      <p className="mt-1 font-inter text-sm leading-6 text-white/72">
-                        {action.description}
-                      </p>
-                      <p className="mt-2 font-inter text-sm font-semibold text-[#f6d58e]">
-                        {action.label}
-                      </p>
-                    </a>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="flex-grow pb-16 md:pb-20">
         <div className="max-w-6xl mx-auto px-6">
