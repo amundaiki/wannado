@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -25,6 +26,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const useSolidStyle = variant === "solid" || isScrolled || mobileOpen;
 
@@ -37,6 +39,9 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
     }
     setIsScrolled(latest > 50);
   });
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   // Close mobile menu on ESC
   useEffect(() => {
@@ -66,15 +71,16 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 h-16 z-50 transition-colors duration-300 border-b ${
           useSolidStyle
-            ? "bg-cream/85 backdrop-blur-md border-border"
-            : "bg-transparent border-transparent"
+            ? "bg-cream/95 backdrop-blur-md border-border"
+            : "bg-transparent border-transparent before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-28 before:bg-gradient-to-b before:from-brown-dark/55 before:to-transparent"
         }`}
+        onFocusCapture={() => setIsHidden(false)}
       >
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center justify-between gap-4">
           <Link
             href="/"
             aria-label="Gå til forsiden"
-            className="group flex min-h-11 items-center"
+            className="group flex min-h-11 shrink-0 items-center"
             onClick={() => setMobileOpen(false)}
           >
             <Image
@@ -82,22 +88,29 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
               alt="Wannado"
               width={151}
               height={32}
-              className={`transition-all duration-300 ${
+              className={`h-8 w-auto transition-[filter] duration-300 ${
                 useSolidStyle ? "" : "brightness-0 invert"
               }`}
             />
           </Link>
 
           {/* Desktop Links */}
-          <ul className="hidden md:flex items-center gap-9 tracking-wide h-full">
+          <ul className="hidden lg:flex items-center gap-6 xl:gap-9 tracking-wide h-full">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`inline-flex h-16 min-w-11 items-center justify-center font-body text-sm font-medium transition-colors hover:text-opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:rounded ${
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`inline-flex h-11 min-w-11 items-center justify-center rounded-md font-body text-sm font-medium transition-colors ${
                     useSolidStyle
                       ? "text-brown-mid hover:text-brown"
-                      : "text-white/85 hover:text-white"
+                      : "text-white/90 hover:text-white"
+                  } ${
+                    isActive(link.href)
+                      ? `underline decoration-2 underline-offset-[10px] ${
+                          useSolidStyle ? "decoration-teal text-brown" : "decoration-sand text-white"
+                        }`
+                      : ""
                   }`}
                 >
                   {link.label}
@@ -106,23 +119,24 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
             ))}
           </ul>
 
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-3 lg:flex-none">
             <Link
               href="/booking"
-              className={`hidden min-h-11 items-center justify-center rounded-md border-2 px-5 py-2 font-body text-sm font-medium transition-all duration-300 active:scale-[0.98] active:translate-y-px focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 md:inline-flex
+              className={`ml-auto inline-flex min-h-11 shrink-0 items-center justify-center rounded-md border-2 px-4 py-2 font-body text-sm font-medium transition-[color,background-color,border-color,transform] duration-300 active:scale-[0.98] active:translate-y-px lg:ml-0 lg:px-5
                 ${
                   useSolidStyle
-                    ? "bg-brown text-white border-brown hover:bg-[#5a4838] hover:border-[#5a4838]"
+                    ? "bg-brown text-white border-brown hover:bg-brown-hover hover:border-brown-hover"
                     : "bg-transparent text-white border-white/60 hover:bg-white hover:text-brown hover:border-white"
                 }`}
             >
-              Bestill tur
+              <span className="lg:hidden">Bestill</span>
+              <span className="hidden lg:inline">Bestill tur</span>
             </Link>
 
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen((prev) => !prev)}
-              className={`md:hidden w-11 h-11 flex items-center justify-center rounded-md transition-colors active:scale-95 ${
+              className={`lg:hidden w-11 h-11 flex items-center justify-center rounded-md transition-colors active:scale-95 ${
                 useSolidStyle
                   ? "text-brown hover:bg-brown/10"
                   : "text-white hover:bg-white/10"
@@ -153,7 +167,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 bg-brown/30 backdrop-blur-sm z-40 md:hidden"
+                className="fixed inset-0 bg-brown/30 backdrop-blur-sm z-40 lg:hidden"
                 onClick={() => setMobileOpen(false)}
               />
 
@@ -163,10 +177,10 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-                className="fixed top-16 right-0 bottom-0 w-[280px] bg-cream z-40 md:hidden shadow-2xl border-l border-border"
+                className="fixed top-16 right-0 bottom-0 w-[min(320px,85vw)] bg-cream z-40 lg:hidden shadow-2xl border-l border-border"
               >
                 <div className="flex flex-col h-full pt-6 pb-8 px-6">
-                <ul className="flex flex-col gap-1 flex-1">
+                <ul className="flex flex-col gap-1">
                   {navLinks.map((link, idx) => (
                     <motion.li
                       key={link.href}
@@ -177,7 +191,10 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
                       <Link
                         href={link.href}
                         onClick={() => setMobileOpen(false)}
-                        className="flex min-h-11 items-center rounded-lg px-3 py-3 font-body text-base font-medium text-brown transition-colors hover:bg-warm-white focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-inset"
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                        className={`flex min-h-12 items-center rounded-lg px-3 py-3 font-display text-xl font-semibold text-brown transition-colors hover:bg-warm-white ${
+                          isActive(link.href) ? "bg-sand/50" : ""
+                        }`}
                       >
                         {link.label}
                       </Link>
@@ -186,6 +203,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
                 </ul>
 
                 <motion.div
+                  className="mt-8"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
@@ -193,13 +211,13 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
                   <Link
                     href="/booking"
                     onClick={() => setMobileOpen(false)}
-                    className="flex min-h-12 w-full items-center justify-center rounded-xl bg-brown px-4 py-3.5 text-center font-body text-base font-semibold text-white transition-colors hover:bg-[#5a4838] active:scale-[0.98]"
+                    className="flex min-h-12 w-full items-center justify-center rounded-xl bg-brown px-4 py-3.5 text-center font-body text-base font-semibold text-white transition-colors hover:bg-brown-hover active:scale-[0.98]"
                   >
                     Bestill tur
                   </Link>
                   <a
                     href="tel:+4799469957"
-                    className="mt-4 flex min-h-11 w-full items-center justify-center text-center font-body text-sm text-brown-muted transition-colors hover:text-brown"
+                    className="mt-4 flex min-h-11 w-full items-center justify-center text-center font-body text-base text-brown-muted transition-colors hover:text-brown"
                   >
                     Ring: +47 99 46 99 57
                   </a>
