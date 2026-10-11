@@ -54,6 +54,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/hesteopplevelser',
+        destination: '/opplevelser/hesteopplevelser',
+        permanent: true,
+      },
+      {
         source: '/kulturvandring-med-sjarmerende-treskoyte',
         destination: '/seilturer',
         permanent: true,

@@ -95,28 +95,9 @@ const homeJsonLd = {
     postalCode: "4812",
     addressCountry: "NO",
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 58.4328,
-    longitude: 8.8428,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    opens: "08:00",
-    closes: "21:00",
-  },
   sameAs: [
-    "https://www.facebook.com/wannado",
-    "https://www.instagram.com/wannado",
+    "https://www.facebook.com/wannado.no/",
+    "https://instagram.com/wannado_no/",
   ],
 };
 
