@@ -54,8 +54,8 @@ const components: PortableTextComponents = {
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-teal pl-6 py-4 my-8 bg-warm-white rounded-r-lg">
-        <p className="font-space text-xl italic text-brown leading-relaxed">
+      <blockquote className="my-8 rounded-2xl bg-warm-white px-6 py-6 md:px-8">
+        <p className="font-space text-xl font-medium text-brown leading-relaxed">
           {children}
         </p>
       </blockquote>
@@ -96,7 +96,7 @@ const components: PortableTextComponents = {
           href={href}
           target={isInternalLink ? undefined : "_blank"}
           rel={isInternalLink ? undefined : "noopener noreferrer"}
-          className="inline-flex min-h-11 items-center text-teal underline underline-offset-2 transition-colors hover:text-brown"
+          className="text-teal underline underline-offset-2 transition-colors hover:text-brown"
         >
           {children}
         </a>
