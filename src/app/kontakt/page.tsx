@@ -109,7 +109,7 @@ export default function KontaktPage() {
         ]}
         aside={
           <>
-            <p className="mb-4 font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
+            <p className="mb-4 font-body text-xs font-semibold text-teal">
               Raskeste vei inn
             </p>
             <div className="grid gap-3">
@@ -150,11 +150,11 @@ export default function KontaktPage() {
             <div className="space-y-8">
               <div
                 id="kontakt-skjema"
-                className="rounded-[30px] bg-white p-6 md:p-8 shadow-sm border border-border"
+                className="rounded-card bg-white p-6 md:p-8 border border-border"
               >
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-5">
                   <div>
-                    <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-2">
+                    <p className="font-inter text-sm font-semibold text-teal mb-2">
                       Send forespørsel
                     </p>
                     <h2 className="font-space font-bold text-2xl md:text-3xl text-brown">
@@ -174,15 +174,15 @@ export default function KontaktPage() {
                 </p>
                 <Suspense
                   fallback={
-                    <div className="bg-cream rounded-2xl p-6 md:p-8 h-[500px] animate-pulse" />
+                    <div className="bg-cream rounded-card p-6 md:p-8 h-[500px] animate-pulse" />
                   }
                 >
                   <ContactForm />
                 </Suspense>
               </div>
 
-              <div className="rounded-[30px] border border-border bg-warm-white p-6 md:p-8">
-                <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-3">
+              <div className="rounded-card border border-border bg-warm-white p-6 md:p-8">
+                <p className="font-inter text-sm font-semibold text-teal mb-3">
                   Slik fungerer det
                 </p>
                 <div className="space-y-4">
@@ -202,7 +202,7 @@ export default function KontaktPage() {
 
             <div className="space-y-6">
               <div>
-                <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-2">
+                <p className="font-inter text-sm font-semibold text-teal mb-2">
                   Kontaktpersoner
                 </p>
                 <h2 className="font-space font-bold text-2xl md:text-3xl text-brown">
@@ -213,7 +213,7 @@ export default function KontaktPage() {
               {contacts.map((contact) => (
                 <div
                   key={contact.name}
-                  className="overflow-hidden rounded-[30px] border border-border bg-white shadow-sm"
+                  className="overflow-hidden rounded-card border border-border bg-white"
                 >
                   <div className="relative h-56 w-full">
                     <Image
@@ -225,7 +225,7 @@ export default function KontaktPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brown/85 via-brown/20 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-sand/80 mb-2">
+                      <p className="font-inter text-xs font-semibold text-sand/80 mb-2">
                         {contact.responseLabel}
                       </p>
                       <h3 className="font-space font-bold text-2xl">
@@ -244,9 +244,9 @@ export default function KontaktPage() {
                     <div className="grid gap-3 sm:grid-cols-2">
                       <a
                         href={contact.phoneHref}
-                        className="rounded-2xl bg-brown px-4 py-4 text-white transition-colors duration-200 hover:bg-brown-hover"
+                        className="rounded-card bg-brown px-4 py-4 text-white transition-colors duration-200 hover:bg-brown-hover"
                       >
-                        <span className="block font-inter text-xs uppercase tracking-[0.18em] text-sand/75 mb-1">
+                        <span className="block font-inter text-xs text-sand/75 mb-1">
                           Ring direkte
                         </span>
                         <span className="font-space text-lg font-bold">
@@ -256,11 +256,11 @@ export default function KontaktPage() {
                       <a
                         href={contact.emailHref}
                         aria-label={`Send e-post til ${contact.email}`}
-                        className="rounded-2xl border border-border bg-warm-white px-4 py-4 text-brown transition-colors duration-200 hover:border-teal/40 hover:bg-teal/5"
+                        className="rounded-card border border-border bg-warm-white px-4 py-4 text-brown transition-colors duration-200 hover:border-teal/40 hover:bg-teal/5"
                       >
                         <span
                           aria-hidden="true"
-                          className="block font-inter text-xs uppercase tracking-[0.18em] text-brown-muted mb-1"
+                          className="block font-inter text-xs text-brown-muted mb-1"
                         >
                           Send e-post
                         </span>
@@ -274,7 +274,7 @@ export default function KontaktPage() {
               ))}
 
               <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-                <div className="rounded-[30px] border border-border bg-white p-6 shadow-sm">
+                <div className="rounded-card border border-border bg-white p-6">
                   <h3 className="font-space font-bold text-xl text-brown mb-4">
                     Oppmøtesteder
                   </h3>
@@ -282,7 +282,7 @@ export default function KontaktPage() {
                     {meetingPoints.map((point) => (
                       <div
                         key={point.label}
-                        className="rounded-2xl bg-warm-white px-4 py-4"
+                        className="rounded-card bg-warm-white px-4 py-4"
                       >
                         <p className="font-space text-lg font-bold text-brown">
                           {point.label}
@@ -298,9 +298,9 @@ export default function KontaktPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[30px] overflow-hidden border border-border bg-white shadow-sm">
+                <div className="rounded-card overflow-hidden border border-border bg-white">
                   <div className="p-6 pb-4">
-                    <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-2">
+                    <p className="font-inter text-sm font-semibold text-teal mb-2">
                       Finn oss
                     </p>
                     <h3 className="font-space font-bold text-xl text-brown">
@@ -315,7 +315,7 @@ export default function KontaktPage() {
                   <div className="px-6 pb-6">
                     <iframe
                       src="https://www.google.com/maps?q=Skarestrand+11,+4812+Kongshavn,+Norway&output=embed"
-                      className="w-full h-72 rounded-2xl"
+                      className="w-full h-72 rounded-card"
                       style={{ border: 0 }}
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
@@ -325,8 +325,8 @@ export default function KontaktPage() {
                 </div>
               </div>
 
-              <div className="rounded-[30px] bg-teal/10 p-6">
-                <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal mb-2">
+              <div className="rounded-card bg-teal/10 p-6">
+                <p className="font-inter text-sm font-semibold text-teal mb-2">
                   Trenger du rask avklaring?
                 </p>
                 <p className="font-inter text-sm md:text-base text-brown-mid leading-relaxed mb-4">

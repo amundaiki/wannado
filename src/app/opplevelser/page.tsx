@@ -282,7 +282,7 @@ export default async function OpplevelserPage() {
         secondary={{ label: "Se alle opplevelser", href: "#opplevelseskort" }}
         aside={
           <>
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+            <p className="font-inter text-xs font-semibold text-teal">
               Rask veiviser
             </p>
             <div className="mt-5 grid gap-3">
@@ -293,7 +293,7 @@ export default async function OpplevelserPage() {
               ].map(([title, text]) => (
                 <div
                   key={title}
-                  className="rounded-2xl border border-border bg-white p-4"
+                  className="rounded-card border border-border bg-white p-4"
                 >
                   <p className="font-space text-lg font-bold text-brown">
                     {title}
@@ -347,7 +347,7 @@ export default async function OpplevelserPage() {
             <Link
               key={cat.slug || cat.href}
               href={cat.href}
-              className="group relative block h-[360px] overflow-hidden rounded-2xl border border-white/10 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg md:h-[420px]"
+              className="group relative block h-[360px] overflow-hidden rounded-card border border-white/10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg md:h-[420px]"
             >
               <Image
                 src={cat.image}
@@ -359,7 +359,7 @@ export default async function OpplevelserPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brown/90 via-brown/70 to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
-                <p className="mb-3 font-inter text-xs font-semibold uppercase tracking-[0.22em] text-sand">
+                <p className="mb-3 font-inter text-xs font-semibold text-sand">
                   {cat.badge}
                 </p>
                 <h3 className="font-space text-2xl md:text-3xl font-bold text-white mb-2">
@@ -391,7 +391,7 @@ export default async function OpplevelserPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <div className="text-center">
-              <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-1">
+              <p className="font-inter text-xs font-semibold text-brown-muted mb-1">
                 Seilturer og teambuilding
               </p>
               <a
@@ -407,7 +407,7 @@ export default async function OpplevelserPage() {
             </div>
             <div className="hidden sm:block w-px h-16 bg-border" />
             <div className="text-center">
-              <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-1">
+              <p className="font-inter text-xs font-semibold text-brown-muted mb-1">
                 Kajakk og kurs
               </p>
               <a

@@ -136,7 +136,7 @@ export default async function UtleiePage() {
             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal/10">
               <Waves className="h-6 w-6 text-teal" aria-hidden="true" />
             </div>
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-brown">
+            <p className="font-body text-xs font-semibold text-brown">
               Før du legger ut
             </p>
             <p className="mt-4 font-body text-sm leading-7 text-brown">
@@ -173,13 +173,13 @@ export default async function UtleiePage() {
                 alt="Kajakker ved Skarestrand"
                 width={800}
                 height={533}
-                className="w-full rounded-2xl object-cover shadow-sm"
+                className="w-full rounded-card object-cover"
               />
             </div>
           </div>
 
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg border border-border p-8 sticky top-24">
+            <div className="bg-white rounded-card shadow-lg border border-border p-8 sticky top-24">
               <h3 className="font-space text-2xl font-bold text-brown mb-6">
                 Utleiepriser
               </h3>
@@ -187,7 +187,7 @@ export default async function UtleiePage() {
               <div className="mb-8 divide-y divide-border">
                 {rentalOptions.map((option) => (
                   <div key={option.name} className="py-5 first:pt-0">
-                    <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                    <p className="font-inter text-xs font-semibold text-brown-muted mb-2">
                       {option.name}
                     </p>
                     <p className="font-space text-2xl font-bold text-brown">
@@ -233,7 +233,7 @@ export default async function UtleiePage() {
               return (
                 <div
                   key={card.title}
-                  className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow"
+                  className="bg-white rounded-card p-8 border border-border hover:shadow-md transition-shadow"
                 >
                   <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                     <Icon className="h-6 w-6 text-teal" strokeWidth={1.7} />

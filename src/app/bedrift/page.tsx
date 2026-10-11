@@ -220,7 +220,7 @@ export default function BedriftPage() {
             {benefits.map((benefit) => (
               <div
                 key={benefit.title}
-                className="bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-card border border-border p-6 md:p-8 hover:shadow-md transition-shadow duration-300"
               >
                 <h3 className="font-space font-bold text-lg text-brown mb-3">
                   {benefit.title}
@@ -249,7 +249,7 @@ export default function BedriftPage() {
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
-                className={`rounded-2xl border shadow-sm flex flex-col ${
+                className={`rounded-card border flex flex-col ${
                   pkg.highlighted
                     ? "bg-brown text-white border-brown ring-2 ring-brown ring-offset-2 ring-offset-warm-white"
                     : "bg-white border-border"
@@ -257,7 +257,7 @@ export default function BedriftPage() {
               >
                 <div className="p-6 md:p-8 flex flex-col flex-1">
                   {pkg.highlighted && (
-                    <span className="inline-block font-inter text-xs font-semibold uppercase tracking-wider text-sand mb-3">
+                    <span className="inline-block font-inter text-xs font-semibold text-sand mb-3">
                       Mest populær
                     </span>
                   )}
@@ -324,7 +324,7 @@ export default function BedriftPage() {
             {activities.map((activity) => (
               <div
                 key={activity.title}
-                className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-card border border-border overflow-hidden hover:shadow-md transition-shadow duration-300"
               >
                 <div className="relative h-52 w-full overflow-hidden">
                   <Image
@@ -400,7 +400,7 @@ export default function BedriftPage() {
             {references.map((company) => (
               <div
                 key={company}
-                className="bg-white rounded-xl py-4 px-5 text-center shadow-sm border border-border"
+                className="bg-white rounded-xl py-4 px-5 text-center border border-border"
               >
                 <span className="font-inter text-sm font-medium text-brown">
                   {company}
@@ -473,7 +473,7 @@ export default function BedriftPage() {
       {/* CTA */}
       <section className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-brown rounded-2xl p-8 md:p-12 text-center text-white">
+          <div className="bg-brown rounded-card p-8 md:p-12 text-center text-white">
             <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
               Klar for en annerledes bedriftsdag?
             </h2>

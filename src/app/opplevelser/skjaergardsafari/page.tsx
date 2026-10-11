@@ -206,7 +206,7 @@ export default function SkjaergardsafariPage() {
           </div>
         </div>
 
-        <aside className="rounded-lg border border-border bg-white p-6 shadow-sm lg:sticky lg:top-24 lg:self-start">
+        <aside className="rounded-lg border border-border bg-white p-6 lg:sticky lg:top-24 lg:self-start">
           <h2 className="font-space text-2xl font-bold text-brown">Passer for</h2>
           <div className="mt-5 space-y-4">
             {tripModes.map((mode) => {

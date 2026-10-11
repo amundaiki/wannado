@@ -263,7 +263,7 @@ export default function BookingPage() {
           {bookingPaths.map((path) => (
             <article
               key={path.title}
-              className="overflow-hidden rounded-[28px] border border-border bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+              className="overflow-hidden rounded-card border border-border bg-white transition-shadow duration-200 hover:shadow-md"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
@@ -273,7 +273,7 @@ export default function BookingPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   className="object-cover"
                 />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-inter text-xs font-semibold uppercase tracking-[0.18em] text-brown">
+                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-inter text-xs font-semibold text-brown">
                   {path.badge}
                 </span>
               </div>
@@ -314,7 +314,7 @@ export default function BookingPage() {
               {bookingSteps.map((step, index) => (
                 <div
                   key={step.title}
-                  className="flex gap-4 rounded-[24px] border border-border bg-white p-5 shadow-sm"
+                  className="flex gap-4 rounded-card border border-border bg-white p-5"
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brown font-space text-lg font-bold text-white">
                     {index + 1}
@@ -332,7 +332,7 @@ export default function BookingPage() {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-brown/10 bg-brown p-8 text-white shadow-sm">
+          <div className="rounded-card border border-brown/10 bg-brown p-8 text-white">
             <h3 className="font-space text-2xl font-bold">
               Hva bør du sende inn?
             </h3>
@@ -354,7 +354,7 @@ export default function BookingPage() {
         className="mx-auto max-w-6xl px-6 py-16 md:py-20"
       >
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[32px] border border-border bg-white p-6 shadow-sm md:p-8">
+          <div className="rounded-card border border-border bg-white p-6 md:p-8">
             <h2 className="font-space text-3xl font-bold text-brown">
               Fortell oss hva du ser for deg
             </h2>
@@ -366,7 +366,7 @@ export default function BookingPage() {
             <div className="mt-8">
               <Suspense
                 fallback={
-                  <div className="h-[520px] animate-pulse rounded-2xl bg-cream" />
+                  <div className="h-[520px] animate-pulse rounded-card bg-cream" />
                 }
               >
                 <ContactForm />
@@ -375,7 +375,7 @@ export default function BookingPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-[32px] border border-border bg-white p-6 shadow-sm md:p-8">
+            <div className="rounded-card border border-border bg-white p-6 md:p-8">
               <h2 className="font-space text-3xl font-bold text-brown">
                 Ring eller send e-post hvis det haster
               </h2>
@@ -388,7 +388,7 @@ export default function BookingPage() {
             {contacts.map((contact) => (
               <article
                 key={contact.name}
-                className="overflow-hidden rounded-[28px] border border-border bg-white shadow-sm"
+                className="overflow-hidden rounded-card border border-border bg-white"
               >
                 <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
                   <div className="relative hidden min-h-[220px] md:block">
@@ -426,7 +426,7 @@ export default function BookingPage() {
               </article>
             ))}
 
-            <div className="rounded-[28px] border border-teal/20 bg-teal/10 p-6">
+            <div className="rounded-card border border-teal/20 bg-teal/10 p-6">
               <p className="font-space text-xl font-bold text-brown">
                 Tilgjengelighet og oppmøte
               </p>
@@ -452,7 +452,7 @@ export default function BookingPage() {
             {faqItems.map((item) => (
               <div
                 key={item.question}
-                className="rounded-[28px] border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <h3 className="font-space text-xl font-bold text-brown">
                   {item.question}

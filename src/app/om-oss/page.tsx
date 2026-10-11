@@ -143,7 +143,7 @@ export default async function OmOssPage() {
                 <h3 className="font-space text-2xl md:text-3xl font-semibold text-brown mt-6">
                   {person.name}
                 </h3>
-                <p className="font-inter text-sm font-medium text-teal uppercase tracking-wider mt-1">
+                <p className="font-inter text-sm font-medium text-teal mt-1">
                   {person.responsibility}
                 </p>
                 <p className="font-inter text-base md:text-lg text-brown-mid leading-relaxed mt-4">
@@ -240,7 +240,7 @@ export default async function OmOssPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {/* Trygghet */}
-            <div className="bg-white rounded-2xl p-8 border border-border">
+            <div className="bg-white rounded-card p-8 border border-border">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"
@@ -267,7 +267,7 @@ export default async function OmOssPage() {
             </div>
 
             {/* Mestring */}
-            <div className="bg-white rounded-2xl p-8 border border-border">
+            <div className="bg-white rounded-card p-8 border border-border">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"
@@ -293,7 +293,7 @@ export default async function OmOssPage() {
             </div>
 
             {/* Lek */}
-            <div className="bg-white rounded-2xl p-8 border border-border">
+            <div className="bg-white rounded-card p-8 border border-border">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"

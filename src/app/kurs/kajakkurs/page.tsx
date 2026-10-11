@@ -268,7 +268,7 @@ export default async function KajakkursPage() {
                 <Waves className="h-6 w-6" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+                <p className="font-inter text-xs font-semibold text-teal">
                   Fra nybegynner
                 </p>
                 <p className="font-space text-2xl font-bold text-brown">
@@ -323,7 +323,7 @@ export default async function KajakkursPage() {
             {learningPoints.map((point, index) => (
               <div
                 key={point}
-                className="border border-border bg-white p-5 shadow-sm"
+                className="border border-border bg-white p-5"
                 style={{ animationDelay: `${index * 70}ms` }}
               >
                 <CheckCircle2
@@ -355,7 +355,7 @@ export default async function KajakkursPage() {
             {courses.map((course) => (
               <article
                 key={course.id}
-                className="grid overflow-hidden border border-border bg-white shadow-sm md:grid-cols-[0.92fr_1.08fr]"
+                className="grid overflow-hidden border border-border bg-white md:grid-cols-[0.92fr_1.08fr]"
               >
                 <div className="relative min-h-[240px] overflow-hidden">
                   <Image

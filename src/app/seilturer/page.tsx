@@ -322,14 +322,14 @@ export default async function SeilturerPage() {
 
           {/* Right: Pricing Card */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg border border-border p-8 sticky top-24">
+            <div className="bg-white rounded-card shadow-lg border border-border p-8 sticky top-24">
               <h3 className="font-space text-2xl font-bold text-brown mb-6">
                 Priser
               </h3>
 
               {/* Per person */}
               <div className="mb-6 pb-6 border-b border-border">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                <p className="font-inter text-xs font-semibold text-brown-muted mb-2">
                   Per person
                 </p>
                 <p className="font-space text-4xl font-bold text-brown">
@@ -389,7 +389,7 @@ export default async function SeilturerPage() {
 
               {/* Charter */}
               <div className="mb-8">
-                <p className="font-inter text-xs font-semibold text-brown-muted uppercase tracking-[2px] mb-2">
+                <p className="font-inter text-xs font-semibold text-brown-muted mb-2">
                   Charter
                 </p>
                 <p className="font-space text-4xl font-bold text-brown">
@@ -424,7 +424,7 @@ export default async function SeilturerPage() {
             {galleryImages.map((image, idx) => (
               <div
                 key={image.src}
-                className={`relative overflow-hidden rounded-2xl group ${
+                className={`relative overflow-hidden rounded-card group ${
                   idx === 0 ? "sm:col-span-2 aspect-[2/1]" : "aspect-[3/2]"
                 }`}
               >
@@ -505,7 +505,7 @@ export default async function SeilturerPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Card 1: Navigation */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-card p-8 border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"
@@ -531,7 +531,7 @@ export default async function SeilturerPage() {
             </div>
 
             {/* Card 2: History */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-card p-8 border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"
@@ -557,7 +557,7 @@ export default async function SeilturerPage() {
             </div>
 
             {/* Card 3: Destinations */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-card p-8 border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"
@@ -583,7 +583,7 @@ export default async function SeilturerPage() {
             </div>
 
             {/* Card 4: Food */}
-            <div className="bg-white rounded-2xl p-8 border border-border hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-card p-8 border border-border hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center mb-5">
                 <svg
                   className="w-6 h-6 text-teal"

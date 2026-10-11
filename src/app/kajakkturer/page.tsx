@@ -323,7 +323,7 @@ export default async function KajakkturerPage() {
             {courses.map((course) => (
               <div
                 key={course.name}
-                className={`bg-white rounded-2xl overflow-hidden border hover:shadow-md transition-shadow ${
+                className={`bg-white rounded-card overflow-hidden border hover:shadow-md transition-shadow ${
                   course.highlight
                     ? "border-teal/40 ring-1 ring-teal/20"
                     : "border-border"
@@ -340,7 +340,7 @@ export default async function KajakkturerPage() {
                 </div>
                 <div className="p-8">
                   {course.highlight && (
-                    <span className="inline-block font-inter text-xs font-semibold text-teal uppercase tracking-[2px] mb-3">
+                    <span className="inline-block font-inter text-xs font-semibold text-teal mb-3">
                       Mest populært
                     </span>
                   )}
@@ -383,7 +383,7 @@ export default async function KajakkturerPage() {
           {/* Skjærgårdssafari */}
           <Link
             href="/opplevelser/skjaergardsafari"
-            className="group block overflow-hidden rounded-2xl border border-border bg-white transition-shadow hover:shadow-md"
+            className="group block overflow-hidden rounded-card border border-border bg-white transition-shadow hover:shadow-md"
           >
             <div className="relative h-56">
               <Image
@@ -414,7 +414,7 @@ export default async function KajakkturerPage() {
           </Link>
 
           {/* Fyr til fyr */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-md transition-shadow">
+          <div className="bg-white rounded-card overflow-hidden border border-border hover:shadow-md transition-shadow">
             <div className="relative h-56">
               <Image
                 src="/images/scraped/kayak/kajakktur-fyr-oslofjorden-3995.jpg"
@@ -445,7 +445,7 @@ export default async function KajakkturerPage() {
       {/* Guide Profile: Roar */}
       <section className="bg-warm-white py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-2xl p-10 md:p-14 border border-border">
+          <div className="bg-white rounded-card p-10 md:p-14 border border-border">
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="flex-shrink-0">
                 <Image

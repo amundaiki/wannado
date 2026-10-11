@@ -194,16 +194,16 @@ export default async function HesteopplevelserPage() {
         secondary={{ label: "Ring Tone Pernille", href: "tel:+4799469957" }}
         aside={
           <>
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+            <p className="font-inter text-xs font-semibold text-teal">
               Kort fortalt
             </p>
             <div className="mt-5 grid gap-3">
               {quickFacts.map((fact) => (
                 <div
                   key={fact.label}
-                  className="rounded-2xl border border-border bg-white p-4"
+                  className="rounded-card border border-border bg-white p-4"
                 >
-                  <p className="font-inter text-xs font-semibold uppercase tracking-[0.14em] text-brown-muted">
+                  <p className="font-inter text-xs font-semibold text-brown-muted">
                     {fact.label}
                   </p>
                   <p className="mt-1 font-space text-xl font-bold text-brown">
@@ -255,7 +255,7 @@ export default async function HesteopplevelserPage() {
             {experienceSteps.map((step) => (
               <article
                 key={step.title}
-                className="rounded-2xl border border-brown-muted/15 bg-cream p-6 shadow-sm md:p-8"
+                className="rounded-card border border-brown-muted/15 bg-cream p-6 md:p-8"
               >
                 <step.icon
                   className="h-8 w-8 text-teal"
@@ -303,7 +303,7 @@ export default async function HesteopplevelserPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 rounded-2xl bg-brown-mid p-5">
+          <div className="mt-8 rounded-card bg-brown-mid p-5">
             <div className="flex items-start gap-3">
               <MapPin className="mt-1 h-5 w-5 text-sand" aria-hidden="true" />
               <p className="font-inter text-sm leading-relaxed text-white/78">

@@ -195,7 +195,7 @@ export default async function KajakkOgKanoUtleiePage() {
         asideOnMobile
         aside={
           <>
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-brown">
+            <p className="font-body text-xs font-semibold text-brown">
               Fra
             </p>
             <p className="mt-3 font-display text-4xl font-bold text-brown">
@@ -248,14 +248,14 @@ export default async function KajakkOgKanoUtleiePage() {
           </div>
         </div>
 
-        <aside className="rounded-lg border border-border bg-white p-6 shadow-sm lg:sticky lg:top-24 lg:self-start">
+        <aside className="rounded-lg border border-border bg-white p-6 lg:sticky lg:top-24 lg:self-start">
           <h2 className="font-space text-2xl font-bold text-brown">Priser</h2>
           <div className="mt-5 divide-y divide-border">
             {rentalOptions.map((option) => (
               <div key={option.name} className="py-5 first:pt-0">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between lg:flex-col">
                   <div>
-                    <h3 className="font-inter text-sm font-semibold uppercase tracking-[0.18em] text-brown-muted">
+                    <h3 className="font-inter text-sm font-semibold text-brown-muted">
                       {option.name}
                     </h3>
                     <p className="mt-2 font-inter text-sm leading-6 text-brown-mid">

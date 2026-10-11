@@ -29,7 +29,7 @@ export default function ServiceCard({
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col"
+      className="bg-white rounded-card hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col"
     >
       {image && (
         <div className="relative aspect-[16/10] overflow-hidden">

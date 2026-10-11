@@ -105,9 +105,9 @@ export default function CheckinBookingEmbed() {
   }, [environment]);
 
   return (
-    <div className="rounded-[32px] border border-border bg-white p-4 shadow-sm md:p-6">
+    <div className="rounded-card border border-border bg-white p-4 md:p-6">
       {failed ? (
-        <div className="rounded-2xl bg-cream p-6 text-center md:p-10">
+        <div className="rounded-card bg-cream p-6 text-center md:p-10">
           <p className="font-space text-2xl font-bold text-brown">
             Bookingkalenderen kunne ikke lastes
           </p>
@@ -117,13 +117,13 @@ export default function CheckinBookingEmbed() {
           </p>
           <a
             href="#booking-form"
-            className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-5 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#0d6f6a]"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-5 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-teal/90"
           >
             Send forespørsel
           </a>
         </div>
       ) : environment === "local" ? (
-        <div className="rounded-2xl bg-cream p-6 text-center md:p-10">
+        <div className="rounded-card bg-cream p-6 text-center md:p-10">
           <p className="font-space text-2xl font-bold text-brown">
             Bookingkalenderen vises på produksjonsdomenet
           </p>
@@ -134,13 +134,13 @@ export default function CheckinBookingEmbed() {
           </p>
           <a
             href="#booking-form"
-            className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-5 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-[#0d6f6a]"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-5 py-3 font-inter text-sm font-semibold text-white transition-colors hover:bg-teal/90"
           >
             Test forespørselsskjema
           </a>
         </div>
       ) : environment === "pending" ? (
-        <div className="rounded-2xl bg-cream p-6 text-center md:p-10">
+        <div className="rounded-card bg-cream p-6 text-center md:p-10">
           <p className="font-space text-2xl font-bold text-brown">
             Klargjør bookingkalender
           </p>

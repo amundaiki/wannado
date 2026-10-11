@@ -237,7 +237,7 @@ export default function PersonvernPage() {
           {sections.map((section) => (
             <div
               key={section.title}
-              className="bg-white rounded-2xl p-8 md:p-10 border border-border"
+              className="bg-white rounded-card p-8 md:p-10 border border-border"
             >
               <h2 className="font-space text-2xl font-bold text-brown mb-4">
                 {section.title}

@@ -176,7 +176,7 @@ export default function HestekursPage() {
                 <Sparkles className="h-6 w-6" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+                <p className="font-inter text-xs font-semibold text-teal">
                   Kurs etter nivå
                 </p>
                 <p className="font-space text-2xl font-bold text-brown">
@@ -219,7 +219,7 @@ export default function HestekursPage() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             {courseOutcomes.map((point) => (
-              <div key={point} className="border border-border bg-white p-5 shadow-sm">
+              <div key={point} className="border border-border bg-white p-5">
                 <CheckCircle2
                   className="mb-4 h-6 w-6 text-teal"
                   aria-hidden="true"
@@ -252,7 +252,7 @@ export default function HestekursPage() {
               return (
                 <article
                   key={step.title}
-                  className="border border-brown-muted/15 bg-cream p-6 shadow-sm md:p-8"
+                  className="border border-brown-muted/15 bg-cream p-6 md:p-8"
                 >
                   <Icon
                     className="h-8 w-8 text-teal"

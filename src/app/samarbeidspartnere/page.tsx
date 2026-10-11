@@ -80,7 +80,7 @@ const andrePartnere = [
 function PartnerCard({ name, description }: { name: string; description: string }) {
   return (
     <article
-      className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+      className="rounded-card border border-border bg-white p-6"
     >
       <h3 className="font-space text-lg font-semibold text-brown">
         {name}
@@ -131,7 +131,7 @@ export default function SamarbeidspartnerePage() {
       <section className="bg-warm-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:py-20 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-teal">
+            <p className="font-inter text-xs font-semibold text-teal">
               Lokalt vertskap
             </p>
             <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
@@ -148,7 +148,7 @@ export default function SamarbeidspartnerePage() {
             {partnerHighlights.map((highlight) => (
               <article
                 key={highlight.title}
-                className="overflow-hidden border border-border bg-white shadow-sm"
+                className="overflow-hidden border border-border bg-white"
               >
                 <div className="relative aspect-[4/3]">
                   <Image
@@ -184,7 +184,7 @@ export default function SamarbeidspartnerePage() {
       {/* CTA */}
       <section className="bg-warm-white border-y border-border py-20 px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-4">
+          <p className="font-inter text-sm font-semibold text-teal mb-4">
             Bli med
           </p>
           <h2 className="font-space text-3xl md:text-4xl font-bold text-brown mb-6">

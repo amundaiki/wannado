@@ -288,9 +288,9 @@ function PricingCard({
   audience: string;
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-border shadow-sm p-6 lg:p-8 flex flex-col">
+    <div className="bg-white rounded-card border border-border p-6 lg:p-8 flex flex-col">
       <div className="mb-4">
-        <p className="font-inter text-xs font-semibold uppercase tracking-[0.2em] text-teal">
+        <p className="font-inter text-xs font-semibold text-teal">
           {audience}
         </p>
         <h3 className="mt-2 font-space text-xl font-semibold text-brown">{name}</h3>
@@ -310,7 +310,7 @@ function PricingCard({
       </p>
 
       <div className="mb-6 flex-1">
-        <p className="font-inter text-xs font-semibold uppercase tracking-[0.15em] text-brown-muted mb-3">
+        <p className="font-inter text-xs font-semibold text-brown-muted mb-3">
           Inkluderer
         </p>
         <ul className="space-y-2">
@@ -366,7 +366,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 md:py-16">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
             <div>
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.3em] text-teal">
+              <p className="font-inter text-xs font-semibold text-teal">
                 Slik prises det
               </p>
               <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
@@ -383,7 +383,7 @@ export default function PricingPage() {
               {pricingPrinciples.map((principle) => (
                 <article
                   key={principle.title}
-                  className="border border-border bg-white p-5 shadow-sm"
+                  className="border border-border bg-white p-5"
                 >
                   <h3 className="font-space text-xl font-semibold text-brown">
                     {principle.title}
@@ -419,7 +419,7 @@ export default function PricingPage() {
         >
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
             <div className="mb-10 max-w-3xl">
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.25em] text-teal">
+              <p className="font-inter text-xs font-semibold text-teal">
                 Prisoversikt
               </p>
               <h2 className="mt-3 font-space text-3xl font-bold text-brown">
@@ -439,8 +439,8 @@ export default function PricingPage() {
                 <PricingCard key={card.name} {...card} />
               ))}
               {category.cards.length === 1 ? (
-                <aside className="border border-border bg-warm-white p-6 shadow-sm lg:p-8">
-                  <p className="font-inter text-xs font-semibold uppercase tracking-[0.25em] text-teal">
+                <aside className="border border-border bg-warm-white p-6 lg:p-8">
+                  <p className="font-inter text-xs font-semibold text-teal">
                     Få riktig pris
                   </p>
                   <h3 className="mt-3 font-space text-2xl font-semibold text-brown">

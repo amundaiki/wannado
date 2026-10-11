@@ -228,7 +228,7 @@ export default async function JtiKursPage() {
             </p>
             <dl className="mt-6 grid gap-4 border-t border-border pt-5">
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
+                <dt className="font-inter text-xs font-semibold text-teal">
                   Passer for
                 </dt>
                 <dd className="mt-1 font-inter text-sm text-brown-mid">
@@ -236,7 +236,7 @@ export default async function JtiKursPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
+                <dt className="font-inter text-xs font-semibold text-teal">
                   Fasilitator
                 </dt>
                 <dd className="mt-1 font-inter text-sm text-brown-mid">
@@ -265,7 +265,7 @@ export default async function JtiKursPage() {
             {outcomes.map((outcome) => (
               <div
                 key={outcome}
-                className="rounded-2xl border border-border bg-white p-5 shadow-sm"
+                className="rounded-card border border-border bg-white p-5"
               >
                 <CheckCircle2 className="h-6 w-6 text-teal" aria-hidden="true" />
                 <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid">
@@ -289,7 +289,7 @@ export default async function JtiKursPage() {
             {courseSteps.map((step) => (
               <article
                 key={step.title}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-teal">
                   <step.icon className="h-6 w-6" aria-hidden="true" />
@@ -308,7 +308,7 @@ export default async function JtiKursPage() {
 
       <section className="py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:items-center">
-          <div className="relative min-h-[460px] overflow-hidden rounded-2xl bg-brown shadow-sm">
+          <div className="relative min-h-[460px] overflow-hidden rounded-card bg-brown">
             <Image
               src="/images/tone-pernille-havsul.jpg"
               alt="Tone Pernille Sivertsen på Havsul i Arendals skjærgård"
@@ -318,7 +318,7 @@ export default async function JtiKursPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brown/72 via-brown/12 to-transparent" />
             <div className="absolute bottom-0 left-0 max-w-md p-7 text-white md:p-9">
-              <p className="font-inter text-xs font-semibold uppercase tracking-[0.2em] text-sand">
+              <p className="font-inter text-xs font-semibold text-sand">
                 Tone Pernille
               </p>
               <p className="mt-3 font-space text-2xl font-bold">
@@ -335,7 +335,7 @@ export default async function JtiKursPage() {
               {formats.map((format) => (
                 <article
                   key={format.title}
-                  className="rounded-2xl border border-border bg-white p-5 shadow-sm"
+                  className="rounded-card border border-border bg-white p-5"
                 >
                   <h3 className="font-space text-xl font-bold text-brown">
                     {format.title}
@@ -371,7 +371,7 @@ export default async function JtiKursPage() {
             {faqItems.map((item) => (
               <article
                 key={item.question}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <h3 className="font-space text-xl font-bold text-brown">
                   {item.question}

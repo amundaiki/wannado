@@ -9,7 +9,7 @@ export default function BlogPostNotFound() {
 
       <section className="pt-36 pb-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-4">
+          <p className="font-inter text-sm font-semibold text-teal mb-4">
             404
           </p>
           <h1 className="font-space text-4xl md:text-5xl font-bold text-brown mb-6">

@@ -86,7 +86,7 @@ export default function FaqClient({ categories }: { categories: FaqCategory[] })
       <section id="sporsmal-og-svar" className="flex-grow bg-cream py-12 md:py-18">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
           <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-            <p className="mb-4 font-inter text-xs font-semibold uppercase tracking-[0.26em] text-teal">
+            <p className="mb-4 font-inter text-xs font-semibold text-teal">
               Velg tema
             </p>
             <div className="flex max-w-full min-w-0 gap-2 overflow-x-auto pb-2 scrollbar-hide lg:grid lg:overflow-visible lg:pb-0">
@@ -120,7 +120,7 @@ export default function FaqClient({ categories }: { categories: FaqCategory[] })
           <div className="min-w-0">
             <div className="mb-6 grid gap-4 border-y border-border py-5 md:grid-cols-[1fr_auto] md:items-center">
               <div>
-                <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
+                <p className="font-inter text-sm font-semibold text-teal">
                   Ofte spurt
                 </p>
                 <h2 className="mt-2 font-space text-3xl font-bold leading-tight text-brown md:text-4xl">
@@ -138,7 +138,7 @@ export default function FaqClient({ categories }: { categories: FaqCategory[] })
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="rounded-2xl border border-border bg-white px-5 shadow-sm md:px-8"
+              className="rounded-card border border-border bg-white px-5 md:px-8"
             >
               {currentCategory.items.map((item, index) => (
                 <AccordionItem

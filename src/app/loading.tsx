@@ -9,7 +9,7 @@ export default function Loading() {
         className="h-12 w-12 rounded-full border-4 border-border border-t-teal animate-spin"
         aria-hidden="true"
       />
-      <p className="font-inter text-sm font-medium uppercase tracking-[0.2em] text-brown-mid">
+      <p className="font-inter text-sm font-medium text-brown-mid">
         Laster inn
       </p>
       <span className="sr-only">Innholdet laster, vennligst vent.</span>

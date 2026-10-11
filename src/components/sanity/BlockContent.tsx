@@ -19,7 +19,7 @@ const components: PortableTextComponents = {
               src={imageUrl}
               alt={imageAlt}
               fill
-              className="object-cover rounded-2xl"
+              className="object-cover rounded-card"
               sizes="(max-width: 768px) 100vw, 80vw"
             />
           </div>
@@ -54,7 +54,7 @@ const components: PortableTextComponents = {
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 rounded-2xl bg-warm-white px-6 py-6 md:px-8">
+      <blockquote className="my-8 rounded-card bg-warm-white px-6 py-6 md:px-8">
         <p className="font-space text-xl font-medium text-brown leading-relaxed">
           {children}
         </p>

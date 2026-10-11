@@ -205,7 +205,7 @@ export default async function ForedragPage() {
         facts={[["45 min", "kort foredrag"]]}
         aside={
           <>
-            <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+            <p className="font-inter text-xs font-semibold text-teal">
               To innganger
             </p>
             <p className="mt-3 font-space text-xl font-bold text-brown">
@@ -221,7 +221,7 @@ export default async function ForedragPage() {
             {audiences.map((audience) => (
               <div
                 key={audience.title}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-teal">
                   <audience.icon className="h-6 w-6" aria-hidden="true" />
@@ -250,7 +250,7 @@ export default async function ForedragPage() {
             {talks.map((talk, index) => (
               <article
                 key={talk.title}
-                className="min-w-0 overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
+                className="min-w-0 overflow-hidden rounded-card border border-border bg-white"
               >
                 <div
                   className={`grid min-w-0 gap-0 lg:grid-cols-2 ${
@@ -278,7 +278,7 @@ export default async function ForedragPage() {
                         >
                           <talk.icon className="h-6 w-6" aria-hidden="true" />
                         </span>
-                        <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+                        <p className="font-inter text-xs font-semibold text-teal">
                           {talk.eyebrow}
                         </p>
                       </div>
@@ -293,7 +293,7 @@ export default async function ForedragPage() {
                       </p>
                     </div>
 
-                    <div className="mt-8 grid gap-4 rounded-2xl bg-cream p-5 sm:grid-cols-[1fr_auto] sm:items-center">
+                    <div className="mt-8 grid gap-4 rounded-card bg-cream p-5 sm:grid-cols-[1fr_auto] sm:items-center">
                       <div>
                         <p className="font-space text-xl font-bold text-brown">
                           {talk.price}
@@ -328,7 +328,7 @@ export default async function ForedragPage() {
       <section className="bg-brown py-16 text-white md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-[1fr_auto]">
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-sand">
+            <p className="font-inter text-sm font-semibold text-sand">
               Vil dere gjøre mer ut av dagen?
             </p>
             <h2 className="mt-3 font-space text-3xl font-bold md:text-5xl">

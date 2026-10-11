@@ -129,7 +129,7 @@ export default async function GavekortPage() {
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
+            <p className="font-inter text-sm font-semibold text-teal mb-3">
               Velg din opplevelse
             </p>
             <h2 className="font-space text-3xl md:text-4xl font-bold text-brown">
@@ -141,7 +141,7 @@ export default async function GavekortPage() {
             {giftOptions.map((option) => (
               <div
                 key={option.title}
-                className="overflow-hidden bg-white rounded-2xl border border-border shadow-sm transition-all duration-200 hover:border-teal/40 hover:shadow-md"
+                className="overflow-hidden bg-white rounded-card border border-border transition-all duration-200 hover:border-teal/40 hover:shadow-md"
               >
                 <div className="relative h-52">
                   <Image
@@ -170,7 +170,7 @@ export default async function GavekortPage() {
       <section className="py-16 md:py-20 px-6 bg-warm-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
+            <p className="font-inter text-sm font-semibold text-teal mb-3">
               Slik fungerer det
             </p>
             <h2 className="font-space text-3xl md:text-4xl font-bold text-brown">
@@ -200,9 +200,9 @@ export default async function GavekortPage() {
 
       <section id="bestill-gavekort" className="py-16 md:py-20 px-6 scroll-mt-20">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-[30px] border border-border shadow-sm p-6 md:p-10">
+          <div className="bg-white rounded-card border border-border p-6 md:p-10">
             <div className="text-center mb-8">
-              <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
+              <p className="font-inter text-sm font-semibold text-teal mb-3">
                 Bestill gavekort
               </p>
               <h2 className="font-space text-2xl md:text-3xl font-bold text-brown">
@@ -215,7 +215,7 @@ export default async function GavekortPage() {
 
             <Suspense
               fallback={
-                <div className="bg-cream rounded-2xl p-6 md:p-8 h-[500px] animate-pulse" />
+                <div className="bg-cream rounded-card p-6 md:p-8 h-[500px] animate-pulse" />
               }
             >
               <GiftCardForm />

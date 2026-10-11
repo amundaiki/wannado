@@ -165,7 +165,7 @@ export default function GiftCardForm() {
       <div
         ref={successRef}
         tabIndex={-1}
-        className="bg-cream rounded-2xl p-8 text-center focus:outline-none"
+        className="bg-cream rounded-card p-8 text-center focus:outline-none"
         role="status"
         aria-live="polite"
       >
@@ -182,7 +182,7 @@ export default function GiftCardForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-cream rounded-2xl p-6 md:p-8 space-y-5"
+      className="bg-cream rounded-card p-6 md:p-8 space-y-5"
       noValidate
     >
       <input

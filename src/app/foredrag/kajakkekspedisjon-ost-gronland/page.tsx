@@ -200,7 +200,7 @@ export default async function GreenlandTalkPage() {
             </p>
             <dl className="mt-6 grid gap-4 border-t border-border pt-5">
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
+                <dt className="font-inter text-xs font-semibold text-teal">
                   Forteller
                 </dt>
                 <dd className="mt-1 font-inter text-sm text-brown">
@@ -208,7 +208,7 @@ export default async function GreenlandTalkPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-teal">
+                <dt className="font-inter text-xs font-semibold text-teal">
                   Passer for
                 </dt>
                 <dd className="mt-1 font-inter text-sm text-brown">
@@ -235,7 +235,7 @@ export default async function GreenlandTalkPage() {
             {storyBeats.map((point) => (
               <div
                 key={point}
-                className="rounded-2xl border border-border bg-white p-5 shadow-sm"
+                className="rounded-card border border-border bg-white p-5"
               >
                 <CheckCircle2 className="h-6 w-6 text-teal" aria-hidden="true" />
                 <p className="mt-4 font-inter text-base leading-relaxed text-brown-mid">
@@ -263,7 +263,7 @@ export default async function GreenlandTalkPage() {
             {formats.map((format) => (
               <article
                 key={format.title}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-teal">
                   <format.icon className="h-6 w-6" aria-hidden="true" />
@@ -283,7 +283,7 @@ export default async function GreenlandTalkPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:items-center">
           <div className="grid gap-5 sm:grid-cols-2">
-            <div className="relative min-h-[360px] overflow-hidden rounded-2xl bg-brown shadow-sm">
+            <div className="relative min-h-[360px] overflow-hidden rounded-card bg-brown">
               <Image
                 src="/images/scraped/landscape/isfjell-gronland-1.jpg"
                 alt="Isfjell på Øst-Grønland"
@@ -292,7 +292,7 @@ export default async function GreenlandTalkPage() {
                 className="object-cover"
               />
             </div>
-            <div className="relative min-h-[360px] overflow-hidden rounded-2xl bg-brown shadow-sm sm:mt-14">
+            <div className="relative min-h-[360px] overflow-hidden rounded-card bg-brown sm:mt-14">
               <Image
                 src="/images/scraped/kayak/Kajakktauing-Gronland.jpg"
                 alt="Kajakker på slep under ekspedisjon på Grønland"
@@ -355,7 +355,7 @@ export default async function GreenlandTalkPage() {
             {faqItems.map((item) => (
               <article
                 key={item.question}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <h3 className="font-space text-xl font-bold text-brown">
                   {item.question}
@@ -372,7 +372,7 @@ export default async function GreenlandTalkPage() {
       <section className="bg-brown py-16 text-white md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-[1fr_auto]">
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-sand">
+            <p className="font-inter text-sm font-semibold text-sand">
               Vil dere høre historien?
             </p>
             <h2 className="mt-3 font-space text-3xl font-bold md:text-5xl">

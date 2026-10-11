@@ -17,7 +17,7 @@ export default function BlogPostLoading() {
       <div className="relative h-80 md:h-[28rem] w-full bg-warm-white" aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto px-6 -mt-20 relative z-10">
-        <div className="bg-white rounded-2xl border border-border shadow-sm p-8 md:p-12">
+        <div className="bg-white rounded-card border border-border p-8 md:p-12">
           <ShimmerBar className="h-4 w-32 mb-6" />
           <ShimmerBar className="h-10 w-full mb-4" />
           <ShimmerBar className="h-10 w-3/4 mb-8" />

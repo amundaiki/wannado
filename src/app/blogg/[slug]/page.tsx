@@ -153,13 +153,13 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 -mt-20 relative z-10">
-          <div className="bg-white rounded-2xl border border-border shadow-sm p-8 md:p-12">
+          <div className="bg-white rounded-card border border-border p-8 md:p-12">
             {post.categories && post.categories.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.categories.map((category: string) => (
                   <span
                     key={category}
-                    className="font-inter text-xs font-semibold uppercase tracking-[0.2em] text-teal bg-teal/10 px-3 py-1 rounded-full"
+                    className="font-inter text-xs font-semibold text-teal bg-teal/10 px-3 py-1 rounded-full"
                   >
                     {category}
                   </span>
@@ -224,7 +224,7 @@ export default async function PostPage({ params }: PostPageProps) {
       {relatedPostsWithSlugs.length > 0 && (
         <section className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
           <div className="text-center mb-12">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-3">
+            <p className="font-inter text-sm font-semibold text-teal mb-3">
               Les mer
             </p>
             <h2 className="font-space text-3xl md:text-4xl font-bold text-brown">
@@ -240,7 +240,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 <Link
                   key={relatedPost._id}
                   href={`/blogg/${relatedPost.slug}`}
-                  className="group bg-white rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-shadow"
+                  className="group bg-white rounded-card overflow-hidden border border-border hover:shadow-md transition-shadow"
                 >
                   <div className="relative h-48">
                     <Image

@@ -242,7 +242,7 @@ export default async function TeambuildingPage() {
             {productCards.map((product) => (
               <div
                 key={product.name}
-                className="bg-white rounded-2xl shadow-sm border border-border flex flex-col hover:shadow-md transition-shadow duration-300 overflow-hidden"
+                className="bg-white rounded-card border border-border flex flex-col hover:shadow-md transition-shadow duration-300 overflow-hidden"
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
@@ -328,7 +328,7 @@ export default async function TeambuildingPage() {
       {/* JTI Section */}
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-teal rounded-2xl p-8 md:p-12 text-white">
+          <div className="bg-teal rounded-card p-8 md:p-12 text-white">
             <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
               JTI Light: Vi koser oss med forskjellighet
             </h2>
@@ -380,7 +380,7 @@ export default async function TeambuildingPage() {
             {references.map((company) => (
               <div
                 key={company}
-                className="bg-white rounded-xl py-4 px-5 text-center shadow-sm border border-border"
+                className="bg-white rounded-xl py-4 px-5 text-center border border-border"
               >
                 <span className="font-inter text-sm font-medium text-brown">
                   {company}
@@ -403,7 +403,7 @@ export default async function TeambuildingPage() {
       {/* CTA Banner */}
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-brown rounded-2xl p-8 md:p-12 text-center text-white">
+          <div className="bg-brown rounded-card p-8 md:p-12 text-center text-white">
             <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
               Klar for en uforglemmelig dag?
             </h2>

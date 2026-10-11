@@ -67,7 +67,7 @@ export default function TestimonialsSection({
                 <span aria-hidden="true">&rdquo;</span>
               </p>
               <div className="mt-8 border-t border-border pt-5">
-                <p className="font-inter text-sm font-semibold uppercase tracking-[2px] text-brown">
+                <p className="font-inter text-sm font-semibold text-brown">
                   {quote.author}
                 </p>
                 <p className="mt-1 font-inter text-sm text-teal">{quote.company}</p>
@@ -88,7 +88,7 @@ export default function TestimonialsSection({
               className="rounded-card border border-border bg-[linear-gradient(180deg,#fffaf2_0%,#fff_100%)] p-8 md:p-10"
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-teal">
+                <span className="font-inter text-[11px] font-semibold text-teal">
                   {feedback.source}
                 </span>
                 {feedback.rating && (
@@ -106,7 +106,7 @@ export default function TestimonialsSection({
                 {feedback.summary}
               </p>
               <div className="mt-8 border-t border-border pt-5">
-                <p className="font-inter text-sm font-semibold uppercase tracking-[2px] text-brown">
+                <p className="font-inter text-sm font-semibold text-brown">
                   {feedback.source}
                 </p>
                 <p className="mt-1 font-inter text-sm text-brown-muted">
@@ -126,7 +126,7 @@ export default function TestimonialsSection({
         >
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="font-inter text-[11px] font-semibold uppercase tracking-[3px] text-brown-muted">
+              <p className="font-inter text-[11px] font-semibold text-brown-muted">
                 Et utvalg kunder
               </p>
               <p className="mt-3 font-inter text-base leading-7 text-brown-mid">

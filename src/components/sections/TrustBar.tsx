@@ -47,7 +47,7 @@ export default function TrustBar() {
                 <li key={item.title} className="flex-1">
                   <Link
                     href={item.href}
-                    className="block rounded-2xl p-2 transition-colors hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                    className="block rounded-card p-2 transition-colors hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
                   >
                     {inner}
                   </Link>

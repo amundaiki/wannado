@@ -154,7 +154,7 @@ export default function KursPage() {
                 <Compass className="h-5 w-5" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-inter text-xs font-semibold uppercase tracking-[0.18em] text-teal">
+                <p className="font-inter text-xs font-semibold text-teal">
                   Riktig nivå
                 </p>
                 <p className="font-space text-xl font-bold text-brown">
@@ -193,7 +193,7 @@ export default function KursPage() {
               <Link
                 key={course.title}
                 href={course.href}
-                className="group overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+                className="group overflow-hidden rounded-card border border-border bg-white transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
               >
                 <div className="relative h-56 w-full overflow-hidden">
                   <Image
@@ -205,7 +205,7 @@ export default function KursPage() {
                     className="object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className={`inline-block font-inter text-xs font-semibold uppercase tracking-[0.15em] text-white px-3 py-1.5 rounded-full ${course.badgeColor}`}>
+                    <span className={`inline-block font-inter text-xs font-semibold text-white px-3 py-1.5 rounded-full ${course.badgeColor}`}>
                       {course.badge}
                     </span>
                   </div>
@@ -257,7 +257,7 @@ export default function KursPage() {
             {practicalInfo.map((info) => (
               <div
                 key={info.title}
-                className="grid gap-4 rounded-2xl border border-border bg-white p-6 shadow-sm sm:grid-cols-[auto,1fr]"
+                className="grid gap-4 rounded-card border border-border bg-white p-6 sm:grid-cols-[auto,1fr]"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-teal">
                   <info.icon className="h-6 w-6" aria-hidden="true" />

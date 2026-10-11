@@ -24,7 +24,7 @@ export default function FeatureSection() {
               width={2250}
               height={1500}
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full aspect-[16/11] object-cover rounded-lg shadow-sm"
+              className="w-full aspect-[16/11] object-cover rounded-lg"
             />
             {/* Overlapping smaller image */}
             <Image

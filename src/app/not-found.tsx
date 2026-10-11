@@ -16,7 +16,7 @@ export default function NotFound() {
 
       <section className="flex-1 flex items-center pt-36 pb-20 md:pt-44 md:pb-28">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-4">
+          <p className="font-inter text-sm font-semibold text-teal mb-4">
             Side ikke funnet
           </p>
           <h1 className="font-space text-5xl md:text-7xl font-bold text-brown leading-tight mb-6">

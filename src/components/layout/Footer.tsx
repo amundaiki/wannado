@@ -42,7 +42,7 @@ const linkGroups = [
 ];
 
 const headingClass =
-  "mb-4 font-body text-[13px] font-semibold uppercase tracking-[0.12em] text-white/70";
+  "mb-4 font-body text-[13px] font-semibold text-white/70";
 const linkClass =
   "inline-flex min-h-11 items-center font-body text-[15px] text-white/85 transition-colors hover:text-sand";
 

@@ -64,7 +64,7 @@ export default async function ReferanserPage() {
         aside={
           featuredTestimonial ? (
             <>
-              <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
+              <p className="font-body text-xs font-semibold text-teal">
                 Kundesitat
               </p>
               <p className="mt-4 font-body text-base leading-relaxed">
@@ -99,7 +99,7 @@ export default async function ReferanserPage() {
             {COMPANIES.map((company) => (
               <div
                 key={company}
-                className="bg-white rounded-xl p-4 shadow-sm border border-border text-center hover:shadow-md hover:border-teal/30 transition-all duration-200"
+                className="bg-white rounded-xl p-4 border border-border text-center hover:shadow-md hover:border-teal/30 transition-all duration-200"
               >
                 <span className="font-inter text-sm md:text-base text-brown-mid font-medium">
                   {company}
@@ -127,7 +127,7 @@ export default async function ReferanserPage() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-border"
+                className="bg-white rounded-card p-8 md:p-10 border border-border"
               >
                 <span className="font-dm text-5xl text-brown-mid/40 leading-none mb-4 block">
                   {"\u201C"}
@@ -156,7 +156,7 @@ export default async function ReferanserPage() {
       <section className="bg-brown text-white py-16 md:py-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="font-inter text-sm font-semibold uppercase tracking-widest text-white/60 mb-3">
+            <p className="font-inter text-sm font-semibold text-white/60 mb-3">
               Sett på TV
             </p>
             <h2 className="font-space font-bold text-3xl md:text-4xl text-white">
@@ -167,7 +167,7 @@ export default async function ReferanserPage() {
             {TV_APPEARANCES.map((appearance) => (
               <div
                 key={appearance.show}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10"
+                className="bg-white/10 backdrop-blur-sm rounded-card p-6 md:p-8 border border-white/10"
               >
                 <span className="font-space text-3xl font-bold text-sand mb-2 block">
                   {appearance.year}
@@ -194,10 +194,10 @@ export default async function ReferanserPage() {
             {tripadvisorFeedback.map((feedback) => (
               <article
                 key={feedback.id}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="rounded-card border border-border bg-white p-6"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <span className="font-inter text-xs font-semibold uppercase tracking-widest text-teal">
+                  <span className="font-inter text-xs font-semibold text-teal">
                     {feedback.source}
                   </span>
                   {feedback.rating && (
@@ -234,7 +234,7 @@ export default async function ReferanserPage() {
       {/* CTA Banner */}
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-brown rounded-2xl p-8 md:p-12 text-center text-white">
+          <div className="bg-brown rounded-card p-8 md:p-12 text-center text-white">
             <h2 className="font-space font-bold text-2xl md:text-3xl mb-4">
               Klar for din neste opplevelse?
             </h2>

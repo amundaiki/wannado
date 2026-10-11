@@ -18,7 +18,7 @@ export default function Error({
   return (
     <main id="innhold" className="min-h-screen bg-cream selection:bg-sand selection:text-brown flex items-center">
       <div className="max-w-2xl mx-auto px-6 py-24 text-center">
-        <p className="font-inter text-sm font-semibold uppercase tracking-[0.25em] text-teal mb-4">
+        <p className="font-inter text-sm font-semibold text-teal mb-4">
           Noe gikk galt
         </p>
         <h1 className="font-space text-4xl md:text-6xl font-bold text-brown leading-tight mb-6">

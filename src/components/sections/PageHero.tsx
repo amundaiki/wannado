@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import Button from "@/components/ui/Button";
+import Compass from "@/components/ui/Compass";
 
 type HeroAction = { label: string; href: string };
 
@@ -52,12 +53,13 @@ export default function PageHero({
         style={{ objectPosition: imagePosition }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-brown-dark/70 via-brown/55 to-brown-dark/90" />
+      <Compass className="absolute -bottom-24 -right-24 h-[520px] w-[520px] bg-white/[0.07] md:-right-16" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-12 pt-32 md:pb-16 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
           <div className="max-w-3xl">
             {eyebrow && (
-              <p className="mb-4 font-body text-sm font-semibold uppercase tracking-[0.12em] text-sand">
+              <p className="mb-4 font-body text-base font-semibold text-sand">
                 {eyebrow}
               </p>
             )}

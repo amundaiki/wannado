@@ -262,7 +262,7 @@ export default function PraktiskInformasjonPage() {
         ]}
         aside={
           <>
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
+            <p className="font-body text-xs font-semibold text-teal">
               Rask sjekk
             </p>
             <ul className="mt-5 space-y-3">
@@ -290,7 +290,7 @@ export default function PraktiskInformasjonPage() {
       >
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[320px_minmax(0,1fr)]">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
+            <p className="font-inter text-sm font-semibold text-teal">
               Greit å vite
             </p>
             <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-5xl">
@@ -300,7 +300,7 @@ export default function PraktiskInformasjonPage() {
               Har du valgt tur, kurs eller bedriftsopplegg, er dette siden du
               bruker for å sjekke oppmøte, klær, utstyr og vilkår.
             </p>
-            <div className="mt-6 rounded-2xl border border-border bg-white p-5 shadow-sm">
+            <div className="mt-6 rounded-card border border-border bg-white p-5">
               <p className="font-space text-xl font-bold text-brown">
                 Spør oss hvis noe er uklart
               </p>
@@ -332,7 +332,7 @@ export default function PraktiskInformasjonPage() {
               return (
                 <div
                   key={card.title}
-                  className="rounded-2xl border border-border bg-white p-6 shadow-sm md:p-8"
+                  className="rounded-card border border-border bg-white p-6 md:p-8"
                 >
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-teal/10">
                     <Icon className="h-6 w-6 text-teal" aria-hidden="true" />
@@ -354,7 +354,7 @@ export default function PraktiskInformasjonPage() {
       <section className="bg-brown py-16 text-white md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-[1fr_auto]">
           <div>
-            <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-sand">
+            <p className="font-inter text-sm font-semibold text-sand">
               Fortsatt usikker?
             </p>
             <h2 className="mt-3 font-space text-3xl font-bold md:text-5xl">

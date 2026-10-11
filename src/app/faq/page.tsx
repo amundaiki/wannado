@@ -121,7 +121,7 @@ export default async function FAQPage() {
         facts={faqHeroStats}
         aside={
           <>
-            <p className="mb-4 font-body text-xs font-semibold uppercase tracking-[0.12em] text-teal">
+            <p className="mb-4 font-body text-xs font-semibold text-teal">
               Her får du avklart
             </p>
             <div className="grid gap-3">
@@ -147,7 +147,7 @@ export default async function FAQPage() {
 
       <section className="bg-warm-white py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="font-inter text-sm font-semibold uppercase tracking-[0.2em] text-teal">
+          <p className="font-inter text-sm font-semibold text-teal">
             Greit å vite
           </p>
           <h2 className="mt-3 font-space text-3xl font-bold text-brown md:text-4xl">
@@ -176,8 +176,8 @@ export default async function FAQPage() {
 
       <section className="pb-16 md:pb-20">
         <div className="mx-auto max-w-3xl px-6">
-          <div className="rounded-[30px] bg-brown px-6 py-10 text-center md:px-10 md:py-12">
-            <p className="mb-3 font-inter text-sm font-semibold uppercase tracking-[0.2em] text-sand/80">
+          <div className="rounded-card bg-brown px-6 py-10 text-center md:px-10 md:py-12">
+            <p className="mb-3 font-inter text-sm font-semibold text-sand/80">
               Finner du ikke svaret?
             </p>
             <h2 className="mb-4 font-space text-2xl font-bold text-white md:text-3xl">

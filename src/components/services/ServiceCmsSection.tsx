@@ -65,10 +65,10 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
     <section className="bg-cream py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14">
         <ScrollReveal>
-          <p className="mb-4 font-inter text-sm font-semibold uppercase tracking-[0.24em] text-teal">
+          <p className="mb-4 font-inter text-sm font-semibold text-teal">
             Fra Wannado
           </p>
-          <div className="rounded-2xl border border-border bg-white p-6 shadow-sm md:p-9">
+          <div className="rounded-card border border-border bg-white p-6 md:p-9">
             {service.imageUrl && (
               <div className="relative mb-8 aspect-[16/10] overflow-hidden rounded-xl bg-sand/30">
                 <Image
@@ -86,7 +86,7 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
 
         <ScrollReveal className="space-y-5 lg:sticky lg:top-24" delay={0.12}>
           {(details.length > 0 || pricing) && (
-            <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+            <div className="rounded-card border border-border bg-white p-6">
               <h2 className="font-space text-2xl font-bold text-brown">
                 Praktisk kort fortalt
               </h2>
@@ -99,7 +99,7 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
                         <Icon className="h-4 w-4" aria-hidden="true" />
                       </span>
                       <div>
-                        <p className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-brown-mid">
+                        <p className="font-inter text-xs font-semibold text-brown-mid">
                           {detailLabels[key]}
                         </p>
                         <p className="mt-1 font-inter text-sm leading-relaxed text-brown-mid">
@@ -111,7 +111,7 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
                 })}
                 {pricing && (
                   <div className="rounded-xl bg-sand/35 p-4">
-                    <p className="font-inter text-xs font-semibold uppercase tracking-[0.16em] text-brown-mid">
+                    <p className="font-inter text-xs font-semibold text-brown-mid">
                       Pris
                     </p>
                     <p className="mt-1 font-inter text-sm leading-relaxed text-brown-mid">
@@ -124,7 +124,7 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
           )}
 
           {service.faqs && service.faqs.length > 0 && (
-            <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+            <div className="rounded-card border border-border bg-white p-6">
               <h2 className="font-space text-2xl font-bold text-brown">
                 Vanlige spørsmål
               </h2>
@@ -146,7 +146,7 @@ export function ServiceCmsSection({ service }: ServiceCmsSectionProps) {
           )}
 
           {service.relatedServices && service.relatedServices.length > 0 && (
-            <div className="rounded-2xl border border-border bg-brown p-6 text-white shadow-sm">
+            <div className="rounded-card border border-border bg-brown p-6 text-white">
               <h2 className="font-space text-2xl font-bold">
                 Kanskje også gøy
               </h2>

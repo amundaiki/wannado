@@ -93,7 +93,7 @@ export default async function BloggPage() {
 
       <section className="pt-36 pb-16 md:pt-44 md:pb-20 bg-cream">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <p className="font-inter text-sm font-medium text-teal uppercase tracking-[3px] mb-4">
+          <p className="font-inter text-sm font-medium text-teal mb-4">
             Oppdateringer fra Wannado
           </p>
           <h1 className="font-space text-4xl md:text-6xl lg:text-7xl font-bold text-brown leading-tight mb-6">
@@ -114,7 +114,7 @@ export default async function BloggPage() {
           {blogPosts.map((post) => (
             <article
               key={post._id}
-              className="bg-white rounded-2xl overflow-hidden border border-border shadow-sm"
+              className="bg-white rounded-card overflow-hidden border border-border"
             >
               <div className="relative h-64">
                 <Image
@@ -126,7 +126,7 @@ export default async function BloggPage() {
                 />
               </div>
               <div className="p-6 md:p-8">
-                <p className="font-inter text-xs font-semibold uppercase tracking-[2px] text-teal mb-3">
+                <p className="font-inter text-xs font-semibold text-teal mb-3">
                   {formatDate(post.publishedAt)}
                 </p>
                 <h3 className="font-space text-2xl md:text-3xl font-bold text-brown mb-4">
