@@ -45,7 +45,7 @@ export default function VideoBanner({
         sizes="100vw"
         className={`object-cover transition-opacity duration-700 ${
           isVideoReady ? "opacity-0" : "opacity-100"
-        }`}
+        } motion-reduce:opacity-100`}
         aria-hidden="true"
       />
       <video
@@ -58,7 +58,7 @@ export default function VideoBanner({
         aria-hidden="true"
         onLoadedData={() => setIsVideoReady(true)}
         onCanPlay={() => setIsVideoReady(true)}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:hidden ${
           isVideoReady ? "opacity-100" : "opacity-0"
         }`}
       >

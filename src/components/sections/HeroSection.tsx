@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import Button from "@/components/ui/Button";
 
 const words = ["ro og balanse", "eventyr på havet", "lek og fellesskap"];
 const HERO_POSTER = "/images/scraped/sailing/baat-fb-havsul.jpg";
@@ -30,6 +31,20 @@ export default function HeroSection({
   const poster = posterImageUrl || HERO_POSTER;
   const [index, setIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoPaused, setVideoPaused] = useState(false);
+
+  const toggleVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      void video.play();
+      setVideoPaused(false);
+    } else {
+      video.pause();
+      setVideoPaused(true);
+    }
+  };
 
   useEffect(() => {
     // Respekter prefers-reduced-motion: ikke auto-roter ordene da.
@@ -51,9 +66,10 @@ export default function HeroSection({
         priority
         sizes="100vw"
         quality={85}
-        className="object-cover md:hidden"
+        className="object-cover md:hidden md:motion-reduce:block"
       />
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
@@ -61,7 +77,7 @@ export default function HeroSection({
         preload="auto"
         poster={poster}
         aria-hidden="true"
-        className="absolute inset-0 hidden h-full w-full object-cover motion-reduce:hidden md:block"
+        className="absolute inset-0 hidden h-full w-full object-cover md:block md:motion-reduce:hidden"
       >
         <source
           src="/videos/havsul-clip-01-aerial-kystby.mp4"
@@ -106,40 +122,24 @@ export default function HeroSection({
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
-            href={primaryCtaHref || "#opplevelser"}
-            className="inline-flex min-h-11 items-center justify-center rounded-md border-2 border-sand bg-sand px-8 py-3.5 font-inter text-base font-semibold text-brown shadow-[0_12px_34px_rgba(42,31,24,0.35)] transition-colors duration-300 hover:border-white hover:bg-white"
-          >
+          <Button href={primaryCtaHref || "#opplevelser"} variant="sand">
             {primaryCtaLabel || "Utforsk turer"}
-          </a>
-          <a
-            href="/booking"
-            className="inline-flex min-h-11 items-center justify-center rounded-md border-2 border-white/70 bg-white/10 px-8 py-3.5 font-inter text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:border-white hover:bg-white/20"
-          >
+          </Button>
+          <Button href="/booking" variant="outline-light">
             Bestill opplevelse
-          </a>
+          </Button>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-[24px] right-[24px] md:bottom-10 md:right-16 z-20 flex flex-col items-center gap-2">
-        <div className="w-[1px] h-10 bg-white/40 relative">
-          <motion.div
-            animate={{
-              y: [0, 34, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-            className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/60"
-          />
-        </div>
-        <span className="font-inter text-[11px] text-white/40 tracking-[0.2em] [writing-mode:vertical-rl]">
-          SCROLL
-        </span>
-      </div>
+      {!prefersReducedMotion && (
+        <button
+          type="button"
+          onClick={toggleVideo}
+          className="absolute bottom-10 right-16 z-20 hidden min-h-11 items-center rounded-control border border-white/60 bg-brown-dark/70 px-4 font-body text-sm font-semibold text-white transition-colors hover:bg-brown-dark md:inline-flex"
+        >
+          {videoPaused ? "Spill av video" : "Pause video"}
+        </button>
+      )}
     </section>
   );
 }
