@@ -299,7 +299,7 @@ export default function ContactForm({ defaultService }: ContactFormProps) {
       <button
         type="submit"
         disabled={status === "pending"}
-        className="min-h-11 w-full bg-brown text-white font-body font-medium text-sm py-3 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
+        className="min-h-11 w-full bg-brown text-white font-body font-medium text-sm py-3 rounded-lg hover:bg-brown-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]"
       >
         {status === "pending" ? "Sender..." : "Send forespørsel"}
       </button>

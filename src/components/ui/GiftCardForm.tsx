@@ -336,7 +336,7 @@ export default function GiftCardForm() {
       <button
         type="submit"
         disabled={status === "pending"}
-        className="min-h-11 w-full bg-brown text-white font-inter font-medium text-sm py-3 rounded-lg hover:bg-[#5a4838] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="min-h-11 w-full bg-brown text-white font-inter font-medium text-sm py-3 rounded-lg hover:bg-brown-hover transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "pending" ? "Sender..." : "Bestill gavekort"}
       </button>
